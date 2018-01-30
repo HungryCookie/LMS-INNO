@@ -4,7 +4,7 @@ public abstract class Users {
     private int ID; //Card number of each user
     private String address;
     private String phoneNumber;
-    
+
 
     public String getName() {
         return name;
