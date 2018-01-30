@@ -5,8 +5,7 @@ public abstract class Users {
     private String address;
     private String phoneNumber;
 
-    //comment
-    //туц 
+    //artur pidor
 
     public String getName() {
         return name;
