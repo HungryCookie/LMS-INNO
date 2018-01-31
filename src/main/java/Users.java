@@ -1,46 +1,46 @@
 public abstract class Users {
-    private String name;
-    private String password;
-    private int userID; //Card number of each user
-    private String address;
-    private String phoneNumber;
+    protected String name;
+    protected String password;
+    protected int ID; //Card number of each user
+    protected String address;
+    protected String phoneNumber;
 
     public String getName() {
         return name;
     }
-
+ 
     public void setName(String name) {
         this.name = name;
     }
-
+ 
     public String getPassword() {
         return password;
     }
-
+ 
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public int getUserID() {
-        return userID;
+ 
+    public int getID() {
+        return ID;
     }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
+ 
+    public void setID(int ID) {
+        this.ID = ID;
     }
-
+ 
     public String getAddress() {
         return address;
     }
-
+ 
     public void setAddress(String address) {
         this.address = address;
     }
-
+ 
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
+ 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
