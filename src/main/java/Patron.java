@@ -8,9 +8,9 @@ public class Patron extends Users{
        // else get result by userID and set all the fields
     }
 
-    public static void bookADocument(Documents document){
-        
-        // put in data base a new note that user with id = userID is 
+    public static boolean bookADocument(Documents document){
+        // if user with id = userID already booked document then return false
+        // else put in data base a new note that user with id = userID is 
         // going to get document with id = document.docID
         // return true
         
