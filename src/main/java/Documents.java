@@ -5,10 +5,23 @@ public abstract class Documents {
     private String name;
     private String type; // Book, JA or AV material
     private int bookID; //ID of proper document
+    private String author;
+    private int copies;
 
-    private Date date; //date, when doc was checked out
-    private String [] authors; //list of authors of proper document
-
+    public static Documents(int bookID){
+        
+        //if bookID is not correct return null;
+        
+        //else get result by bookID and set all the fields
+    }
+    
+    public static Documets(String name){
+        
+        //if name is not correct return null;
+        
+        //else get result by name and set all the fields
+    }
+    
     private static final String URL = "jdbc:mysql://localhost:3306/ldata?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
             "&useLegacyDatetimeCode=false&serverTimezone=UTC";            //"jdbc:mysql://localhost:3306/test";
     private static final String USERNAME = "root";
@@ -31,5 +44,5 @@ public abstract class Documents {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }//sdfjsdlf
+    }
 }
