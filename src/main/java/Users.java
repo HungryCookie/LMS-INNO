@@ -1,10 +1,9 @@
 public abstract class Users {
     private String name;
     private String password;
-    private int ID; //Card number of each user
+    private int userID; //Card number of each user
     private String address;
     private String phoneNumber;
-
 
     public String getName() {
         return name;
@@ -22,12 +21,12 @@ public abstract class Users {
         this.password = password;
     }
 
-    public int getID() {
-        return ID;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getAddress() {
