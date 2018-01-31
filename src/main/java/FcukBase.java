@@ -11,36 +11,65 @@ public class FcukBase {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             if (!connection.isClosed()) {
-                System.out.println("Connection established");
+                //System.out.println("Connection established");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public ResultSet getUserByID(int ID) {
-        return getByID(ID, "users");
+    public ResultSet getUserByID(int userID) {
+        String query = "select * from users where id = ?";
+        ResultSet res = null;
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+            res = statement.executeQuery();
+            if (res.next()) {
+                return res;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
-    public ResultSet getBookByID(int ID) {
-        return getByID(ID, "documents");
+    public ResultSet getBookByID(int bookID) {
+        String query = "select * from documents where id = ?";
+        ResultSet res = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, bookID);
+            res = statement.executeQuery();
+            if (res.next()) {
+                return res;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
     public ResultSet getBookByName(String name) {
         String query = "select * from documents where name = ?";
-        ResultSet res;
+        ResultSet res = null;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
             res = statement.executeQuery();
-            if (!res.next())
-                return null;
-            if (res.next())
+            if (res.next()) {
                 return res;
+            } else {
+                return null;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return res;
     }
 
     public void bookADocument(int bookID, int userID) {
@@ -66,9 +95,9 @@ public class FcukBase {
             while (res.next()) {
                 arr.add(res.getInt(1));
             }
-            for (Integer i : arr) {
+            /*for (Integer i : arr) {
                 System.out.println(i);
-            }
+            }*/
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,9 +114,9 @@ public class FcukBase {
             while (res.next()) {
                 arr.add(res.getInt(1));
             }
-            for (Integer i : arr) {
+            /*for (Integer i : arr) {
                 System.out.println(i);
-            }
+            }*/
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,15 +131,17 @@ public class FcukBase {
             statement.setString(1,tableName);
             statement.setInt(2, ID);
             res = statement.executeQuery();
-            if (!res.next())
-                return null;
-            if (res.next())
+            if (res.next()) {
                 return res;
+            } else {
+                return null;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
 
 }
 
@@ -131,4 +162,66 @@ public class FcukBase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }*/
+
+
+/*public ResultSet getUserByID(int ID) {
+        String query = "select * from users where id = ?";
+        ResultSet res;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            //statement.setString(1,tableName);
+            statement.setInt(1, ID);
+            res = statement.executeQuery();
+            if (!res.next()) {
+                res.beforeFirst();
+                return null;
+            } else {
+                res.beforeFirst();
+                return res;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+        //return getByID(ID, "users");
+    }
+
+    public ResultSet getBookByID(int ID) {
+        String query = "select * from documents where id = ?";
+        ResultSet res;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            //statement.setString(1,tableName);
+            statement.setInt(1, ID);
+            res = statement.executeQuery();
+            if (!res.next()) {
+                res.beforeFirst();
+                return null;
+            } else {
+                res.beforeFirst();
+                return res;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+        //return getByID(ID, "documents");
+    }
+
+    public ResultSet getBookByName(String name) {
+        String query = "select * from documents where name = ?";
+        ResultSet res;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
+            res = statement.executeQuery();
+            if (!res.next())
+                return null;
+            if (res.next())
+                return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }*/

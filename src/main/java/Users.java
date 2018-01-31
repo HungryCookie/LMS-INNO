@@ -1,7 +1,7 @@
 public abstract class Users {
     protected String name;
     protected String password;
-    protected int ID; //Card number of each user
+    protected int userID; //Card number of each user
     protected String address;
     protected String phoneNumber;
 
@@ -22,11 +22,11 @@ public abstract class Users {
     }
  
     public int getID() {
-        return ID;
+        return userID;
     }
  
     public void setID(int ID) {
-        this.ID = ID;
+        this.userID = ID;
     }
  
     public String getAddress() {

@@ -6,16 +6,23 @@ public class Patron extends Users{
     private int currentFine;
     private String rank;
     private FcukBase base = new FcukBase();
- 
+
+    public static void main(String[] args) {
+        Patron patron = new Patron(2);
+        System.out.println(patron.name);
+        //patron.bookADocument(new Documents(1));
+        for (Documents doc : patron.bookedDocuments()) {
+            System.out.print(doc.getName() + " ");
+        }
+    }
+
     public Patron(int userID){
         ResultSet res = base.getUserByID(userID);
- 
- 
         try {
             // if usedID is not correct then return null
-            if (!res.next()) {
+            /*if (!res.next()) {
                 return;
-            }
+            }*/
             this.userID = userID;
             // else get result by userID and set all the fields
             name = res.getString("name");
@@ -48,11 +55,12 @@ public class Patron extends Users{
  
         // get array of docIDs
         ArrayList<Integer> arr = base.findBookedDocuments(userID);
+        //System.out.println("+++++" + arr.size());
         Documents[] res = new Documents[arr.size()];
  
         // create Documents array
         // use docIDs and setter in Documents class to get final arrat Documents and return it
-        for (Integer i : arr) {
+        for (int i = 0; i < arr.size(); i++) {
             res[i] = new Documents(arr.get(i));
         }
  
