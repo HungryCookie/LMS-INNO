@@ -5,6 +5,9 @@ public abstract class Users {
     private String address;
     private String phoneNumber;
 
+    public void bookOrder(String title) {
+        //for overriding
+    }
 
     public String getName() {
         return name;
