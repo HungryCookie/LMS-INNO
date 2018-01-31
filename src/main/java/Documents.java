@@ -3,12 +3,29 @@ import java.util.Date;
 public abstract class Documents {
     private String name;
     private String type; // Book, JA or AV material
-    private int bookID; //ID of proper document
+    private int docID; //ID of proper document
+    private String author;
+    private int copies;
 
-    private Date date; //date, when doc was checked out
-    private String [] authors; //list of authors of proper document
-
+<<<<<<< HEAD
     /*private static final String URL = "jdbc:mysql://localhost:3306/ldata?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
+=======
+    public static Documents(int docID){
+        
+        //if docID is not correct return null;
+        
+        //else get result by docID and set all the fields
+    }
+    
+    public static Documets(String name){
+        
+        //if name is not correct return null;
+        
+        //else get result by name and set all the fields
+    }
+    
+    private static final String URL = "jdbc:mysql://localhost:3306/ldata?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
+>>>>>>> origin/master
             "&useLegacyDatetimeCode=false&serverTimezone=UTC";            //"jdbc:mysql://localhost:3306/test";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
@@ -30,5 +47,9 @@ public abstract class Documents {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
     }*/
+=======
+    }
+>>>>>>> origin/master
 }
