@@ -9,7 +9,7 @@ public abstract class Documents {
     private Date date; //date, when doc was checked out
     private String [] authors; //list of authors of proper document
 
-    /*private static final String URL = "jdbc:mysql://localhost:3306/documents?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
+    private static final String URL = "jdbc:mysql://localhost:3306/documents?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
             "&useLegacyDatetimeCode=false&serverTimezone=UTC";            //"jdbc:mysql://localhost:3306/test";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
@@ -21,9 +21,11 @@ public abstract class Documents {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             Statement statement = connection.createStatement();
             ResultSet res = statement.executeQuery("select id from Books where name = 'Book'");
-            System.out.println(res.getInt("ID"));
+            if (res.next()) {
+                System.out.println(res.getInt(1));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }
