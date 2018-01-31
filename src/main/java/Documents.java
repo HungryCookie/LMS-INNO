@@ -17,6 +17,7 @@ public abstract class Documents {
     private static Connection connection = null;
 
     public static void main(String[] args) {
+
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             Statement statement = connection.createStatement();
