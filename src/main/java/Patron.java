@@ -1,6 +1,28 @@
 public class Patron extends Users{
-    private int fine;
+    private int currentFine;
+    private String rank;
+    
+    public static Patron(int userID){
+       // if usedID is not correct then return null
+        
+       // else get result by userID and set all the fields
+    }
 
+    public static void bookADocument(Documents document){
+        
+        // put in data base a new note that user with id = userID is 
+        // going to get document with id = document.docID
+        // return true
+        
+    }
+    
+    public static Documents[] bookedDocuments(){
+        
+        // get array of docIDs
+        // create Documents array
+        // use docIDs and setter in Documents class to get final arrat Documents and return it
+    }    
+        
     public Patron() {
         /*Renew Fine for current user*/
     }
