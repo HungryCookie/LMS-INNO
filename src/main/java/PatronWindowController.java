@@ -1,17 +1,15 @@
-package sample;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class SecondScene {
+public class PatronWindowController {
 
     public Button search;
     public TextField findText;
     public Label empty;
 
     public void search() {
-        if (findText.getText().isEmpty()) {
+        if (findText.getText().equals("")) {
             empty.setText("Enter the title for searching");
         }
         else {
