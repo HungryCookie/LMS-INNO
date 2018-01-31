@@ -1,9 +1,12 @@
 import java.sql.*;
+import java.util.Date;
 
 public abstract class Documents {
     private String name;
     private String type; // Book, JA or AV material
     private int bookID; //ID of proper document
+
+    private Date date; //date, when doc was checked out
     private String [] authors; //list of authors of proper document
 
     /*private static final String URL = "jdbc:mysql://localhost:3306/documents?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
