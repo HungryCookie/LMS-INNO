@@ -1,4 +1,3 @@
-import java.sql.*;
 import java.util.Date;
 
 public abstract class Documents {
