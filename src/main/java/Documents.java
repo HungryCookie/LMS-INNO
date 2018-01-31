@@ -4,15 +4,15 @@ import java.util.Date;
 public abstract class Documents {
     private String name;
     private String type; // Book, JA or AV material
-    private int bookID; //ID of proper document
+    private int docID; //ID of proper document
     private String author;
     private int copies;
 
-    public static Documents(int bookID){
+    public static Documents(int docID){
         
-        //if bookID is not correct return null;
+        //if docID is not correct return null;
         
-        //else get result by bookID and set all the fields
+        //else get result by docID and set all the fields
     }
     
     public static Documets(String name){
