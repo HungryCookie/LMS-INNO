@@ -395,7 +395,7 @@
       <workItem from="1517256771670" duration="782000" />
       <workItem from="1517312405126" duration="8666000" />
       <workItem from="1517387240476" duration="701000" />
-      <workItem from="1517407761667" duration="3169000" />
+      <workItem from="1517407761667" duration="3195000" />
     </task>
     <task id="LOCAL-00001" summary="Delete comment">
       <created>1517315812854</created>
@@ -432,11 +432,18 @@
       <option name="project" value="LOCAL" />
       <updated>1517413673151</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Repaired workspace.xml file">
+      <created>1517414569897</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1517414569897</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13318000" />
+    <option name="totallyTimeSpent" value="13344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1102" extended-state="6" />
