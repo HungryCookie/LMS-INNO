@@ -7,9 +7,6 @@ public abstract class Documents {
     private String author;
     private int copies;
 
-<<<<<<< HEAD
-    /*private static final String URL = "jdbc:mysql://localhost:3306/ldata?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
-=======
     public static Documents(int docID){
         
         //if docID is not correct return null;
@@ -24,32 +21,4 @@ public abstract class Documents {
         //else get result by name and set all the fields
     }
     
-    private static final String URL = "jdbc:mysql://localhost:3306/ldata?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
->>>>>>> origin/master
-            "&useLegacyDatetimeCode=false&serverTimezone=UTC";            //"jdbc:mysql://localhost:3306/test";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
-
-    private static Connection connection = null;
-
-    public static void main(String[] args) {
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("select * from users where id < 3");
-            *//*if (res.next()) {
-                System.out.println(res.getInt(1));
-            }*//*
-            while (res.next()) {
-                System.out.println(res.getInt("id"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-<<<<<<< HEAD
-    }*/
-=======
-    }
->>>>>>> origin/master
 }
