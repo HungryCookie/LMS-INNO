@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-public class FcukBase {
+public class FcukBase implements FcukBaseInterface{
     private static final String URL = "jdbc:mysql://localhost:3306/ldata?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
             "&useLegacyDatetimeCode=false&serverTimezone=UTC";            //"jdbc:mysql://localhost:3306/test";
     private static final String USERNAME = "root";
@@ -36,7 +36,7 @@ public class FcukBase {
         return res;
     }
 
-    public ResultSet getBookByID(int bookID) {
+    public ResultSet getDocumentByID(int bookID) {
         String query = "select * from documents where id = ?";
         ResultSet res = null;
         try {
@@ -54,7 +54,7 @@ public class FcukBase {
         return res;
     }
 
-    public ResultSet getBookByName(String name) {
+    public ResultSet getDocumentByName(String name) {
         String query = "select * from documents where name = ?";
         ResultSet res = null;
         try {
@@ -72,11 +72,11 @@ public class FcukBase {
         return res;
     }
 
-    public void bookADocument(int bookID, int userID) {
+    public void bookADocument(int docID, int userID) {
         String query = "insert into booking values (?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, bookID);
+            statement.setInt(1, docID);
             statement.setInt(2, userID);
             statement.execute();
         } catch (SQLException e) {
@@ -94,6 +94,7 @@ public class FcukBase {
             res = statement.executeQuery();
             while (res.next()) {
                 arr.add(res.getInt(1));
+                //res.beforeFirst();
             }
             /*for (Integer i : arr) {
                 System.out.println(i);
@@ -103,13 +104,13 @@ public class FcukBase {
         }
         return arr;    }
 
-    public ArrayList findUserByBookedDocument(int bookID) {
+    public ArrayList findUserByBookedDocument(int docID) {
         String query = "select userID from booking where bookID = ?";
         ResultSet res;
         ArrayList<Integer> arr = new ArrayList<Integer>();
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, bookID);
+            statement.setInt(1, docID);
             res = statement.executeQuery();
             while (res.next()) {
                 arr.add(res.getInt(1));
@@ -121,6 +122,30 @@ public class FcukBase {
             e.printStackTrace();
         }
         return arr;
+    }
+
+    public int[] findCopyID(int docID) {
+        String query = "select copyID from copies where commonID = ?";
+        ResultSet res;
+        int rowCounter;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, docID);
+            res = statement.executeQuery();
+            res.last();
+            rowCounter = res.getRow();
+            res.beforeFirst();
+            int[] arr = new int[rowCounter];
+            rowCounter = 0;
+            while (res.next()) {
+                arr[rowCounter] = res.getInt("copyID");
+                rowCounter++;
+            }
+            return arr;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private ResultSet getByID(int ID, String tableName) {
@@ -142,6 +167,13 @@ public class FcukBase {
         return null;
     }
 
+ /*   public static void main(String[] args) {
+        FcukBase b = new FcukBase();
+        int[] arr = b.findCopyID(2);
+        for (int i : arr) {
+            System.out.println(i);
+        }
+    }*/
 
 }
 
