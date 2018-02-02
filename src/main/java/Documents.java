@@ -12,7 +12,7 @@ public class Documents {
     private FcukBase base = new FcukBase();
 
     public Documents(int docID){
-        ResultSet res = base.getBookByID(docID);
+        ResultSet res = base.getDocumentByID(docID);
         try {
             //if docID is not correct return null;
             /*if (!res.next()) {
@@ -30,7 +30,7 @@ public class Documents {
     }
 
     public Documents(String name){
-        ResultSet res = base.getBookByName(name);
+        ResultSet res = base.getDocumentByName(name);
 
         try {
             //if name is not correct return null;
