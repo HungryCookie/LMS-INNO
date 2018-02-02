@@ -48,11 +48,26 @@ public class Main {
                 }
                 else if (Current instanceof Patron){
                     System.out.println("Enter title or ID of document to search");
+                    
+                    Documents document;
+                    
                     String order = sc.next();
                     try {
-                        Integer.parseInt(order);
+                        document = new Document(Integer.parseInt(order))
                     }catch (Exception e) {}
-                    Current.bookOrder(order);
+                    
+                    document = new Document(order);
+                    
+                    if (document == null){
+                        //введите другую книгу
+                    }
+                    else{
+                        if (Current.bookADocument(order))
+                            //книжка забронирована
+                        else
+                            //уже забронировали
+                            
+                    }
                 }
             }
         }
