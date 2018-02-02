@@ -4,6 +4,8 @@ public abstract class Users {
     protected int userID; //Card number of each user
     protected String address;
     protected String phoneNumber;
+   
+    public boolean bookADocument (Documents document) {return true; }
 
     public String getName() {
         return name;
