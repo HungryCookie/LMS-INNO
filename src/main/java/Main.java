@@ -4,22 +4,22 @@ public class Main {
 
     public static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         startLogin();
     }
 
-    public static void startLogin() {
+    public static void startLogin() throws Exception {
         System.out.println("Enter your ID: ");
         String id = sc.next();
         System.out.println("Enter password");
         checkID(id, sc.next());
     }
 
-    public static Users findUser (String id) {
+    public static Users findUser (String id) throws Exception {
         Users user;
-        //For Oleg: if no user with such ID, return null.
-        //userStatus is either "Librarian" or others (patrons)
-        String userStatus = "";
+        FcukBase base = new FcukBase();
+        String userStatus = base.getUserByID(Integer.parseInt(id)).getString("status");
+
         if (userStatus == "Librarian") {
             user = new Librarian();
         }
@@ -29,7 +29,7 @@ public class Main {
         return user;
     }
 
-    public static void checkID(String id, String password) {
+    public static void checkID(String id, String password) throws Exception{
         Users Current = findUser(id);
         if (Current == null) {
             System.out.println("There is no such an user, try again");
@@ -73,7 +73,6 @@ public class Main {
             }
         }
     }
-
     public static void endOfProgram(String id, String password) {
         System.out.println("To return to searching enter '1', to exit program enter '0'");
         char ans = sc.next().charAt(0);
