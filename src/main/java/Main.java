@@ -1,4 +1,3 @@
-/*
 import java.util.Scanner;
 
 public class Main {
@@ -22,10 +21,10 @@ public class Main {
         //userStatus is either "Librarian" or others (patrons)
         String userStatus = "";
         if (userStatus == "Librarian") {
-            user = new Librarian(id);
+            user = new Librarian();
         }
         else {
-            user = new Patron(id);
+            user = new Patron(Integer.parseInt(id));
         }
         return user;
     }
@@ -53,24 +52,36 @@ public class Main {
                     
                     String order = sc.next();
                     try {
-                        document = new Document(Integer.parseInt(order))
-                    }catch (Exception e) {}
-                    
-                    document = new Document(order);
+                        document = new Documents(Integer.parseInt(order));
+                    }catch (Exception e) {document = new Documents(order);}
                     
                     if (document == null){
-                        //введите другую книгу
+                        System.out.println("Sorry, there is no such a document, would you like to search for another one?");
+                        endOfProgram(id, password);
                     }
                     else{
-                        if (Current.bookADocument(order))
-                            //книжка забронирована
-                        else
-                            //уже забронировали
-                            
+                        if (Current.bookADocument(document)) {
+                            System.out.println("Your document is successfully booked");
+                            endOfProgram(id, password);
+                        }
+                        else{
+                            System.out.println("You have already booked this document before, repeating is prohibited");
+                            endOfProgram(id, password);
+                        }
                     }
                 }
             }
         }
     }
+
+    public static void endOfProgram(String id, String password) {
+        System.out.println("To return to searching enter '1', to exit program enter '0'");
+        char ans = sc.next().charAt(0);
+        if (ans == '1') checkID(id, password);
+        else if (ans == '0') System.exit(0);
+        else {
+            System.out.println("Unavailable input");
+            endOfProgram(id, password);
+        }
+    }
 }
-*/
