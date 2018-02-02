@@ -1,4 +1,5 @@
 public abstract class Users {
+    
     protected String name;
     protected String password;
     protected int userID; //Card number of each user
@@ -8,6 +9,8 @@ public abstract class Users {
     public String getName() {
         return name;
     }
+
+    public boolean bookADocument (Documents document) {return true; }
  
     public void setName(String name) {
         this.name = name;
