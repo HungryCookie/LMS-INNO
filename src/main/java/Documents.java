@@ -8,7 +8,6 @@ public class Documents {
     private int docID; //ID of proper document
     private String author;
     private int copies;
-
     private FcukBase base = new FcukBase();
 
     public Documents(int docID){
@@ -37,11 +36,10 @@ public class Documents {
                 return;
             }*/
             //else get result by name and set all the fields
-            this.docID = res.getInt("id");
+            docID = res.getInt("id");
             this.name = res.getString("name");
             author = res.getString("author");
             copies = res.getInt("counter");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,7 +48,9 @@ public class Documents {
 
     /*public static void main(String[] args) {
         Documents doc = new Documents("Touch of Class");
+        System.out.println(doc.getName());
         System.out.println(doc.getDocID());
+        System.out.println(doc.getCopies());
     }*/
 
     public String getName() {
