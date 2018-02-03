@@ -167,7 +167,7 @@ public class FcukBase implements FcukBaseInterface{
         return null;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         FcukBase b = new FcukBase();
         String name = "Touch of class";
         ResultSet res = b.getDocumentByName(name);
@@ -176,7 +176,7 @@ public class FcukBase implements FcukBaseInterface{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 }
 
