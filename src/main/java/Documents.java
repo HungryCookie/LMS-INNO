@@ -31,16 +31,14 @@ public class Documents {
 
     public Documents(String name){
         ResultSet res = base.getDocumentByName(name);
-
         try {
             //if name is not correct return null;
-            if (!res.next()) {
+            /*if (!res.next()) {
                 return;
-            }
+            }*/
             //else get result by name and set all the fields
-            this.docID = docID;
-
-            name = res.getString("name");
+            this.docID = res.getInt("id");
+            this.name = res.getString("name");
             author = res.getString("author");
             copies = res.getInt("counter");
 
@@ -48,6 +46,11 @@ public class Documents {
             e.printStackTrace();
         }
 
+    }
+
+    public static void main(String[] args) {
+        Documents doc = new Documents("Touch of Class");
+        System.out.println(doc.getName());
     }
 
     public String getName() {

@@ -167,13 +167,16 @@ public class FcukBase implements FcukBaseInterface{
         return null;
     }
 
- /*   public static void main(String[] args) {
+    public static void main(String[] args) {
         FcukBase b = new FcukBase();
-        int[] arr = b.findCopyID(2);
-        for (int i : arr) {
-            System.out.println(i);
+        String name = "Touch of class";
+        ResultSet res = b.getDocumentByName(name);
+        try {
+            System.out.println(res.getString("name"));
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    }*/
+    }
 
 }
 

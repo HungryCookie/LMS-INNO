@@ -20,7 +20,7 @@ public class Main {
         FcukBase base = new FcukBase();
         String userStatus = base.getUserByID(Integer.parseInt(id)).getString("status");
 
-        if (userStatus == "Librarian") {
+        if (userStatus.equals("Librarian")) {
             user = new Librarian();
         }
         else {
@@ -76,7 +76,11 @@ public class Main {
     public static void endOfProgram(String id, String password) {
         System.out.println("To return to searching enter '1', to exit program enter '0'");
         char ans = sc.next().charAt(0);
-        if (ans == '1') checkID(id, password);
+        if (ans == '1') try {
+            checkID(id, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         else if (ans == '0') System.exit(0);
         else {
             System.out.println("Unavailable input");
