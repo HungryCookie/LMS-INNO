@@ -48,10 +48,10 @@ public class Documents {
 
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         Documents doc = new Documents("Touch of Class");
-        System.out.println(doc.getName());
-    }
+        System.out.println(doc.getDocID());
+    }*/
 
     public String getName() {
         return name;
