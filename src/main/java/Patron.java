@@ -7,6 +7,7 @@ public class Patron extends Users{
     private String rank;
     private FcukBase base = new FcukBase();
 
+
     public static void main(String[] args) {
         Patron patron = new Patron(2);
         System.out.println(patron.name);

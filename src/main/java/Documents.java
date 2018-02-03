@@ -36,6 +36,7 @@ public class Documents {
                 return;
             }*/
             //else get result by name and set all the fields
+            System.out.println("--------"+name);
             docID = res.getInt("id");
             this.name = res.getString("name");
             author = res.getString("author");
