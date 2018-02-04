@@ -8,33 +8,36 @@ public class Patron extends Users{
     private FcukBase base = new FcukBase();
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Patron patron = new Patron(2);
         System.out.println(patron.name);
         //patron.bookADocument(new Documents(1));
         for (Documents doc : patron.bookedDocuments()) {
             System.out.print(doc.getName() + " ");
         }
-    }
+    }*/
 
     public Patron(int userID){
-        ResultSet res = base.getUserByID(userID);
-        try {
-            // if usedID is not correct then return null
+        if (!base.checkUserID(userID)) {
+            return;
+        } else {
+            ResultSet res = base.getUserByID(userID);
+            try {
+                // if usedID is not correct then return null
             /*if (!res.next()) {
                 return;
             }*/
-            this.userID = userID;
-            // else get result by userID and set all the fields
-            name = res.getString("name");
-            address = res.getString("address");
-            password = res.getString("password");
-            phoneNumber = res.getString("phoneNumber");
- 
-        } catch (SQLException e) {
-            e.printStackTrace();
+                this.userID = userID;
+                // else get result by userID and set all the fields
+                name = res.getString("name");
+                address = res.getString("address");
+                password = res.getString("password");
+                phoneNumber = res.getString("phoneNumber");
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
- 
     }
  
     public boolean bookADocument(Documents document){

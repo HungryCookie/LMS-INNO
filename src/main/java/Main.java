@@ -7,11 +7,11 @@ public class Main {
     public static void main(String[] args) throws Exception {
         startLogin();
     }
-    
-    public static void patronInfo() {
+
+    public static void patronInfo(Librarian current) {
         System.out.println("Enter patron's ID");
-        Patron patron = Current.getPatronInfo(sc.next());
-        if (Current == null) {
+        Patron patron = current.getPatronInfo(Integer.parseInt(sc.next()));
+        if (current == null) {
             System.out.println("There is no such an user, try again");
         }
         else {
@@ -22,7 +22,7 @@ public class Main {
                 System.out.println("    " + i.getName());
             }
         }
-        endOfProgram();
+        endOfProgram(Integer.toString(current.getID()), current.getPassword());
     }
     public static void startLogin() throws Exception {
         System.out.println("Enter your ID: ");
@@ -32,70 +32,69 @@ public class Main {
     }
 
     public static Users findUser (String id) throws Exception {
-        Users user;
+        Users user = null;
         FcukBase base = new FcukBase();
-        String userStatus = base.getUserByID(Integer.parseInt(id)).getString("status");
-
-        if (userStatus.equals("Librarian")) {
-            user = new Librarian(Integer.parseInt(id));
-        }
-        else {
-            user = new Patron(Integer.parseInt(id));
+        if (base.checkUserID(Integer.parseInt(id))) {
+            String userStatus = base.getUserByID(Integer.parseInt(id)).getString("status");
+            if (userStatus.equals("Librarian")) {
+                user = new Librarian(Integer.parseInt(id));
+            }
+            else {
+                user = new Patron(Integer.parseInt(id));
+            }
+        } else {
+            return null;
         }
         return user;
     }
 
-    public static void checkID(String id, String password) throws Exception{
-        Users Current = findUser(id);
-        if (Current == null) {
+    public static void checkID(String id, String password) throws Exception {
+        Users current = findUser(id);
+        if (current == null) {
             System.out.println("There is no such an user, try again");
             startLogin();
-        }
-        else {
-            if (!Current.getPassword().equals(password)) {
+        } else {
+            if (!current.getPassword().equals(password)) {
                 System.out.println("Wrong password, try again");
                 startLogin();
-            }
-            else {
-                if (Current instanceof Librarian) {
-                    patronInfo();
-                    endOfProgram();
-                }
-                else if (Current instanceof Patron){
+            } else {
+                if (current instanceof Librarian) {
+                    patronInfo((Librarian) current);
+                    endOfProgram(Integer.toString(current.getID()), current.getPassword());
+                } else if (current instanceof Patron) {
                     System.out.println("Enter '1' to search for a new document, enter '2' to see list of your orders, enter '0' to exit");
                     char ans = sc.next().charAt(0);
-                    if (ans.equalsTo('0')) System.exit(0);
-                    else if (ans.equalsTo('1') {
+                    if (ans == '0') System.exit(0);
+                    else if (ans == '1') {
                         System.out.println("Enter title or ID of document to search");
-                    
+
                         Documents document;
-                    
+
                         String order = sc.next();
                         try {
-                         document = new Documents(Integer.parseInt(order));
-                        }catch (Exception e) {
+                            document = new Documents(Integer.parseInt(order));
+                        } catch (Exception e) {
                             System.out.println("+++++++" + order);
-                            document = new Documents(order);}
-
-                        if (document == null){
-                            System.out.println("Sorry, there is no such a document, would you like to search for another one?");
+                            document = new Documents(order);
                         }
-                        else{
-                            if (Current.bookADocument(document)) {
+
+                        if (document == null) {
+                            System.out.println("Sorry, there is no such a document, would you like to search for another one?");
+                        } else {
+                            if (current.bookADocument(document)) {
                                 System.out.println("Your document is successfully booked");
-                            }
-                            else{
+                            } else {
                                 System.out.println("You have already booked this document before, repeating is prohibited");
                             }
                         }
-                    }
-                   else if (ans.equalsTo('2') {
-                       Documents[] order = Current.bookedDocuments();
-                       for (Documents i : order) {
+                    } else if (ans == '2') {
+                        Documents[] order = ((Patron) current).bookedDocuments();
+                        for (Documents i : order) {
                             System.out.println(i.getName());
-                       }
-                   }
-                   endOfProgram();
+                        }
+                    }
+                    endOfProgram(Integer.toString(current.getID()), current.getPassword());
+                }
             }
         }
     }

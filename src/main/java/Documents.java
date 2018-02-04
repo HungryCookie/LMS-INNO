@@ -36,7 +36,7 @@ public class Documents {
                 return;
             }*/
             //else get result by name and set all the fields
-            System.out.println("--------"+name);
+            //System.out.println("--------"+name);
             docID = res.getInt("id");
             this.name = res.getString("name");
             author = res.getString("author");
@@ -48,7 +48,7 @@ public class Documents {
     }
 
     /*public static void main(String[] args) {
-        Documents doc = new Documents("Touch of Class");
+        Documents doc = new Documents("Touch");
         System.out.println(doc.getName());
         System.out.println(doc.getDocID());
         System.out.println(doc.getCopies());

@@ -1,3 +1,6 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Librarian extends Users {
     private FcukBase base = new FcukBase();
     

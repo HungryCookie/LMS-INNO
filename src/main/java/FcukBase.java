@@ -148,6 +148,24 @@ public class FcukBase implements FcukBaseInterface{
         return null;
     }
 
+    public boolean checkUserID(int userID) {
+        String query = "select * from users where id = ?";
+        ResultSet res;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+            res = statement.executeQuery();
+            if (res.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private ResultSet getByID(int ID, String tableName) {
         String query = "select * from ? where id = ?";
         ResultSet res;
@@ -169,13 +187,7 @@ public class FcukBase implements FcukBaseInterface{
 
     /*public static void main(String[] args) {
         FcukBase b = new FcukBase();
-        String name = "Touch of class";
-        ResultSet res = b.getDocumentByName(name);
-        try {
-            System.out.println(res.getString("name"));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        System.out.println(b.checkUserID(1123345));
     }*/
 
 }
