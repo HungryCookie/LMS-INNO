@@ -10,4 +10,4 @@ Server -> Data Import -> Import from self contained file -> LMSDataBase.sql
 Restart workbench to check whether the database was imported or not.
 
 
-Creators are the students of Innopolis University
+*Creators are the students of Innopolis University
