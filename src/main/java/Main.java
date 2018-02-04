@@ -7,7 +7,23 @@ public class Main {
     public static void main(String[] args) throws Exception {
         startLogin();
     }
-
+    
+    public static void patronInfo() {
+        System.out.println("Enter patron's ID");
+        Patron patron = Current.getPatronInfo(sc.next());
+        if (Current == null) {
+            System.out.println("There is no such an user, try again");
+        }
+        else {
+            System.out.println("Name: " + patron.name + "\n" + "Address: " + patron.address + "\n" + "Phone number: " + patron.phoneNumber);
+            System.out.println("List of orders: ");
+            Documents [] order = patron.bookedDocuments();
+            for (Documents i : order) {
+                System.out.println("    " + i.getName());
+            }
+        }
+        endOfProgram();
+    }
     public static void startLogin() throws Exception {
         System.out.println("Enter your ID: ");
         String id = sc.next();
@@ -21,7 +37,7 @@ public class Main {
         String userStatus = base.getUserByID(Integer.parseInt(id)).getString("status");
 
         if (userStatus.equals("Librarian")) {
-            user = new Librarian();
+            user = new Librarian(Integer.parseInt(id));
         }
         else {
             user = new Patron(Integer.parseInt(id));
@@ -42,41 +58,49 @@ public class Main {
             }
             else {
                 if (Current instanceof Librarian) {
-                    System.out.println("Librarian class is in development, closing program...");
-                    System.exit(0);
+                    patronInfo();
+                    endOfProgram();
                 }
                 else if (Current instanceof Patron){
-                    System.out.println("Enter title or ID of document to search");
+                    System.out.println("Enter '1' to search for a new document, enter '2' to see list of your orders, enter '0' to exit");
+                    char ans = sc.next().charAt(0);
+                    if (ans.equalsTo('0')) System.exit(0);
+                    else if (ans.equalsTo('1') {
+                        System.out.println("Enter title or ID of document to search");
                     
-                    Documents document;
+                        Documents document;
                     
-                    String order = sc.next();
-                    try {
-                        document = new Documents(Integer.parseInt(order));
-                    }catch (Exception e) {
-                        System.out.println("+++++++" + order);
-                        document = new Documents(order);}
-                    
-                    if (document == null){
-                        System.out.println("Sorry, there is no such a document, would you like to search for another one?");
-                        endOfProgram(id, password);
-                    }
-                    else{
-                        if (Current.bookADocument(document)) {
-                            System.out.println("Your document is successfully booked");
-                            endOfProgram(id, password);
+                        String order = sc.next();
+                        try {
+                         document = new Documents(Integer.parseInt(order));
+                        }catch (Exception e) {
+                            System.out.println("+++++++" + order);
+                            document = new Documents(order);}
+
+                        if (document == null){
+                            System.out.println("Sorry, there is no such a document, would you like to search for another one?");
                         }
                         else{
-                            System.out.println("You have already booked this document before, repeating is prohibited");
-                            endOfProgram(id, password);
+                            if (Current.bookADocument(document)) {
+                                System.out.println("Your document is successfully booked");
+                            }
+                            else{
+                                System.out.println("You have already booked this document before, repeating is prohibited");
+                            }
                         }
                     }
-                }
+                   else if (ans.equalsTo('2') {
+                       Documents[] order = Current.bookedDocuments();
+                       for (Documents i : order) {
+                            System.out.println(i.getName());
+                       }
+                   }
+                   endOfProgram();
             }
         }
     }
     public static void endOfProgram(String id, String password) {
-        System.out.println("To return to searching enter '1', to exit program enter '0'");
+        System.out.println("To continue session enter '1', to exit program enter '0'");
         char ans = sc.next().charAt(0);
         if (ans == '1') try {
             checkID(id, password);
