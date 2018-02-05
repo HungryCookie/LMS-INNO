@@ -28,7 +28,7 @@ public class Test {
     public static void TC1() {
         Patron ptr = new Patron(1);
         Librarian lbr = new Librarian(2);
-        Documents doc = new Documents("Discrete Math");
+        Documents doc = new Documents("Discrete Math"); // id = 2
         System.out.println("Number of copies: " + doc.getCopies());
         int week = ptr.bookADocument(doc);
         if (week != 0) {
@@ -44,15 +44,20 @@ public class Test {
         Patron ptr = new Patron(1);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Impossible book");
-        System.out.println("Number of copies: " + doc.getCopies());
-        int week = ptr.bookADocument(doc);
-        if (week != 0) {
-            System.out.println("The document is successfully booked for " + week + " weeks");
+        try {
+            System.out.println("Number of copies: " + doc.getCopies());
+            int week = ptr.bookADocument(doc);
+            if (week != 0) {
+                System.out.println("The document is successfully booked for " + week + " weeks");
+            }
+            else System.out.println("It's impossible to check out this document");
+            doc = new Documents("Impossible book");
+            System.out.println("Number of copies: "+ doc.getCopies());
+            start();
+        } catch (Exception e) {
+            System.out.println("You cant do it!");
+            start();
         }
-        else System.out.println("It's impossible to check out this document");
-        doc = new Documents("Impossible book");
-        System.out.println("Number of copies: "+ doc.getCopies());
-        start();
     }
 
     public static void TC3() {
@@ -123,7 +128,7 @@ public class Test {
             System.out.println("The document is successfully booked for " + week + " weeks");
         }
         else System.out.println("It's impossible to check out this document");
-        int week = ptr.bookADocument(doc);
+        week = ptr.bookADocument(doc);
         if (week != 0) {
             System.out.println("The document is successfully booked for " + week + " weeks");
         }
@@ -196,7 +201,7 @@ public class Test {
             System.out.println("The document is successfully booked for " + week + " weeks");
         }
         else System.out.println("It's impossible to book this document");
-        int week = ptr.bookADocument(docRef);
+        week = ptr.bookADocument(docRef);
         if (week != 0) {
             System.out.println("The document is successfully booked for " + week + " weeks");
         }

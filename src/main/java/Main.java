@@ -1,3 +1,4 @@
+/*
 import java.util.Scanner;
 
 public class Main {
@@ -112,4 +113,4 @@ public class Main {
             endOfProgram(id, password);
         }
     }
-}
+}*/
