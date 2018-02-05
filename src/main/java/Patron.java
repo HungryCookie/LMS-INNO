@@ -50,8 +50,7 @@ public class Patron extends Users{
         }
         // else put in data base a new note that user with id = userID is
         // going to get document with id = document.docID
-        base.bookADocument(document.getDocID(), userID);
-        return true;
+        return base.bookADocument(document.getDocID(), userID);
  
     }
  
