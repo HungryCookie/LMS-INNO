@@ -5,7 +5,7 @@ public abstract class Users {
     protected String address;
     protected String phoneNumber;
    
-    public boolean bookADocument (Documents document) {return true; }
+    public int bookADocument (Documents document) {return 0; }
 
     public String getName() {
         return name;

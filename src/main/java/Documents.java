@@ -23,8 +23,8 @@ public class Documents {
             //else get result by docID and set all the field
             this.docID = docID;
             name = res.getString("name");
-            reference = (res.getChar("reference") == 'T');
-            bestseller = (res.getChar("bestseller") == 'T');
+            reference = (res.getString("reference").charAt(0) == 'T');
+            bestseller = (res.getString("bestseller").charAt(0) == 'T');
             author = res.getString("author");
             copies = res.getInt("counter");
 
@@ -45,8 +45,8 @@ public class Documents {
             this.name = res.getString("name");
             
             docID = res.getInt("id");
-            reference = (res.getChar("reference") == 'T');
-            bestseller = (res.getChar("bestseller") == 'T');
+            reference = (res.getString("reference").charAt(0) == 'T');
+            bestseller = (res.getString("bestseller").charAt(0) == 'T');
             author = res.getString("author");
             copies = res.getInt("counter");
         } catch (SQLException e) {

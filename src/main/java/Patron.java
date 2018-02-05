@@ -57,11 +57,13 @@ public class Patron extends Users{
         if (!res || document.isReference())
             return 0;
         
-        if (document.isBestseller)
+        if (document.isBestseller())
            return 2;
-     
-        return 
- 
+
+        if (rank.equals("Student"))
+            return 3;
+
+        return 4;
     }
  
     public Documents[] bookedDocuments(){
@@ -76,11 +78,7 @@ public class Patron extends Users{
         for (int i = 0; i < arr.size(); i++) {
             res[i] = new Documents(arr.get(i));
         }
- 
-        if (rank.equals("Student"))
-            return 3;
-        
-        return 4
+        return res;
     }
  
     public Patron() {
