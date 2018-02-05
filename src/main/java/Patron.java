@@ -30,6 +30,7 @@ public class Patron extends Users{
                 this.userID = userID;
                 // else get result by userID and set all the fields
                 name = res.getString("name");
+                rank = res.getString("status");
                 address = res.getString("address");
                 password = res.getString("password");
                 phoneNumber = res.getString("phoneNumber");
@@ -40,17 +41,26 @@ public class Patron extends Users{
         }
     }
  
-    public boolean bookADocument(Documents document){
+    public int bookADocument(Documents document){
         // if user with id = userID already booked document then return false
         ArrayList<Integer> arr = base.findBookedDocuments(userID);
         for (Integer i : arr) {
             if (i == document.getDocID()) {
-                return false;
+                return 0;
             }
         }
         // else put in data base a new note that user with id = userID is
         // going to get document with id = document.docID
-        return base.bookADocument(document.getDocID(), userID);
+     
+        boolean res = base.bookADocument(document.getDocID(), userID);
+     
+        if (!res || document.isReference())
+            return 0;
+        
+        if (document.isBestseller)
+           return 2;
+     
+        return 
  
     }
  
@@ -67,7 +77,10 @@ public class Patron extends Users{
             res[i] = new Documents(arr.get(i));
         }
  
-        return res;
+        if (rank.equals("Student"))
+            return 3;
+        
+        return 4
     }
  
     public Patron() {
