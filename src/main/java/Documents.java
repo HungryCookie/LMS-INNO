@@ -8,6 +8,9 @@ public class Documents {
     private int docID; //ID of proper document
     private String author;
     private int copies;
+    private boolean reference;
+    private boolean bestseller;
+    
     private FcukBase base = new FcukBase();
 
     public Documents(int docID){
@@ -20,6 +23,8 @@ public class Documents {
             //else get result by docID and set all the field
             this.docID = docID;
             name = res.getString("name");
+            reference = (res.getChar("reference") == 'T');
+            bestseller = (res.getChar("bestseller") == 'T');
             author = res.getString("author");
             copies = res.getInt("counter");
 
@@ -37,8 +42,11 @@ public class Documents {
             }*/
             //else get result by name and set all the fields
             //System.out.println("--------"+name);
-            docID = res.getInt("id");
             this.name = res.getString("name");
+            
+            docID = res.getInt("id");
+            reference = (res.getChar("reference") == 'T');
+            bestseller = (res.getChar("bestseller") == 'T');
             author = res.getString("author");
             copies = res.getInt("counter");
         } catch (SQLException e) {
@@ -72,5 +80,13 @@ public class Documents {
 
     public int getCopies() {
         return copies;
+    }
+    
+    public boolean isReference() {
+        return reference;
+    }
+    
+    public boolean isBestseller() {
+        return bestseller;
     }
 }
