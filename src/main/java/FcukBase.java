@@ -72,16 +72,49 @@ public class FcukBase implements FcukBaseInterface{
         return res;
     }
 
-    public void bookADocument(int docID, int userID) {
-        String query = "insert into booking values (?, ?)";
+    public ResultSet getDocumentByAuthor(String author) {
+        String query = "select * from documents where author = ?";
+        ResultSet res = null;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, docID);
-            statement.setInt(2, userID);
-            statement.execute();
+            statement.setString(1, author);
+            res = statement.executeQuery();
+            if (res.next()) {
+                return res;
+            } else {
+                return null;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return res;
+    }
+
+    public boolean bookADocument(int docID, int userID) {
+        String query = "insert into booking values (?, ?)";
+        String updateQuery = "update documents set counter = ? where id = ?";
+        ResultSet document = getDocumentByID(docID);
+        try {
+            int counter = document.getInt("counter");
+            if (document.getInt("counter") > 0) {
+                PreparedStatement statement = connection.prepareStatement(query);
+                PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
+                statement.setInt(1, docID);
+                statement.setInt(2, userID);
+                statement.execute();
+                updateStatement.setInt(1, counter - 1);
+                updateStatement.setInt(2, docID);
+                updateStatement.execute();
+
+                return true;
+            } else {
+                System.out.println("There aren't any docs now");
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public ArrayList findBookedDocuments(int userID) {
@@ -187,7 +220,7 @@ public class FcukBase implements FcukBaseInterface{
 
     /*public static void main(String[] args) {
         FcukBase b = new FcukBase();
-        System.out.println(b.checkUserID(1123345));
+        b.bookADocument(3, 1);
     }*/
 
 }
