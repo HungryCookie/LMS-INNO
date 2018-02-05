@@ -108,7 +108,6 @@ public class FcukBase implements FcukBaseInterface{
 
                 return true;
             } else {
-                System.out.println("There aren't any docs now");
                 return false;
             }
         } catch (SQLException e) {
