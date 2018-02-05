@@ -41,7 +41,7 @@ public class Test {
     }
 
     public static void TC2() {
-        Patron ptr = new Patron(1);
+        Patron ptr = new Patron(5);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Impossible book");
         if (doc != null) {
@@ -61,8 +61,8 @@ public class Test {
     }
 
     public static void TC3() {
-        Patron fclt = new Patron(4);
-        Patron std = new Patron(5);
+        Patron fclt = new Patron(3);
+        Patron std = new Patron(6);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Discrete Math");
         System.out.println("Number of copies: " + doc.getCopies());
@@ -77,8 +77,8 @@ public class Test {
     }
 
     public static void TC4() {
-        Patron fclt = new Patron(4);
-        Patron std = new Patron(5);
+        Patron fclt = new Patron(7);
+        Patron std = new Patron(8);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Touch of Class");
         System.out.println("Number of copies: " + doc.getCopies());
@@ -93,9 +93,9 @@ public class Test {
     }
 
     public static void TC5() {
-        Patron ptr1 = new Patron(4);
-        Patron ptr2 = new Patron(5);
-        Patron ptr3 = new Patron(5);
+        Patron ptr1 = new Patron(9);
+        Patron ptr2 = new Patron(10);
+        Patron ptr3 = new Patron(11);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Academy");
         System.out.println("Number of copies: " + doc.getCopies());
@@ -120,7 +120,7 @@ public class Test {
     }
 
     public static void TC6() {
-        Patron ptr = new Patron(1);
+        Patron ptr = new Patron(12);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Discrete Math");
         int week = ptr.bookADocument(doc);
@@ -137,8 +137,8 @@ public class Test {
     }
 
     public static void TC7() {
-        Patron ptr1 = new Patron(4);
-        Patron ptr2 = new Patron(5);
+        Patron ptr1 = new Patron(13);
+        Patron ptr2 = new Patron(16);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Discrete Math");
         System.out.println("Number of copies: " + doc.getCopies());
@@ -158,8 +158,8 @@ public class Test {
     }
 
     public static void TC8() {
-        Patron fclt = new Patron(4);
-        Patron std = new Patron(5);
+        Patron fclt = new Patron(14);
+        Patron std = new Patron(17);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Discrete Math");
         System.out.println("Number of copies: " + doc.getCopies());
@@ -174,8 +174,8 @@ public class Test {
     }
 
     public static void TC9() {
-        Patron fclt = new Patron(4);
-        Patron std = new Patron(5);
+        Patron fclt = new Patron(15);
+        Patron std = new Patron(18);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Touch of Class");
         System.out.println("Number of copies: " + doc.getCopies());
@@ -190,7 +190,7 @@ public class Test {
     }
 
     public static void TC10() {
-        Patron ptr = new Patron(1);
+        Patron ptr = new Patron(25);
         Librarian lbr = new Librarian(2);
         Documents docNoRef = new Documents("Discrete Math");
         Documents docRef = new Documents("Computer Architecture");

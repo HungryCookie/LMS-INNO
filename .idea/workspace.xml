@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbf9824c-e9ed-4ce3-a47e-dff4a8f36164" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Documents.class" afterPath="$PROJECT_DIR$/target/classes/Documents.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FcukBase.class" afterPath="$PROJECT_DIR$/target/classes/FcukBase.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Patron.class" afterPath="$PROJECT_DIR$/target/classes/Patron.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Documents.java" afterPath="$PROJECT_DIR$/src/main/java/Documents.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Patron.java" afterPath="$PROJECT_DIR$/src/main/java/Patron.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Test.java" afterPath="$PROJECT_DIR$/src/main/java/Test.java" />
     </list>
@@ -64,8 +66,8 @@
       <file leaf-file-name="FcukBase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="237" column="6" lean-forward="false" selection-start-line="237" selection-start-column="4" selection-end-line="240" selection-end-column="7" />
+            <state relative-caret-position="25">
+              <caret line="91" column="0" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#FcukBase#0;class#FcukBase#0" expanded="false" />
@@ -73,7 +75,6 @@
                 <element signature="method#getDocumentByID#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#getDocumentByName#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#getDocumentByAuthor#0;class#FcukBase#0" expanded="false" />
-                <element signature="method#bookADocument#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#findBookedDocuments#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#findUserByBookedDocument#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#findCopyID#0;class#FcukBase#0" expanded="false" />
@@ -109,24 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Patron.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1517852305412" expanded="true" signature="228:522" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Test.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1483">
-              <caret line="131" column="24" lean-forward="true" selection-start-line="131" selection-start-column="24" selection-end-line="131" selection-end-column="24" />
+            <state relative-caret-position="4450">
+              <caret line="192" column="34" lean-forward="false" selection-start-line="192" selection-start-column="34" selection-end-line="192" selection-end-column="34" />
               <folding>
                 <element signature="e#91#92#0" expanded="true" />
                 <element signature="e#114#115#0" expanded="true" />
@@ -138,9 +126,22 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+            <state relative-caret-position="375">
+              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Patron.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="371">
+              <caret line="54" column="40" lean-forward="false" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1517853641926" expanded="true" signature="228:522" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -177,8 +178,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/FcukBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/Documents.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/Patron.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Test.java" />
       </list>
     </option>
   </component>
@@ -589,7 +590,7 @@
       <workItem from="1517693658877" duration="492000" />
       <workItem from="1517745949602" duration="455000" />
       <workItem from="1517767132090" duration="6811000" />
-      <workItem from="1517842715871" duration="7468000" />
+      <workItem from="1517842715871" duration="8736000" />
     </task>
     <task id="LOCAL-00001" summary="Delete comment">
       <created>1517315812854</created>
@@ -759,11 +760,18 @@
       <option name="project" value="LOCAL" />
       <updated>1517851073922</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Minor updates">
+      <created>1517852442118</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1517852442118</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56976000" />
+    <option name="totallyTimeSpent" value="58244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1102" extended-state="6" />
@@ -881,7 +889,6 @@
             <element signature="method#getDocumentByID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#getDocumentByName#0;class#FcukBase#0" expanded="false" />
             <element signature="method#getDocumentByAuthor#0;class#FcukBase#0" expanded="false" />
-            <element signature="method#bookADocument#0;class#FcukBase#0" expanded="false" />
             <element signature="method#findBookedDocuments#0;class#FcukBase#0" expanded="false" />
             <element signature="method#findUserByBookedDocument#0;class#FcukBase#0" expanded="false" />
             <element signature="method#findCopyID#0;class#FcukBase#0" expanded="false" />
@@ -934,7 +941,7 @@
           <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1517852305412" expanded="true" signature="228:522" ph="..." />
+            <marker date="1517853641926" expanded="true" signature="228:522" ph="..." />
           </folding>
         </state>
       </provider>
@@ -984,7 +991,7 @@
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1517852305412" expanded="true" signature="228:522" ph="..." />
+            <marker date="1517853641926" expanded="true" signature="228:522" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1040,7 +1047,7 @@
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1517852305412" expanded="true" signature="228:522" ph="..." />
+            <marker date="1517853641926" expanded="true" signature="228:522" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1105,7 +1112,7 @@
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1517852305412" expanded="true" signature="228:522" ph="..." />
+            <marker date="1517853641926" expanded="true" signature="228:522" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1240,18 +1247,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Documents.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="301">
+          <caret line="43" column="23" lean-forward="true" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="237" column="6" lean-forward="false" selection-start-line="237" selection-start-column="4" selection-end-line="240" selection-end-column="7" />
+        <state relative-caret-position="25">
+          <caret line="91" column="0" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FcukBase#0;class#FcukBase#0" expanded="false" />
@@ -1259,7 +1268,6 @@
             <element signature="method#getDocumentByID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#getDocumentByName#0;class#FcukBase#0" expanded="false" />
             <element signature="method#getDocumentByAuthor#0;class#FcukBase#0" expanded="false" />
-            <element signature="method#bookADocument#0;class#FcukBase#0" expanded="false" />
             <element signature="method#findBookedDocuments#0;class#FcukBase#0" expanded="false" />
             <element signature="method#findUserByBookedDocument#0;class#FcukBase#0" expanded="false" />
             <element signature="method#findCopyID#0;class#FcukBase#0" expanded="false" />
@@ -1282,31 +1290,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Documents.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="43" column="23" lean-forward="true" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+        <state relative-caret-position="371">
+          <caret line="54" column="40" lean-forward="false" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1517853641926" expanded="true" signature="228:522" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1517852305412" expanded="true" signature="228:522" ph="..." />
-          </folding>
+        <state relative-caret-position="375">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1483">
-          <caret line="131" column="24" lean-forward="true" selection-start-line="131" selection-start-column="24" selection-end-line="131" selection-end-column="24" />
+        <state relative-caret-position="4450">
+          <caret line="192" column="34" lean-forward="false" selection-start-line="192" selection-start-column="34" selection-end-line="192" selection-end-column="34" />
           <folding>
             <element signature="e#91#92#0" expanded="true" />
             <element signature="e#114#115#0" expanded="true" />

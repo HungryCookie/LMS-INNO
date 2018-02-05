@@ -52,7 +52,7 @@ public class Patron extends Users{
         // else put in data base a new note that user with id = userID is
         // going to get document with id = document.docID
 
-        if (document.isReference() ||  base.bookADocument(document.getDocID(), userID))
+        if (document.isReference() ||  !base.bookADocument(document.getDocID(), userID))
             return 0;
         
         if (document.isBestseller())
