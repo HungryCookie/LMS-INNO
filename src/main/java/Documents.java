@@ -34,8 +34,10 @@ public class Documents {
     }
 
     public Documents(String name){
+        if (!base.checkDocumentByName(name)) {
+            return;
+        }
         ResultSet res = base.getDocumentByName(name);
-
         try {
             //if name is not correct return null;
             /*if (!res.next()) {

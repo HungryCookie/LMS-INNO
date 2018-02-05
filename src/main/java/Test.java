@@ -44,20 +44,20 @@ public class Test {
         Patron ptr = new Patron(1);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Impossible book");
-        try {
+        if (doc != null) {
             System.out.println("Number of copies: " + doc.getCopies());
-            int week = ptr.bookADocument(doc);
-            if (week != 0) {
-                System.out.println("The document is successfully booked for " + week + " weeks");
-            }
-            else System.out.println("It's impossible to check out this document");
-            doc = new Documents("Impossible book");
-            System.out.println("Number of copies: "+ doc.getCopies());
+            System.out.println("There is no such document!!!");
             start();
-        } catch (Exception e) {
-            System.out.println("You cant do it!");
-            start();
+            return;
         }
+        int week = ptr.bookADocument(doc);
+        if (week != 0) {
+            System.out.println("The document is successfully booked for " + week + " weeks");
+        }
+        else System.out.println("It's impossible to check out this document");
+        doc = new Documents("Impossible book");
+        System.out.println("Number of copies: "+ doc.getCopies());
+        start();
     }
 
     public static void TC3() {
@@ -97,7 +97,7 @@ public class Test {
         Patron ptr2 = new Patron(5);
         Patron ptr3 = new Patron(5);
         Librarian lbr = new Librarian(2);
-        Documents doc = new Documents("Discrete Math");
+        Documents doc = new Documents("Academy");
         System.out.println("Number of copies: " + doc.getCopies());
         int week1 = ptr1.bookADocument(doc);
         int week2 = ptr2.bookADocument(doc);
@@ -114,7 +114,7 @@ public class Test {
             System.out.println("The document is successfully booked for " + week3 + " weeks");
         }
         else System.out.println("It's impossible to check out this document");
-        doc = new Documents("Discrete Math");
+        doc = new Documents("Academy");
         System.out.println("Number of copies: "+ doc.getCopies());
         start();
     }
