@@ -93,10 +93,11 @@ public class FcukBase implements FcukBaseInterface{
     public boolean bookADocument(int docID, int userID) {
         String query = "insert into booking values (?, ?)";
         String updateQuery = "update documents set counter = ? where id = ?";
+        String referenceUpdate = "update documents set reference = 'T' where id = ?";
         ResultSet document = getDocumentByID(docID);
         try {
             int counter = document.getInt("counter");
-            if (document.getInt("counter") > 0) {
+            if (document.getInt("counter") > 1) {
                 PreparedStatement statement = connection.prepareStatement(query);
                 PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
                 statement.setInt(1, docID);
@@ -105,8 +106,12 @@ public class FcukBase implements FcukBaseInterface{
                 updateStatement.setInt(1, counter - 1);
                 updateStatement.setInt(2, docID);
                 updateStatement.execute();
-
                 return true;
+            } else if (document.getInt("counter") == 1) {
+                PreparedStatement referenceStatement = connection.prepareStatement(referenceUpdate);
+                referenceStatement.setInt(1, docID);
+                referenceStatement.execute();
+                return false;
             } else {
                 return false;
             }
@@ -237,7 +242,7 @@ public class FcukBase implements FcukBaseInterface{
 
     /*public static void main(String[] args) {
         FcukBase b = new FcukBase();
-        System.out.println(b.checkDocumentByName("Touch of Class"));
+        System.out.println(b.bookADocument(4, 24));
     }*/
 
 }
