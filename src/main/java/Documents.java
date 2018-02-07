@@ -92,4 +92,8 @@ public class Documents {
     public boolean isBestseller() {
         return bestseller;
     }
+
+    public boolean chechName() {
+        return base.checkDocumentByName(this.name);
+    }
 }

@@ -10,4 +10,6 @@ public interface FcukBaseInterface {
     ArrayList findBookedDocuments(int userID); // Find all booked documents of user
     ArrayList findUserByBookedDocument(int docID); // find users who booked certain document
     int[] findCopyID(int docID); // Find ID of copies of books
+    boolean checkUserID(int userID); // Check whether there exist such a user
+    boolean checkDocumentByName(String name); // Check whether there exist such a doc
 }

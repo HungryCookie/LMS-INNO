@@ -44,12 +44,13 @@ public class Test {
         Patron ptr = new Patron(5);
         Librarian lbr = new Librarian(2);
         Documents doc = new Documents("Impossible book");
-        if (doc != null) {
+        /*if (doc != null) {
             System.out.println("Number of copies: " + doc.getCopies());
             System.out.println("There is no such document!!!");
             start();
             return;
         }
+        */
         int week = ptr.bookADocument(doc);
         if (week != 0) {
             System.out.println("The document is successfully booked for " + week + " weeks");

@@ -42,6 +42,8 @@ public class Patron extends Users{
     }
  
     public int bookADocument(Documents document){
+        if (!document.chechName())
+            return 0;
         // if user with id = userID already booked document then return false
         ArrayList<Integer> arr = base.findBookedDocuments(userID);
         for (Integer i : arr) {
