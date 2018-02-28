@@ -165,7 +165,7 @@ public class FcukBase implements FcukBaseInterface{
     }
 
     public int[] findCopyID(int docID) {
-        String query = "select copyID from copies where commonID = ?";
+        String query = "select copyID from copies where commonID = ? and availability = 'T'";
         ResultSet res;
         int rowCounter;
         try {
@@ -256,11 +256,37 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public void checkOut(int userID, int copyID, String date) {
+        String query = "update copies set availability = 'F', userID = ?, date = ? where copyID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+            statement.setString(2, date);
+            statement.setInt(3, copyID);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void returnDoc(int copyID) {
+        String query = "update copies set availability = 'T', userID = 0, date = null where copyID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, copyID);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        System.out.println(b.checkUserID(103));
+        //b.checkOut(1, 1, "2018-03-23");
+        b.returnDoc(1);
+        /*System.out.println(b.checkUserID(103));
         ResultSet rs = b.getDocumentByID(5);
-        System.out.println(rs.getString("name"));
+        System.out.println(rs.getString("name"));*/
     }
 
 }
