@@ -1,5 +1,6 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Librarian extends Users {
     private FcukBase base = new FcukBase();
@@ -31,12 +32,18 @@ public class Librarian extends Users {
         return p;
     }
     
-    public void addUser(String name, String address, String phoneNumber) {
-        /*Add user to database
-        * Create password
-        * Return Login and Password for new User*/
-
-        return;
+    //returning system
+    
+    public void addUser(String name, String phoneNumber, String address, String status) {
+        
+        String pass = "";
+            
+        for (int i = 0; i < 5; i++){
+            int randomNum = ThreadLocalRandom.current().nextInt(48, 123);
+            pass += Character.toString((char)randomNum);
+        }
+        
+        base.addNewUser(name, phoneNumber, adress, status, pass);
     }
 
     public void changeName(String name) {
