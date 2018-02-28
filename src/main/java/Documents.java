@@ -1,34 +1,99 @@
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
-public abstract class Documents {
+public class Documents {
     private String name;
     private String type; // Book, JA or AV material
-    private int bookID; //ID of proper document
+    private int docID; //ID of proper document
+    private String author;
+    private int copies;
+    private boolean reference;
+    private boolean bestseller;
+    
+    private FcukBase base = new FcukBase();
 
-    private Date date; //date, when doc was checked out
-    private String [] authors; //list of authors of proper document
-
-    private static final String URL = "jdbc:mysql://localhost:3306/ldata?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
-            "&useLegacyDatetimeCode=false&serverTimezone=UTC";            //"jdbc:mysql://localhost:3306/test";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
-
-    private static Connection connection = null;
-
-    public static void main(String[] args) {
+    public Documents(int docID){
+        ResultSet res = base.getDocumentByID(docID);
         try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("select * from users where id < 3");
-            /*if (res.next()) {
-                System.out.println(res.getInt(1));
+            //if docID is not correct return null;
+            /*if (!res.next()) {
+                return;
             }*/
-            while (res.next()) {
-                System.out.println(res.getInt("id"));
-            }
+            //else get result by docID and set all the field
+            this.docID = docID;
+            name = res.getString("name");
+            reference = (res.getString("reference").charAt(0) == 'T');
+            bestseller = (res.getString("bestseller").charAt(0) == 'T');
+            author = res.getString("author");
+            copies = res.getInt("counter");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }//sdfjsdlf
+    }
+
+    public Documents(String name){
+        if (!base.checkDocumentByName(name)) {
+            return;
+        }
+        ResultSet res = base.getDocumentByName(name);
+        try {
+            //if name is not correct return null;
+            /*if (!res.next()) {
+                return;
+            }*/
+            //else get result by name and set all the fields
+            //System.out.println("--------"+name);
+            this.name = res.getString("name");
+            
+            docID = res.getInt("id");
+            reference = (res.getString("reference").charAt(0) == 'T');
+            bestseller = (res.getString("bestseller").charAt(0) == 'T');
+            author = res.getString("author");
+            copies = res.getInt("counter");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /*public static void main(String[] args) {
+        Documents doc = new Documents("Touch");
+        System.out.println(doc.getName());
+        System.out.println(doc.getDocID());
+        System.out.println(doc.getCopies());
+    }*/
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getDocID() {
+        return docID;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getCopies() {
+        return copies;
+    }
+    
+    public boolean isReference() {
+        return reference;
+    }
+    
+    public boolean isBestseller() {
+        return bestseller;
+    }
+
+    public boolean chechName() {
+        return base.checkDocumentByName(this.name);
+    }
 }
