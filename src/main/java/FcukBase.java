@@ -206,6 +206,24 @@ public class FcukBase implements FcukBaseInterface{
         return false;
     }
 
+    public boolean checkDocumentByID(int bookID) {
+        String query = "select * from documents where rowid = ?";
+        ResultSet res = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, bookID);
+            res = statement.executeQuery();
+            if (res.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean checkDocumentByName(String name) {
         String query = "select * from documents where name = ?";
         ResultSet res = null;
@@ -280,6 +298,25 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public ResultSet checkedOut(int userID) { // ResultSet
+        String query = "select copyID, date, name, author from copies " +
+                        "JOIN documents on copies.commonID = documents.id " +
+                        "where copies.userID = ?";
+        ResultSet rs = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+            rs = statement.executeQuery();
+            return rs;
+            /*while (rs.next()) {
+                System.out.println(rs.getString("name") + " " + rs.getInt("copyID"));
+            }*/
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     public void userModify(int id, String name, String phoneNumber, String address, String status, String password) {
         String query = "update users set name = ?, phoneNumber = ?, address = ?, status = ?, password = ? where id = ?";
         try {
@@ -296,9 +333,28 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public void documentModify(int id, String name, String author, int counter, int cost, String reference, String bestseller) {
+        String query = "update documents set name = ?, author = ?, counter = ?, cost = ?, reference = ?, bestseller = ? where id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
+            statement.setString(2, author);
+            statement.setInt(3, counter);
+            statement.setInt(4, cost);
+            statement.setString(5, reference);
+            statement.setString(6, bestseller);
+            statement.setInt(7, id);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        b.userModify(104, "June Brown",	"89224365731", "Moscow", "Student", "zaqzaq");
+        b.returnDoc(1);
+        //b.documentModify(5, "Amber Chronicles", "Roger Zelazny", 13, 110, "F", "T");
+        //b.userModify(104, "June Brown",	"89224365731", "Moscow", "Student", "zaqzaq");
         //b.checkOut(1, 1, "2018-03-23");
         //b.returnDoc(1);
         /*System.out.println(b.checkUserID(103));

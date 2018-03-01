@@ -9,6 +9,7 @@ public interface FcukBaseInterface {
     void addNewUser(String name, String phoneNumber, String address, String status, String password); // Adds new User to the database
     void addNewDocument(String name, String author, int counter, int cost, String reference, String bestseller); // Adds new document to the data base
     void userModify(int id, String name, String phoneNumber, String address, String status, String password); // Modifies user
+    void documentModify(int id, String name, String author, int counter, int cost, String reference, String bestseller); // Modifies user
     void checkOut(int userID, int copyID, String date); // Checks the document out to the certein user
     void returnDoc(int copyID); // Returning the document to the library
     boolean bookADocument(int docID, int userID); // Place an order on a certain document from certain user
@@ -17,4 +18,6 @@ public interface FcukBaseInterface {
     int[] findCopyID(int docID); // Find ID of copies of books
     boolean checkUserID(int userID); // Check whether there exist such a user
     boolean checkDocumentByName(String name); // Check whether there exist such a doc
+    boolean checkDocumentByID(int bookID); // Checks whether there is such a book by its ID
+    ResultSet checkedOut(int userID); // Checks all books checked out by certain user
 }

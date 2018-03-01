@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fbf9824c-e9ed-4ce3-a47e-dff4a8f36164" name="Default" comment="Minor updates">
+    <list default="true" id="fbf9824c-e9ed-4ce3-a47e-dff4a8f36164" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database.sqlite" afterPath="$PROJECT_DIR$/database.sqlite" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FcukBase.class" afterPath="$PROJECT_DIR$/target/classes/FcukBase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Librarian.class" afterPath="$PROJECT_DIR$/target/classes/Librarian.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/FcukBase.java" afterPath="$PROJECT_DIR$/src/main/java/FcukBase.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/FcukBaseInterface.java" afterPath="$PROJECT_DIR$/src/main/java/FcukBaseInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Librarian.java" afterPath="$PROJECT_DIR$/src/main/java/Librarian.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -48,11 +45,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="FcukBase.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FcukBase.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="700">
-              <caret line="226" column="23" lean-forward="false" selection-start-line="226" selection-start-column="23" selection-end-line="226" selection-end-column="23" />
+            <state relative-caret-position="471">
+              <caret line="352" column="63" lean-forward="false" selection-start-line="352" selection-start-column="63" selection-end-line="352" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#FcukBase#0;class#FcukBase#0" expanded="false" />
@@ -62,52 +59,67 @@
                 <element signature="method#getDocumentByAuthor#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#bookADocument#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#findBookedDocuments#0;class#FcukBase#0" expanded="false" />
+                <element signature="e#4536#4545#0" expanded="true" />
                 <element signature="method#findUserByBookedDocument#0;class#FcukBase#0" expanded="false" />
+                <element signature="e#5245#5254#0" expanded="true" />
                 <element signature="method#findCopyID#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#checkUserID#0;class#FcukBase#0" expanded="false" />
+                <element signature="method#checkDocumentByID#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#checkDocumentByName#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#addNewUser#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#addNewDocument#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#checkOut#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#returnDoc#0;class#FcukBase#0" expanded="false" />
+                <element signature="method#checkedOut#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#userModify#0;class#FcukBase#0" expanded="false" />
+                <element signature="method#documentModify#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#main#0;class#FcukBase#0" expanded="false" />
-                <marker date="1519907186047" expanded="true" signature="805:840" ph="select * fro... users" />
-                <marker date="1519907186047" expanded="true" signature="1351:1390" ph="select * fro... documents" />
-                <marker date="1519907186047" expanded="true" signature="1905:1943" ph="select * fro... documents" />
-                <marker date="1519907186047" expanded="true" signature="2463:2503" ph="select * fro... documents" />
-                <marker date="1519907186047" expanded="true" signature="3025:3058" ph="insert into booking... " />
-                <marker date="1519907186047" expanded="true" signature="3091:3139" ph="update docum... " />
-                <marker date="1519907186047" expanded="true" signature="3176:3228" ph="update docum... " />
-                <marker date="1519907186047" expanded="true" signature="4421:4464" ph="select bookI... booking" />
-                <marker date="1519907186047" expanded="true" signature="5130:5173" ph="select userI... booking" />
-                <marker date="1519907186047" expanded="true" signature="5784:5851" ph="select copyI... copies" />
-                <marker date="1519907186047" expanded="true" signature="6576:6611" ph="select * fro... users" />
-                <marker date="1519907186047" expanded="true" signature="7123:7161" ph="select * fro... documents" />
-                <marker date="1519907186047" expanded="true" signature="7737:7824" ph="insert into users... " />
-                <marker date="1519907186047" expanded="true" signature="8409:8509" ph="insert into documents... " />
-                <marker date="1519907186047" expanded="true" signature="9072:9147" ph="update copie... " />
-                <marker date="1519907186047" expanded="true" signature="9548:9626" ph="update copie... " />
-                <marker date="1519907186047" expanded="true" signature="10022:10116" ph="update users... " />
+                <marker date="1519923230698" expanded="true" signature="805:840" ph="select * fro... users" />
+                <marker date="1519923230698" expanded="true" signature="1351:1390" ph="select * fro... documents" />
+                <marker date="1519923230698" expanded="true" signature="1905:1943" ph="select * fro... documents" />
+                <marker date="1519923230698" expanded="true" signature="2463:2503" ph="select * fro... documents" />
+                <marker date="1519923230698" expanded="true" signature="3025:3058" ph="insert into booking... " />
+                <marker date="1519923230698" expanded="true" signature="3091:3139" ph="update docum... " />
+                <marker date="1519923230698" expanded="true" signature="3176:3228" ph="update docum... " />
+                <marker date="1519923230698" expanded="true" signature="4421:4464" ph="select bookI... booking" />
+                <marker date="1519923230698" expanded="true" signature="5130:5173" ph="select userI... booking" />
+                <marker date="1519923230698" expanded="true" signature="5784:5851" ph="select copyI... copies" />
+                <marker date="1519923230698" expanded="true" signature="6576:6611" ph="select * fro... users" />
+                <marker date="1519923230698" expanded="true" signature="7120:7159" ph="select * fro... documents" />
+                <marker date="1519923230698" expanded="true" signature="7678:7716" ph="select * fro... documents" />
+                <marker date="1519923230698" expanded="true" signature="8292:8379" ph="insert into users... " />
+                <marker date="1519923230698" expanded="true" signature="8964:9064" ph="insert into documents... " />
+                <marker date="1519923230698" expanded="true" signature="9627:9702" ph="update copie... " />
+                <marker date="1519923230698" expanded="true" signature="10103:10181" ph="update copie... " />
+                <marker date="1519923230698" expanded="true" signature="10518:10694" ph="select copyI... " />
+                <marker date="1519923230698" expanded="true" signature="11307:11401" ph="update users... " />
+                <marker date="1519923230698" expanded="true" signature="12030:12138" ph="update docum... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Librarian.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Librarian.java">
+      <file leaf-file-name="FcukBaseInterface.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/FcukBaseInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
-              <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-              <folding>
-                <element signature="method#Librarian#0;class#Librarian#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="550">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="users" pinned="false" current-in-tab="false">
-        <entry file="das://table:/18870715/7ea55067-838e-4ddf-b451-b58202dea00e/main.users">
+      <file leaf-file-name="documents" pinned="false" current-in-tab="false">
+        <entry file="das://table:/18870715/7ea55067-838e-4ddf-b451-b58202dea00e/main.documents">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="copies" pinned="false" current-in-tab="false">
+        <entry file="das://table:/18870715/7ea55067-838e-4ddf-b451-b58202dea00e/main.copies">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
@@ -119,17 +131,7 @@
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="34" lean-forward="false" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FcukBaseInterface.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/FcukBaseInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="10" column="126" lean-forward="false" selection-start-line="10" selection-start-column="126" selection-end-line="10" selection-end-column="126" />
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -167,8 +169,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Test.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/49dee97b-b943-43c1-9f61-d0b6ada6a85e/console.sql" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/Librarian.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/FcukBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/FcukBaseInterface.java" />
       </list>
@@ -213,7 +215,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -252,14 +254,14 @@
       </pane>
       <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)&#10;MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TEST_LMS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -273,116 +275,6 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Java\LMS-INNO\src\main\java" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Librarian.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -596,7 +488,8 @@
       <workItem from="1519323997400" duration="1282000" />
       <workItem from="1519830044466" duration="2159000" />
       <workItem from="1519847022779" duration="2210000" />
-      <workItem from="1519849953330" duration="2884000" />
+      <workItem from="1519849953330" duration="3488000" />
+      <workItem from="1519919173133" duration="3479000" />
     </task>
     <task id="LOCAL-00001" summary="Delete comment">
       <created>1517315812854</created>
@@ -829,11 +722,32 @@
       <option name="project" value="LOCAL" />
       <updated>1519906059990</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Minor updates">
+      <created>1519907426975</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1519907426975</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Minor updates">
+      <created>1519923030793</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1519923030793</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Minor updates">
+      <created>1519923105667</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1519923105667</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72981000" />
+    <option name="totallyTimeSpent" value="77064000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1102" extended-state="6" />
@@ -847,13 +761,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.50216216" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16531792" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14450867" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12716763" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19783784" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20108108" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17297298" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -924,13 +838,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/FacultyMember.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -1259,7 +1166,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="77" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1275,28 +1181,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/18870715/7ea55067-838e-4ddf-b451-b58202dea00e/main.copies">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="34" lean-forward="false" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/18870715/7ea55067-838e-4ddf-b451-b58202dea00e/main.users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Librarian.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="625">
@@ -1307,10 +1191,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://table:/18870715/7ea55067-838e-4ddf-b451-b58202dea00e/main.users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/18870715/7ea55067-838e-4ddf-b451-b58202dea00e/main.copies">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/18870715/7ea55067-838e-4ddf-b451-b58202dea00e/main.documents">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FcukBaseInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="226" column="23" lean-forward="false" selection-start-line="226" selection-start-column="23" selection-end-line="226" selection-end-column="23" />
+        <state relative-caret-position="471">
+          <caret line="352" column="63" lean-forward="false" selection-start-line="352" selection-start-column="63" selection-end-line="352" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FcukBase#0;class#FcukBase#0" expanded="false" />
@@ -1320,42 +1241,42 @@
             <element signature="method#getDocumentByAuthor#0;class#FcukBase#0" expanded="false" />
             <element signature="method#bookADocument#0;class#FcukBase#0" expanded="false" />
             <element signature="method#findBookedDocuments#0;class#FcukBase#0" expanded="false" />
+            <element signature="e#4536#4545#0" expanded="true" />
             <element signature="method#findUserByBookedDocument#0;class#FcukBase#0" expanded="false" />
+            <element signature="e#5245#5254#0" expanded="true" />
             <element signature="method#findCopyID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#checkUserID#0;class#FcukBase#0" expanded="false" />
+            <element signature="method#checkDocumentByID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#checkDocumentByName#0;class#FcukBase#0" expanded="false" />
             <element signature="method#addNewUser#0;class#FcukBase#0" expanded="false" />
             <element signature="method#addNewDocument#0;class#FcukBase#0" expanded="false" />
             <element signature="method#checkOut#0;class#FcukBase#0" expanded="false" />
             <element signature="method#returnDoc#0;class#FcukBase#0" expanded="false" />
+            <element signature="method#checkedOut#0;class#FcukBase#0" expanded="false" />
             <element signature="method#userModify#0;class#FcukBase#0" expanded="false" />
+            <element signature="method#documentModify#0;class#FcukBase#0" expanded="false" />
             <element signature="method#main#0;class#FcukBase#0" expanded="false" />
-            <marker date="1519907186047" expanded="true" signature="805:840" ph="select * fro... users" />
-            <marker date="1519907186047" expanded="true" signature="1351:1390" ph="select * fro... documents" />
-            <marker date="1519907186047" expanded="true" signature="1905:1943" ph="select * fro... documents" />
-            <marker date="1519907186047" expanded="true" signature="2463:2503" ph="select * fro... documents" />
-            <marker date="1519907186047" expanded="true" signature="3025:3058" ph="insert into booking... " />
-            <marker date="1519907186047" expanded="true" signature="3091:3139" ph="update docum... " />
-            <marker date="1519907186047" expanded="true" signature="3176:3228" ph="update docum... " />
-            <marker date="1519907186047" expanded="true" signature="4421:4464" ph="select bookI... booking" />
-            <marker date="1519907186047" expanded="true" signature="5130:5173" ph="select userI... booking" />
-            <marker date="1519907186047" expanded="true" signature="5784:5851" ph="select copyI... copies" />
-            <marker date="1519907186047" expanded="true" signature="6576:6611" ph="select * fro... users" />
-            <marker date="1519907186047" expanded="true" signature="7123:7161" ph="select * fro... documents" />
-            <marker date="1519907186047" expanded="true" signature="7737:7824" ph="insert into users... " />
-            <marker date="1519907186047" expanded="true" signature="8409:8509" ph="insert into documents... " />
-            <marker date="1519907186047" expanded="true" signature="9072:9147" ph="update copie... " />
-            <marker date="1519907186047" expanded="true" signature="9548:9626" ph="update copie... " />
-            <marker date="1519907186047" expanded="true" signature="10022:10116" ph="update users... " />
+            <marker date="1519923230698" expanded="true" signature="805:840" ph="select * fro... users" />
+            <marker date="1519923230698" expanded="true" signature="1351:1390" ph="select * fro... documents" />
+            <marker date="1519923230698" expanded="true" signature="1905:1943" ph="select * fro... documents" />
+            <marker date="1519923230698" expanded="true" signature="2463:2503" ph="select * fro... documents" />
+            <marker date="1519923230698" expanded="true" signature="3025:3058" ph="insert into booking... " />
+            <marker date="1519923230698" expanded="true" signature="3091:3139" ph="update docum... " />
+            <marker date="1519923230698" expanded="true" signature="3176:3228" ph="update docum... " />
+            <marker date="1519923230698" expanded="true" signature="4421:4464" ph="select bookI... booking" />
+            <marker date="1519923230698" expanded="true" signature="5130:5173" ph="select userI... booking" />
+            <marker date="1519923230698" expanded="true" signature="5784:5851" ph="select copyI... copies" />
+            <marker date="1519923230698" expanded="true" signature="6576:6611" ph="select * fro... users" />
+            <marker date="1519923230698" expanded="true" signature="7120:7159" ph="select * fro... documents" />
+            <marker date="1519923230698" expanded="true" signature="7678:7716" ph="select * fro... documents" />
+            <marker date="1519923230698" expanded="true" signature="8292:8379" ph="insert into users... " />
+            <marker date="1519923230698" expanded="true" signature="8964:9064" ph="insert into documents... " />
+            <marker date="1519923230698" expanded="true" signature="9627:9702" ph="update copie... " />
+            <marker date="1519923230698" expanded="true" signature="10103:10181" ph="update copie... " />
+            <marker date="1519923230698" expanded="true" signature="10518:10694" ph="select copyI... " />
+            <marker date="1519923230698" expanded="true" signature="11307:11401" ph="update users... " />
+            <marker date="1519923230698" expanded="true" signature="12030:12138" ph="update docum... " />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FcukBaseInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="10" column="126" lean-forward="false" selection-start-line="10" selection-start-column="126" selection-end-line="10" selection-end-column="126" />
-          <folding />
         </state>
       </provider>
     </entry>
