@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PatronController">
+   <children>
+      <TableView fx:id="table" layoutX="47.0" layoutY="45.0" prefHeight="305.0" prefWidth="566.0">
+        <columns>
+          <TableColumn fx:id="title" prefWidth="177.00001525878906" text="Title" />
+          <TableColumn fx:id="author" minWidth="0.0" prefWidth="202.0" text="Author" />
+            <TableColumn fx:id="type" prefWidth="185.0" text="Type" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
