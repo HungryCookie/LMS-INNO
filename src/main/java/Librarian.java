@@ -1,7 +1,6 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
-import java.util.Random.nextInt;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -38,12 +37,9 @@ public class Librarian extends Users {
     //returning system
     
     public void addUser(String name, String phoneNumber, String address, String status) {
-        
         String pass = "";
-            
         for (int i = 0; i < 5; i++){
-            Random r = new Random()
-          
+            Random r = new Random();
             int randomNum = r.nextInt(123 - 48 + 1) + 48;
             pass += Character.toString((char)randomNum);
         }

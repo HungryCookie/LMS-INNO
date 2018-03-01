@@ -280,10 +280,27 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public void userModify(int id, String name, String phoneNumber, String address, String status, String password) {
+        String query = "update users set name = ?, phoneNumber = ?, address = ?, status = ?, password = ? where id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
+            statement.setString(2, phoneNumber);
+            statement.setString(3, address);
+            statement.setString(4, status);
+            statement.setString(5, password);
+            statement.setInt(6, id);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
+        b.userModify(104, "June Brown",	"89224365731", "Moscow", "Student", "zaqzaq");
         //b.checkOut(1, 1, "2018-03-23");
-        b.returnDoc(1);
+        //b.returnDoc(1);
         /*System.out.println(b.checkUserID(103));
         ResultSet rs = b.getDocumentByID(5);
         System.out.println(rs.getString("name"));*/
