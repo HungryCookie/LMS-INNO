@@ -1,5 +1,6 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -45,12 +46,12 @@ public class Librarian extends Users {
             pass += Character.toString((char)randomNum);
         }
         
-        base.addNewUser(name, phoneNumber, adress, status, pass);
+        base.addNewUser(name, phoneNumber, address, status, pass);
     }
 
-    public void addDocument(String name, String author, int counter, int cost, String bestseller){
+    public void addDocument(String name, String author, int counter, int cost, String reference, String bestseller){
     
-        base.addDocument(name, author, counter, cost, bestseller);
+        base.addNewDocument(name, author, counter, cost, reference, bestseller);
     }
     
     public boolean checkOut(int userID, String docName){ //Method returns false then userId or docName is wrong
@@ -58,7 +59,7 @@ public class Librarian extends Users {
         if (base.checkUserID(userID) && base.checkDocumentByName(docName))
             return false;
         
-        Document doc = new Document(docName);
+        Documents doc = new Documents(docName);
         int [] a = base.findCopyID(doc.getDocID());
         
         if (a.length == 0)
