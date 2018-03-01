@@ -303,7 +303,7 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
-    public ResultSet checkedOut(int userID) { // ResultSet
+    public ResultSet checkedOutByUserID(int userID) { // ResultSet
         String query = "select copyID, date, name, author from copies " +
                         "JOIN documents on copies.commonID = documents.id " +
                         "where copies.userID = ?";
@@ -316,6 +316,22 @@ public class FcukBase implements FcukBaseInterface{
             /*while (rs.next()) {
                 System.out.println(rs.getString("name") + " " + rs.getInt("copyID"));
             }*/
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public ResultSet checkedOutByDocID(int bookID) {
+        String query = "select copyID, date, name, author from copies " +
+                        "JOIN documents on copies.commonID = documents.id " +
+                        "where copies.commonID = ?";
+        ResultSet rs = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, bookID);
+            rs = statement.executeQuery();
+            return rs;
         } catch (SQLException e) {
             e.printStackTrace();
         }

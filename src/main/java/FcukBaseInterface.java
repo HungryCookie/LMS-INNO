@@ -19,5 +19,6 @@ public interface FcukBaseInterface {
     boolean checkUserID(int userID); // Check whether there exist such a user
     boolean checkDocumentByName(String name); // Check whether there exist such a doc
     boolean checkDocumentByID(int bookID); // Checks whether there is such a book by its ID
-    ResultSet checkedOut(int userID); // Checks all books checked out by certain user
+    ResultSet checkedOutByUserID(int userID); // Checks all books checked out by certain user
+    ResultSet checkedOutByDocID(int bookID); // Checks all books checked out by its ID
 }
