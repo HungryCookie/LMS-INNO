@@ -1,25 +1,28 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-public class FcukBase implements FcukBaseInterface {
-    private static final String URL = "jdbc:mysql://localhost:3306/ldata?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
-            "&useLegacyDatetimeCode=false&serverTimezone=UTC";            //"jdbc:mysql://localhost:3306/test";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+public class FcukBase implements FcukBaseInterface{
     private static Connection connection = null;
-    public FcukBase() {
+
+    public FcukBase(){
         try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            if (!connection.isClosed()) {
-                //System.out.println("Connection established");
-            }
+            String url = "jdbc:sqlite:database.sqlite";
+            connection = DriverManager.getConnection(url);
+            /*if (!connection.isClosed()) {
+                System.out.println("1");
+            }*/
+            /*Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * from users");
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+            }*/
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public ResultSet getUserByID(int userID) {
-        String query = "select * from users where id = ?";
+        String query = "select * from users where rowid = ?";
         ResultSet res = null;
         try{
             PreparedStatement statement = connection.prepareStatement(query);
@@ -37,7 +40,7 @@ public class FcukBase implements FcukBaseInterface {
     }
 
     public ResultSet getDocumentByID(int bookID) {
-        String query = "select * from documents where id = ?";
+        String query = "select * from documents where rowid = ?";
         ResultSet res = null;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -92,8 +95,8 @@ public class FcukBase implements FcukBaseInterface {
 
     public boolean bookADocument(int docID, int userID) {
         String query = "insert into booking values (?, ?)";
-        String updateQuery = "update documents set counter = ? where id = ?";
-        String referenceUpdate = "update documents set reference = 'T' where id = ?";
+        String updateQuery = "update documents set counter = ? where rowid = ?";
+        String referenceUpdate = "update documents set reference = 'T' where rowid = ?";
         ResultSet document = getDocumentByID(docID);
         try {
             int counter = document.getInt("counter");
@@ -162,7 +165,7 @@ public class FcukBase implements FcukBaseInterface {
     }
 
     public int[] findCopyID(int docID) {
-        String query = "select copyID from copies where commonID = ?";
+        String query = "select copyID from copies where commonID = ? and availability = 'T'";
         ResultSet res;
         int rowCounter;
         try {
@@ -186,7 +189,7 @@ public class FcukBase implements FcukBaseInterface {
     }
 
     public boolean checkUserID(int userID) {
-        String query = "select * from users where id = ?";
+        String query = "select * from users where rowid = ?";
         ResultSet res;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -221,109 +224,69 @@ public class FcukBase implements FcukBaseInterface {
         return false;
     }
 
-    private ResultSet getByID(int ID, String tableName) {
-        String query = "select * from ? where id = ?";
-        ResultSet res;
-        try {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1,tableName);
-            statement.setInt(2, ID);
-            res = statement.executeQuery();
-            if (res.next()) {
-                return res;
-            } else {
-                return null;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /*public static void main(String[] args) {
-        FcukBase b = new FcukBase();
-        System.out.println(b.bookADocument(4, 24));
-    }*/
-
-}
-
-
-
-/*public static void main(String[] args) {
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("select * from users where id < 3");
-            *//*if (res.next()) {
-                System.out.println(res.getInt(1));
-            }*//*
-            while (res.next()) {
-                System.out.println(res.getInt("id"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-
-/*public ResultSet getUserByID(int ID) {
-        String query = "select * from users where id = ?";
-        ResultSet res;
-        try {
-            PreparedStatement statement = connection.prepareStatement(query);
-            //statement.setString(1,tableName);
-            statement.setInt(1, ID);
-            res = statement.executeQuery();
-            if (!res.next()) {
-                res.beforeFirst();
-                return null;
-            } else {
-                res.beforeFirst();
-                return res;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-        //return getByID(ID, "users");
-    }
-
-    public ResultSet getBookByID(int ID) {
-        String query = "select * from documents where id = ?";
-        ResultSet res;
-        try {
-            PreparedStatement statement = connection.prepareStatement(query);
-            //statement.setString(1,tableName);
-            statement.setInt(1, ID);
-            res = statement.executeQuery();
-            if (!res.next()) {
-                res.beforeFirst();
-                return null;
-            } else {
-                res.beforeFirst();
-                return res;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-        //return getByID(ID, "documents");
-    }
-
-    public ResultSet getBookByName(String name) {
-        String query = "select * from documents where name = ?";
-        ResultSet res;
+    public void addNewUser(String name, String phoneNumber, String address, String status, String password) {
+        String query = "insert into users (name, phoneNumber, address, status, password) values (?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
-            res = statement.executeQuery();
-            if (!res.next())
-                return null;
-            if (res.next())
-                return res;
+            statement.setString(2, phoneNumber);
+            statement.setString(3, address);
+            statement.setString(4, status);
+            statement.setString(5, password);
+            statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
-    }*/
+
+    }
+
+    public void addNewDocument(String name, String author, int counter, int cost, String reference, String bestseller) {
+        String query = "insert into documents (name, author, counter, cost, reference, bestseller) values (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
+            statement.setString(2, author);
+            statement.setInt(3, counter);
+            statement.setInt(4, cost);
+            statement.setString(5, reference);
+            statement.setString(6, bestseller);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void checkOut(int userID, int copyID, String date) {
+        String query = "update copies set availability = 'F', userID = ?, date = ? where copyID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+            statement.setString(2, date);
+            statement.setInt(3, copyID);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void returnDoc(int copyID) {
+        String query = "update copies set availability = 'T', userID = 0, date = null where copyID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, copyID);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws SQLException {
+        FcukBase b = new FcukBase();
+        //b.checkOut(1, 1, "2018-03-23");
+        b.returnDoc(1);
+        /*System.out.println(b.checkUserID(103));
+        ResultSet rs = b.getDocumentByID(5);
+        System.out.println(rs.getString("name"));*/
+    }
+
+}
