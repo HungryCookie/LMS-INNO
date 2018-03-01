@@ -33,4 +33,9 @@
          <Font name="Lucida Console" size="15.0" />
       </font>
    </Button>
+   <Button fx:id="info" layoutX="547.0" layoutY="34.0" mnemonicParsing="false" text="My books">
+      <font>
+         <Font name="Lucida Console" size="15.0" />
+      </font>
+   </Button>
 </Pane>
