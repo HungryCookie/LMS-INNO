@@ -242,7 +242,7 @@ public class FcukBase implements FcukBaseInterface{
         return false;
     }
 
-    public void addNewUser(String name, String phoneNumber, String address, String status, String password) {
+    public int addNewUser(String name, String phoneNumber, String address, String status, String password) {
         String query = "insert into users (name, phoneNumber, address, status, password) values (?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -252,13 +252,15 @@ public class FcukBase implements FcukBaseInterface{
             statement.setString(4, status);
             statement.setString(5, password);
             statement.execute();
+            int newID = connection.createStatement().executeQuery("select last_insert_rowid()").getInt(1);
+            return newID;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return 0;
     }
 
-    public void addNewDocument(String name, String author, int counter, int cost, String reference, String bestseller) {
+    public int addNewDocument(String name, String author, int counter, int cost, String reference, String bestseller) {
         String query = "insert into documents (name, author, counter, cost, reference, bestseller) values (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -269,9 +271,12 @@ public class FcukBase implements FcukBaseInterface{
             statement.setString(5, reference);
             statement.setString(6, bestseller);
             statement.execute();
+            int newID = connection.createStatement().executeQuery("select last_insert_rowid()").getInt(1);
+            return newID;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     public void checkOut(int userID, int copyID, String date) {
@@ -352,9 +357,9 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        b.returnDoc(1);
+        //b.returnDoc(1);
         //b.documentModify(5, "Amber Chronicles", "Roger Zelazny", 13, 110, "F", "T");
-        //b.userModify(104, "June Brown",	"89224365731", "Moscow", "Student", "zaqzaq");
+        //System.out.println(b.addNewUser("Jack Daniels",	"89224365732", "London", "Student", "zqazqa"));
         //b.checkOut(1, 1, "2018-03-23");
         //b.returnDoc(1);
         /*System.out.println(b.checkUserID(103));

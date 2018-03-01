@@ -6,8 +6,8 @@ public interface FcukBaseInterface {
     ResultSet getDocumentByID(int bookID); // Get all info about certain document through its ID
     ResultSet getDocumentByName(String name); // Get all info about certain document through its name
     ResultSet getDocumentByAuthor(String author); // Get all info about certain document through its author
-    void addNewUser(String name, String phoneNumber, String address, String status, String password); // Adds new User to the database
-    void addNewDocument(String name, String author, int counter, int cost, String reference, String bestseller); // Adds new document to the data base
+    int addNewUser(String name, String phoneNumber, String address, String status, String password); // Adds new User to the database
+    int addNewDocument(String name, String author, int counter, int cost, String reference, String bestseller); // Adds new document to the data base
     void userModify(int id, String name, String phoneNumber, String address, String status, String password); // Modifies user
     void documentModify(int id, String name, String author, int counter, int cost, String reference, String bestseller); // Modifies user
     void checkOut(int userID, int copyID, String date); // Checks the document out to the certein user

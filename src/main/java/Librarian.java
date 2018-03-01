@@ -56,11 +56,11 @@ public class Librarian extends Users {
         base.addNewDocument(name, author, counter, cost, reference, bestseller);
     }
 
-    public boolean modify(int userID, String name, String phoneNumber, String address, String status){ //Method modifies fields of user with userID
+    public boolean modify(int userID, String name, String phoneNumber, String address, String status, String password){ //Method modifies fields of user with userID
         if (!base.checkUserID(userID))
             return false;
 
-        base.userModify(userID, name, phoneNumber, address, status);
+        base.userModify(userID, name, phoneNumber, address, status, password);
 
         return true;
     }
