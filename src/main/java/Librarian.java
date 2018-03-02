@@ -45,7 +45,7 @@ public class Librarian extends Users {
     
     //returning system
 
-    public int addUser(String name, String phoneNumber, String address, String status) { //Method adds new User into data base. And it returns userID and password
+    public IntAndString addUser(String name, String phoneNumber, String address, String status) { //Method adds new User into data base. And it returns userID and password
         
         String pass = "";
             
@@ -56,8 +56,7 @@ public class Librarian extends Users {
             pass += Character.toString((char)randomNum);
         }
 
-        //IntAndString res = new IntAndString(base.addNewUser(name, phoneNumber, address, status, pass), pass);
-        int res = base.addNewUser(name, phoneNumber, address, status, pass);
+        IntAndString res = new IntAndString(base.addNewUser(name, phoneNumber, address, status, pass), pass);
         return res;
     }
 
