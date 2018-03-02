@@ -4,7 +4,7 @@ import java.util.ArrayList;
  
 public class Patron extends Users{
     private int currentFine;
-    private String rank;
+    private String status;
     private FcukBase base = new FcukBase();
 
 
@@ -16,6 +16,10 @@ public class Patron extends Users{
             System.out.print(doc.getName() + " ");
         }
     }*/
+
+    public Patron() {
+        /*Renew Fine for current user*/
+    }
 
     public Patron(int userID){
         if (!base.checkUserID(userID)) {
@@ -30,7 +34,7 @@ public class Patron extends Users{
                 this.userID = userID;
                 // else get result by userID and set all the fields
                 name = res.getString("name");
-                rank = res.getString("status");
+                status = res.getString("status");
                 address = res.getString("address");
                 password = res.getString("password");
                 phoneNumber = res.getString("phoneNumber");
@@ -60,7 +64,7 @@ public class Patron extends Users{
         if (document.isBestseller())
            return 2;
 
-        if (rank.equals("Student"))
+        if (status.equals("Student"))
             return 3;
 
         return 4;
@@ -81,10 +85,6 @@ public class Patron extends Users{
         return res;
     }
  
-    public Patron() {
-        /*Renew Fine for current user*/
-    }
- 
     public void bookOrder(int bookID) {
         /* Note that you ordered a book in database
         * */
@@ -97,5 +97,9 @@ public class Patron extends Users{
  
     public int checkFine() {
         return currentFine;
+    }
+
+    public String getStatus(){
+        return status;
     }
 }
