@@ -1,7 +1,13 @@
+import jdk.nashorn.internal.ir.annotations.Immutable;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.Date;
+import java.lang.Object;
+
+
+
 import java.text.SimpleDateFormat;
 
 public class Librarian extends Users {
@@ -28,15 +34,18 @@ public class Librarian extends Users {
     }
 
     public Patron getPatronInfo(int userID){
-        
+
+        if (!base.checkUserID(userID))
+            return null;
+
         Patron p = new Patron(userID);
         
         return p;
     }
     
     //returning system
-    
-    public void addUser(String name, String phoneNumber, String address, String status) { //Method adds new User into data base. And it returns userID and password
+
+    public IntAndString addUser(String name, String phoneNumber, String address, String status) { //Method adds new User into data base. And it returns userID and password
         
         String pass = "";
             
@@ -46,9 +55,10 @@ public class Librarian extends Users {
             int randomNum = r.nextInt(123 - 48 + 1) + 48;
             pass += Character.toString((char)randomNum);
         }
-        System.out.print(pass);
-        
-        base.addNewUser(name, phoneNumber, address, status, pass);
+
+        IntAndString res = new IntAndString(base.addNewUser(name, phoneNumber, address, status, pass), pass);
+
+        return res;
     }
 
     public void addDocument(String name, String author, int counter, int cost, String reference, String bestseller){ //Method adds document into data base
@@ -59,6 +69,8 @@ public class Librarian extends Users {
     public boolean modify(int userID, String name, String phoneNumber, String address, String status, String password){ //Method modifies fields of user with userID
         if (!base.checkUserID(userID))
             return false;
+
+        System.out.println(name + phoneNumber + address + status +password);
 
         base.userModify(userID, name, phoneNumber, address, status, password);
 
@@ -118,11 +130,20 @@ public class Librarian extends Users {
         return res;
     }
 
-    /*
+
     public static void main(String[] args) throws SQLException {
 
+        System.out.println("xui1");
         Librarian l = new Librarian(1);
-        l.addUser("Oleg", "123", "xui", "Faculty");
 
-    }*/
+        Patron p = l.getPatronInfo(l.addUser("Oleg", "123","pushkina", "Faculty").getInt());
+
+        System.out.println("xui2");
+
+        System.out.println(p.getStatus());
+
+        l.modify(p.getID(), p.getName(), p.getPhoneNumber(), "gogola", p.getStatus(), p.getPassword());
+
+        System.out.println(p.getAddress());
+    }
 }
