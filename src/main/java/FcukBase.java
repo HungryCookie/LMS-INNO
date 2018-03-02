@@ -166,6 +166,10 @@ public class FcukBase implements FcukBaseInterface{
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, docID);
             res = statement.executeQuery();
+            if (!res.next()) {
+                int[] a = {0};
+                return a;
+            }
             res.last();
             rowCounter = res.getRow();
             res.beforeFirst();

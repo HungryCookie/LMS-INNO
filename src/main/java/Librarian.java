@@ -180,9 +180,7 @@ public class Librarian extends Users {
 
         Patron p = new Patron(1);
 
-        Documents d = new Documents(1);
-
-        p.bookADocument(d);
+        Documents d = new Documents(2);
 
         l.checkOut(p.getID(), d);
 
