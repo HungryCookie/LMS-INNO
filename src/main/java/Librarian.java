@@ -89,7 +89,7 @@ public class Librarian extends Users {
 
     public boolean checkOut(int userID, Documents doc){ //Method returns false if userId is wrong
                                                          //Also if this user didn't booked this document. Otherwise true
-        if (base.checkUserID(userID))
+        if (!base.checkUserID(userID))
             return false;
 
 
@@ -116,20 +116,43 @@ public class Librarian extends Users {
         return true;
     }
 
+    public ResultSet checkedOut(int userID){ //Method returns a list of checked out Documents with number of copy he took of user with userID
+        if (!base.checkUserID(userID))
+            return null;
+
+        return base.checkedOutByUserID(userID);
+    }
+
+
     public boolean returnDoc(int copyID){  //Method returns document to library by ID of copy. True if alright, false if it is wrong
 
         base.returnDoc(copyID);
         return true;
     }
 
-    public int[] checkedOut(int userID){ //Method returns a list of checked out Documents with number of copy he took of user with userID
-        int [] res = {1};
+    /*
+    public boolean deleteDocument(int copyID){ //Method deletes one copy of document from data base. Ant returns false if copyID is wrong or this copy is not in library at the moment
+        return base.deleteDocument
+    }*/
 
-        if(!base.checkUserID(userID))
-            return res;
-        return res;
+
+    public boolean deleteUser(int userID){ //Method deletes user and if there isn't user with userID or this user has unreturned documents
+
+        if (!base.checkUserID(userID))
+            return false;
+
+        ResultSet res = base.checkedOutByUserID(userID);
+
+        try {
+            if (res.next())
+                return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //base.deleteUser(userID);
+        return true;
     }
-
 
     public static void main(String[] args) throws SQLException {
 
