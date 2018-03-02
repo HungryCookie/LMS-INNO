@@ -4,7 +4,7 @@ public abstract class Users {
     protected int userID; //Card number of each user
     protected String address;
     protected String phoneNumber;
-   
+
     public int bookADocument (Documents document) {return 0; }
 
     public String getName() {

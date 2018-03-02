@@ -45,7 +45,7 @@ public class Librarian extends Users {
     
     //returning system
 
-    public IntAndString addUser(String name, String phoneNumber, String address, String status) { //Method adds new User into data base. And it returns userID and password
+    public int addUser(String name, String phoneNumber, String address, String status) { //Method adds new User into data base. And it returns userID and password
         
         String pass = "";
             
@@ -56,8 +56,8 @@ public class Librarian extends Users {
             pass += Character.toString((char)randomNum);
         }
 
-        IntAndString res = new IntAndString(base.addNewUser(name, phoneNumber, address, status, pass), pass);
-
+        //IntAndString res = new IntAndString(base.addNewUser(name, phoneNumber, address, status, pass), pass);
+        int res = base.addNewUser(name, phoneNumber, address, status, pass);
         return res;
     }
 
@@ -155,17 +155,17 @@ public class Librarian extends Users {
     }
 
     public static void main(String[] args) throws SQLException {
-
         System.out.println("xui1");
         Librarian l = new Librarian(1);
 
-        Patron p = l.getPatronInfo(l.addUser("Oleg", "123","pushkina", "Faculty").getInt());
+        Patron p = l.getPatronInfo(l.addUser("Oleg", "123","pushkina", "Faculty"));
 
         System.out.println("xui2");
 
-        System.out.println(p.getStatus());
-
-        l.modify(p.getID(), p.getName(), p.getPhoneNumber(), "gogola", p.getStatus(), p.getPassword());
+        System.out.println(p.getAddress());
+        int id = p.getID(); String name = p.getName(); String phone = p.getPhoneNumber();
+        String status = p.getStatus(); String pass = p.getPassword();
+        l.modify(id, name, phone, "gogola", status, pass);
 
         System.out.println(p.getAddress());
     }

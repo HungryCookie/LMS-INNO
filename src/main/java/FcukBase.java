@@ -5,19 +5,13 @@ public class FcukBase implements FcukBaseInterface{
     private static Connection connection = null;
 
     public FcukBase(){
-        try {
-            String url = "jdbc:sqlite:database.sqlite";
-            connection = DriverManager.getConnection(url);
-            /*if (!connection.isClosed()) {
-                System.out.println("1");
-            }*/
-            /*Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * from users");
-            while (rs.next()) {
-                System.out.println(rs.getString("name"));
-            }*/
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (connection == null) {
+            try {
+                String url = "jdbc:sqlite:database.sqlite";
+                connection = DriverManager.getConnection(url);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
