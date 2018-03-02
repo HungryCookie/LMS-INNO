@@ -65,6 +65,16 @@ public class Librarian extends Users {
         base.addNewDocument(name, author, counter, cost, reference, bestseller);
     }
 
+    private void deleteBooking(int userID){
+
+        Patron p = new Patron(userID);
+
+        Documents [] d = p.bookedDocuments();
+
+        for (Documents cur : d)
+            base.counterUp(cur.getDocID(), 1);
+    }
+
     public boolean modify(int userID, String name, String phoneNumber, String address, String status, String password){ //Method modifies fields of user with userID
         if (!base.checkUserID(userID))
             return false;
@@ -96,9 +106,12 @@ public class Librarian extends Users {
         Documents [] booked = p.bookedDocuments();
         boolean ind = false;
 
-        for(Documents x : booked)
+        for(Documents x : booked) {
+            System.out.println(x.getName() + doc.getName());
+
             if (x.getDocID() == doc.getDocID())
                 ind = true;
+        }
         if (!ind)
             return false;
 
@@ -125,7 +138,13 @@ public class Librarian extends Users {
 
     public boolean returnDoc(int copyID){  //Method returns document to library by ID of copy. True if alright, false if it is wrong
 
-        base.returnDoc(copyID);
+        int res = base.returnDoc(copyID);
+
+        if (res == 0)
+            return false;
+
+        base.counterUp(res, 1);
+
         return true;
     }
 
@@ -149,23 +168,30 @@ public class Librarian extends Users {
             e.printStackTrace();
         }
 
+        deleteBooking(userID);
         base.deleteUser(userID);
+
         return true;
     }
 
     public static void main(String[] args) throws SQLException {
-        System.out.println("xui1");
-        Librarian l = new Librarian(1);
 
-        Patron p = l.getPatronInfo(l.addUser("Oleg", "123","pushkina", "Faculty"));
+        Librarian l = new Librarian(2);
 
-        System.out.println("xui2");
+        Patron p = new Patron(1);
 
-        System.out.println(p.getAddress());
-        int id = p.getID(); String name = p.getName(); String phone = p.getPhoneNumber();
-        String status = p.getStatus(); String pass = p.getPassword();
-        l.modify(id, name, phone, "gogola", status, pass);
+        Documents d = new Documents(1);
 
-        System.out.println(p.getAddress());
+        p.bookADocument(d);
+
+        l.checkOut(p.getID(), d);
+
+        ResultSet s = l.checkedOut(p.getID());
+
+
+        while (s.next()){
+            System.out.println(s.getInt("copyID"));
+            System.out.println(s.getString("name"));
+        }
     }
 }
