@@ -286,15 +286,25 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
-    public void returnDoc(int copyID) {
+    public int returnDoc(int copyID) {
         String query = "update copies set availability = 'T', userID = 0, date = null where copyID = ?";
+        String check = "select * from copies where copyID = ?";
         try {
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(check);
+            statement.setInt(1, copyID);
+            ResultSet rs = statement.executeQuery();
+            if (!rs.next()) {
+                return 0;
+            }
+            int bookID = rs.getInt("commonID");
+            statement = connection.prepareStatement(query);
             statement.setInt(1, copyID);
             statement.execute();
+            return bookID;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     public ResultSet checkedOutByUserID(int userID) { // ResultSet
@@ -376,8 +386,27 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public void counterUp(int bookID, int newCounter) {
+        String query = "update documents set counter = ? where id = ?";
+        String getCounter = "select counter from documents where id = ?";
+        try {
+            PreparedStatement statement1 = connection.prepareStatement(getCounter);
+            statement1.setInt(1, bookID);
+            ResultSet rs = statement1.executeQuery();
+            int counter = rs.getInt(1);
+            counter += newCounter;
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, counter);
+            statement.setInt(2, bookID);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
+        System.out.println(b.returnDoc(1));
         //b.returnDoc(1);
         //b.documentModify(5, "Amber Chronicles", "Roger Zelazny", 13, 110, "F", "T");
         //System.out.println(b.addNewUser("Jack Daniels",	"89224365732", "London", "Student", "zqazqa"));
