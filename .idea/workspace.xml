@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fbf9824c-e9ed-4ce3-a47e-dff4a8f36164" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database.sqlite" afterPath="$PROJECT_DIR$/database.sqlite" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FcukBase.class" afterPath="$PROJECT_DIR$/target/classes/FcukBase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Librarian.class" afterPath="$PROJECT_DIR$/target/classes/Librarian.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Patron.class" afterPath="$PROJECT_DIR$/target/classes/Patron.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Users.class" afterPath="$PROJECT_DIR$/target/classes/Users.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/FcukBase.java" afterPath="$PROJECT_DIR$/src/main/java/FcukBase.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Librarian.java" afterPath="$PROJECT_DIR$/src/main/java/Librarian.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Users.java" afterPath="$PROJECT_DIR$/src/main/java/Users.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -59,8 +54,8 @@
       <file leaf-file-name="FcukBase.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1100">
-              <caret line="365" column="5" lean-forward="false" selection-start-line="365" selection-start-column="5" selection-end-line="365" selection-end-column="5" />
+            <state relative-caret-position="306">
+              <caret line="367" column="39" lean-forward="false" selection-start-line="367" selection-start-column="39" selection-end-line="367" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#FcukBase#0;class#FcukBase#0" expanded="false" />
@@ -85,30 +80,32 @@
                 <element signature="method#checkedOutByDocID#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#userModify#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#documentModify#0;class#FcukBase#0" expanded="false" />
+                <element signature="method#deleteUser#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#main#0;class#FcukBase#0" expanded="false" />
-                <marker date="1519975326375" expanded="true" signature="526:561" ph="select * fro... users" />
-                <marker date="1519975326375" expanded="true" signature="1072:1111" ph="select * fro... documents" />
-                <marker date="1519975326375" expanded="true" signature="1626:1664" ph="select * fro... documents" />
-                <marker date="1519975326375" expanded="true" signature="2184:2224" ph="select * fro... documents" />
-                <marker date="1519975326375" expanded="true" signature="2746:2779" ph="insert into booking... " />
-                <marker date="1519975326375" expanded="true" signature="2812:2860" ph="update docum... " />
-                <marker date="1519975326375" expanded="true" signature="2897:2949" ph="update docum... " />
-                <marker date="1519975326375" expanded="true" signature="4142:4185" ph="select bookI... booking" />
-                <marker date="1519975326375" expanded="true" signature="4851:4894" ph="select userI... booking" />
-                <marker date="1519975326375" expanded="true" signature="5505:5572" ph="select copyI... copies" />
-                <marker date="1519975326375" expanded="true" signature="6297:6332" ph="select * fro... users" />
-                <marker date="1519975326375" expanded="true" signature="6841:6880" ph="select * fro... documents" />
-                <marker date="1519975326375" expanded="true" signature="7399:7437" ph="select * fro... documents" />
-                <marker date="1519975326375" expanded="true" signature="8012:8099" ph="insert into users... " />
-                <marker date="1519975326375" expanded="true" signature="8520:8546" ph="select last_... " />
-                <marker date="1519975326375" expanded="true" signature="8833:8933" ph="insert into documents... " />
-                <marker date="1519975326375" expanded="true" signature="9390:9416" ph="select last_... " />
-                <marker date="1519975326375" expanded="true" signature="9647:9722" ph="update copie... " />
-                <marker date="1519975326375" expanded="true" signature="10123:10201" ph="update copie... " />
-                <marker date="1519975326375" expanded="true" signature="10546:10722" ph="select copyI... " />
-                <marker date="1519975326375" expanded="true" signature="11270:11448" ph="select copyI... " />
-                <marker date="1519975326375" expanded="true" signature="11925:12019" ph="update users... " />
-                <marker date="1519975326375" expanded="true" signature="12648:12756" ph="update docum... " />
+                <marker date="1519975937391" expanded="true" signature="526:561" ph="select * fro... users" />
+                <marker date="1519975937391" expanded="true" signature="1072:1111" ph="select * fro... documents" />
+                <marker date="1519975937391" expanded="true" signature="1626:1664" ph="select * fro... documents" />
+                <marker date="1519975937391" expanded="true" signature="2184:2224" ph="select * fro... documents" />
+                <marker date="1519975937391" expanded="true" signature="2746:2779" ph="insert into booking... " />
+                <marker date="1519975937391" expanded="true" signature="2812:2860" ph="update docum... " />
+                <marker date="1519975937391" expanded="true" signature="2897:2949" ph="update docum... " />
+                <marker date="1519975937391" expanded="true" signature="4142:4185" ph="select bookI... booking" />
+                <marker date="1519975937391" expanded="true" signature="4851:4894" ph="select userI... booking" />
+                <marker date="1519975937391" expanded="true" signature="5505:5572" ph="select copyI... copies" />
+                <marker date="1519975937391" expanded="true" signature="6297:6332" ph="select * fro... users" />
+                <marker date="1519975937391" expanded="true" signature="6841:6880" ph="select * fro... documents" />
+                <marker date="1519975937391" expanded="true" signature="7399:7437" ph="select * fro... documents" />
+                <marker date="1519975937391" expanded="true" signature="8012:8099" ph="insert into users... " />
+                <marker date="1519975937391" expanded="true" signature="8520:8546" ph="select last_... " />
+                <marker date="1519975937391" expanded="true" signature="8833:8933" ph="insert into documents... " />
+                <marker date="1519975937391" expanded="true" signature="9390:9416" ph="select last_... " />
+                <marker date="1519975937391" expanded="true" signature="9647:9722" ph="update copie... " />
+                <marker date="1519975937391" expanded="true" signature="10123:10201" ph="update copie... " />
+                <marker date="1519975937391" expanded="true" signature="10546:10722" ph="select copyI... " />
+                <marker date="1519975937391" expanded="true" signature="11270:11448" ph="select copyI... " />
+                <marker date="1519975937391" expanded="true" signature="11925:12019" ph="update users... " />
+                <marker date="1519975937391" expanded="true" signature="12648:12756" ph="update docum... " />
+                <marker date="1519975937391" expanded="true" signature="13333:13366" ph="delete from " />
               </folding>
             </state>
           </provider>
@@ -117,9 +114,11 @@
       <file leaf-file-name="Librarian.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Librarian.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="164" column="34" lean-forward="true" selection-start-line="164" selection-start-column="34" selection-end-line="164" selection-end-column="34" />
-              <folding />
+            <state relative-caret-position="901">
+              <caret line="160" column="32" lean-forward="true" selection-start-line="160" selection-start-column="32" selection-end-line="160" selection-end-column="32" />
+              <folding>
+                <element signature="method#deleteUser#0;class#Librarian#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -188,9 +187,9 @@
         <option value="$PROJECT_DIR$/src/main/java/FcukBaseInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/Patron.java" />
         <option value="$PROJECT_DIR$/src/main/java/Users.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Librarian.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/FcukBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Librarian.java" />
       </list>
     </option>
   </component>
@@ -293,117 +292,6 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Java\LMS-INNO\src\main\java" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Librarian.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Patron.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -620,7 +508,8 @@
       <workItem from="1519849953330" duration="3488000" />
       <workItem from="1519919173133" duration="3347000" />
       <workItem from="1519923312452" duration="3337000" />
-      <workItem from="1519967214147" duration="2750000" />
+      <workItem from="1519967214147" duration="2852000" />
+      <workItem from="1519975744159" duration="283000" />
     </task>
     <task id="LOCAL-00001" summary="Delete comment">
       <created>1517315812854</created>
@@ -881,11 +770,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519928087140</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Minor updates">
+      <created>1519975358646</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1519975358646</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83019000" />
+    <option name="totallyTimeSpent" value="83404000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1102" extended-state="6" />
@@ -899,11 +795,10 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.50216216" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27745664" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45202312" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27745664" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20108108" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17297298" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -911,13 +806,14 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -997,7 +893,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,7 +900,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="method#deleteUser#0;class#Librarian#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1057,7 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1065,7 +961,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="method#deleteUser#0;class#Librarian#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1115,7 +1013,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1123,7 +1020,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="method#deleteUser#0;class#Librarian#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1173,7 +1072,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1241,7 +1139,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="16" column="8" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="20" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1290,17 +1187,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="5" column="33" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1319,18 +1205,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Librarian.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="164" column="34" lean-forward="true" selection-start-line="164" selection-start-column="34" selection-end-line="164" selection-end-column="34" />
-          <folding />
+        <state relative-caret-position="901">
+          <caret line="160" column="32" lean-forward="true" selection-start-line="160" selection-start-column="32" selection-end-line="160" selection-end-column="32" />
+          <folding>
+            <element signature="method#deleteUser#0;class#Librarian#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="365" column="5" lean-forward="false" selection-start-line="365" selection-start-column="5" selection-end-line="365" selection-end-column="5" />
+        <state relative-caret-position="306">
+          <caret line="367" column="39" lean-forward="false" selection-start-line="367" selection-start-column="39" selection-end-line="367" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FcukBase#0;class#FcukBase#0" expanded="false" />
@@ -1355,30 +1253,32 @@
             <element signature="method#checkedOutByDocID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#userModify#0;class#FcukBase#0" expanded="false" />
             <element signature="method#documentModify#0;class#FcukBase#0" expanded="false" />
+            <element signature="method#deleteUser#0;class#FcukBase#0" expanded="false" />
             <element signature="method#main#0;class#FcukBase#0" expanded="false" />
-            <marker date="1519975326375" expanded="true" signature="526:561" ph="select * fro... users" />
-            <marker date="1519975326375" expanded="true" signature="1072:1111" ph="select * fro... documents" />
-            <marker date="1519975326375" expanded="true" signature="1626:1664" ph="select * fro... documents" />
-            <marker date="1519975326375" expanded="true" signature="2184:2224" ph="select * fro... documents" />
-            <marker date="1519975326375" expanded="true" signature="2746:2779" ph="insert into booking... " />
-            <marker date="1519975326375" expanded="true" signature="2812:2860" ph="update docum... " />
-            <marker date="1519975326375" expanded="true" signature="2897:2949" ph="update docum... " />
-            <marker date="1519975326375" expanded="true" signature="4142:4185" ph="select bookI... booking" />
-            <marker date="1519975326375" expanded="true" signature="4851:4894" ph="select userI... booking" />
-            <marker date="1519975326375" expanded="true" signature="5505:5572" ph="select copyI... copies" />
-            <marker date="1519975326375" expanded="true" signature="6297:6332" ph="select * fro... users" />
-            <marker date="1519975326375" expanded="true" signature="6841:6880" ph="select * fro... documents" />
-            <marker date="1519975326375" expanded="true" signature="7399:7437" ph="select * fro... documents" />
-            <marker date="1519975326375" expanded="true" signature="8012:8099" ph="insert into users... " />
-            <marker date="1519975326375" expanded="true" signature="8520:8546" ph="select last_... " />
-            <marker date="1519975326375" expanded="true" signature="8833:8933" ph="insert into documents... " />
-            <marker date="1519975326375" expanded="true" signature="9390:9416" ph="select last_... " />
-            <marker date="1519975326375" expanded="true" signature="9647:9722" ph="update copie... " />
-            <marker date="1519975326375" expanded="true" signature="10123:10201" ph="update copie... " />
-            <marker date="1519975326375" expanded="true" signature="10546:10722" ph="select copyI... " />
-            <marker date="1519975326375" expanded="true" signature="11270:11448" ph="select copyI... " />
-            <marker date="1519975326375" expanded="true" signature="11925:12019" ph="update users... " />
-            <marker date="1519975326375" expanded="true" signature="12648:12756" ph="update docum... " />
+            <marker date="1519975937391" expanded="true" signature="526:561" ph="select * fro... users" />
+            <marker date="1519975937391" expanded="true" signature="1072:1111" ph="select * fro... documents" />
+            <marker date="1519975937391" expanded="true" signature="1626:1664" ph="select * fro... documents" />
+            <marker date="1519975937391" expanded="true" signature="2184:2224" ph="select * fro... documents" />
+            <marker date="1519975937391" expanded="true" signature="2746:2779" ph="insert into booking... " />
+            <marker date="1519975937391" expanded="true" signature="2812:2860" ph="update docum... " />
+            <marker date="1519975937391" expanded="true" signature="2897:2949" ph="update docum... " />
+            <marker date="1519975937391" expanded="true" signature="4142:4185" ph="select bookI... booking" />
+            <marker date="1519975937391" expanded="true" signature="4851:4894" ph="select userI... booking" />
+            <marker date="1519975937391" expanded="true" signature="5505:5572" ph="select copyI... copies" />
+            <marker date="1519975937391" expanded="true" signature="6297:6332" ph="select * fro... users" />
+            <marker date="1519975937391" expanded="true" signature="6841:6880" ph="select * fro... documents" />
+            <marker date="1519975937391" expanded="true" signature="7399:7437" ph="select * fro... documents" />
+            <marker date="1519975937391" expanded="true" signature="8012:8099" ph="insert into users... " />
+            <marker date="1519975937391" expanded="true" signature="8520:8546" ph="select last_... " />
+            <marker date="1519975937391" expanded="true" signature="8833:8933" ph="insert into documents... " />
+            <marker date="1519975937391" expanded="true" signature="9390:9416" ph="select last_... " />
+            <marker date="1519975937391" expanded="true" signature="9647:9722" ph="update copie... " />
+            <marker date="1519975937391" expanded="true" signature="10123:10201" ph="update copie... " />
+            <marker date="1519975937391" expanded="true" signature="10546:10722" ph="select copyI... " />
+            <marker date="1519975937391" expanded="true" signature="11270:11448" ph="select copyI... " />
+            <marker date="1519975937391" expanded="true" signature="11925:12019" ph="update users... " />
+            <marker date="1519975937391" expanded="true" signature="12648:12756" ph="update docum... " />
+            <marker date="1519975937391" expanded="true" signature="13333:13366" ph="delete from " />
           </folding>
         </state>
       </provider>

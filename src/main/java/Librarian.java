@@ -150,7 +150,7 @@ public class Librarian extends Users {
             e.printStackTrace();
         }
 
-        //base.deleteUser(userID);
+        base.deleteUser(userID);
         return true;
     }
 
