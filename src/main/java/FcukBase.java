@@ -463,18 +463,18 @@ public class FcukBase implements FcukBaseInterface{
         counterUp(bookID, -1);
     }
 
-    public void copiesOfDocument(int bookID) {
+    public ResultSet copiesOfDocument(int bookID) {
         String query = "select copyID, userID, date from copies where commonID = ?";
+        ResultSet rs;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, bookID);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                System.out.println(rs.getInt("copyID") +" " + rs.getInt("userId"));
-            }
+            rs = statement.executeQuery();
+            return rs;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public boolean isCopyAvailable(int copyID) {
@@ -498,7 +498,10 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        b.copiesOfDocument(2);
+        ResultSet rs = b.copiesOfDocument(6);
+        while (rs.next()) {
+            System.out.println(rs.getInt("copyID"));
+        }
         //b.returnDoc(1);
         //b.addNewDocument("Amber Chronicles", "Roger Zelazny", 2, 110, "F", "T");
         //System.out.println(b.addNewUser("Jack Daniels",	"89224365732", "London", "Student", "zqazqa"));
