@@ -412,12 +412,8 @@ public class FcukBase implements FcukBaseInterface{
 
     public void deleteUser(int userID) {
         String query = "delete from users where rowid = ?";
-        String booking = "delete from booking where userID = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, userID);
-            statement.execute();
-            statement = connection.prepareStatement(booking);
             statement.setInt(1, userID);
             statement.execute();
         } catch (SQLException e) {

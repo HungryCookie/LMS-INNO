@@ -46,8 +46,8 @@
       <file leaf-file-name="FcukBase.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="503" column="37" lean-forward="false" selection-start-line="503" selection-start-column="32" selection-end-line="503" selection-end-column="37" />
+            <state relative-caret-position="244">
+              <caret line="412" column="39" lean-forward="false" selection-start-line="412" selection-start-column="39" selection-end-line="412" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#FcukBase#0;class#FcukBase#0" expanded="false" />
@@ -57,7 +57,9 @@
                 <element signature="method#getDocumentByAuthor#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#bookADocument#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#findBookedDocuments#0;class#FcukBase#0" expanded="false" />
+                <element signature="e#4257#4266#0" expanded="true" />
                 <element signature="method#findUserByBookedDocument#0;class#FcukBase#0" expanded="false" />
+                <element signature="e#4966#4975#0" expanded="true" />
                 <element signature="method#findCopyID#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#checkUserID#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#checkDocumentByID#0;class#FcukBase#0" expanded="false" />
@@ -78,40 +80,39 @@
                 <element signature="method#copiesOfDocument#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#isCopyAvailable#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#main#0;class#FcukBase#0" expanded="false" />
-                <marker date="1520110175729" expanded="true" signature="526:561" ph="select * fro... users" />
-                <marker date="1520110175729" expanded="true" signature="1072:1111" ph="select * fro... documents" />
-                <marker date="1520110175729" expanded="true" signature="1626:1664" ph="select * fro... documents" />
-                <marker date="1520110175729" expanded="true" signature="2184:2224" ph="select * fro... documents" />
-                <marker date="1520110175729" expanded="true" signature="2746:2779" ph="insert into booking... " />
-                <marker date="1520110175729" expanded="true" signature="2812:2860" ph="update docum... " />
-                <marker date="1520110175729" expanded="true" signature="2897:2949" ph="update docum... " />
-                <marker date="1520110175729" expanded="true" signature="4142:4185" ph="select bookI... booking" />
-                <marker date="1520110175729" expanded="true" signature="4851:4894" ph="select userI... booking" />
-                <marker date="1520110175729" expanded="true" signature="5505:5572" ph="select copyI... copies" />
-                <marker date="1520110175729" expanded="true" signature="6430:6465" ph="select * fro... users" />
-                <marker date="1520110175729" expanded="true" signature="6974:7013" ph="select * fro... documents" />
-                <marker date="1520110175729" expanded="true" signature="7532:7570" ph="select * fro... documents" />
-                <marker date="1520110175729" expanded="true" signature="8145:8232" ph="insert into users... " />
-                <marker date="1520110175729" expanded="true" signature="8653:8679" ph="select last_... " />
-                <marker date="1520110175729" expanded="true" signature="8966:9066" ph="insert into documents... " />
-                <marker date="1520110175729" expanded="true" signature="9523:9549" ph="select last_... " />
-                <marker date="1520110175729" expanded="true" signature="9849:9908" ph="insert into copies... " />
-                <marker date="1520110175729" expanded="true" signature="10250:10325" ph="update copie... " />
-                <marker date="1520110175729" expanded="true" signature="10725:10803" ph="update copie... " />
-                <marker date="1520110175729" expanded="true" signature="10830:10867" ph="select * fro... copies" />
-                <marker date="1520110175729" expanded="true" signature="11503:11547" ph="select commo... copies" />
-                <marker date="1520110175729" expanded="true" signature="12032:12208" ph="select copyI... " />
-                <marker date="1520110175729" expanded="true" signature="12756:12934" ph="select copyI... " />
-                <marker date="1520110175729" expanded="true" signature="13411:13505" ph="update users... " />
-                <marker date="1520110175729" expanded="true" signature="14134:14242" ph="update docum... " />
-                <marker date="1520110175729" expanded="true" signature="14819:14852" ph="delete from " />
-                <marker date="1520110175729" expanded="true" signature="14881:14917" ph="delete from " />
-                <marker date="1520110175729" expanded="true" signature="15451:15486" ph="delete from " />
-                <marker date="1520110175729" expanded="true" signature="15887:15932" ph="update docum... " />
-                <marker date="1520110175729" expanded="true" signature="15964:16006" ph="select count... documents" />
-                <marker date="1520110175729" expanded="true" signature="16713:16771" ph="select copyI... " />
-                <marker date="1520110175729" expanded="true" signature="17174:17222" ph="select avail... copies" />
-                <marker date="1520110175729" expanded="true" signature="17810:17861" ph="delete from " />
+                <marker date="1520110506576" expanded="true" signature="526:561" ph="select * fro... users" />
+                <marker date="1520110506576" expanded="true" signature="1072:1111" ph="select * fro... documents" />
+                <marker date="1520110506576" expanded="true" signature="1626:1664" ph="select * fro... documents" />
+                <marker date="1520110506576" expanded="true" signature="2184:2224" ph="select * fro... documents" />
+                <marker date="1520110506576" expanded="true" signature="2746:2779" ph="insert into booking... " />
+                <marker date="1520110506576" expanded="true" signature="2812:2860" ph="update docum... " />
+                <marker date="1520110506576" expanded="true" signature="2897:2949" ph="update docum... " />
+                <marker date="1520110506576" expanded="true" signature="4142:4185" ph="select bookI... booking" />
+                <marker date="1520110506576" expanded="true" signature="4851:4894" ph="select userI... booking" />
+                <marker date="1520110506576" expanded="true" signature="5505:5572" ph="select copyI... copies" />
+                <marker date="1520110506576" expanded="true" signature="6430:6465" ph="select * fro... users" />
+                <marker date="1520110506576" expanded="true" signature="6974:7013" ph="select * fro... documents" />
+                <marker date="1520110506576" expanded="true" signature="7532:7570" ph="select * fro... documents" />
+                <marker date="1520110506576" expanded="true" signature="8145:8232" ph="insert into users... " />
+                <marker date="1520110506576" expanded="true" signature="8653:8679" ph="select last_... " />
+                <marker date="1520110506576" expanded="true" signature="8966:9066" ph="insert into documents... " />
+                <marker date="1520110506576" expanded="true" signature="9523:9549" ph="select last_... " />
+                <marker date="1520110506576" expanded="true" signature="9849:9908" ph="insert into copies... " />
+                <marker date="1520110506576" expanded="true" signature="10250:10325" ph="update copie... " />
+                <marker date="1520110506576" expanded="true" signature="10725:10803" ph="update copie... " />
+                <marker date="1520110506576" expanded="true" signature="10830:10867" ph="select * fro... copies" />
+                <marker date="1520110506576" expanded="true" signature="11503:11547" ph="select commo... copies" />
+                <marker date="1520110506576" expanded="true" signature="12032:12208" ph="select copyI... " />
+                <marker date="1520110506576" expanded="true" signature="12756:12934" ph="select copyI... " />
+                <marker date="1520110506576" expanded="true" signature="13411:13505" ph="update users... " />
+                <marker date="1520110506576" expanded="true" signature="14134:14242" ph="update docum... " />
+                <marker date="1520110506576" expanded="true" signature="14819:14852" ph="delete from " />
+                <marker date="1520110506576" expanded="true" signature="15250:15285" ph="delete from " />
+                <marker date="1520110506576" expanded="true" signature="15686:15731" ph="update docum... " />
+                <marker date="1520110506576" expanded="true" signature="15763:15805" ph="select count... documents" />
+                <marker date="1520110506576" expanded="true" signature="16512:16570" ph="select copyI... " />
+                <marker date="1520110506576" expanded="true" signature="16973:17021" ph="select avail... copies" />
+                <marker date="1520110506576" expanded="true" signature="17609:17660" ph="delete from " />
               </folding>
             </state>
           </provider>
@@ -523,14 +524,8 @@
       <workItem from="1519975744159" duration="1019000" />
       <workItem from="1519995139536" duration="1766000" />
       <workItem from="1520022077042" duration="2268000" />
-      <workItem from="1520110107366" duration="62000" />
-    </task>
-    <task id="LOCAL-00003" summary="Interface">
-      <created>1517320108560</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1517320108560</updated>
+      <workItem from="1520110107366" duration="132000" />
+      <workItem from="1520110461229" duration="43000" />
     </task>
     <task id="LOCAL-00004" summary="Repaired workspace.xml file">
       <created>1517387543828</created>
@@ -868,11 +863,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520109879049</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Minor updates">
+      <created>1520110200746</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1520110200747</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99501000" />
+    <option name="totallyTimeSpent" value="99614000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1102" extended-state="6" />
@@ -968,7 +970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -976,9 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -987,9 +985,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1026,7 +1021,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1034,9 +1028,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1058,9 +1049,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1082,7 +1070,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1090,9 +1077,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1114,9 +1098,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1206,9 +1187,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-58">
           <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1223,9 +1201,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1233,7 +1208,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
           <caret line="189" column="25" lean-forward="true" selection-start-line="189" selection-start-column="25" selection-end-line="189" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1304,8 +1278,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="503" column="37" lean-forward="false" selection-start-line="503" selection-start-column="32" selection-end-line="503" selection-end-column="37" />
+        <state relative-caret-position="244">
+          <caret line="412" column="39" lean-forward="false" selection-start-line="412" selection-start-column="39" selection-end-line="412" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FcukBase#0;class#FcukBase#0" expanded="false" />
@@ -1315,7 +1289,9 @@
             <element signature="method#getDocumentByAuthor#0;class#FcukBase#0" expanded="false" />
             <element signature="method#bookADocument#0;class#FcukBase#0" expanded="false" />
             <element signature="method#findBookedDocuments#0;class#FcukBase#0" expanded="false" />
+            <element signature="e#4257#4266#0" expanded="true" />
             <element signature="method#findUserByBookedDocument#0;class#FcukBase#0" expanded="false" />
+            <element signature="e#4966#4975#0" expanded="true" />
             <element signature="method#findCopyID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#checkUserID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#checkDocumentByID#0;class#FcukBase#0" expanded="false" />
@@ -1336,40 +1312,39 @@
             <element signature="method#copiesOfDocument#0;class#FcukBase#0" expanded="false" />
             <element signature="method#isCopyAvailable#0;class#FcukBase#0" expanded="false" />
             <element signature="method#main#0;class#FcukBase#0" expanded="false" />
-            <marker date="1520110175729" expanded="true" signature="526:561" ph="select * fro... users" />
-            <marker date="1520110175729" expanded="true" signature="1072:1111" ph="select * fro... documents" />
-            <marker date="1520110175729" expanded="true" signature="1626:1664" ph="select * fro... documents" />
-            <marker date="1520110175729" expanded="true" signature="2184:2224" ph="select * fro... documents" />
-            <marker date="1520110175729" expanded="true" signature="2746:2779" ph="insert into booking... " />
-            <marker date="1520110175729" expanded="true" signature="2812:2860" ph="update docum... " />
-            <marker date="1520110175729" expanded="true" signature="2897:2949" ph="update docum... " />
-            <marker date="1520110175729" expanded="true" signature="4142:4185" ph="select bookI... booking" />
-            <marker date="1520110175729" expanded="true" signature="4851:4894" ph="select userI... booking" />
-            <marker date="1520110175729" expanded="true" signature="5505:5572" ph="select copyI... copies" />
-            <marker date="1520110175729" expanded="true" signature="6430:6465" ph="select * fro... users" />
-            <marker date="1520110175729" expanded="true" signature="6974:7013" ph="select * fro... documents" />
-            <marker date="1520110175729" expanded="true" signature="7532:7570" ph="select * fro... documents" />
-            <marker date="1520110175729" expanded="true" signature="8145:8232" ph="insert into users... " />
-            <marker date="1520110175729" expanded="true" signature="8653:8679" ph="select last_... " />
-            <marker date="1520110175729" expanded="true" signature="8966:9066" ph="insert into documents... " />
-            <marker date="1520110175729" expanded="true" signature="9523:9549" ph="select last_... " />
-            <marker date="1520110175729" expanded="true" signature="9849:9908" ph="insert into copies... " />
-            <marker date="1520110175729" expanded="true" signature="10250:10325" ph="update copie... " />
-            <marker date="1520110175729" expanded="true" signature="10725:10803" ph="update copie... " />
-            <marker date="1520110175729" expanded="true" signature="10830:10867" ph="select * fro... copies" />
-            <marker date="1520110175729" expanded="true" signature="11503:11547" ph="select commo... copies" />
-            <marker date="1520110175729" expanded="true" signature="12032:12208" ph="select copyI... " />
-            <marker date="1520110175729" expanded="true" signature="12756:12934" ph="select copyI... " />
-            <marker date="1520110175729" expanded="true" signature="13411:13505" ph="update users... " />
-            <marker date="1520110175729" expanded="true" signature="14134:14242" ph="update docum... " />
-            <marker date="1520110175729" expanded="true" signature="14819:14852" ph="delete from " />
-            <marker date="1520110175729" expanded="true" signature="14881:14917" ph="delete from " />
-            <marker date="1520110175729" expanded="true" signature="15451:15486" ph="delete from " />
-            <marker date="1520110175729" expanded="true" signature="15887:15932" ph="update docum... " />
-            <marker date="1520110175729" expanded="true" signature="15964:16006" ph="select count... documents" />
-            <marker date="1520110175729" expanded="true" signature="16713:16771" ph="select copyI... " />
-            <marker date="1520110175729" expanded="true" signature="17174:17222" ph="select avail... copies" />
-            <marker date="1520110175729" expanded="true" signature="17810:17861" ph="delete from " />
+            <marker date="1520110506576" expanded="true" signature="526:561" ph="select * fro... users" />
+            <marker date="1520110506576" expanded="true" signature="1072:1111" ph="select * fro... documents" />
+            <marker date="1520110506576" expanded="true" signature="1626:1664" ph="select * fro... documents" />
+            <marker date="1520110506576" expanded="true" signature="2184:2224" ph="select * fro... documents" />
+            <marker date="1520110506576" expanded="true" signature="2746:2779" ph="insert into booking... " />
+            <marker date="1520110506576" expanded="true" signature="2812:2860" ph="update docum... " />
+            <marker date="1520110506576" expanded="true" signature="2897:2949" ph="update docum... " />
+            <marker date="1520110506576" expanded="true" signature="4142:4185" ph="select bookI... booking" />
+            <marker date="1520110506576" expanded="true" signature="4851:4894" ph="select userI... booking" />
+            <marker date="1520110506576" expanded="true" signature="5505:5572" ph="select copyI... copies" />
+            <marker date="1520110506576" expanded="true" signature="6430:6465" ph="select * fro... users" />
+            <marker date="1520110506576" expanded="true" signature="6974:7013" ph="select * fro... documents" />
+            <marker date="1520110506576" expanded="true" signature="7532:7570" ph="select * fro... documents" />
+            <marker date="1520110506576" expanded="true" signature="8145:8232" ph="insert into users... " />
+            <marker date="1520110506576" expanded="true" signature="8653:8679" ph="select last_... " />
+            <marker date="1520110506576" expanded="true" signature="8966:9066" ph="insert into documents... " />
+            <marker date="1520110506576" expanded="true" signature="9523:9549" ph="select last_... " />
+            <marker date="1520110506576" expanded="true" signature="9849:9908" ph="insert into copies... " />
+            <marker date="1520110506576" expanded="true" signature="10250:10325" ph="update copie... " />
+            <marker date="1520110506576" expanded="true" signature="10725:10803" ph="update copie... " />
+            <marker date="1520110506576" expanded="true" signature="10830:10867" ph="select * fro... copies" />
+            <marker date="1520110506576" expanded="true" signature="11503:11547" ph="select commo... copies" />
+            <marker date="1520110506576" expanded="true" signature="12032:12208" ph="select copyI... " />
+            <marker date="1520110506576" expanded="true" signature="12756:12934" ph="select copyI... " />
+            <marker date="1520110506576" expanded="true" signature="13411:13505" ph="update users... " />
+            <marker date="1520110506576" expanded="true" signature="14134:14242" ph="update docum... " />
+            <marker date="1520110506576" expanded="true" signature="14819:14852" ph="delete from " />
+            <marker date="1520110506576" expanded="true" signature="15250:15285" ph="delete from " />
+            <marker date="1520110506576" expanded="true" signature="15686:15731" ph="update docum... " />
+            <marker date="1520110506576" expanded="true" signature="15763:15805" ph="select count... documents" />
+            <marker date="1520110506576" expanded="true" signature="16512:16570" ph="select copyI... " />
+            <marker date="1520110506576" expanded="true" signature="16973:17021" ph="select avail... copies" />
+            <marker date="1520110506576" expanded="true" signature="17609:17660" ph="delete from " />
           </folding>
         </state>
       </provider>
