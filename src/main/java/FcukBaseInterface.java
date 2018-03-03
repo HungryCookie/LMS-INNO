@@ -16,6 +16,7 @@ public interface FcukBaseInterface {
     void checkOut(int userID, int copyID, String date); // Checks the document out to the certain user
     void deleteUser(int userID); // Delete a certain user
     void counterUp(int bookID, int newCounter); // Adds newCounter to current number of available copies
+    void counterDown(int bookID); // Substructs from counter 1 copy
     ArrayList findBookedDocuments(int userID); // Find all booked documents of user
     ArrayList findUserByBookedDocument(int docID); // find users who booked certain document
     int[] findCopyID(int docID); // Find ID of copies of books
@@ -23,4 +24,6 @@ public interface FcukBaseInterface {
     boolean checkDocumentByName(String name); // Check whether there exist such a doc
     boolean checkDocumentByID(int bookID); // Checks whether there is such a book by its ID
     boolean bookADocument(int docID, int userID); // Place an order on a certain document from certain user
+    boolean deleteCopy(int copyID); // Deletes copy if it is available
+    boolean isCopyAvailable(int copyID); // Checks whether copy is available or not
 }

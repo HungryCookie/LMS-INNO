@@ -326,6 +326,22 @@ public class FcukBase implements FcukBaseInterface{
         return 0;
     }
 
+    public int docByCopyID(int copyID) {
+        String query = "select commonID from copies where copyID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, copyID);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public ResultSet checkedOutByUserID(int userID) { // ResultSet
         String query = "select copyID, date, name, author from copies " +
                         "JOIN documents on copies.commonID = documents.id " +
@@ -409,6 +425,22 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public boolean deleteCopy(int copyID) {
+        if (!isCopyAvailable(copyID)) {
+            return false;
+        }
+        String query = "delete from copies where copyID = ?";
+        try {
+            counterDown(docByCopyID(copyID));
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, copyID);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
     public void counterUp(int bookID, int newCounter) {
         String query = "update documents set counter = ? where id = ?";
         String getCounter = "select counter from documents where id = ?";
@@ -427,9 +459,32 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public void counterDown(int bookID) {
+        counterUp(bookID, -1);
+    }
+
+    public boolean isCopyAvailable(int copyID) {
+        String query = "select availability from copies where copyID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, copyID);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                String check = rs.getString(1);
+                if (check.equals("T")) {
+                    return true;
+                }
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-
+        b.deleteCopy(19);
         //b.returnDoc(1);
         //b.addNewDocument("Amber Chronicles", "Roger Zelazny", 2, 110, "F", "T");
         //System.out.println(b.addNewUser("Jack Daniels",	"89224365732", "London", "Student", "zqazqa"));
