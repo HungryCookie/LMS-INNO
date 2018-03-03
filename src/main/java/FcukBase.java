@@ -294,15 +294,11 @@ public class FcukBase implements FcukBaseInterface{
 
     public void checkOut(int userID, int copyID, String date) {
         String query = "update copies set availability = 'F', userID = ?, date = ? where copyID = ?";
-        String delete = "delete from booking where userID = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, userID);
             statement.setString(2, date);
             statement.setInt(3, copyID);
-            statement.execute();
-            statement = connection.prepareStatement(delete);
-            statement.setInt(1, userID);
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -522,9 +518,6 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        //b.bookADocument(2, 5);
-        //b.checkOut(5, 2, "2018-03-23");
-        //b.returnDoc(2);
         //b.counterUp(2, 1);
         /*ResultSet rs = b.copiesOfDocument(6);
         while (rs.next()) {
