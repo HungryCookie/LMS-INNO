@@ -169,6 +169,10 @@ public class FcukBase implements FcukBaseInterface{
             while (res.next()) {
                 rowCounter++;
             }
+            int[] a = {0};
+            if (rowCounter == 0) {
+                return a;
+            }
             int[] arr = new int[rowCounter];
             rowCounter = 0;
             res = statement.executeQuery();
@@ -407,7 +411,7 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        int[] a = b.findCopyID(1);
+        int[] a = b.findCopyID(5);
         for (int i = 0; i < a.length; i++) {
             System.out.println(a[i]);
         }
