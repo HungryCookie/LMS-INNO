@@ -308,6 +308,7 @@ public class FcukBase implements FcukBaseInterface{
     public int returnDoc(int copyID) {
         String query = "update copies set availability = 'T', userID = 0, date = null where copyID = ?";
         String check = "select * from copies where copyID = ?";
+        String delete = "delete from booking where userID = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(check);
             statement.setInt(1, copyID);
@@ -316,8 +317,12 @@ public class FcukBase implements FcukBaseInterface{
                 return 0;
             }
             int bookID = rs.getInt("commonID");
+            int userID = rs.getInt("userID");
             statement = connection.prepareStatement(query);
             statement.setInt(1, copyID);
+            statement.execute();
+            statement = connection.prepareStatement(delete);
+            statement.setInt(1, userID);
             statement.execute();
             return bookID;
         } catch (SQLException e) {
@@ -496,20 +501,40 @@ public class FcukBase implements FcukBaseInterface{
         return false;
     }
 
+    public void deleteBooking(int docID, int userID) {
+        /*ArrayList<Integer> arr = findBookedDocuments(userID);
+        boolean check = false;
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i) == docID) {
+                check = true;
+            }
+        }
+        if (!check) {return false;}*/
+        String query = "delete from booking where userID = ? and bookID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+            statement.setInt(2, docID);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        ResultSet rs = b.copiesOfDocument(6);
+        System.out.println(b.docByCopyID(20));
+        //b.checkOut(1, 2, "2018-03-23");
+        //b.returnDoc(2);
+        /*ResultSet rs = b.copiesOfDocument(6);
         while (rs.next()) {
             System.out.println(rs.getInt("copyID"));
-        }
+        }*/
         //b.returnDoc(1);
         //b.addNewDocument("Amber Chronicles", "Roger Zelazny", 2, 110, "F", "T");
         //System.out.println(b.addNewUser("Jack Daniels",	"89224365732", "London", "Student", "zqazqa"));
-        //b.checkOut(1, 1, "2018-03-23");
+        //b.checkOut(1, 2, "2018-03-23");
         //b.returnDoc(1);
-        /*System.out.println(b.checkUserID(103));
-        ResultSet rs = b.getDocumentByID(5);
-        System.out.println(rs.getString("name"));*/
     }
 
 }
