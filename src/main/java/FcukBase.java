@@ -161,20 +161,17 @@ public class FcukBase implements FcukBaseInterface{
     public int[] findCopyID(int docID) {
         String query = "select copyID from copies where commonID = ? and availability = 'T'";
         ResultSet res;
-        int rowCounter;
+        int rowCounter = 0;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, docID);
             res = statement.executeQuery();
-            if (!res.next()) {
-                int[] a = {0};
-                return a;
+            while (res.next()) {
+                rowCounter++;
             }
-            res.last();
-            rowCounter = res.getRow();
-            res.beforeFirst();
             int[] arr = new int[rowCounter];
             rowCounter = 0;
+            res = statement.executeQuery();
             while (res.next()) {
                 arr[rowCounter] = res.getInt("copyID");
                 rowCounter++;
@@ -410,7 +407,10 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        System.out.println(b.returnDoc(1));
+        int[] a = b.findCopyID(1);
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(a[i]);
+        }
         //b.returnDoc(1);
         //b.documentModify(5, "Amber Chronicles", "Roger Zelazny", 13, 110, "F", "T");
         //System.out.println(b.addNewUser("Jack Daniels",	"89224365732", "London", "Student", "zqazqa"));
