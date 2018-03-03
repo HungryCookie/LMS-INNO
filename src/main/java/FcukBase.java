@@ -497,14 +497,6 @@ public class FcukBase implements FcukBaseInterface{
     }
 
     public void deleteBooking(int docID, int userID) {
-        /*ArrayList<Integer> arr = findBookedDocuments(userID);
-        boolean check = false;
-        for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i) == docID) {
-                check = true;
-            }
-        }
-        if (!check) {return false;}*/
         String query = "delete from booking where userID = ? and bookID = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
