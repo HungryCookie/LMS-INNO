@@ -14,8 +14,8 @@ public class Login {
     public Label wrongid;
     public Label wrongpass;
     public static Users current;
-    public Scene patronScene;
-    public Scene librarianScene;
+    public static Scene patronScene;
+    public static Scene librarianScene;
 
     public void login() throws Exception{
         checkID(id.getText(), password.getText());
