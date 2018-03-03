@@ -14,6 +14,8 @@ public class Login {
     public Label wrongid;
     public Label wrongpass;
     public static Users current;
+    public Scene patronScene;
+    public Scene librarianScene;
 
     public void login() throws Exception{
         checkID(id.getText(), password.getText());
@@ -32,10 +34,12 @@ public class Login {
                 wrongpass.setText("");
                 if (current instanceof Librarian) {
                     Parent root = FXMLLoader.load(getClass().getResource("/librarian.fxml"));
-                    Main.window.setScene(new Scene(root, 600, 400));
+                    librarianScene = new Scene(root, 600, 400);
+                    Main.window.setScene(librarianScene);
                 } else if (current instanceof Patron) {
                     Parent root = FXMLLoader.load(getClass().getResource("/patron.fxml"));
-                    Main.window.setScene(new Scene(root, 600, 400));
+                    patronScene = new Scene(root, 600, 400);
+                    Main.window.setScene(patronScene);
                 }
             }
         }
