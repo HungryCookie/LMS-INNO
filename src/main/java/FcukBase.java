@@ -271,11 +271,25 @@ public class FcukBase implements FcukBaseInterface{
             statement.setString(6, bestseller);
             statement.execute();
             int newID = connection.createStatement().executeQuery("select last_insert_rowid()").getInt(1);
+            for (int i = 0; i < counter; i++) {
+                addCopy(newID);
+            }
             return newID;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    private void addCopy(int bookID) {
+        String query = "insert into copies (commonID, availability) values (?, 'T')";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, bookID);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void checkOut(int userID, int copyID, String date) {
@@ -382,8 +396,12 @@ public class FcukBase implements FcukBaseInterface{
 
     public void deleteUser(int userID) {
         String query = "delete from users where rowid = ?";
+        String booking = "delete from booking where userID = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+            statement.execute();
+            statement = connection.prepareStatement(booking);
             statement.setInt(1, userID);
             statement.execute();
         } catch (SQLException e) {
@@ -411,12 +429,9 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        int[] a = b.findCopyID(5);
-        for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i]);
-        }
+
         //b.returnDoc(1);
-        //b.documentModify(5, "Amber Chronicles", "Roger Zelazny", 13, 110, "F", "T");
+        //b.addNewDocument("Amber Chronicles", "Roger Zelazny", 2, 110, "F", "T");
         //System.out.println(b.addNewUser("Jack Daniels",	"89224365732", "London", "Student", "zqazqa"));
         //b.checkOut(1, 1, "2018-03-23");
         //b.returnDoc(1);
