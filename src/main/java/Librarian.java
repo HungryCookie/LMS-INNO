@@ -71,8 +71,10 @@ public class Librarian extends Users {
 
         Documents [] d = p.bookedDocuments();
 
-        for (Documents cur : d)
+        for (Documents cur : d) {
             base.counterUp(cur.getDocID(), 1);
+            base.deleteBooking(cur.getDocID(), userID);
+        }
     }
 
     public boolean modify(int userID, String name, String phoneNumber, String address, String status, String password){ //Method modifies fields of user with userID
@@ -117,14 +119,15 @@ public class Librarian extends Users {
 
         int [] a = base.findCopyID(doc.getDocID());         //Getting a list of free copies of this document
 
-        if (a.length == 0)
+        if (a[0] == 0)
             return false;
         
         Date d = new Date();
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
             
         base.checkOut(userID, a[0], f.format(d));
-        
+        base.deleteBooking(doc.getDocID(), userID);
+
         return true;
     }
 
@@ -133,6 +136,18 @@ public class Librarian extends Users {
             return null;
 
         return base.checkedOutByUserID(userID);
+    }
+
+    public ResultSet copiesOfDocument(int docID){
+
+        if (!base.checkDocumentByID(docID))
+            return null;
+
+        return base.copiesOfDocument(docID);
+    }
+
+    public void deleteCopy(int copyID){
+        base.deleteCopy(copyID);
     }
 
 
