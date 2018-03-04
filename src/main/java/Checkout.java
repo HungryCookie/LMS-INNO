@@ -21,9 +21,8 @@ public class Checkout {
         }catch (Exception e) {
             error.setText("Wrong ID");
         }
-        Librarian lb = new Librarian(Login.current.getID());
         Documents doc = new Documents(docid);
-        boolean success = lb.checkOut(LibrarianController.userId, doc);
+        boolean success = ((Librarian)Login.current).checkOut(LibrarianController.userId, doc);
         if (success) {
             LibrarianController.dialog.close();
         }
