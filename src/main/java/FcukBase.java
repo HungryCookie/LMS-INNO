@@ -281,7 +281,7 @@ public class FcukBase implements FcukBaseInterface{
         return 0;
     }
 
-    private void addCopy(int bookID) {
+    public void addCopy(int bookID) {
         String query = "insert into copies (commonID, availability) values (?, 'T')";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -393,17 +393,17 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
-    public void documentModify(int id, String name, String author, int counter, int cost, String reference, String bestseller) {
-        String query = "update documents set name = ?, author = ?, counter = ?, cost = ?, reference = ?, bestseller = ? where id = ?";
+    public void documentModify(int id, String name, String author, int cost, String reference, String bestseller) {
+        String query = "update documents set name = ?, author = ?, cost = ?, reference = ?, bestseller = ? where id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
             statement.setString(2, author);
-            statement.setInt(3, counter);
-            statement.setInt(4, cost);
-            statement.setString(5, reference);
-            statement.setString(6, bestseller);
-            statement.setInt(7, id);
+            //statement.setInt(3, counter);
+            statement.setInt(3, cost);
+            statement.setString(4, reference);
+            statement.setString(5, bestseller);
+            statement.setInt(6, id);
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
