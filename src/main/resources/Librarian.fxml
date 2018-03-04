@@ -38,6 +38,11 @@
                        </buttons>
                      </ButtonBar>
                      <Button fx:id="addUser" layoutX="315.0" layoutY="9.0" mnemonicParsing="false" onAction="#addUser" text="Add new user" />
+                     <Label fx:id="userError" layoutX="94.0" layoutY="47.0" textFill="RED">
+                        <font>
+                           <Font name="Lucida Console" size="12.0" />
+                        </font>
+                     </Label>
                   </children>
                </AnchorPane>
          </content>
@@ -52,15 +57,15 @@
                         </font>
                      </Label>
                      <TextField fx:id="docID" layoutX="123.0" layoutY="9.0" />
-                     <ButtonBar layoutX="-11.0" layoutY="86.0" prefHeight="60.0" prefWidth="483.0">
+                     <ButtonBar layoutX="-22.0" layoutY="86.0" prefHeight="60.0" prefWidth="492.0">
                        <buttons>
                          <Button fx:id="addDoc" mnemonicParsing="false" onAction="#addDoc" prefHeight="25.0" prefWidth="100.0" text="Add document" />
-                           <Button fx:id="addCopy" mnemonicParsing="false" onAction="#addCopy" text="Add copy" />
+                           <Button fx:id="deleteDoc" mnemonicParsing="false" onAction="#deleteDoc" text="Delete Document" />
+                           <Button fx:id="Copy" mnemonicParsing="false" onAction="#Copy" text="Copies" />
                            <Button fx:id="modifyDoc" mnemonicParsing="false" onAction="#modifyDoc" text="Modify" />
-                           <Button fx:id="deleteDoc" mnemonicParsing="false" onAction="#deleteDoc" text="Delete" />
-                           <Button fx:id="deleteCopy" mnemonicParsing="false" onAction="#deleteCopy" text="Delete Copy" />
                        </buttons>
                      </ButtonBar>
+                     <Label fx:id="docError" layoutX="123.0" layoutY="51.0" textFill="RED" />
                   </children></AnchorPane>
          </content>
        </Tab>
