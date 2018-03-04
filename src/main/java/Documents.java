@@ -15,6 +15,7 @@ public class Documents {
     private IntegerProperty copies;
     private boolean reference;
     private boolean bestseller;
+    private IntegerProperty cost;
     
     private FcukBase base = new FcukBase();
 
@@ -37,6 +38,7 @@ public class Documents {
             bestseller = (res.getString("bestseller").charAt(0) == 'T');
             this.author = new SimpleStringProperty(res.getString("author"));
             this.copies = new SimpleIntegerProperty(res.getInt("counter"));
+            this.cost = new IntegerProperty(res.getInt("cost"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,6 +64,7 @@ public class Documents {
             bestseller = (res.getString("bestseller").charAt(0) == 'T');
             this.author = new SimpleStringProperty(res.getString("author"));
             this.copies = new SimpleIntegerProperty(res.getInt("counter"));
+            this.cost = new IntegerProperty(res.getInt("cost"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,6 +92,8 @@ public class Documents {
 
     public IntegerProperty copiesProperty() { return copies; }
 
+    public IntegerProperty costProperty() { return cost; }
+
     public String getType() {
         return type.get();
     }
@@ -103,6 +108,10 @@ public class Documents {
 
     public int getCopies() {
         return copies.get();
+    }
+
+    public int getCost() {
+        return cost.get();
     }
     
     public boolean isReference() {
