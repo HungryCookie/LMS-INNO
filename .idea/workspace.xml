@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbf9824c-e9ed-4ce3-a47e-dff4a8f36164" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database.sqlite" afterPath="$PROJECT_DIR$/database.sqlite" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FcukBase.class" afterPath="$PROJECT_DIR$/target/classes/FcukBase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Librarian.class" afterPath="$PROJECT_DIR$/target/classes/Librarian.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/DocInfo.java" afterPath="$PROJECT_DIR$/src/main/java/DocInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/Docinfo.fxml" afterPath="$PROJECT_DIR$/src/main/resources/Docinfo.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -139,7 +135,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Docinfo.fxml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Docinfo.fxml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/Docinfo.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder">
             <state />
@@ -165,11 +161,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LibrarianController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LibrarianController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/LibrarianController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="123" column="9" lean-forward="true" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
+            <state relative-caret-position="431">
+              <caret line="124" column="5" lean-forward="true" selection-start-line="124" selection-start-column="5" selection-end-line="124" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -710,14 +706,7 @@
       <workItem from="1520110107366" duration="132000" />
       <workItem from="1520110461229" duration="114000" />
       <workItem from="1520148805127" duration="1628000" />
-      <workItem from="1520158406893" duration="3479000" />
-    </task>
-    <task id="LOCAL-00006" summary="Repaired workspace.xml file">
-      <created>1517414569897</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1517414569897</updated>
+      <workItem from="1520158406893" duration="3511000" />
     </task>
     <task id="LOCAL-00007" summary="Else">
       <created>1517416438099</created>
@@ -1055,11 +1044,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520158972259</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Minor updates">
+      <created>1520193953927</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1520193953927</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104792000" />
+    <option name="totallyTimeSpent" value="104824000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1102" extended-state="6" />
@@ -1521,17 +1517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Docinfo.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/Librarian.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
@@ -1563,8 +1548,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/LibrarianController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="123" column="9" lean-forward="true" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
+        <state relative-caret-position="431">
+          <caret line="124" column="5" lean-forward="true" selection-start-line="124" selection-start-column="5" selection-end-line="124" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Docinfo.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
           <folding />
         </state>
       </provider>
