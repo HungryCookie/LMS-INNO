@@ -88,12 +88,34 @@ public class Librarian extends Users {
         return true;
     }
 
-    public boolean modify(int docID, String name, String author, int counter, int cost, String reference, String bestseller){ //Method modifies fields of user with userID
+    public boolean modify(int docID, String name, String author, int counter, int cost, String reference, String bestseller) throws SQLException { //Method modifies fields of user with userID
 
         if (!base.checkDocumentByID(docID))
             return false;
 
-        base.documentModify(docID, name, author, counter, cost, reference, bestseller);
+
+        base.documentModify(docID, name, author, cost, reference, bestseller);
+
+        Documents d = new Documents(docID);
+
+        if (counter < d.getCopies()){
+
+            ResultSet res = base.copiesOfDocument(docID);
+
+            while (res.next()) {
+                if (counter == d.getCopies())
+                    break;
+
+                if (base.deleteCopy(res.getInt("copyID")))
+                    counter += 1;
+            }
+        }
+        else{
+            while (counter > d.getCopies()){
+                base.addCopy(d.getDocID());
+                counter -= 1;
+            }
+        }
 
         return true;
     }
