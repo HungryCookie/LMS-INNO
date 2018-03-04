@@ -4,6 +4,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.sql.SQLException;
+
 public class DocInfo {
     @FXML
     private TextField name;
@@ -27,6 +29,7 @@ public class DocInfo {
     private TextField cost;
     @FXML
     private Label costError;
+    public int id;
 
     @FXML
     private void initialize() {
@@ -45,17 +48,22 @@ public class DocInfo {
     }
 
     @FXML
-    private void apply() {
+    private void cancel() {
+        Main.window.setScene(Login.librarianScene);
+    }
+
+    @FXML
+    private void apply() throws SQLException {
         boolean success = true;
-        if (name.getText()=="") {
+        if (name.getText().equals("")) {
             success = false;
             nameError.setText("Enter title");
         }
-        if (author.getText()=="") {
+        if (author.getText().equals("")) {
             success = false;
             authorError.setText("Enter authors");
         }
-        if (copies.getText()=="") {
+        if (copies.getText().equals("")) {
             success = false;
             copiesError.setText("Enter number of copies");
         }
@@ -65,7 +73,7 @@ public class DocInfo {
             success = false;
             copiesError.setText("Only number is allowed");
         }
-        if (type.getSelectionModel().getSelectedItem()=="") {
+        if (type.getSelectionModel().getSelectedItem().equals("")) {
             success = false;
             typeError.setText("Select type");
         }
