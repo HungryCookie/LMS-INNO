@@ -22,8 +22,7 @@ public class Documents {
     public Documents(int docID){
         
         if (!base.checkDocumentByID(docID)) {
-            return;
-        }
+            return;        }
         
         ResultSet res = base.getDocumentByID(docID);
         try {
@@ -38,7 +37,7 @@ public class Documents {
             bestseller = (res.getString("bestseller").charAt(0) == 'T');
             this.author = new SimpleStringProperty(res.getString("author"));
             this.copies = new SimpleIntegerProperty(res.getInt("counter"));
-            this.cost = new IntegerProperty(res.getInt("cost"));
+            this.cost = new SimpleIntegerProperty(res.getInt("cost"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,7 +63,7 @@ public class Documents {
             bestseller = (res.getString("bestseller").charAt(0) == 'T');
             this.author = new SimpleStringProperty(res.getString("author"));
             this.copies = new SimpleIntegerProperty(res.getInt("counter"));
-            this.cost = new IntegerProperty(res.getInt("cost"));
+            this.cost = new SimpleIntegerProperty(res.getInt("cost"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
