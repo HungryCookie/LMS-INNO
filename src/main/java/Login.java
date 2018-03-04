@@ -33,11 +33,11 @@ public class Login {
                 wrongid.setText("");
                 wrongpass.setText("");
                 if (current instanceof Librarian) {
-                    Parent root = FXMLLoader.load(getClass().getResource("/librarian.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/Librarian.fxml"));
                     librarianScene = new Scene(root, 600, 400);
                     Main.window.setScene(librarianScene);
                 } else if (current instanceof Patron) {
-                    Parent root = FXMLLoader.load(getClass().getResource("/patron.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/Patron.fxml"));
                     patronScene = new Scene(root, 600, 400);
                     Main.window.setScene(patronScene);
                 }
