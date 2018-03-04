@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="155.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dialog">
+   <children>
+      <Label fx:id="message" layoutX="36.0" layoutY="27.0" text="User was successfully added">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="id" layoutX="36.0" layoutY="69.0" text="ID: ">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="pass" layoutX="36.0" layoutY="102.0" text="Password:">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
