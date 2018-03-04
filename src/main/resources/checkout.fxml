@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="155.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Checkout">
+   <children>
+      <Label layoutX="65.0" layoutY="26.0" text="Enter document ID">
+         <font>
+            <Font name="Lucida Console" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="docID" layoutX="83.0" layoutY="65.0" onAction="#checkOut" />
+      <Button fx:id="checkOut" layoutX="168.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkOut" text="Check it out">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="error" layoutX="26.0" layoutY="109.0" textFill="RED" />
+   </children>
+</AnchorPane>

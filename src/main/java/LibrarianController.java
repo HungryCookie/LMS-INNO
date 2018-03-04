@@ -35,7 +35,9 @@ public class LibrarianController {
     public TextField userID;
 
     public static int userId;
+
     public static int docId;
+
     @FXML
     public TextField docID;
     public static Stage dialog = new Stage();
@@ -76,6 +78,7 @@ public class LibrarianController {
         Parent root = FXMLLoader.load(getClass().getResource("/docinfo.fxml"));
         Main.window.setScene(new Scene(root, 600, 400));}
 
+
     @FXML
     private void addCopy() {}
 
@@ -93,6 +96,7 @@ public class LibrarianController {
         Main.window.setScene(new Scene(root, 600, 400));
 
     }
+
 
     @FXML
     private void deleteUser() {}
