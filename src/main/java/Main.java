@@ -13,7 +13,7 @@ public class Main extends Application{
 
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
         login = new Scene(root, 600, 550);
         window.setTitle("LibrINNO: Management System");
         window.setScene(login);
