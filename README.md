@@ -8,4 +8,4 @@ To execute the project you have to open it in Intellij IDEA.
 To run the test cases run the Test.java class.
 
 
-~ Creators are the students of Innopolis University
+` Creators are the students of Innopolis University
