@@ -18,11 +18,14 @@ public class TableController {
     private TableColumn<Documents, String> type;
     @FXML
     private Button back;
+    private LibrarianController lc;
 
     @FXML
     private void initialize() {
         ObservableList<Documents> docs = FXCollections.observableArrayList();
-        Documents[] order = ((Patron) Login.current).bookedDocuments();
+        Documents[] order;
+        if (Login.current instanceof Patron) { order = ((Patron) Login.current).bookedDocuments(); }
+        else { order = (new Patron(LibrarianController.userId)).bookedDocuments(); }
         for (Documents i : order) {
             docs.add(i);
         }
@@ -34,6 +37,7 @@ public class TableController {
 
     @FXML
     private void back() {
-        Main.window.setScene(Login.patronScene);
+        if (Login.current instanceof Patron) Main.window.setScene(Login.patronScene);
+        else Main.window.setScene(Login.librarianScene);
     }
 }
