@@ -126,7 +126,9 @@ public class Librarian extends Users {
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
             
         base.checkOut(userID, a[0], f.format(d));
+      
         base.deleteBooking(doc.getDocID(), userID);
+
 
         return true;
     }
