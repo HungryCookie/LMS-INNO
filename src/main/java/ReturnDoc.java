@@ -30,7 +30,6 @@ public class ReturnDoc {
     @FXML
     private void initialize() throws SQLException {
         ObservableList<Copy> docs = FXCollections.observableArrayList();
-        System.out.println(LibrarianController.userId);
         ResultSet order = ((Librarian) Login.current).checkedOut(LibrarianController.userId);
         while (order.next()) {
             Copy copy = new Copy(order.getString("author"), order.getString("name"), order.getInt("copyID"));
@@ -44,7 +43,7 @@ public class ReturnDoc {
 
     private void selectedDoc(Copy copy) {
         if (copy == null) copyID = -1;
-        else copyID = copy.copyIDProperty().get();
+        else copyID = Integer.parseInt(copy.copyIDProperty().get());
     }
 
     @FXML
