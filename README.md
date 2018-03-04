@@ -1,9 +1,9 @@
-## LMS-INNO
+# LMS-INNO
 
 Hey, there!
 This is just a simple library managment system project
 
-# How to open the project
+## How to open the project
 To execute the project you have to open it in Intellij IDEA.
 To run the test cases run the Test.java class.
 
