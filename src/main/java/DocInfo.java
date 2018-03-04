@@ -39,7 +39,7 @@ public class DocInfo {
         }
         else {
             Documents doc = new Documents(LibrarianController.docId);
-            type.getSelectionModel().select(doc.getType());
+//            type.getSelectionModel().select(doc.getType());
             author.setText(doc.getAuthor());
             name.setText(doc.getName());
             copies.setText(""+doc.getCopies());
