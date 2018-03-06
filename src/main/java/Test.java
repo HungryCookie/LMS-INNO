@@ -32,8 +32,6 @@ public class Test {
             case 5: TC5();
             case 6: TC6();
             case 7: TC7();
-            case 8: TC8();
-            case 9: TC9();
             default: System.exit(0);
         }
     }
