@@ -185,12 +185,15 @@ public class Librarian extends Users {
     public String returnDoc(int copyID){  //Method returns document to library by ID of copy. True if alright, false if it is wrong
 
         ResultSet r = base.copyInfo(copyID);
-        String empty = "", and = "";
-        
+        String empty = "", ans = "";
+        try {
         if (!r.next())
             return empty;
-        ans = res.getString("date");
-        
+            ans = r.getString("date");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         int res = base.returnDoc(copyID);
 
         
@@ -235,7 +238,7 @@ public class Librarian extends Users {
         System.out.println(c.CountUsers());
         Librarian l = new Librarian(1);
 
-        l.returnDoc(5);
+        System.out.println(l.returnDoc(5));
         /*Librarian l = new Librarian(2);
 
         Patron p = new Patron(1);

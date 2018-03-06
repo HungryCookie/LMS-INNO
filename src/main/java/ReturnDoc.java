@@ -50,8 +50,8 @@ public class ReturnDoc {
     public void returnDoc() {
         if (copyID == -1) error.setText("Select document to return");
         else {
-            boolean success = ((Librarian)Login.current).returnDoc(copyID);
-            if (success) {
+            String success = ((Librarian)Login.current).returnDoc(copyID);
+            if (!success.equals("")) {
                 int index = table.getSelectionModel().getSelectedIndex();
                 table.getItems().remove(index);
             }
