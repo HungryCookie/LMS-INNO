@@ -60,9 +60,12 @@ public class Librarian extends Users {
         return res;
     }
 
-    public void addDocument(String name, String author, int counter, int cost, String reference, String bestseller){ //Method adds document into data base
-    
-        base.addNewDocument(name, author, counter, cost, reference, bestseller);
+    public void addDocument(String name, String author, String publisher, int year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
+
+        if (type == "AV")
+            base.addNewDocument(name, author);
+        else
+            base.addNewDocument(name, publisher, year, edition, author, counter, cost, reference, bestseller);
     }
 
     private void deleteBooking(int userID){
@@ -88,33 +91,37 @@ public class Librarian extends Users {
         return true;
     }
 
-    public boolean modify(int docID, String name, String author, int counter, int cost, String reference, String bestseller) throws SQLException { //Method modifies fields of user with userID
+    public boolean modify(int docID, String name, String author, String publisher, int year, int counter, int cost, String edition, String type, String bestseller, String reference) throws SQLException { //Method modifies fields of user with userID
 
         if (!base.checkDocumentByID(docID))
             return false;
 
+        if (type == "AV")
+            base.documentModify(docID, name, author);
+        else {
 
-        base.documentModify(docID, name, author, cost, reference, bestseller);
+            base.documentModify(docID, name, publisher, year, edition, author, cost, reference, bestseller);
 
-        Documents d = new Documents(docID);
+            Documents d = new Documents(docID);
 
-        if (counter < d.getCopies()){
+            if (counter < d.getCopies()) {
 
-            ResultSet res = base.copiesOfDocument(docID);
+                ResultSet res = base.copiesOfDocument(docID);
 
-            while (res.next()) {
-                if (counter == d.getCopies())
-                    break;
+                while (res.next()) {
+                    if (counter == d.getCopies())
+                        break;
 
-                if (base.deleteCopy(res.getInt("copyID")))
-                    counter += 1;
+                    if (base.deleteCopy(res.getInt("copyID")))
+                        counter += 1;
+                }
+            } else {
+                while (counter > d.getCopies()) {
+                    base.addCopy(d.getDocID());
+                    counter -= 1;
+                }
             }
-        }
-        else{
-            while (counter > d.getCopies()){
-                base.addCopy(d.getDocID());
-                counter -= 1;
-            }
+
         }
 
         return true;
@@ -181,6 +188,7 @@ public class Librarian extends Users {
 
         if (res == 0)
             return false;
+
 
         base.counterUp(res, 1);
 
