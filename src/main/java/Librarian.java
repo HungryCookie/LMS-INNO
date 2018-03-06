@@ -182,17 +182,25 @@ public class Librarian extends Users {
     }
 
 
-    public boolean returnDoc(int copyID){  //Method returns document to library by ID of copy. True if alright, false if it is wrong
+    public String returnDoc(int copyID){  //Method returns document to library by ID of copy. True if alright, false if it is wrong
 
+        ResultSet r = base.copyInfo(copyID);
+        String empty = "", and = "";
+        
+        if (!r.next())
+            return empty;
+        ans = res.getString("date");
+        
         int res = base.returnDoc(copyID);
 
+        
         if (res == 0)
-            return false;
+            return empty;;
 
 
         base.counterUp(res, 1);
 
-        return true;
+        return ans;
     }
 
     /*
