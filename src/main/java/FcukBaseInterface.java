@@ -10,11 +10,13 @@ public interface FcukBaseInterface {
     ResultSet checkedOutByDocID(int bookID); // Checks all books checked out by its ID (copyID, date, name, author)
     ResultSet copiesOfDocument(int bookID); // Get all copies of the certain document
     int addNewUser(String name, String phoneNumber, String address, String status, String password); // Adds new User to the database
-    int addNewDocument(String name, String author, int counter, int cost, String reference, String bestseller); // Adds new document to the data base
+    int addNewDocument(String name, String publisher, String year, String edition,
+                       String author, int counter, int cost, String reference, String bestselle); // Adds new document to the data base
     int returnDoc(int copyID); // Returning the document to the library
     int docByCopyID(int copyID); // Return ID of the parent document by copyID -- Returns 0 if there is no such copy
     void userModify(int id, String name, String phoneNumber, String address, String status, String password); // Modifies user
-    void documentModify(int id, String name, String author, int cost, String reference, String bestseller); // Modifies user
+    void documentModify(int id, String name, String publisher, String year, String edition,
+                        String author, int cost, String reference, String bestseller); // Modifies user
     void checkOut(int userID, int copyID, String date); // Checks the document out to the certain user
     void deleteUser(int userID); // Delete a certain user
     void counterUp(int bookID, int newCounter); // Adds newCounter to current number of available copies

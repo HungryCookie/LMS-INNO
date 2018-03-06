@@ -7,7 +7,7 @@ public class FcukBase implements FcukBaseInterface{
     public FcukBase(){
         if (connection == null) {
             try {
-                String url = "jdbc:sqlite:database.sqlite";
+                String url = "jdbc:sqlite:databaseTest.sqlite";
                 connection = DriverManager.getConnection(url);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -116,6 +116,16 @@ public class FcukBase implements FcukBaseInterface{
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void bookAV(int docID, int userID) {
+        String query = "insert into booking (bookID, userID) values (" + docID + ", " + userID + ")";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList findBookedDocuments(int userID) {
@@ -259,21 +269,42 @@ public class FcukBase implements FcukBaseInterface{
         return 0;
     }
 
-    public int addNewDocument(String name, String author, int counter, int cost, String reference, String bestseller) {
-        String query = "insert into documents (name, author, counter, cost, reference, bestseller) values (?, ?, ?, ?, ?, ?)";
+    public int addNewDocument(String name, String publisher, String year, String edition,
+                              String author, int counter, int cost, String reference, String bestseller) {
+        String query = "insert into documents (name, author, publisher, \"year\", " +
+                "edition, counter, cost, reference, bestseller, type) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 'document')";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
             statement.setString(2, author);
-            statement.setInt(3, counter);
-            statement.setInt(4, cost);
-            statement.setString(5, reference);
-            statement.setString(6, bestseller);
+            statement.setString(3, publisher);
+            statement.setString(4, year);
+            statement.setString(5, edition);
+            statement.setInt(6, counter);
+            statement.setInt(7, cost);
+            statement.setString(8, reference);
+            statement.setString(9, bestseller);
             statement.execute();
             int newID = connection.createStatement().executeQuery("select last_insert_rowid()").getInt(1);
             for (int i = 0; i < counter; i++) {
                 addCopy(newID);
             }
+            return newID;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int addNewDocument(String name, String author) {
+        String query = "insert into documents (name, author, type) values (?, ?, 'document')";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
+            statement.setString(2, author);
+            statement.execute();
+            int newID = connection.createStatement().executeQuery("select last_insert_rowid()").getInt(1);
+            addCopy(newID);
             return newID;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -393,18 +424,32 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
-    public void documentModify(int id, String name, String author, int cost, String reference, String bestseller) {
-        String query = "update documents set name = ?, author = ?, cost = ?, reference = ?, bestseller = ? where id = ?";
+    public void documentModify(int id, String name, String publisher, String year, String edition,
+                               String author, int cost, String reference, String bestseller) {
+        String query = "update documents set name = ?, author = ?, publisher = ?, \"year\" = ?, " +
+                "edition = ?, cost = ?, reference = ?, bestseller = ? where id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
             statement.setString(2, author);
-            //statement.setInt(3, counter);
-            statement.setInt(3, cost);
-            statement.setString(4, reference);
-            statement.setString(5, bestseller);
-            statement.setInt(6, id);
+            statement.setString(3, publisher);
+            statement.setString(4, year);
+            statement.setString(5, edition);
+            statement.setInt(6, cost);
+            statement.setString(7, reference);
+            statement.setString(8, bestseller);
+            statement.setInt(9, id);
             statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void documentModify(int id, String name, String author) {
+        String query = "update documents set name = " + name + ", author = " + author + " where id = " + id;
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -506,6 +551,7 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
+        b.addNewUser("Steve Wozniak", "89227654321", "New York", "Librarian", "qwerty");
         //b.counterUp(2, 1);
         /*ResultSet rs = b.copiesOfDocument(6);
         while (rs.next()) {
