@@ -16,7 +16,10 @@ public class Documents {
     private boolean reference;
     private boolean bestseller;
     private IntegerProperty cost;
-    
+    private StringProperty publisher;
+    private StringProperty edition;
+    private StringProperty year;
+
     private FcukBase base = new FcukBase();
 
     public Documents(int docID){
@@ -38,7 +41,10 @@ public class Documents {
             this.author = new SimpleStringProperty(res.getString("author"));
             this.copies = new SimpleIntegerProperty(res.getInt("counter"));
             this.cost = new SimpleIntegerProperty(res.getInt("cost"));
-
+            this.type = new SimpleStringProperty(res.getString("type"));
+            this.publisher = new SimpleStringProperty(res.getString("publisher"));
+            this.edition = new SimpleStringProperty(res.getString("edition"));
+            this.year = new SimpleStringProperty(res.getString("year"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,6 +70,10 @@ public class Documents {
             this.author = new SimpleStringProperty(res.getString("author"));
             this.copies = new SimpleIntegerProperty(res.getInt("counter"));
             this.cost = new SimpleIntegerProperty(res.getInt("cost"));
+            this.type = new SimpleStringProperty(res.getString("type"));
+            this.publisher = new SimpleStringProperty(res.getString("publisher"));
+            this.edition = new SimpleStringProperty(res.getString("edition"));
+            this.year = new SimpleStringProperty(res.getString("year"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -123,5 +133,33 @@ public class Documents {
 
     public boolean chechName() {
         return base.checkDocumentByName(name.get());
+    }
+
+    public String getPublisher() {
+        return publisher.get();
+    }
+
+    public StringProperty publisherProperty() {
+        return publisher;
+    }
+
+    public String getEdition() {
+        return edition.get();
+    }
+
+    public StringProperty editionProperty() {
+        return edition;
+    }
+
+    public String getYear() {
+        return year.get();
+    }
+
+    public StringProperty yearProperty() {
+        return year;
+    }
+
+    public FcukBase getBase() {
+        return base;
     }
 }
