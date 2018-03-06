@@ -28,6 +28,8 @@ public class DocInfo {
     @FXML
     private TextField cost;
     @FXML
+    private TextField publisher;
+    @FXML
     private Label costError;
     public int id;
 
@@ -39,11 +41,25 @@ public class DocInfo {
         }
         else {
             Documents doc = new Documents(LibrarianController.docId);
-//            type.getSelectionModel().select(doc.getType());
+            type.getSelectionModel().select(doc.getType());
+            type.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectType(newValue)));
             author.setText(doc.getAuthor());
             name.setText(doc.getName());
+            publisher.setText(doc.getPublisher());
             copies.setText(""+doc.getCopies());
             bestseller.setSelected(doc.isBestseller());
+            if (LibrarianController.action.equals("modified")) copies.setDisable(true);
+        }
+    }
+
+    private void selectType(String type) {
+        if (type.equals("AV")) {
+            publisher.setDisable(true);
+            copies.setDisable(true);
+            bestseller.setDisable(true);
+            publisher.setVisible(false);
+            copies.setVisible(false);
+            bestseller.setVisible(false);
         }
     }
 
@@ -93,9 +109,9 @@ public class DocInfo {
             if (bestseller.isSelected()) bs = "T";
             else bs = "F";
             if (LibrarianController.docId == 0) {
-                ((Librarian)Login.current).addDocument(name.getText(), author.getText(), cop, cos, ref, bs);
+                ((Librarian)Login.current).addDocument(name.getText(), author.getText(), publisher.getText(), "", cop, cos, "", "", bs, ref);
             }
-            else ((Librarian)Login.current).modify(LibrarianController.docId, name.getText(), author.getText(), cop, cos, ref, bs);
+            else ((Librarian)Login.current).modify(LibrarianController.docId, name.getText(), author.getText(), publisher.getText(), "", cop, cos, "", "", bs, ref);
         }
     }
 
