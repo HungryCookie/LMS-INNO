@@ -297,7 +297,7 @@ public class FcukBase implements FcukBaseInterface{
     }
 
     public int addNewDocument(String name, String author) {
-        String query = "insert into documents (name, author, type) values (?, ?, 'document')";
+        String query = "insert into documents (name, author, type) values (?, ?, 'AV')";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
@@ -446,7 +446,7 @@ public class FcukBase implements FcukBaseInterface{
     }
 
     public void documentModify(int id, String name, String author) {
-        String query = "update documents set name = " + name + ", author = " + author + " where id = " + id;
+        String query = "update documents set name = '" + name + "', author = '" + author + "' where id = " + id;
         try {
             Statement statement = connection.createStatement();
             statement.execute(query);
@@ -551,7 +551,7 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        b.addNewUser("Steve Wozniak", "89227654321", "New York", "Librarian", "qwerty");
+        b.deleteBooking(2,1);
         //b.counterUp(2, 1);
         /*ResultSet rs = b.copiesOfDocument(6);
         while (rs.next()) {
