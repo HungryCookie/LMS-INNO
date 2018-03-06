@@ -60,7 +60,7 @@ public class Librarian extends Users {
         return res;
     }
 
-    public void addDocument(String name, String author, String publisher, int year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
+    public void addDocument(String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
 
         if (type == "AV")
             base.addNewDocument(name, author);
@@ -91,7 +91,7 @@ public class Librarian extends Users {
         return true;
     }
 
-    public boolean modify(int docID, String name, String author, String publisher, int year, int counter, int cost, String edition, String type, String bestseller, String reference) throws SQLException { //Method modifies fields of user with userID
+    public boolean modify(int docID, String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference) throws SQLException { //Method modifies fields of user with userID
 
         if (!base.checkDocumentByID(docID))
             return false;
@@ -222,8 +222,13 @@ public class Librarian extends Users {
     }
 
     public static void main(String[] args) throws SQLException {
+        Counter c = new Counter();
+        System.out.println(c.CountCopies());
+        System.out.println(c.CountUsers());
+        Librarian l = new Librarian(1);
 
-        Librarian l = new Librarian(2);
+        l.returnDoc(5);
+        /*Librarian l = new Librarian(2);
 
         Patron p = new Patron(1);
 
@@ -237,6 +242,6 @@ public class Librarian extends Users {
         while (s.next()){
             System.out.println(s.getInt("copyID"));
             System.out.println(s.getString("name"));
-        }
+        }*/
     }
 }

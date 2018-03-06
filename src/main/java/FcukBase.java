@@ -15,6 +15,30 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public int getNumberOfDocs() {
+        String query = "select count(*) from copies";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getNumberOfUsers() {
+        String query = "select count(*) from users";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public ResultSet getUserByID(int userID) {
         String query = "select * from users where rowid = ?";
         ResultSet res = null;
@@ -549,9 +573,23 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public ResultSet copyInfo(int copyID) {
+        String query = "select * from copies where copyID = " + copyID;
+        ResultSet rs = null;
+        try {
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery(query);
+            return rs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        b.returnDoc(3);
+        System.out.println(b.getNumberOfUsers());
+        System.out.println(b.getNumberOfDocs());
         //b.counterUp(2, 1);
         /*ResultSet rs = b.copiesOfDocument(6);
         while (rs.next()) {

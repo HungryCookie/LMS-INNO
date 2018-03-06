@@ -49,7 +49,7 @@ public class Patron extends Users{
         if (!document.chechName())
             return 0;
 
-        if (document.getType() == "AV") {
+        if (document.getType().equals("AV")) {
             base.bookAV(document.getDocID(), userID);
             return 4;
         }
