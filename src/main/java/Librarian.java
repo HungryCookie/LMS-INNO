@@ -152,6 +152,16 @@ public class Librarian extends Users {
             return false;
         
         Date d = new Date();
+        long weeks = 0;
+        if (doc.getType().equals("AV")) weeks = 1209600000;
+        else {
+            if (doc.isBestseller()) weeks = 1209600000;
+            else {
+                if (p.getStatus().equals("Student")) weeks = 1814400000;
+                else weeks = 2*1209600000;
+            }
+        }
+        d.setTime(d.getTime() + weeks);
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
             
         base.checkOut(userID, a[0], f.format(d));
