@@ -551,7 +551,7 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws SQLException {
         FcukBase b = new FcukBase();
-        b.deleteBooking(2,1);
+        b.returnDoc(3);
         //b.counterUp(2, 1);
         /*ResultSet rs = b.copiesOfDocument(6);
         while (rs.next()) {
