@@ -18,6 +18,8 @@ public class Test {
     private static ArrayList<Documents> al;
     private static int users;
     private static int copies;
+    private static boolean recall;
+    private static boolean recall2;
 
     public static void main(String[] args) throws Exception {
         start();
@@ -29,6 +31,8 @@ public class Test {
 
     public static void start() throws Exception {
         System.out.println("Enter number of test case (or '0' to exit): ");
+        recall = false;
+        recall2 = false;
         Scanner sc = new Scanner(System.in);
         String ans = sc.next();
         switch (Integer.parseInt(ans)) {
@@ -48,10 +52,14 @@ public class Test {
         copies = c.CountCopies();
         System.out.println("Number of users in system: " + users);
         System.out.println("Number of documents in system: " + copies);
+        System.out.println("---------------------------");
     }
 
     public static void TC1() throws Exception {
         backup();
+        System.out.println("*****************");
+        System.out.println("TEST CASE 1");
+        System.out.println("*****************");
         System.out.println("Before action: ");
         initialize();
         assert (users == 1);
@@ -73,11 +81,15 @@ public class Test {
         initialize();
         assert (users == 4);
         assert (copies == 8);
-        start();
+        if (!recall) start();
     }
 
     public static void TC2() throws Exception {
-        //TC1();
+        recall = true;
+        TC1();
+        System.out.println("*****************");
+        System.out.println("TEST CASE 2");
+        System.out.println("*****************");
         System.out.println("Before action: ");
         initialize();
         assert (users == 4);
@@ -108,11 +120,15 @@ public class Test {
         initialize();
         assert (users == 3);
         assert (copies == 5);
-        start();
+        if (!recall2) start();
     }
 
     public static void TC3() throws Exception {
-        //TC1();
+        recall = true;
+        TC1();
+        System.out.println("*****************");
+        System.out.println("TEST CASE 3");
+        System.out.println("*****************");
         System.out.println("Before action: ");
         initialize();
         assert (users == 4);
@@ -138,7 +154,11 @@ public class Test {
     }
 
     public static void TC4() throws Exception {
+        recall2 = true;
         TC2();
+        System.out.println("*****************");
+        System.out.println("TEST CASE 4");
+        System.out.println("*****************");
         System.out.println("Before action: ");
         initialize();
         assert (users == 3);
@@ -160,7 +180,11 @@ public class Test {
     }
 
     public static void TC5() throws Exception {
+        recall2 = true;
         TC2();
+        System.out.println("*****************");
+        System.out.println("TEST CASE 5");
+        System.out.println("*****************");
         System.out.println("Before action: ");
         initialize();
         assert (users == 3);
@@ -176,7 +200,11 @@ public class Test {
     }
 
     public static void TC6() throws Exception {
+        recall2 = true;
         TC2();
+        System.out.println("*****************");
+        System.out.println("TEST CASE 6");
+        System.out.println("*****************");
         System.out.println("Before actions: ");
         initialize();
         assert (users == 3);
@@ -211,7 +239,11 @@ public class Test {
     }
 
     public static void TC7() throws Exception {
+        recall = true;
         TC1();
+        System.out.println("*****************");
+        System.out.println("TEST CASE 7");
+        System.out.println("*****************");
         System.out.println("Before actions: ");
         initialize();
         assert (users == 4);
@@ -270,13 +302,13 @@ public class Test {
             System.out.println("Name: " + user.getName());
             System.out.println("Address: " + user.getAddress());
             System.out.println("Phone number: " + user.getPhoneNumber());
-            System.out.println("Status: " + user.getClass().getName());
+            System.out.println("Status: " + ((Patron)user).getStatus());
             System.out.println("ID: " + user.getID());
             System.out.println("Checked out documents: ");
             ResultSet rs = lb.checkedOut(user.getID());
             while (rs.next()) {
                 temp.add(new Documents(rs.getString("name")));
-                System.out.println("         " + rs.getString("name") + " checked out at " + rs.getString("date"));
+                System.out.println("         '" + rs.getString("name") + "' checked out due to " + rs.getString("date"));
             }
             System.out.println();
             al = temp;
