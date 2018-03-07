@@ -18,7 +18,7 @@
       <auth-required>false</auth-required>
       <introspection-schemas>*:main</introspection-schemas>
     </data-source>
-    <data-source name="databaseTest.sqlite" uuid="b97eff73-7ecc-4b65-b60e-b3387fb5a000">
+    <data-source name="databaseTest.sqlite" uuid="3c4dc7ce-44a5-423e-a425-c83f8c84c730">
       <database-info product="SQLite" version="3.16.1" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>master_key</secret-storage>

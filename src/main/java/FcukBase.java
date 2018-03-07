@@ -1,18 +1,29 @@
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class FcukBase implements FcukBaseInterface{
     private static Connection connection = null;
+    private static String url = "jdbc:sqlite:databaseTest.sqlite";
 
     public FcukBase(){
         if (connection == null) {
             try {
-                String url = "jdbc:sqlite:databaseTest.sqlite";
                 connection = DriverManager.getConnection(url);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void clear() throws Exception {
+        String query = "delete from booking; delete from copies; delete from documents; delete from users where id > 1;";
+        Statement statement = connection.createStatement();
+        statement.execute(query);
+        //statement.execute(string);
     }
 
     public int getNumberOfDocs() {
@@ -586,10 +597,9 @@ public class FcukBase implements FcukBaseInterface{
         return rs;
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        System.out.println(b.getNumberOfUsers());
-        System.out.println(b.getNumberOfDocs());
+        clear();
         //b.counterUp(2, 1);
         /*ResultSet rs = b.copiesOfDocument(6);
         while (rs.next()) {

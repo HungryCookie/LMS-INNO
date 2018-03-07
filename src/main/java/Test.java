@@ -82,8 +82,9 @@ public class Test {
         assert (copies == 8);
         ResultSet rs = lb.copiesOfDocument(b1.getDocID());
         int i = 2;
-        while (rs.next()) {
-            while (i > 0) {
+        while(rs.next()) {
+
+            if (i > 0) {
                 if (rs.getInt("userID") == 0) {
                     i--;
                     lb.deleteCopy(rs.getInt("copyID"));
@@ -93,7 +94,7 @@ public class Test {
         rs = lb.copiesOfDocument(b2.getDocID());
         i = 1;
         while (rs.next()) {
-            while (i > 0) {
+            if (i > 0) {
                 if (rs.getInt("userID") == 0) {
                     i--;
                     lb.deleteCopy(rs.getInt("copyID"));
@@ -233,7 +234,8 @@ public class Test {
         else System.out.println("Checked out successfully");
         if (!lb.checkOut(p2.getID(), b2)) System.out.println("Impossible to check out");
         else System.out.println("Checked out successfully");
-        if (!lb.checkOut(p2.getID(), av1)) System.out.println("Impossible to check out");
+
+        if (!lb.checkOut(p3.getID(), av2)) System.out.println("Impossible to check out");
         else System.out.println("Checked out successfully");
         userInfo(p1);
         assert (p1.getName().equals("Nadia Teixeira"));
