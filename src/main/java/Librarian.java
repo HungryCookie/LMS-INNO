@@ -138,7 +138,7 @@ public class Librarian extends Users {
         boolean ind = false;
 
         for(Documents x : booked) {
-            System.out.println(x.getName() + doc.getName());
+            //System.out.println(x.getName() + doc.getName());
 
             if (x.getDocID() == doc.getDocID())
                 ind = true;

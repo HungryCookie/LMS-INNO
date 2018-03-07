@@ -68,9 +68,10 @@ public class Test {
         System.out.println("Before action: ");
         initialize();
         ResultSet rs = lb.copiesOfDocument(b1.getDocID());
-        while (rs.next()) {
-            int i = 2;
-            while (i > 0) {
+        int i = 2;
+        while(rs.next()) {
+
+            if (i > 0) {
                 if (rs.getInt("userID") == 0) {
                     i--;
                     lb.deleteCopy(rs.getInt("copyID"));
@@ -78,9 +79,10 @@ public class Test {
             }
         }
         rs = lb.copiesOfDocument(b2.getDocID());
+        i = 1;
         while (rs.next()) {
-            int i = 1;
-            while (i > 0) {
+
+            if (i > 0) {
                 if (rs.getInt("userID") == 0) {
                     i--;
                     lb.deleteCopy(rs.getInt("copyID"));
@@ -88,6 +90,7 @@ public class Test {
             }
         }
         lb.deleteUser(p2.getID());
+        p2 = null;
         System.out.println("After action: ");
         initialize();
         start();
@@ -118,7 +121,7 @@ public class Test {
     public static void TC5() throws SQLException {
         System.out.println("Before action: ");
         initialize();
-        if (!lb.checkOut(p2.getID(), b1)) System.out.println("Impossible to check out");
+        if (p2 == null) System.out.println("*******Impossible to check out*******");
         else System.out.println("Checked out successfully");
         System.out.println("After action: ");
         initialize();
@@ -167,7 +170,7 @@ public class Test {
         else System.out.println("Checked out successfully");
         if (!lb.checkOut(p3.getID(), b2)) System.out.println("Impossible to check out");
         else System.out.println("Checked out successfully");
-        if (!lb.checkOut(p3.getID(), av1)) System.out.println("Impossible to check out");
+        if (!lb.checkOut(p3.getID(), av2)) System.out.println("Impossible to check out");
         else System.out.println("Checked out successfully");
         userInfo(p1);
         System.out.println("----------------");
