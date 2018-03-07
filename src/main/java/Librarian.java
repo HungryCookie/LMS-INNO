@@ -261,4 +261,8 @@ public class Librarian extends Users {
             System.out.println(s.getString("name"));
         }*/
     }
+
+    public void clearDB() throws Exception {
+        base.clear();
+    }
 }

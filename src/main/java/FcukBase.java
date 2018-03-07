@@ -19,10 +19,22 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
-    public static void clear() throws Exception {
-        String query = "delete from booking; delete from copies; delete from documents; delete from users where id > 1;";
+    public void clear() throws Exception {
         Statement statement = connection.createStatement();
-        statement.execute(query);
+        statement.execute("delete from copies;");
+        statement.execute("DELETE from booking");
+        statement.execute("DELETE from users where id > 1");
+        statement.execute("delete from documents");
+        //statement.execute("delete from documents; \nDELETE from users where id > 1; \nDELETE from booking; \ndelete from copies;");
+        /*statement.execute("DELETE FROM sqlite_master where tbl_name = 'documents'");
+        statement.execute("DELETE FROM sqlite_master where tbl_name = 'booking'");
+        statement.execute("DELETE FROM sqlite_master where tbl_name = 'users'");
+        statement.execute(statement.executeQuery("SELECT group_concat(sql,';') FROM sqlite_master where name != 'sqlite_sequence';").getString(1));*/
+        /*PreparedStatement statement1 = connection.prepareStatement("delete from copies;");
+        statement.execute("delete from booking;");
+        statement.execute("delete from copies;");
+        statement.execute("delete from documents;");
+        statement.execute(" delete from users where id > 1;");*/
         //statement.execute(string);
     }
 
@@ -599,7 +611,7 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        clear();
+        b.clear();
         //b.counterUp(2, 1);
         /*ResultSet rs = b.copiesOfDocument(6);
         while (rs.next()) {

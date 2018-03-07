@@ -19,13 +19,15 @@ public class Test {
     private static int users;
     private static int copies;
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
         start();
     }
 
-    private static void backup() {}
+    private static void backup() throws Exception {
+        lb.clearDB();
+    }
 
-    public static void start() throws SQLException {
+    public static void start() throws Exception {
         System.out.println("Enter number of test case (or '0' to exit): ");
         Scanner sc = new Scanner(System.in);
         String ans = sc.next();
@@ -48,7 +50,7 @@ public class Test {
         System.out.println("Number of documents in system: " + copies);
     }
 
-    public static void TC1() throws SQLException {
+    public static void TC1() throws Exception {
         backup();
         System.out.println("Before action: ");
         initialize();
@@ -74,8 +76,8 @@ public class Test {
         start();
     }
 
-    public static void TC2() throws SQLException {
-        TC1();
+    public static void TC2() throws Exception {
+        //TC1();
         System.out.println("Before action: ");
         initialize();
         assert (users == 4);
@@ -83,7 +85,6 @@ public class Test {
         ResultSet rs = lb.copiesOfDocument(b1.getDocID());
         int i = 2;
         while(rs.next()) {
-
             if (i > 0) {
                 if (rs.getInt("userID") == 0) {
                     i--;
@@ -110,8 +111,8 @@ public class Test {
         start();
     }
 
-    public static void TC3() throws SQLException {
-        TC1();
+    public static void TC3() throws Exception {
+        //TC1();
         System.out.println("Before action: ");
         initialize();
         assert (users == 4);
@@ -136,7 +137,7 @@ public class Test {
         start();
     }
 
-    public static void TC4() throws SQLException {
+    public static void TC4() throws Exception {
         TC2();
         System.out.println("Before action: ");
         initialize();
@@ -158,7 +159,7 @@ public class Test {
         start();
     }
 
-    public static void TC5() throws SQLException {
+    public static void TC5() throws Exception {
         TC2();
         System.out.println("Before action: ");
         initialize();
@@ -174,7 +175,7 @@ public class Test {
         start();
     }
 
-    public static void TC6() throws SQLException {
+    public static void TC6() throws Exception {
         TC2();
         System.out.println("Before actions: ");
         initialize();
@@ -209,7 +210,7 @@ public class Test {
         start();
     }
 
-    public static void TC7() throws SQLException {
+    public static void TC7() throws Exception {
         TC1();
         System.out.println("Before actions: ");
         initialize();
