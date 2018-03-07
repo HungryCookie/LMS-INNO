@@ -51,7 +51,7 @@ public class Patron extends Users{
 
         if (document.getType().equals("AV")) {
             base.bookAV(document.getDocID(), userID);
-            return 4;
+            return 2;
         }
         // if user with id = userID already booked document then return false
         ArrayList<Integer> arr = base.findBookedDocuments(userID);
