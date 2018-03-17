@@ -25,17 +25,9 @@ public class FcukBase implements FcukBaseInterface{
         statement.execute("DELETE from booking");
         statement.execute("DELETE from users where id > 1");
         statement.execute("delete from documents");
-        //statement.execute("delete from documents; \nDELETE from users where id > 1; \nDELETE from booking; \ndelete from copies;");
-        /*statement.execute("DELETE FROM sqlite_master where tbl_name = 'documents'");
-        statement.execute("DELETE FROM sqlite_master where tbl_name = 'booking'");
-        statement.execute("DELETE FROM sqlite_master where tbl_name = 'users'");
-        statement.execute(statement.executeQuery("SELECT group_concat(sql,';') FROM sqlite_master where name != 'sqlite_sequence';").getString(1));*/
-        /*PreparedStatement statement1 = connection.prepareStatement("delete from copies;");
-        statement.execute("delete from booking;");
-        statement.execute("delete from copies;");
-        statement.execute("delete from documents;");
-        statement.execute(" delete from users where id > 1;");*/
-        //statement.execute(string);
+        statement.execute("update sqlite_sequence set seq = 1 where name = 'users'");
+        statement.execute("update sqlite_sequence set seq = 0 where name = 'documents'");
+        statement.execute("update sqlite_sequence set seq = 0 where name = 'copies'");
     }
 
     public int getNumberOfDocs() {
@@ -134,7 +126,7 @@ public class FcukBase implements FcukBaseInterface{
         return res;
     }
 
-    public boolean bookADocument(int docID, int userID) {
+    /*public boolean bookADocument(int docID, int userID) {
         String query = "insert into booking values (?, ?)";
         String updateQuery = "update documents set counter = ? where rowid = ?";
         String referenceUpdate = "update documents set reference = 'T' where rowid = ?";
@@ -163,9 +155,19 @@ public class FcukBase implements FcukBaseInterface{
             e.printStackTrace();
         }
         return false;
-    }
+    }*/
 
-    public void bookAV(int docID, int userID) {
+    /*public void bookAV(int docID, int userID) {
+        String query = "insert into booking (bookID, userID) values (" + docID + ", " + userID + ")";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    public void book(int docID, int userID) {
         String query = "insert into booking (bookID, userID) values (" + docID + ", " + userID + ")";
         try {
             Statement statement = connection.createStatement();
@@ -609,16 +611,34 @@ public class FcukBase implements FcukBaseInterface{
         return rs;
     }
 
+    public void increaseFine(int userID, int fine) {
+        try {
+            Statement statement = connection.createStatement();
+            int currentFine = statement.executeQuery("select * from users where id = " + userID).getInt("fine");
+            int newFine = currentFine + fine;
+            statement = connection.createStatement();
+            statement.execute("update users set fine = " + newFine + " where id = " + userID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void decreaseFine(int userID, int fine) {
+        increaseFine(userID, -fine);
+    }
+
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
         b.clear();
+        //b.addNewDocument("Introduction to Algorithms", "MIT Press",  "2009", "Third Edition", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", 4, 100, "F", "F");
+        //b.addNewUser("Sergey Afonso", "30001", "Via Margutta, 3", "FacultyMember", "qwerty");
+        //b.decreaseFine(1, 50);
         //b.counterUp(2, 1);
         /*ResultSet rs = b.copiesOfDocument(6);
         while (rs.next()) {
             System.out.println(rs.getInt("copyID"));
         }*/
         //b.returnDoc(1);
-        //b.addNewDocument("Amber Chronicles", "Roger Zelazny", 2, 110, "F", "T");
         //System.out.println(b.addNewUser("Jack Daniels",	"89224365732", "London", "Student", "zqazqa"));
         //b.checkOut(1, 2, "2018-03-23");
         //b.returnDoc(1);

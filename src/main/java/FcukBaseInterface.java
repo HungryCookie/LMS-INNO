@@ -9,6 +9,7 @@ public interface FcukBaseInterface {
     ResultSet checkedOutByUserID(int userID); // Checks all books checked out by certain user (copyID, date, name, author)
     ResultSet checkedOutByDocID(int bookID); // Checks all books checked out by its ID (copyID, date, name, author)
     ResultSet copiesOfDocument(int bookID); // Get all copies of the certain document
+    ResultSet copyInfo(int copyID); // Get all the info about certain copy
     int addNewUser(String name, String phoneNumber, String address, String status, String password); // Adds new User to the database
     int addNewDocument(String name, String publisher, String year, String edition,
                        String author, int counter, int cost, String reference, String bestselle); // Adds new document to the data base
@@ -23,13 +24,15 @@ public interface FcukBaseInterface {
     void counterDown(int bookID); // Substructs from counter 1 copy
     void deleteBooking(int docID, int userID); // Delete booked document without increasing the counter
     void addCopy(int bookID); // Adds new copy
+    void increaseFine(int userID, int fine); // Increase fine
+    void decreaseFine(int userID, int fine); // Decrease fine
     ArrayList findBookedDocuments(int userID); // Find all booked documents of user
     ArrayList findUserByBookedDocument(int docID); // find users who booked certain document
     int[] findCopyID(int docID); // Find ID of copies of books
     boolean checkUserID(int userID); // Check whether there exist such a user
     boolean checkDocumentByName(String name); // Check whether there exist such a doc
     boolean checkDocumentByID(int bookID); // Checks whether there is such a book by its ID
-    boolean bookADocument(int docID, int userID); // Place an order on a certain document from certain user
+    //boolean bookADocument(int docID, int userID); // Place an order on a certain document from certain user
     boolean deleteCopy(int copyID); // Deletes copy if it is available
     boolean isCopyAvailable(int copyID); // Checks whether copy is available or not
 }
