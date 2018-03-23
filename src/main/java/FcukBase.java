@@ -19,6 +19,30 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public ResultSet getUsers() {
+        ResultSet rs = null;
+        try{
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery("select * from users");
+            return rs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public ResultSet getDocs(){
+        ResultSet rs = null;
+        try {
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery("select * from documents where reference != 'T'");
+            return rs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     public void clear() throws Exception {
         Statement statement = connection.createStatement();
         statement.execute("delete from copies;");
@@ -167,8 +191,8 @@ public class FcukBase implements FcukBaseInterface{
         }
     }*/
 
-    public void book(int docID, int userID) {
-        String query = "insert into booking (bookID, userID) values (" + docID + ", " + userID + ")";
+    public void book(int docID, int userID, int priority) {
+        String query = "insert into booking (bookID, userID, priority) values (" + docID + ", " + userID + ", " + priority + ")";
         try {
             Statement statement = connection.createStatement();
             statement.execute(query);
@@ -598,6 +622,18 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public ResultSet getQueue(int docID) {
+        ResultSet rs = null;
+        try {
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery("select * from booking where bookID = " + docID + " order by priority desc");
+            return rs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     public ResultSet copyInfo(int copyID) {
         String query = "select * from copies where copyID = " + copyID;
         ResultSet rs = null;
@@ -627,9 +663,26 @@ public class FcukBase implements FcukBaseInterface{
         increaseFine(userID, -fine);
     }
 
+    public void clearQueue(int docID) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("delete from booking where bookID = " + docID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        b.clear();
+        /*b.book(2,4,3);
+        b.book(2,5,2);
+        b.book(2,6,4);
+        b.book(2,7,3);*/
+        b.clearQueue(2);
+        ResultSet rs = b.getQueue(2);
+        while (rs.next()) {
+            System.out.println(rs.getInt("userID"));
+        }
         //b.addNewDocument("Introduction to Algorithms", "MIT Press",  "2009", "Third Edition", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", 4, 100, "F", "F");
         //b.addNewUser("Sergey Afonso", "30001", "Via Margutta, 3", "FacultyMember", "qwerty");
         //b.decreaseFine(1, 50);
