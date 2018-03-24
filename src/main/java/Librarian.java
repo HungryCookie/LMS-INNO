@@ -132,14 +132,17 @@ public class Librarian extends Users {
         doc = new Documents(doc.getDocID());
 
         if (doc.isReference()) {
-            base.book(doc.getDocID(), userID, 5, getDate());
+            base.clearQueue(doc.getDocID());
+            base.book(doc.getDocID(), userID, 1, getDate());
             return 0;
         }
 
         int [] copies = base.findCopyID(doc.getDocID());
 
         base.checkOut(userID, copies[0], getDate());
-        
+        base.counterDown(doc.getDocID());
+        base.clearQueue(doc.getDocID());
+
         return 1;
     }
 
@@ -170,7 +173,18 @@ public class Librarian extends Users {
     }
 
 
-    public boolean returnDoc(int copyID){  //Method returns document to library by ID of copy. True if alright, false if it is wrong
+    private void notifyUser(int userID, int docID){             //need to modify user
+        base.setDateToCheckOut(docID, userID, getDate());
+
+    }
+
+    int calculateFine(int userID, int docID, String date){
+        return userID;
+    }
+
+    public boolean returnDoc(int copyID) throws SQLException {  //Method returns document to library by ID of copy. True if alright, false if it is wrong
+
+        ResultSet r = base.copyInfo(copyID);
 
         int res = base.returnDoc(copyID);
 
@@ -179,6 +193,16 @@ public class Librarian extends Users {
 
 
         base.counterUp(res, 1);
+        base.increaseFine(r.getInt("userID"), calculateFine(r.getInt("userID"), r.getInt("commonID"), r.getString("date")));
+
+        r = base.copyInfo(copyID);
+
+        int docID = r.getInt("commonID");
+
+        ResultSet queue = base.getQueue(docID);
+
+        if (queue.next())
+            notifyUser(queue.getInt(userID), docID);
 
         return true;
     }
