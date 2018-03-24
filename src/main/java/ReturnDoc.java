@@ -50,14 +50,14 @@ public class ReturnDoc {
     public void returnDoc() {
         if (copyID == -1) error.setText("Select document to return");
         else {
-            String success = ((Librarian)Login.current).returnDoc(copyID);
+            /*String success = ((Librarian)Login.current).returnDoc(copyID);
             if (!success.equals("")) {
                 int index = table.getSelectionModel().getSelectedIndex();
                 table.getItems().remove(index);
             }
             else {
                 error.setText("Something goes wrong");
-            }
+            }*/
         }
     }
 

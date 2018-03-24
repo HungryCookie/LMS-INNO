@@ -60,7 +60,7 @@ public class Librarian extends Users {
         return res;
     }
 
-    public void addDocument(String name, String author, String publisher, int year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
+    public void addDocument(String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
 
         if (type == "AV")
             base.addNewDocument(name, author);
@@ -91,7 +91,7 @@ public class Librarian extends Users {
         return true;
     }
 
-    public boolean modify(int docID, String name, String author, String publisher, int year, int counter, int cost, String edition, String type, String bestseller, String reference) throws SQLException { //Method modifies fields of user with userID
+    public boolean modify(int docID, String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference) throws SQLException { //Method modifies fields of user with userID
 
         if (!base.checkDocumentByID(docID))
             return false;
@@ -132,7 +132,7 @@ public class Librarian extends Users {
         doc = new Documents(doc.getDocID());
 
         if (doc.isReference()) {
-            base.book(doc.getDocID(), userID, getDate());
+            base.book(doc.getDocID(), userID, 5, getDate());
             return 0;
         }
 
@@ -209,6 +209,10 @@ public class Librarian extends Users {
         return true;
     }
 
+    public void clearDB() throws Exception {
+        base.clear();
+    }
+
     public static void main(String[] args) throws SQLException {
 
         Librarian l = new Librarian(2);
@@ -217,7 +221,7 @@ public class Librarian extends Users {
 
         Documents d = new Documents(2);
 
-        l.checkOut(p.getID(), d);
+        //l.checkOut(p.getID(), d);
 
         ResultSet s = l.checkedOut(p.getID());
 

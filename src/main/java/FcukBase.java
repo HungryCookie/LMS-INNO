@@ -191,11 +191,14 @@ public class FcukBase implements FcukBaseInterface{
         }
     }*/
 
-    public void book(int docID, int userID, int priority) {
-        String query = "insert into booking (bookID, userID, priority) values (" + docID + ", " + userID + ", " + priority + ")";
+    public void book(int docID, int userID, int priority, String date) {
+        System.out.println(date);
+        String query = "insert into booking (bookID, userID, priority, date) " +
+                "values (" + docID + ", " + userID + ", " + priority + ", ?)";
         try {
-            Statement statement = connection.createStatement();
-            statement.execute(query);
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, date);
+            statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -626,7 +629,7 @@ public class FcukBase implements FcukBaseInterface{
         ResultSet rs = null;
         try {
             Statement statement = connection.createStatement();
-            rs = statement.executeQuery("select * from booking where bookID = " + docID + " order by priority desc");
+            rs = statement.executeQuery("select * from booking where bookID = " + docID + " order by priority");
             return rs;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -672,16 +675,28 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public void setDateToCheckOut(int docID, int userID, String date) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("update booking set date = ?, priority = 1");
+            statement.setString(1, date);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        /*b.book(2,4,3);
-        b.book(2,5,2);
+        b.setDateToCheckOut(2,4,"2018-04-18");
+        /*b.clearQueue(2);
+        b.book(2,4,3, "2000-12-12");*/
+        /*b.book(2,5,2);
         b.book(2,6,4);
         b.book(2,7,3);*/
-        b.clearQueue(2);
+        //b.clearQueue(2);
         ResultSet rs = b.getQueue(2);
         while (rs.next()) {
-            System.out.println(rs.getInt("userID"));
+            System.out.println(rs.getString("date"));
         }
         //b.addNewDocument("Introduction to Algorithms", "MIT Press",  "2009", "Third Edition", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", 4, 100, "F", "F");
         //b.addNewUser("Sergey Afonso", "30001", "Via Margutta, 3", "FacultyMember", "qwerty");

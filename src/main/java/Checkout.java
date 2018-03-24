@@ -22,10 +22,10 @@ public class Checkout {
             error.setText("Wrong ID");
         }
         Documents doc = new Documents(docid);
-        boolean success = ((Librarian)Login.current).checkOut(LibrarianController.userId, doc);
+        /*boolean success = ((Librarian)Login.current).checkOut(LibrarianController.userId, doc);
         if (success) {
             LibrarianController.dialog.close();
         }
-        else error.setText("Something wrong");
+        else error.setText("Something wrong");*/
     }
 }

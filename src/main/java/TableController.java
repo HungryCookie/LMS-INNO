@@ -71,10 +71,10 @@ public class TableController {
     @FXML
     private void checkOut() {
         Documents doc = new Documents(docID);
-        boolean success = ((Librarian)Login.current).checkOut(LibrarianController.userId, doc);
+        /*boolean success = ((Librarian)Login.current).checkOut(LibrarianController.userId, doc);
         if (success) {
             table.getItems().remove(table.getSelectionModel().selectedIndexProperty().get());
-        }
+        }*/
     }
 
     @FXML

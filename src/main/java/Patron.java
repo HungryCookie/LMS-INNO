@@ -51,7 +51,7 @@ public class Patron extends Users{
         if (!document.chechName())
             return 0;
 
-        if (document.getType() == "AV") {
+        /*if (document.getType() == "AV") {
             base.bookAV(document.getDocID(), userID);
             return 4;
         }
@@ -66,7 +66,7 @@ public class Patron extends Users{
         // going to get document with id = document.docID
 
         if (document.isReference() ||  !base.bookADocument(document.getDocID(), userID))
-            return 0;
+            return 0;*/
 
         if (document.isBestseller())
             return 2;
