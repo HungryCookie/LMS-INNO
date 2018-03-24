@@ -1,14 +1,18 @@
+import jdk.nashorn.internal.ir.annotations.Immutable;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.Date;
+import java.lang.Object;
+
 
 
 import java.text.SimpleDateFormat;
 
 public class Librarian extends Users {
     private FcukBase base = new FcukBase();
-    
+
     public Librarian(int userID){
 
         ResultSet res = base.getUserByID(userID);
@@ -23,7 +27,7 @@ public class Librarian extends Users {
             address = res.getString("address");
             password = res.getString("password");
             phoneNumber = res.getString("phoneNumber");
- 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -35,19 +39,19 @@ public class Librarian extends Users {
             return null;
 
         Patron p = new Patron(userID);
-        
+
         return p;
     }
-    
+
     //returning system
 
     public IntAndString addUser(String name, String phoneNumber, String address, String status) { //Method adds new User into data base. And it returns userID and password
-        
+
         String pass = "";
-            
+
         for (int i = 0; i < 5; i++){
             Random r = new Random();
-          
+
             int randomNum = r.nextInt(123 - 48 + 1) + 48;
             pass += Character.toString((char)randomNum);
         }
@@ -56,7 +60,7 @@ public class Librarian extends Users {
         return res;
     }
 
-    public void addDocument(String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
+    public void addDocument(String name, String author, String publisher, int year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
 
         if (type == "AV")
             base.addNewDocument(name, author);
@@ -87,7 +91,7 @@ public class Librarian extends Users {
         return true;
     }
 
-    public boolean modify(int docID, String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference) throws SQLException { //Method modifies fields of user with userID
+    public boolean modify(int docID, String name, String author, String publisher, int year, int counter, int cost, String edition, String type, String bestseller, String reference) throws SQLException { //Method modifies fields of user with userID
 
         if (!base.checkDocumentByID(docID))
             return false;
@@ -123,52 +127,27 @@ public class Librarian extends Users {
         return true;
     }
 
-    public boolean checkOut(int userID, Documents doc){ //Method returns false if userId is wrong
-                                                         //Also if this user didn't booked this document. Otherwise true
-        if (!base.checkUserID(userID))
-            return false;
+    public int checkOut(Documents doc){  //Returns 0 if there isn't any free books for librarian except reference, librarian was added to queue
+                                            //Returns 1 if book is availible
+        doc = new Documents(doc.getDocID());
 
-
-        Patron p = new Patron(userID);              //Checking whether user booked this document
-        Documents [] booked = p.bookedDocuments();
-        boolean ind = false;
-
-        for(Documents x : booked) {
-            //System.out.println(x.getName() + doc.getName());
-
-            if (x.getDocID() == doc.getDocID())
-                ind = true;
+        if (doc.isReference()) {
+            base.book(doc.getDocID(), userID, getDate());
+            return 0;
         }
-        if (!ind)
-            return false;
 
-        int [] a = base.findCopyID(doc.getDocID());         //Getting a list of free copies of this document
+        int [] copies = base.findCopyID(doc.getDocID());
 
-        if (a[0] == 0)
-            return false;
+        base.checkOut(userID, copies[0], getDate());
         
+        return 1;
+    }
+
+    public String getDate(){
         Date d = new Date();
-        long weeks = 0;
-        if (doc.getType().equals("AV")) weeks = 1209600000;
-        else {
-            if (doc.isBestseller()) weeks = 1209600000;
-            else {
-                if (p.getStatus().equals("Student")) weeks = 1814400000;
-                else {
-                    weeks = 1209600000;
-                    d.setTime(d.getTime() + weeks);
-                }
-            }
-        }
-        d.setTime(d.getTime() + weeks);
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-            
-        base.checkOut(userID, a[0], f.format(d));
-      
-        base.deleteBooking(doc.getDocID(), userID);
 
-
-        return true;
+        return f.format(d);
     }
 
     public ResultSet checkedOut(int userID){ //Method returns a list of checked out Documents with number of copy he took of user with userID
@@ -191,28 +170,17 @@ public class Librarian extends Users {
     }
 
 
-    public String returnDoc(int copyID){  //Method returns document to library by ID of copy. True if alright, false if it is wrong
-
-        ResultSet r = base.copyInfo(copyID);
-        String empty = "", ans = "";
-        try {
-        if (!r.next())
-            return empty;
-            ans = r.getString("date");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public boolean returnDoc(int copyID){  //Method returns document to library by ID of copy. True if alright, false if it is wrong
 
         int res = base.returnDoc(copyID);
 
-        
         if (res == 0)
-            return empty;;
+            return false;
 
 
         base.counterUp(res, 1);
 
-        return ans;
+        return true;
     }
 
     /*
@@ -242,13 +210,8 @@ public class Librarian extends Users {
     }
 
     public static void main(String[] args) throws SQLException {
-        Counter c = new Counter();
-        System.out.println(c.CountCopies());
-        System.out.println(c.CountUsers());
-        Librarian l = new Librarian(1);
 
-        System.out.println(l.returnDoc(5));
-        /*Librarian l = new Librarian(2);
+        Librarian l = new Librarian(2);
 
         Patron p = new Patron(1);
 
@@ -262,10 +225,6 @@ public class Librarian extends Users {
         while (s.next()){
             System.out.println(s.getInt("copyID"));
             System.out.println(s.getString("name"));
-        }*/
-    }
-
-    public void clearDB() throws Exception {
-        base.clear();
+        }
     }
 }
