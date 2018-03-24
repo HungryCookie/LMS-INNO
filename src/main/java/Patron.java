@@ -1,7 +1,9 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Patron extends Users{
@@ -80,45 +82,98 @@ public class Patron extends Users{
     private int getPriority(){
 
         if (status == "Student")
-            return 0;
-
-        if (status == "Instructor")
-            return 1;
-
-        if (status == "Visiting Professor")
-            return 2;
-
-        if (status == "Professor")
             return 3;
 
-        return 0;
+        if (status == "Instructor")
+            return 4;
+
+        if (status == "Visiting Professor")
+            return 5;
+
+        if (status == "Professor")
+            return 6;
+
+        return 3;
+    }
+
+    private void deleteOldBookings(Documents document) throws SQLException {
+
+        ResultSet res = base.getQueue(document.getDocID());
+
+        while (res.next()){
+            if (res.getInt("priority") == 2) {
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+                Date date = new Date();
+
+                try {
+                    date = formatter.parse(res.getString("deleteBookingDate"));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Calendar c = Calendar.getInstance();        // Checking if booking is old
+                c.setTime(date);
+                c.add(Calendar.DATE, 1);
+                date = c.getTime();
+
+
+                Date todayDate = new Date();
+
+                if (todayDate.after(date))
+                    base.deleteBooking(document.getDocID(), userID);   //Deleting old booking
+            }
+        }
     }
 
     public int checkOut(Documents document) throws SQLException {  //returns 0 if user can't take this document, user was added to queue
                                                                      //returns 1 if document is already checkedOut by user
                                                                     //returns 2 if user is already in a queue at the moment
                                                                     //returns 3 if user can checkOut book
+                                                                    //returns 4 if user already booked this document and now he can take it
+       document = new Documents(document.getDocID());
+
+        deleteOldBookings(document);
+
         ResultSet res = base.checkedOutByUserID(userID);
 
         while (res.next()){
             ResultSet res1 = base.copyInfo(res.getInt("copyID"));
 
-            if (res1.getInt("CommonID") == document.getDocID())
+            if (res1.getInt("сommonID") == document.getDocID())
                 return 1;
         }
 
         res = base.getQueue(document.getDocID());
 
+        int current_counter = document.getCounter();
+
         while (res.next()){
-            if (res.getInt("userID") == userID)
+            if (res.getInt("userID") == userID) {
+
+                if (current_counter > 1){
+
+                    int [] copies = base.findCopyID(document.getDocID());
+
+                    base.checkOut(userID, copies[0], getDate());
+                    base.deleteBooking(document.getDocID(), userID);
+                    base.counterDown(document.getDocID());
+
+                    return 4;
+                }
+
                 return 2;
+            }
+
+            current_counter--;
         }
 
         base.book(document.getDocID(), userID, getPriority(), getDate());
 
         res = base.getQueue(document.getDocID());
 
-        int current_counter = document.getCounter();
+        current_counter = document.getCounter();
 
         while (res.next()){
             if (res.getInt("userID") == userID)
@@ -134,6 +189,8 @@ public class Patron extends Users{
         int [] copies = base.findCopyID(document.getDocID());
 
         base.checkOut(userID, copies[0], getDate());
+        base.deleteBooking(document.getDocID(), userID);
+        base.counterDown(document.getDocID());
 
         return 3;
     }
