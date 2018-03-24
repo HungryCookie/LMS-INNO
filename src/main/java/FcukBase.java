@@ -192,7 +192,6 @@ public class FcukBase implements FcukBaseInterface{
     }*/
 
     public void book(int docID, int userID, int priority, String date) {
-        System.out.println(date);
         String query = "insert into booking (bookID, userID, priority, date) " +
                 "values (" + docID + ", " + userID + ", " + priority + ", ?)";
         try {
@@ -687,9 +686,9 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        b.setDateToCheckOut(2,4,"2018-04-18");
-        /*b.clearQueue(2);
-        b.book(2,4,3, "2000-12-12");*/
+        //b.setDateToCheckOut(2,4,"2018-04-18");
+        b.clearQueue(2);
+        //b.book(2,4,3, "2000-12-12");
         /*b.book(2,5,2);
         b.book(2,6,4);
         b.book(2,7,3);*/
