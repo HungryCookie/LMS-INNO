@@ -19,14 +19,15 @@ public class Documents {
     private StringProperty publisher;
     private StringProperty edition;
     private StringProperty year;
+    private IntegerProperty counter;
 
     private FcukBase base = new FcukBase();
 
     public Documents(int docID){
-        
+
         if (!base.checkDocumentByID(docID)) {
             return;        }
-        
+
         ResultSet res = base.getDocumentByID(docID);
         try {
             //if docID is not correct return null;
@@ -45,6 +46,7 @@ public class Documents {
             this.publisher = new SimpleStringProperty(res.getString("publisher"));
             this.edition = new SimpleStringProperty(res.getString("edition"));
             this.year = new SimpleStringProperty(res.getString("year"));
+            this.counter = new SimpleIntegerProperty(res.getInt("counter"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,7 +65,7 @@ public class Documents {
             //else get result by name and set all the fields
             //System.out.println("--------"+name);
             this.name = new SimpleStringProperty(res.getString("name"));
-            
+
             this.docID = new SimpleIntegerProperty(res.getInt("id"));
             reference = (res.getString("reference").charAt(0) == 'T');
             bestseller = (res.getString("bestseller").charAt(0) == 'T');
@@ -122,11 +124,13 @@ public class Documents {
     public int getCost() {
         return cost.get();
     }
-    
+
     public boolean isReference() {
-        return reference;
+        return (counter.get() == 1);
     }
-    
+
+
+
     public boolean isBestseller() {
         return bestseller;
     }
@@ -161,5 +165,13 @@ public class Documents {
 
     public FcukBase getBase() {
         return base;
+    }
+
+    public int getCounter() {
+        return counter.get();
+    }
+
+    public IntegerProperty counterProperty() {
+        return counter;
     }
 }
