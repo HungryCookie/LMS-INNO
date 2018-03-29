@@ -449,7 +449,7 @@ public class FcukBase implements FcukBaseInterface{
     }
 
     public ResultSet checkedOutByUserID(int userID) { // ResultSet
-        String query = "select copyID, date, name, author from copies " +
+        String query = "select * from copies " +
                         "JOIN documents on copies.commonID = documents.id " +
                         "where copies.userID = ?";
         ResultSet rs = null;
@@ -468,7 +468,7 @@ public class FcukBase implements FcukBaseInterface{
     }
 
     public ResultSet checkedOutByDocID(int bookID) {
-        String query = "select copyID, date, name, author from copies " +
+        String query = "select * from copies " +
                         "JOIN documents on copies.commonID = documents.id " +
                         "where copies.commonID = ?";
         ResultSet rs = null;
@@ -686,7 +686,6 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        //b.setDateToCheckOut(2,4,"2018-04-18");
         b.clearQueue(2);
         //b.book(2,4,3, "2000-12-12");
         /*b.book(2,5,2);
