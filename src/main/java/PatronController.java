@@ -44,7 +44,7 @@ public class PatronController {
     @FXML
     public Scene tableScene;
     private FcukBase fb = new FcukBase();
-    public IntAndString checkCode = new IntAndString();
+    public IntAndString checkCode;
 
     @FXML
     private void initialize() throws SQLException {
