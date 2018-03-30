@@ -38,7 +38,7 @@ public class UserInfo {
     private void initialize() {
         if (LibrarianController.userId != 0) {
             Patron p = new Patron(LibrarianController.userId);
-            name.setText(p.name);
+            name.setText(p.name.get());
             phone.setText(p.phoneNumber);
             address.setText(p.address);
             status.getItems().addAll("Student", "FacultyMember", "Librarian");
