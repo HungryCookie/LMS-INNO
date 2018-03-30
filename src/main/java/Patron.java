@@ -1,3 +1,6 @@
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -8,7 +11,6 @@ import java.util.Date;
 
 public class Patron extends Users{
     private int currentFine;
-    private String status;
     private FcukBase base = new FcukBase();
 
 
@@ -35,13 +37,14 @@ public class Patron extends Users{
             /*if (!res.next()) {
                 return;
             }*/
-                this.userID = userID;
+                this.userID = new SimpleIntegerProperty(userID);
                 // else get result by userID and set all the fields
-                name = res.getString("name");
+                name = new SimpleStringProperty(res.getString("name"));
                 status = res.getString("status");
                 address = res.getString("address");
                 password = res.getString("password");
                 phoneNumber = res.getString("phoneNumber");
+                status = res.getString("status");
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -132,7 +135,7 @@ public class Patron extends Users{
                     ResultSet queue = base.getQueue(document.getDocID());
 
                     if (queue.next())
-                        notifyUser(queue.getInt(userID), document.getDocID());
+                        notifyUser(queue.getInt(userID.get()), document.getDocID());
                 }
             }
         }
@@ -184,7 +187,7 @@ public class Patron extends Users{
 
         deleteOldBookings(document);
 
-        ResultSet res = base.checkedOutByUserID(userID);
+        ResultSet res = base.checkedOutByUserID(userID.get());
 
         while (res.next()){
             ResultSet res1 = base.copyInfo(res.getInt("copyID"));
@@ -198,14 +201,14 @@ public class Patron extends Users{
         int current_counter = document.getCounter();
 
         while (res.next()){
-            if (res.getInt("userID") == userID) {
+            if (res.getInt("userID") == userID.get()) {
 
                 if (current_counter > 1){
 
                     int [] copies = base.findCopyID(document.getDocID());
 
-                    base.checkOut(userID, copies[0], getDate());
-                    base.deleteBooking(document.getDocID(), userID);
+                    base.checkOut(userID.get(), copies[0], getDate());
+                    base.deleteBooking(document.getDocID(), userID.get());
                     base.counterDown(document.getDocID());
 
                     return new IntAndString(4, getDateToReturn(document));
@@ -217,14 +220,14 @@ public class Patron extends Users{
             current_counter--;
         }
 
-        base.book(document.getDocID(), userID, getPriority(), getDate());
+        base.book(document.getDocID(), userID.get(), getPriority(), getDate());
 
         res = base.getQueue(document.getDocID());
 
         current_counter = document.getCounter();
 
         while (res.next()){
-            if (res.getInt("userID") == userID)
+            if (res.getInt("userID") == userID.get())
                 break;
 
             current_counter--;
@@ -236,8 +239,8 @@ public class Patron extends Users{
 
         int [] copies = base.findCopyID(document.getDocID());
 
-        base.checkOut(userID, copies[0], getDate());
-        base.deleteBooking(document.getDocID(), userID);
+        base.checkOut(userID.get(), copies[0], getDate());
+        base.deleteBooking(document.getDocID(), userID.get());
         base.counterDown(document.getDocID());
 
         return new IntAndString(3, getDateToReturn(document));
@@ -253,7 +256,7 @@ public class Patron extends Users{
     public Documents[] bookedDocuments(){
 
         // get array of docIDs
-        ArrayList<Integer> arr = base.findBookedDocuments(userID);
+        ArrayList<Integer> arr = base.findBookedDocuments(userID.get());
         //System.out.println("+++++" + arr.size());
         Documents[] res = new Documents[arr.size()];
 
@@ -279,7 +282,4 @@ public class Patron extends Users{
         return currentFine;
     }
 
-    public String getStatus(){
-        return status;
-    }
 }
