@@ -109,7 +109,7 @@ public class DocInfo {
             if (bestseller.isSelected()) bs = "T";
             else bs = "F";
             if (LibrarianController.docId == 0) {
-                ((Librarian)Login.current).addDocument(name.getText(), author.getText(), publisher.getText(), "", cop, cos, "", "", bs, ref);
+                ((Librarian)Login.current).addDocument(name.getText(), author.getText(), publisher.getText(), "", cop, cos, "", type.getSelectionModel().getSelectedItem(), bs, ref);
             }
             else ((Librarian)Login.current).modify(LibrarianController.docId, name.getText(), author.getText(), publisher.getText(), "", cop, cos, "", "", bs, ref);
         }
