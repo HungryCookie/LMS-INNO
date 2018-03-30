@@ -1,3 +1,5 @@
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import jdk.nashorn.internal.ir.annotations.Immutable;
 
 import java.sql.ResultSet;
@@ -25,12 +27,13 @@ public class Librarian extends Users {
             /*if (!res.next()) {
                 return;
             }*/
-            this.userID = userID;
+            this.userID = new SimpleIntegerProperty(userID);
             // else get result by userID and set all the fields
-            name = res.getString("name");
+            name = new SimpleStringProperty(res.getString("name"));
             address = res.getString("address");
             password = res.getString("password");
             phoneNumber = res.getString("phoneNumber");
+            status = "Librarian";
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,8 +49,6 @@ public class Librarian extends Users {
 
         return p;
     }
-
-    //returning system
 
     public IntAndString addUser(String name, String phoneNumber, String address, String status) { //Method adds new User into data base. And it returns userID and password
 
@@ -136,13 +137,13 @@ public class Librarian extends Users {
 
         if (doc.isReference()) {
             base.clearQueue(doc.getDocID());
-            base.book(doc.getDocID(), userID, 1, getDate());
+            base.book(doc.getDocID(), userID.get(), 1, getDate());
             return 0;
         }
 
         int [] copies = base.findCopyID(doc.getDocID());
 
-        base.checkOut(userID, copies[0], getDate());
+        base.checkOut(userID.get(), copies[0], getDate());
         base.counterDown(doc.getDocID());
         base.clearQueue(doc.getDocID());
 
@@ -261,7 +262,7 @@ public class Librarian extends Users {
                     ResultSet queue = base.getQueue(document.getDocID());
 
                     if (queue.next())
-                        notifyUser(queue.getInt(userID), document.getDocID());
+                        notifyUser(queue.getInt(userID.get()), document.getDocID());
                 }
             }
         }
@@ -288,7 +289,7 @@ public class Librarian extends Users {
         ResultSet queue = base.getQueue(docID);
 
         if (queue.next())
-            notifyUser(queue.getInt(userID), docID);
+            notifyUser(queue.getInt(userID.get()), docID);
 
         return true;
     }
