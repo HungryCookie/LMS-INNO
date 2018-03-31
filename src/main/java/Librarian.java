@@ -2,6 +2,8 @@ import jdk.nashorn.internal.ir.annotations.Immutable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Random;
 import java.util.Date;
 import java.lang.Object;
@@ -9,6 +11,8 @@ import java.lang.Object;
 
 
 import java.text.SimpleDateFormat;
+
+import static java.lang.Math.min;
 
 public class Librarian extends Users {
     private FcukBase base = new FcukBase();
@@ -75,7 +79,6 @@ public class Librarian extends Users {
         Documents [] d = p.bookedDocuments();
 
         for (Documents cur : d) {
-            base.counterUp(cur.getDocID(), 1);
             base.deleteBooking(cur.getDocID(), userID);
         }
     }
@@ -178,8 +181,90 @@ public class Librarian extends Users {
 
     }
 
-    int calculateFine(int userID, int docID, String date){
-        return userID;
+    int calculateFine(int userID, int docID, String dateS){
+
+        int d = 7;
+
+        Patron user = new Patron(userID);
+        Documents doc = new Documents(docID);
+
+        if (user.getStatus() != "Visiting Professor") {
+            d += 7;
+
+            if (doc.getType() != "AV" && doc.getType() != "journal" && !doc.isBestseller()){
+
+                if (user.getStatus() == "Professor" || user.getStatus() == "Instructor")
+                    d += 14;
+                else
+                    d += 7;
+            }
+        }
+
+        int gone = 0;
+
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date date = new Date();
+
+        try {
+            date = formatter.parse(dateS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Date todayDate = new Date();
+
+        while(todayDate.after(date)){
+            gone++;
+
+            Calendar c = Calendar.getInstance();        // Checking if booking is old
+            c.setTime(date);
+            c.add(Calendar.DATE, 1);
+            date = c.getTime();
+        }
+
+        if (d >= gone)
+            return 0;
+
+        return min(doc.getCost(), 100 * (gone - d));
+    }
+
+    private void deleteOldBookings(Documents document) throws SQLException {
+
+        ResultSet res = base.getQueue(document.getDocID());
+
+        while (res.next()){
+            if (res.getInt("priority") == 2) {
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+                Date date = new Date();
+
+                try {
+                    date = formatter.parse(res.getString("date"));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Calendar c = Calendar.getInstance();        // Checking if booking is old
+                c.setTime(date);
+                c.add(Calendar.DATE, 1);
+                date = c.getTime();
+
+
+                Date todayDate = new Date();
+
+                if (todayDate.after(date)) {
+                    base.deleteBooking(document.getDocID(), res.getInt("userID"));   //Deleting old booking
+
+                    ResultSet queue = base.getQueue(document.getDocID());
+
+                    if (queue.next())
+                        notifyUser(queue.getInt(userID), document.getDocID());
+                }
+            }
+        }
     }
 
     public boolean returnDoc(int copyID) throws SQLException {  //Method returns document to library by ID of copy. True if alright, false if it is wrong
@@ -199,6 +284,7 @@ public class Librarian extends Users {
 
         int docID = r.getInt("commonID");
 
+        deleteOldBookings(new Documents(docID));
         ResultSet queue = base.getQueue(docID);
 
         if (queue.next())

@@ -126,7 +126,7 @@ public class Documents {
     }
 
     public boolean isReference() {
-        return (counter.get() == 1);
+        return (counter.get() <= 1);
     }
 
 

@@ -96,6 +96,11 @@ public class Patron extends Users{
         return 3;
     }
 
+    private void notifyUser(int userID, int docID){             //need to modify user
+        base.setDateToCheckOut(docID, userID, getDate());
+
+    }
+
     private void deleteOldBookings(Documents document) throws SQLException {
 
         ResultSet res = base.getQueue(document.getDocID());
@@ -108,7 +113,7 @@ public class Patron extends Users{
                 Date date = new Date();
 
                 try {
-                    date = formatter.parse(res.getString("deleteBookingDate"));
+                    date = formatter.parse(res.getString("date"));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -121,18 +126,61 @@ public class Patron extends Users{
 
                 Date todayDate = new Date();
 
-                if (todayDate.after(date))
-                    base.deleteBooking(document.getDocID(), userID);   //Deleting old booking
+                if (todayDate.after(date)) {
+                    base.deleteBooking(document.getDocID(), res.getInt("userID"));   //Deleting old booking
+
+                    ResultSet queue = base.getQueue(document.getDocID());
+
+                    if (queue.next())
+                        notifyUser(queue.getInt(userID), document.getDocID());
+                }
             }
         }
     }
 
-    public int checkOut(Documents document) throws SQLException {  //returns 0 if user can't take this document, user was added to queue
-                                                                     //returns 1 if document is already checkedOut by user
+    public String getDateToReturn(Documents document){
+
+        int d = 7;
+
+        Documents doc = new Documents(document.getDocID());
+
+        if (getStatus() != "Visiting Professor") {
+            d += 7;
+
+            if (doc.getType() != "AV" && doc.getType() != "journal" && !doc.isBestseller()){
+
+                if (getStatus() == "Professor" || getStatus() == "Instructor")
+                    d += 14;
+                else
+                    d += 7;
+            }
+        }
+
+
+        Date date = new Date();
+
+        while(d > 0){
+            d--;
+
+            Calendar c = Calendar.getInstance();        // Checking if booking is old
+            c.setTime(date);
+            c.add(Calendar.DATE, 1);
+            date = c.getTime();
+        }
+
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+
+        return f.format(d);
+    }
+
+    public IntAndString checkOut(Documents document) throws SQLException {  //returns 0 if user can't take this document, user was added to queue
+                                                                     //returns 1 if document is already checked out by user
                                                                     //returns 2 if user is already in a queue at the moment
                                                                     //returns 3 if user can checkOut book
                                                                     //returns 4 if user already booked this document and now he can take it
-       document = new Documents(document.getDocID());
+        String date = "";
+
+        document = new Documents(document.getDocID());
 
         deleteOldBookings(document);
 
@@ -142,7 +190,7 @@ public class Patron extends Users{
             ResultSet res1 = base.copyInfo(res.getInt("copyID"));
 
             if (res1.getInt("сommonID") == document.getDocID())
-                return 1;
+                return new IntAndString(1, date);
         }
 
         res = base.getQueue(document.getDocID());
@@ -160,10 +208,10 @@ public class Patron extends Users{
                     base.deleteBooking(document.getDocID(), userID);
                     base.counterDown(document.getDocID());
 
-                    return 4;
+                    return new IntAndString(4, getDateToReturn(document));
                 }
 
-                return 2;
+                return new IntAndString(2, date);
             }
 
             current_counter--;
@@ -183,7 +231,7 @@ public class Patron extends Users{
         }
 
         if (current_counter < 2){
-            return 0;
+            return new IntAndString(0, date);
         }
 
         int [] copies = base.findCopyID(document.getDocID());
@@ -192,7 +240,7 @@ public class Patron extends Users{
         base.deleteBooking(document.getDocID(), userID);
         base.counterDown(document.getDocID());
 
-        return 3;
+        return new IntAndString(3, getDateToReturn(document));
     }
 
     public String getDate(){
