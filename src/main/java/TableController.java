@@ -20,8 +20,6 @@ public class TableController {
     @FXML
     private Button back;
     @FXML
-    private Button checkOut;
-    @FXML
     private Button remove;
     @FXML
     private Label titleLabel;
@@ -38,8 +36,6 @@ public class TableController {
         remove.setVisible(false);
         if (Login.current instanceof Patron) {
             order = ((Patron) Login.current).bookedDocuments();
-            checkOut.setDisable(true);
-            checkOut.setVisible(false);
         }
         else {
             p = new Patron(LibrarianController.userId);
