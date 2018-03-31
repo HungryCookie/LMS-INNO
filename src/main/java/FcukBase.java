@@ -412,7 +412,7 @@ public class FcukBase implements FcukBaseInterface{
     }
 
     public int returnDoc(int copyID) {
-        String query = "update copies set availability = 'T', userID = 0, date = null where copyID = ?";
+        String query = "update copies set availability = 'T', userID = 0, date = null, renew = 'F' where copyID = ?";
         String check = "select * from copies where copyID = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(check);
@@ -684,18 +684,25 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public boolean renew(int copyID, int userID, String date) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * from copies where copyID = " + copyID + " and userID = " + userID);
+            if (rs.getString("renew").equals("T")) {return false;}
+            PreparedStatement statement1 = connection.prepareStatement("update copies set date = ?, renew = 'T' where copyID = " + copyID + " and userID = " + userID);
+            statement1.setString(1, date);
+            statement1.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        b.clearQueue(2);
-        //b.book(2,4,3, "2000-12-12");
-        /*b.book(2,5,2);
-        b.book(2,6,4);
-        b.book(2,7,3);*/
-        //b.clearQueue(2);
-        ResultSet rs = b.getQueue(2);
-        while (rs.next()) {
-            System.out.println(rs.getString("date"));
-        }
+        //System.out.println(b.renew(2,1, "2018-05-26"));
+        //b.checkOut(1,2,"2018-03-18");
         //b.addNewDocument("Introduction to Algorithms", "MIT Press",  "2009", "Third Edition", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", 4, 100, "F", "F");
         //b.addNewUser("Sergey Afonso", "30001", "Via Margutta, 3", "FacultyMember", "qwerty");
         //b.decreaseFine(1, 50);
