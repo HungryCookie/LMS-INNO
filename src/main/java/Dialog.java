@@ -8,7 +8,6 @@ public class Dialog {
     private Label pass;
     @FXML
     private Label message;
-    private PatronController pc = new PatronController();
 
     @FXML
     private void initialize() {
@@ -25,17 +24,50 @@ public class Dialog {
         else {
             id.setText("");
             pass.setText("");
-            switch (pc.checkCode.getInt()) {
-                case 0: message.setText("Unfortunately, document is unavailable. You were added to the queue. ");
-                case 1: message.setText("You've already checked out this document. Don't forget to return it in time.");
-                case 2: message.setText("Document is still not available");
+            System.out.println(PatronController.checkCode.getInt());
+            switch (PatronController.checkCode.getInt()) {
+                case 0: {
+                    message.setText("Unfortunately, document is unavailable. You were added to the queue. ");
+                    break;
+                }
+                case 1: {
+                    message.setText("You've already checked out this document. Don't forget to return it in time.");
+                    break;
+                }
+                case 2: {
+                    message.setText("Document is still not available");
+                    break;
+                }
                 case 3: {
                     message.setText("This document was successfully checked out for you due to");
-                    id.setText(pc.checkCode.getString());
+                    id.setText(PatronController.checkCode.getString());
+                    break;
                 }
                 case 4: {
                     message.setText("Thank you for waiting. Document was checked out due to");
-                    id.setText(pc.checkCode.getString());
+                    id.setText(PatronController.checkCode.getString());
+                    break;
+                }
+                case 5: {
+                    message.setText("Sorry, you have unpaid fine");
+                    break;
+                }
+                case 6: {
+                    message.setText("You have already overused document, please return it");
+                    break;
+                }
+                case 7: {
+                    message.setText("Successfully renewed, new date:");
+                    id.setText(PatronController.checkCode.getString());
+                    break;
+                }
+                case 8: {
+                    message.setText("You have already renewed it once");
+                    break;
+                }
+                default: {
+                    message.setText("No code");
+                    break;
                 }
             }
         }
