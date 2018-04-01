@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import static java.lang.Math.min;
+
 public class Patron extends Users{
     private int currentFine;
     private FcukBase base = new FcukBase();
@@ -247,25 +249,98 @@ public class Patron extends Users{
         return new IntAndString(3, getDateToReturn(document));
     }
 
-    public IntAndString renew(Document document){
+    int calculateFine(int userID, int docID, String dateS){
+
+        int d = 7;
+
+        Patron user = new Patron(userID);
+        Documents doc = new Documents(docID);
+
+        if (user.getStatus() != "Visiting Professor") {
+            d += 7;
+
+            if (doc.getType() != "AV" && doc.getType() != "journal" && !doc.isBestseller()){
+
+                if (user.getStatus() == "Professor" || user.getStatus() == "Instructor")
+                    d += 14;
+                else
+                    d += 7;
+            }
+        }
+
+        int gone = 0;
+
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date date = new Date();
+
+        try {
+            date = formatter.parse(dateS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Date todayDate = new Date();
+
+        while(todayDate.after(date)){
+            gone++;
+
+            Calendar c = Calendar.getInstance();        // Checking if booking is old
+            c.setTime(date);
+            c.add(Calendar.DATE, 1);
+            date = c.getTime();
+        }
+
+        if (d >= gone)
+            return 0;
+
+        return min(doc.getCost(), 100 * (gone - d));
+    }
+
+    public IntAndString renew(Documents document) throws SQLException {//return 0 if this user didn't check out this document
+                                                                        //return 1 if user have to return document to library, he reached a fine and can't renew this document
+                                                                        //return 2 if successful
+                                                                        //return 3 if this user already renewed this document
         
         String ans = "";
        
-        ResultSet res = checkdedOut(userID);
+        ResultSet res = checkedOut(userID.get());
         
         boolean t = false;
+        int copyID = 0;
+        String date = "";
         
         while(res.next()){
-            ResultSer res1 = base.copyInfo(res.getInt("copyID"));
+            ResultSet res1 = base.copyInfo(res.getInt("copyID"));
             
-            if (document.getDocID() == res1.getInt("commonID"))
+            if (document.getDocID() == res1.getInt("commonID")) {
                 t = true;
+                date = res1.getString("date");
+                copyID = res.getInt("copyID");
+            }
         }
         
         if (!t)
             return new IntAndString(0, ans);
-        
-        return new IntAndString(1, ans);
+
+        if (calculateFine(userID.get(), document.getDocID(), date) > 0)
+            return new IntAndString(1, ans);
+
+
+        ans = getDateToReturn(document);
+
+        if (getStatus() == "Visiting Professor"){
+
+            base.renew(copyID, userID.get(), ans, "F");
+
+            return new IntAndString(2, ans);
+        }
+
+        if (base.renew(copyID, userID.get(), ans, "T"))
+            return new IntAndString(2, ans);
+
+        return new IntAndString(3, ans);
        
         
     }
