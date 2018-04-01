@@ -184,29 +184,11 @@ public class Librarian extends Users {
 
     int calculateFine(int userID, int docID, String dateS){
 
-        int d = 7;
-
-        Patron user = new Patron(userID);
-        Documents doc = new Documents(docID);
-
-        if (user.getStatus() != "Visiting Professor") {
-            d += 7;
-
-            if (doc.getType() != "AV" && doc.getType() != "journal" && !doc.isBestseller()){
-
-                if (user.getStatus() == "Professor" || user.getStatus() == "Instructor")
-                    d += 14;
-                else
-                    d += 7;
-            }
-        }
-
         int gone = 0;
-
-
+        Documents doc = new Documents(docID);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
         Date date = new Date();
+
 
         try {
             date = formatter.parse(dateS);
@@ -215,6 +197,9 @@ public class Librarian extends Users {
         }
 
         Date todayDate = new Date();
+
+        if (!todayDate.after(date))
+            return 0;
 
         while(todayDate.after(date)){
             gone++;
@@ -225,10 +210,7 @@ public class Librarian extends Users {
             date = c.getTime();
         }
 
-        if (d >= gone)
-            return 0;
-
-        return min(doc.getCost(), 100 * (gone - d));
+        return min(doc.getCost(), 100 * gone);
     }
 
     private void deleteOldBookings(Documents document) throws SQLException {
