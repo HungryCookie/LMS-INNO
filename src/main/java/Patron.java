@@ -177,7 +177,7 @@ public class Patron extends Users{
 
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 
-        return f.format(d);
+        return f.format(date);
     }
 
     public IntAndString checkOut(Documents document) throws SQLException {  //returns 0 if user can't take this document, user was added to queue
