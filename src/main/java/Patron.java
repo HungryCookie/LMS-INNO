@@ -165,6 +165,7 @@ public class Patron extends Users{
 
         Date date = new Date();
 
+        d--;
         while(d > 0){
             d--;
 
@@ -210,7 +211,7 @@ public class Patron extends Users{
 
                     int [] copies = base.findCopyID(document.getDocID());
 
-                    base.checkOut(userID.get(), copies[0], getDate());
+                    base.checkOut(userID.get(), copies[0], getDateToReturn(document));
                     base.deleteBooking(document.getDocID(), userID.get());
                     base.counterDown(document.getDocID());
 
@@ -242,7 +243,7 @@ public class Patron extends Users{
 
         int [] copies = base.findCopyID(document.getDocID());
 
-        base.checkOut(userID.get(), copies[0], getDate());
+        base.checkOut(userID.get(), copies[0], getDateToReturn(document));
         base.deleteBooking(document.getDocID(), userID.get());
         base.counterDown(document.getDocID());
 
