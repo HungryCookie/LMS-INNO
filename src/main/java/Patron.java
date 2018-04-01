@@ -103,7 +103,8 @@ public class Patron extends Users{
         base.setDateToCheckOut(docID, userID, getDate());
 
     }
-
+    
+    
     private void deleteOldBookings(Documents document) throws SQLException {
 
         ResultSet res = base.getQueue(document.getDocID());
@@ -246,6 +247,36 @@ public class Patron extends Users{
         return new IntAndString(3, getDateToReturn(document));
     }
 
+    public IntAndString renew(Document document){
+        
+        String ans = "";
+       
+        ResultSet res = checkdedOut(userID);
+        
+        boolean t = false;
+        
+        while(res.next()){
+            ResultSer res1 = base.copyInfo(res.getInt("copyID"));
+            
+            if (document.getDocID() == res1.getInt("commonID"))
+                t = true;
+        }
+        
+        if (!t)
+            return new IntAndString(0, ans);
+        
+        return new IntAndString(1, ans);
+       
+        
+    }
+    
+    public ResultSet checkedOut(int userID){ //Method returns a list of checked out Documents with number of copy he took of user with userID
+        if (!base.checkUserID(userID))
+            return null;
+
+        return base.checkedOutByUserID(userID);
+    }
+    
     public String getDate(){
         Date d = new Date();
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
