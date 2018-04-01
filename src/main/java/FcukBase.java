@@ -684,13 +684,14 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
-    public boolean renew(int copyID, int userID, String date) {
+    public boolean renew(int copyID, int userID, String date, String re) {
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * from copies where copyID = " + copyID + " and userID = " + userID);
             if (rs.getString("renew").equals("T")) {return false;}
-            PreparedStatement statement1 = connection.prepareStatement("update copies set date = ?, renew = 'T' where copyID = " + copyID + " and userID = " + userID);
+            PreparedStatement statement1 = connection.prepareStatement("update copies set date = ?, renew = ? where copyID = " + copyID + " and userID = " + userID);
             statement1.setString(1, date);
+            statement1.setString(2, re);
             statement1.execute();
             return true;
         } catch (SQLException e) {
@@ -701,7 +702,9 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        //System.out.println(b.renew(2,1, "2018-05-26"));
+        b.returnDoc(2);
+        //b.checkOut(1,2, "2018-03-18");
+        //System.out.println(b.renew(2,1, "2018-12-01", "F"));
         //b.checkOut(1,2,"2018-03-18");
         //b.addNewDocument("Introduction to Algorithms", "MIT Press",  "2009", "Third Edition", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", 4, 100, "F", "F");
         //b.addNewUser("Sergey Afonso", "30001", "Via Margutta, 3", "FacultyMember", "qwerty");
