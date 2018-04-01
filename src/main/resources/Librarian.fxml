@@ -65,6 +65,17 @@
                            <Font name="Lucida Console" size="15.0" />
                         </font>
                      </Label>
+                     <Button fx:id="payfine" layoutX="316.0" layoutY="206.0" mnemonicParsing="false" onAction="#payfine" prefHeight="26.0" prefWidth="74.0" text="Pay Fine">
+                        <font>
+                           <Font name="Lucida Console" size="12.0" />
+                        </font>
+                     </Button>
+                     <TextField fx:id="fine" layoutX="316.0" layoutY="171.0" onAction="#ok" prefHeight="25.0" prefWidth="75.0" />
+                     <Button fx:id="ok" layoutX="403.0" layoutY="171.0" mnemonicParsing="false" onAction="#ok" text="OK">
+                        <font>
+                           <Font name="Lucida Console" size="12.0" />
+                        </font>
+                     </Button>
                         </children>
                     </AnchorPane>
                 </content>
