@@ -136,7 +136,7 @@ public class PatronController {
     @FXML
     private void info() throws Exception{
         Parent tab = FXMLLoader.load(getClass().getResource("/table.fxml"));
-        tableScene = new Scene(tab);
+        tableScene = new Scene(tab, 1200, 400);
         Main.window.setScene(tableScene);
     }
 }
