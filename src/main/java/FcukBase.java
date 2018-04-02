@@ -524,8 +524,8 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
-    public void documentModify(int id, String name, String author) {
-        String query = "update documents set name = '" + name + "', author = '" + author + "' where id = " + id;
+    public void documentModify(int id, String name, String author, int cost) {
+        String query = "update documents set name = '" + name + "', author = '" + author + "', cost = " + cost + " where id = " + id;
         try {
             Statement statement = connection.createStatement();
             statement.execute(query);
