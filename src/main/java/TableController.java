@@ -1,10 +1,18 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class TableController {
@@ -20,6 +28,8 @@ public class TableController {
     @FXML
     private Button back;
     @FXML
+    private Button renew;
+    @FXML
     private Button remove;
     @FXML
     private Label titleLabel;
@@ -29,26 +39,45 @@ public class TableController {
     private int docID;
 
     @FXML
-    private void initialize() {
+    private void initialize() throws SQLException {
         ObservableList<Documents> docs = FXCollections.observableArrayList();
-        Documents[] order;
+        ResultSet order;
         remove.setDisable(true);
         remove.setVisible(false);
+        renew.setVisible(false);
+        renew.setDisable(true);
+
         if (Login.current instanceof Patron) {
-            order = ((Patron) Login.current).bookedDocuments();
+            order = ((Patron) Login.current).checkedOut(Login.current.getID());
+            renew.setVisible(true);
+            renew.setDisable(false);
         }
         else {
             p = new Patron(LibrarianController.userId);
-            order = p.bookedDocuments();
+            order = p.checkedOut(p.getID());
+            remove.setDisable(false);
+            remove.setVisible(true);
+            remove.setText("Return");
         }
-        for (Documents i : order) {
-            docs.add(i);
+        while (order.next()) {
+            docs.add(new Documents(order.getString("name")));
         }
         title.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         author.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
         type.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
         table.setItems(docs);
         table.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> showInfo(newValue)));
+    }
+
+    @FXML
+    private void renew() throws SQLException, IOException {
+        IntAndString res = ((Patron)Login.current).renew(table.getSelectionModel().getSelectedItem());
+        PatronController.checkCode = new IntAndString(5 + res.getInt(), res.getString());
+        Stage dialog = new Stage();
+        dialog.setTitle("Renew document");
+        Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
+        dialog.setScene(new Scene(root));
+        dialog.show();
     }
 
     private void showInfo(Documents doc) {
@@ -60,17 +89,17 @@ public class TableController {
     }
 
     @FXML
-    private void remove() {
-
-    }
-
-    @FXML
-    private void checkOut() {
-        Documents doc = new Documents(docID);
-        /*boolean success = ((Librarian)Login.current).checkOut(LibrarianController.userId, doc);
-        if (success) {
-            table.getItems().remove(table.getSelectionModel().selectedIndexProperty().get());
-        }*/
+    private void remove() throws SQLException {
+        ResultSet rs = ((Librarian)Login.current).checkedOut(LibrarianController.userId);
+        String title = table.getSelectionModel().getSelectedItem().getName();
+        int copyID = 0;
+        while (rs.next()) {
+            if (rs.getString("name").equals(title)) copyID = rs.getInt("copyID");
+        }
+        System.out.println(copyID);
+        ((Librarian)Login.current).returnDoc(copyID);
+        int index = table.getSelectionModel().getSelectedIndex();
+        table.getItems().remove(index);
     }
 
     @FXML

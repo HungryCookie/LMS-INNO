@@ -182,6 +182,16 @@ public class Librarian extends Users {
 
     }
 
+    public boolean payFine(int userID, int cash){
+
+        if (!base.checkUserID(userID))
+            return false;
+
+        base.increaseFine(userID, -cash);
+
+        return true;
+    }
+
     int calculateFine(int userID, int docID, String dateS){
 
         int gone = 0;
@@ -210,7 +220,7 @@ public class Librarian extends Users {
             date = c.getTime();
         }
 
-        return min(doc.getCost(), 100 * gone);
+        return min(doc.getCost(), 100 * (gone - 1));
     }
 
     private void deleteOldBookings(Documents document) throws SQLException {

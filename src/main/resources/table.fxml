@@ -21,11 +21,6 @@
             <Font name="Lucida Console" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="checkOut" layoutX="451.0" layoutY="334.0" mnemonicParsing="false" onAction="#checkOut" text="Check Out">
-         <font>
-            <Font name="Lucida Console" size="13.0" />
-         </font>
-      </Button>
       <Button fx:id="remove" layoutX="559.0" layoutY="334.0" mnemonicParsing="false" onAction="#remove" text="Remove">
          <font>
             <Font name="Lucida Console" size="13.0" />
@@ -41,5 +36,10 @@
             <Font name="Lucida Console" size="19.0" />
          </font>
       </Label>
+      <Button fx:id="renew" layoutX="481.0" layoutY="334.0" mnemonicParsing="false" onAction="#renew" prefHeight="25.0" prefWidth="65.0" text="Renew">
+         <font>
+            <Font name="Lucida Console" size="13.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
