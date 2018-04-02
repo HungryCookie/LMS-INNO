@@ -371,15 +371,19 @@ public class FcukBase implements FcukBaseInterface{
         return 0;
     }
 
-    public int addNewDocument(String name, String author) {
-        String query = "insert into documents (name, author, type) values (?, ?, 'AV')";
+    public int addNewDocument(String name, String author, int counter, int cost) {
+        String query = "insert into documents (name, author, type, cost, counter) values (?, ?, 'AV', ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
             statement.setString(2, author);
+            statement.setInt(3, cost);
+            statement.setInt(4, counter);
             statement.execute();
             int newID = connection.createStatement().executeQuery("select last_insert_rowid()").getInt(1);
-            addCopy(newID);
+            for (int i = 0; i < counter; i++) {
+                addCopy(newID);
+            }
             return newID;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -702,7 +706,8 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        b.returnDoc(2);
+        //b.clear();
+        //b.returnDoc(2);
         //b.checkOut(1,2, "2018-03-18");
         //System.out.println(b.renew(2,1, "2018-12-01", "F"));
         //b.checkOut(1,2,"2018-03-18");

@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbf9824c-e9ed-4ce3-a47e-dff4a8f36164" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Patron.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/databaseTest.sqlite" afterPath="$PROJECT_DIR$/databaseTest.sqlite" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Documents.class" afterPath="$PROJECT_DIR$/target/classes/Documents.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Users.class" afterPath="$PROJECT_DIR$/target/classes/Users.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/FcukBase.java" afterPath="$PROJECT_DIR$/src/main/java/FcukBase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Librarian.java" afterPath="$PROJECT_DIR$/src/main/java/Librarian.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,8 +51,8 @@
       <file leaf-file-name="FcukBase.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="704" column="8" lean-forward="false" selection-start-line="704" selection-start-column="8" selection-end-line="704" selection-end-column="8" />
+            <state relative-caret-position="1218">
+              <caret line="708" column="10" lean-forward="false" selection-start-line="708" selection-start-column="10" selection-end-line="708" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#FcukBase#0;class#FcukBase#0" expanded="false" />
@@ -63,14 +67,14 @@
                 <element signature="method#getDocumentByAuthor#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#book#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#findBookedDocuments#0;class#FcukBase#0" expanded="false" />
+                <element signature="e#7209#7218#0" expanded="true" />
                 <element signature="method#findUserByBookedDocument#0;class#FcukBase#0" expanded="false" />
+                <element signature="e#7918#7927#0" expanded="true" />
                 <element signature="method#findCopyID#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#checkUserID#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#checkDocumentByID#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#checkDocumentByName#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#addNewUser#0;class#FcukBase#0" expanded="false" />
-                <element signature="method#addNewDocument#0;class#FcukBase#0" expanded="false" />
-                <element signature="method#addNewDocument#1;class#FcukBase#0" expanded="false" />
                 <element signature="method#addCopy#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#checkOut#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#returnDoc#0;class#FcukBase#0" expanded="false" />
@@ -92,83 +96,102 @@
                 <element signature="method#clearQueue#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#setDateToCheckOut#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#renew#0;class#FcukBase#0" expanded="false" />
-                <marker date="1522593977572" expanded="true" signature="748:767" ph="select * fro... users" />
-                <marker date="1522593977572" expanded="true" signature="1078:1101" ph="select * fro... documents" />
-                <marker date="1522593977572" expanded="true" signature="1078:1124" ph="select * fro... documents" />
-                <marker date="1522593977572" expanded="true" signature="1385:1403" ph="delete from " />
-                <marker date="1522593977572" expanded="true" signature="1396:1403" ph="DROP table c... " />
-                <marker date="1522593977572" expanded="true" signature="1435:1454" ph="DELETE from " />
-                <marker date="1522593977572" expanded="true" signature="1485:1515" ph="DELETE from " />
-                <marker date="1522593977572" expanded="true" signature="1546:1567" ph="delete from " />
-                <marker date="1522593977572" expanded="true" signature="1598:1653" ph="update sqlit... " />
-                <marker date="1522593977572" expanded="true" signature="1684:1743" ph="update sqlit... " />
-                <marker date="1522593977572" expanded="true" signature="1774:1830" ph="update sqlit... " />
-                <marker date="1522593977572" expanded="true" signature="1900:1927" ph="select count... copies" />
-                <marker date="1522593977572" expanded="true" signature="2262:2288" ph="select count... users" />
-                <marker date="1522593977572" expanded="true" signature="2634:2669" ph="select * fro... users" />
-                <marker date="1522593977572" expanded="true" signature="3180:3219" ph="select * fro... documents" />
-                <marker date="1522593977572" expanded="true" signature="3734:3772" ph="select * fro... documents" />
-                <marker date="1522593977572" expanded="true" signature="4292:4332" ph="select * fro... documents" />
-                <marker date="1522593977572" expanded="true" signature="4856:4889" ph="insert into booking... " />
-                <marker date="1522593977572" expanded="true" signature="4922:4970" ph="update docum... " />
-                <marker date="1522593977572" expanded="true" signature="5007:5059" ph="update docum... " />
-                <marker date="1522593977572" expanded="true" signature="6249:6324" ph="insert into booking... " />
-                <marker date="1522593977572" expanded="true" signature="6627:6740" ph="insert into booking... " />
-                <marker date="1522593977572" expanded="true" signature="6627:6760" ph="insert into booking... " />
-                <marker date="1522593977572" expanded="true" signature="7094:7137" ph="select bookI... booking" />
-                <marker date="1522593977572" expanded="true" signature="7803:7846" ph="select userI... booking" />
-                <marker date="1522593977572" expanded="true" signature="8457:8524" ph="select copyI... copies" />
-                <marker date="1522593977572" expanded="true" signature="9382:9417" ph="select * fro... users" />
-                <marker date="1522593977572" expanded="true" signature="9926:9965" ph="select * fro... documents" />
-                <marker date="1522593977572" expanded="true" signature="10484:10522" ph="select * fro... documents" />
-                <marker date="1522593977572" expanded="true" signature="11097:11184" ph="insert into users... " />
-                <marker date="1522593977572" expanded="true" signature="11605:11631" ph="select last_... " />
-                <marker date="1522593977572" expanded="true" signature="11995:12173" ph="insert into documents... " />
-                <marker date="1522593977572" expanded="true" signature="12764:12790" ph="select last_... " />
-                <marker date="1522593977572" expanded="true" signature="13111:13173" ph="insert into documents... " />
-                <marker date="1522593977572" expanded="true" signature="13454:13480" ph="select last_... " />
-                <marker date="1522593977572" expanded="true" signature="13713:13772" ph="insert into copies... " />
-                <marker date="1522593977572" expanded="true" signature="14114:14189" ph="update copie... " />
-                <marker date="1522593977572" expanded="true" signature="14589:14680" ph="update copie... " />
-                <marker date="1522593977572" expanded="true" signature="14707:14744" ph="select * fro... copies" />
-                <marker date="1522593977572" expanded="true" signature="15380:15424" ph="select commo... copies" />
-                <marker date="1522593977572" expanded="true" signature="15909:16060" ph="select copyI... " />
-                <marker date="1522593977572" expanded="true" signature="16608:16761" ph="select copyI... " />
-                <marker date="1522593977572" expanded="true" signature="17238:17332" ph="update users... " />
-                <marker date="1522593977572" expanded="true" signature="18026:18184" ph="update docum... " />
-                <marker date="1522593977572" expanded="true" signature="18881:18962" ph="update docum... " />
-                <marker date="1522593977572" expanded="true" signature="19236:19269" ph="delete from " />
-                <marker date="1522593977572" expanded="true" signature="19667:19702" ph="delete from " />
-                <marker date="1522593977572" expanded="true" signature="20103:20148" ph="update docum... " />
-                <marker date="1522593977572" expanded="true" signature="20180:20222" ph="select count... documents" />
-                <marker date="1522593977572" expanded="true" signature="20929:20987" ph="select copyI... " />
-                <marker date="1522593977572" expanded="true" signature="21390:21438" ph="select avail... copies" />
-                <marker date="1522593977572" expanded="true" signature="22026:22077" ph="delete from " />
-                <marker date="1522593977572" expanded="true" signature="22562:22598" ph="select * fro... booking" />
-                <marker date="1522593977572" expanded="true" signature="22562:22621" ph="select * fro... booking" />
-                <marker date="1522593977572" expanded="true" signature="22562:22630" ph="select * fro... booking" />
-                <marker date="1522593977572" expanded="true" signature="22829:22865" ph="select * fro... copies" />
-                <marker date="1522593977572" expanded="true" signature="23344:23375" ph="select * fro... users" />
-                <marker date="1522593977572" expanded="true" signature="23534:23557" ph="update users... " />
-                <marker date="1522593977572" expanded="true" signature="23534:23584" ph="update users... " />
-                <marker date="1522593977572" expanded="true" signature="23534:23585" ph="update users... " />
-                <marker date="1522593977572" expanded="true" signature="23929:23964" ph="delete from " />
-                <marker date="1522593977572" expanded="true" signature="24218:24259" ph="update booki... " />
-                <marker date="1522593977572" expanded="true" signature="24627:24662" ph="SELECT * fro... copies" />
-                <marker date="1522593977572" expanded="true" signature="24627:24663" ph="SELECT * fro... copies" />
-                <marker date="1522593977572" expanded="true" signature="24627:24688" ph="SELECT * fro... copies" />
-                <marker date="1522593977572" expanded="true" signature="24627:24690" ph="SELECT * fro... copies" />
-                <marker date="1522593977572" expanded="true" signature="24627:24691" ph="SELECT * fro... copies" />
-                <marker date="1522593977572" expanded="true" signature="24843:24896" ph="update copie... " />
-                <marker date="1522593977572" expanded="true" signature="24843:24923" ph="update copie... " />
-                <marker date="1522593977572" expanded="true" signature="24843:24924" ph="update copie... " />
+                <marker date="1522689630142" expanded="true" signature="748:767" ph="select * fro... users" />
+                <marker date="1522689630142" expanded="true" signature="1078:1101" ph="select * fro... documents" />
+                <marker date="1522689630142" expanded="true" signature="1078:1124" ph="select * fro... documents" />
+                <marker date="1522689630142" expanded="true" signature="1385:1403" ph="delete from " />
+                <marker date="1522689630142" expanded="true" signature="1396:1403" ph="DROP table c... " />
+                <marker date="1522689630142" expanded="true" signature="1435:1454" ph="DELETE from " />
+                <marker date="1522689630142" expanded="true" signature="1485:1515" ph="DELETE from " />
+                <marker date="1522689630142" expanded="true" signature="1546:1567" ph="delete from " />
+                <marker date="1522689630142" expanded="true" signature="1598:1653" ph="update sqlit... " />
+                <marker date="1522689630142" expanded="true" signature="1684:1743" ph="update sqlit... " />
+                <marker date="1522689630142" expanded="true" signature="1774:1830" ph="update sqlit... " />
+                <marker date="1522689630142" expanded="true" signature="1900:1927" ph="select count... copies" />
+                <marker date="1522689630142" expanded="true" signature="2262:2288" ph="select count... users" />
+                <marker date="1522689630142" expanded="true" signature="2634:2669" ph="select * fro... users" />
+                <marker date="1522689630142" expanded="true" signature="3180:3219" ph="select * fro... documents" />
+                <marker date="1522689630142" expanded="true" signature="3734:3772" ph="select * fro... documents" />
+                <marker date="1522689630142" expanded="true" signature="4292:4332" ph="select * fro... documents" />
+                <marker date="1522689630142" expanded="true" signature="4856:4889" ph="insert into booking... " />
+                <marker date="1522689630142" expanded="true" signature="4922:4970" ph="update docum... " />
+                <marker date="1522689630142" expanded="true" signature="5007:5059" ph="update docum... " />
+                <marker date="1522689630142" expanded="true" signature="6249:6324" ph="insert into booking... " />
+                <marker date="1522689630142" expanded="true" signature="6627:6740" ph="insert into booking... " />
+                <marker date="1522689630142" expanded="true" signature="6627:6760" ph="insert into booking... " />
+                <marker date="1522689630142" expanded="true" signature="7094:7137" ph="select bookI... booking" />
+                <marker date="1522689630142" expanded="true" signature="7803:7846" ph="select userI... booking" />
+                <marker date="1522689630142" expanded="true" signature="8457:8524" ph="select copyI... copies" />
+                <marker date="1522689630142" expanded="true" signature="9382:9417" ph="select * fro... users" />
+                <marker date="1522689630142" expanded="true" signature="9926:9965" ph="select * fro... documents" />
+                <marker date="1522689630142" expanded="true" signature="10484:10522" ph="select * fro... documents" />
+                <marker date="1522689630142" expanded="true" signature="11097:11184" ph="insert into users... " />
+                <marker date="1522689630142" expanded="true" signature="11605:11631" ph="select last_... " />
+                <marker date="1522689630142" expanded="true" signature="11995:12173" ph="insert into documents... " />
+                <marker date="1522689630142" expanded="true" signature="12764:12790" ph="select last_... " />
+                <marker date="1522689630142" expanded="true" signature="13134:13217" ph="insert into documents... " />
+                <marker date="1522689630142" expanded="true" signature="13579:13605" ph="select last_... " />
+                <marker date="1522689630142" expanded="true" signature="13904:13963" ph="insert into copies... " />
+                <marker date="1522689630142" expanded="true" signature="14305:14380" ph="update copie... " />
+                <marker date="1522689630142" expanded="true" signature="14780:14871" ph="update copie... " />
+                <marker date="1522689630142" expanded="true" signature="14898:14935" ph="select * fro... copies" />
+                <marker date="1522689630142" expanded="true" signature="15571:15615" ph="select commo... copies" />
+                <marker date="1522689630142" expanded="true" signature="16100:16251" ph="select copyI... " />
+                <marker date="1522689630142" expanded="true" signature="16799:16952" ph="select copyI... " />
+                <marker date="1522689630142" expanded="true" signature="17429:17523" ph="update users... " />
+                <marker date="1522689630142" expanded="true" signature="18217:18375" ph="update docum... " />
+                <marker date="1522689630142" expanded="true" signature="19072:19153" ph="update docum... " />
+                <marker date="1522689630142" expanded="true" signature="19427:19460" ph="delete from " />
+                <marker date="1522689630142" expanded="true" signature="19858:19893" ph="delete from " />
+                <marker date="1522689630142" expanded="true" signature="20294:20339" ph="update docum... " />
+                <marker date="1522689630142" expanded="true" signature="20371:20413" ph="select count... documents" />
+                <marker date="1522689630142" expanded="true" signature="21120:21178" ph="select copyI... " />
+                <marker date="1522689630142" expanded="true" signature="21581:21629" ph="select avail... copies" />
+                <marker date="1522689630142" expanded="true" signature="22217:22268" ph="delete from " />
+                <marker date="1522689630142" expanded="true" signature="22753:22789" ph="select * fro... booking" />
+                <marker date="1522689630142" expanded="true" signature="22753:22812" ph="select * fro... booking" />
+                <marker date="1522689630142" expanded="true" signature="22753:22821" ph="select * fro... booking" />
+                <marker date="1522689630142" expanded="true" signature="23020:23056" ph="select * fro... copies" />
+                <marker date="1522689630142" expanded="true" signature="23535:23566" ph="select * fro... users" />
+                <marker date="1522689630142" expanded="true" signature="23725:23748" ph="update users... " />
+                <marker date="1522689630142" expanded="true" signature="23725:23775" ph="update users... " />
+                <marker date="1522689630142" expanded="true" signature="23725:23776" ph="update users... " />
+                <marker date="1522689630142" expanded="true" signature="24120:24155" ph="delete from " />
+                <marker date="1522689630142" expanded="true" signature="24409:24450" ph="update booki... " />
+                <marker date="1522689630142" expanded="true" signature="24818:24853" ph="SELECT * fro... copies" />
+                <marker date="1522689630142" expanded="true" signature="24818:24854" ph="SELECT * fro... copies" />
+                <marker date="1522689630142" expanded="true" signature="24818:24879" ph="SELECT * fro... copies" />
+                <marker date="1522689630142" expanded="true" signature="24818:24881" ph="SELECT * fro... copies" />
+                <marker date="1522689630142" expanded="true" signature="24818:24882" ph="SELECT * fro... copies" />
+                <marker date="1522689630142" expanded="true" signature="25034:25087" ph="update copie... " />
+                <marker date="1522689630142" expanded="true" signature="25034:25114" ph="update copie... " />
+                <marker date="1522689630142" expanded="true" signature="25034:25115" ph="update copie... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="booking" pinned="false" current-in-tab="false">
-        <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.booking">
+      <file leaf-file-name="copies" pinned="false" current-in-tab="false">
+        <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.copies">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Librarian.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Librarian.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="72" column="112" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="72" selection-end-column="112" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="documents" pinned="false" current-in-tab="false">
+        <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.documents">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
@@ -178,15 +201,6 @@
       </file>
       <file leaf-file-name="users" pinned="false" current-in-tab="false">
         <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.users">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="copies" pinned="false" current-in-tab="false">
-        <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.copies">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
@@ -223,7 +237,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/49dee97b-b943-43c1-9f61-d0b6ada6a85e/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/Users.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/LibrarianController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/Docinfo.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/Documents.java" />
@@ -233,14 +246,15 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/b97eff73-7ecc-4b65-b60e-b3387fb5a000/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3c4dc7ce-44a5-423e-a425-c83f8c84c730/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/FcukBaseInterface.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Patron.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Librarian.java" />
         <option value="$PROJECT_DIR$/src/main/java/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/Checkout.java" />
         <option value="$PROJECT_DIR$/src/main/java/TableController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ReturnDoc.java" />
         <option value="src:table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.booking" />
         <option value="src:table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.copies" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/Patron.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Librarian.java" />
         <option value="$PROJECT_DIR$/src/main/java/FcukBase.java" />
       </list>
     </option>
@@ -573,14 +587,9 @@
       <workItem from="1522351869984" duration="3945000" />
       <workItem from="1522486345977" duration="1312000" />
       <workItem from="1522569998051" duration="1672000" />
-      <workItem from="1522593659455" duration="320000" />
-    </task>
-    <task id="LOCAL-00023" summary="Minor updates">
-      <created>1517849534695</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1517849534696</updated>
+      <workItem from="1522593659455" duration="1561000" />
+      <workItem from="1522608425382" duration="4661000" />
+      <workItem from="1522689127567" duration="488000" />
     </task>
     <task id="LOCAL-00024" summary="Minor updates">
       <created>1517851073922</created>
@@ -918,11 +927,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522486764087</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Changed renew feature">
+      <created>1522594025632</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1522594025633</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164401000" />
+    <option name="totallyTimeSpent" value="170791000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1102" extended-state="6" />
@@ -936,19 +952,19 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.50216216" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2682081" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45202312" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2682081" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21945946" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1572973" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1572973" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1011,7 +1027,8 @@
     <MESSAGE value="Updated FcukBase&#10;Added new column to the Booking table" />
     <MESSAGE value="Modified checkedOut information" />
     <MESSAGE value="Added renew method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added renew method" />
+    <MESSAGE value="Changed renew feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed renew feature" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1020,13 +1037,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://src:table:/18870715/7ea55067-838e-4ddf-b451-b58202dea00e/main.copies">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
@@ -1261,22 +1271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Librarian.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="135" column="16" lean-forward="false" selection-start-line="135" selection-start-column="16" selection-end-line="135" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1787">
-          <caret line="120" column="0" lean-forward="true" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://src:table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.documents">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
@@ -1298,7 +1292,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.documents">
+    <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.booking">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="93" lean-forward="false" selection-start-line="0" selection-start-column="93" selection-end-line="0" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="345" column="5" lean-forward="false" selection-start-line="342" selection-start-column="33" selection-end-line="345" selection-end-column="5" />
+          <folding>
+            <marker date="1522658103677" expanded="true" signature="10358:10388" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Librarian.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="72" column="112" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="72" selection-end-column="112" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.copies">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -1312,14 +1339,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.booking">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.copies">
+    <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.documents">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -1328,8 +1348,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="704" column="8" lean-forward="false" selection-start-line="704" selection-start-column="8" selection-end-line="704" selection-end-column="8" />
+        <state relative-caret-position="1218">
+          <caret line="708" column="10" lean-forward="false" selection-start-line="708" selection-start-column="10" selection-end-line="708" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FcukBase#0;class#FcukBase#0" expanded="false" />
@@ -1344,14 +1364,14 @@
             <element signature="method#getDocumentByAuthor#0;class#FcukBase#0" expanded="false" />
             <element signature="method#book#0;class#FcukBase#0" expanded="false" />
             <element signature="method#findBookedDocuments#0;class#FcukBase#0" expanded="false" />
+            <element signature="e#7209#7218#0" expanded="true" />
             <element signature="method#findUserByBookedDocument#0;class#FcukBase#0" expanded="false" />
+            <element signature="e#7918#7927#0" expanded="true" />
             <element signature="method#findCopyID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#checkUserID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#checkDocumentByID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#checkDocumentByName#0;class#FcukBase#0" expanded="false" />
             <element signature="method#addNewUser#0;class#FcukBase#0" expanded="false" />
-            <element signature="method#addNewDocument#0;class#FcukBase#0" expanded="false" />
-            <element signature="method#addNewDocument#1;class#FcukBase#0" expanded="false" />
             <element signature="method#addCopy#0;class#FcukBase#0" expanded="false" />
             <element signature="method#checkOut#0;class#FcukBase#0" expanded="false" />
             <element signature="method#returnDoc#0;class#FcukBase#0" expanded="false" />
@@ -1373,76 +1393,76 @@
             <element signature="method#clearQueue#0;class#FcukBase#0" expanded="false" />
             <element signature="method#setDateToCheckOut#0;class#FcukBase#0" expanded="false" />
             <element signature="method#renew#0;class#FcukBase#0" expanded="false" />
-            <marker date="1522593977572" expanded="true" signature="748:767" ph="select * fro... users" />
-            <marker date="1522593977572" expanded="true" signature="1078:1101" ph="select * fro... documents" />
-            <marker date="1522593977572" expanded="true" signature="1078:1124" ph="select * fro... documents" />
-            <marker date="1522593977572" expanded="true" signature="1385:1403" ph="delete from " />
-            <marker date="1522593977572" expanded="true" signature="1396:1403" ph="DROP table c... " />
-            <marker date="1522593977572" expanded="true" signature="1435:1454" ph="DELETE from " />
-            <marker date="1522593977572" expanded="true" signature="1485:1515" ph="DELETE from " />
-            <marker date="1522593977572" expanded="true" signature="1546:1567" ph="delete from " />
-            <marker date="1522593977572" expanded="true" signature="1598:1653" ph="update sqlit... " />
-            <marker date="1522593977572" expanded="true" signature="1684:1743" ph="update sqlit... " />
-            <marker date="1522593977572" expanded="true" signature="1774:1830" ph="update sqlit... " />
-            <marker date="1522593977572" expanded="true" signature="1900:1927" ph="select count... copies" />
-            <marker date="1522593977572" expanded="true" signature="2262:2288" ph="select count... users" />
-            <marker date="1522593977572" expanded="true" signature="2634:2669" ph="select * fro... users" />
-            <marker date="1522593977572" expanded="true" signature="3180:3219" ph="select * fro... documents" />
-            <marker date="1522593977572" expanded="true" signature="3734:3772" ph="select * fro... documents" />
-            <marker date="1522593977572" expanded="true" signature="4292:4332" ph="select * fro... documents" />
-            <marker date="1522593977572" expanded="true" signature="4856:4889" ph="insert into booking... " />
-            <marker date="1522593977572" expanded="true" signature="4922:4970" ph="update docum... " />
-            <marker date="1522593977572" expanded="true" signature="5007:5059" ph="update docum... " />
-            <marker date="1522593977572" expanded="true" signature="6249:6324" ph="insert into booking... " />
-            <marker date="1522593977572" expanded="true" signature="6627:6740" ph="insert into booking... " />
-            <marker date="1522593977572" expanded="true" signature="6627:6760" ph="insert into booking... " />
-            <marker date="1522593977572" expanded="true" signature="7094:7137" ph="select bookI... booking" />
-            <marker date="1522593977572" expanded="true" signature="7803:7846" ph="select userI... booking" />
-            <marker date="1522593977572" expanded="true" signature="8457:8524" ph="select copyI... copies" />
-            <marker date="1522593977572" expanded="true" signature="9382:9417" ph="select * fro... users" />
-            <marker date="1522593977572" expanded="true" signature="9926:9965" ph="select * fro... documents" />
-            <marker date="1522593977572" expanded="true" signature="10484:10522" ph="select * fro... documents" />
-            <marker date="1522593977572" expanded="true" signature="11097:11184" ph="insert into users... " />
-            <marker date="1522593977572" expanded="true" signature="11605:11631" ph="select last_... " />
-            <marker date="1522593977572" expanded="true" signature="11995:12173" ph="insert into documents... " />
-            <marker date="1522593977572" expanded="true" signature="12764:12790" ph="select last_... " />
-            <marker date="1522593977572" expanded="true" signature="13111:13173" ph="insert into documents... " />
-            <marker date="1522593977572" expanded="true" signature="13454:13480" ph="select last_... " />
-            <marker date="1522593977572" expanded="true" signature="13713:13772" ph="insert into copies... " />
-            <marker date="1522593977572" expanded="true" signature="14114:14189" ph="update copie... " />
-            <marker date="1522593977572" expanded="true" signature="14589:14680" ph="update copie... " />
-            <marker date="1522593977572" expanded="true" signature="14707:14744" ph="select * fro... copies" />
-            <marker date="1522593977572" expanded="true" signature="15380:15424" ph="select commo... copies" />
-            <marker date="1522593977572" expanded="true" signature="15909:16060" ph="select copyI... " />
-            <marker date="1522593977572" expanded="true" signature="16608:16761" ph="select copyI... " />
-            <marker date="1522593977572" expanded="true" signature="17238:17332" ph="update users... " />
-            <marker date="1522593977572" expanded="true" signature="18026:18184" ph="update docum... " />
-            <marker date="1522593977572" expanded="true" signature="18881:18962" ph="update docum... " />
-            <marker date="1522593977572" expanded="true" signature="19236:19269" ph="delete from " />
-            <marker date="1522593977572" expanded="true" signature="19667:19702" ph="delete from " />
-            <marker date="1522593977572" expanded="true" signature="20103:20148" ph="update docum... " />
-            <marker date="1522593977572" expanded="true" signature="20180:20222" ph="select count... documents" />
-            <marker date="1522593977572" expanded="true" signature="20929:20987" ph="select copyI... " />
-            <marker date="1522593977572" expanded="true" signature="21390:21438" ph="select avail... copies" />
-            <marker date="1522593977572" expanded="true" signature="22026:22077" ph="delete from " />
-            <marker date="1522593977572" expanded="true" signature="22562:22598" ph="select * fro... booking" />
-            <marker date="1522593977572" expanded="true" signature="22562:22621" ph="select * fro... booking" />
-            <marker date="1522593977572" expanded="true" signature="22562:22630" ph="select * fro... booking" />
-            <marker date="1522593977572" expanded="true" signature="22829:22865" ph="select * fro... copies" />
-            <marker date="1522593977572" expanded="true" signature="23344:23375" ph="select * fro... users" />
-            <marker date="1522593977572" expanded="true" signature="23534:23557" ph="update users... " />
-            <marker date="1522593977572" expanded="true" signature="23534:23584" ph="update users... " />
-            <marker date="1522593977572" expanded="true" signature="23534:23585" ph="update users... " />
-            <marker date="1522593977572" expanded="true" signature="23929:23964" ph="delete from " />
-            <marker date="1522593977572" expanded="true" signature="24218:24259" ph="update booki... " />
-            <marker date="1522593977572" expanded="true" signature="24627:24662" ph="SELECT * fro... copies" />
-            <marker date="1522593977572" expanded="true" signature="24627:24663" ph="SELECT * fro... copies" />
-            <marker date="1522593977572" expanded="true" signature="24627:24688" ph="SELECT * fro... copies" />
-            <marker date="1522593977572" expanded="true" signature="24627:24690" ph="SELECT * fro... copies" />
-            <marker date="1522593977572" expanded="true" signature="24627:24691" ph="SELECT * fro... copies" />
-            <marker date="1522593977572" expanded="true" signature="24843:24896" ph="update copie... " />
-            <marker date="1522593977572" expanded="true" signature="24843:24923" ph="update copie... " />
-            <marker date="1522593977572" expanded="true" signature="24843:24924" ph="update copie... " />
+            <marker date="1522689630142" expanded="true" signature="748:767" ph="select * fro... users" />
+            <marker date="1522689630142" expanded="true" signature="1078:1101" ph="select * fro... documents" />
+            <marker date="1522689630142" expanded="true" signature="1078:1124" ph="select * fro... documents" />
+            <marker date="1522689630142" expanded="true" signature="1385:1403" ph="delete from " />
+            <marker date="1522689630142" expanded="true" signature="1396:1403" ph="DROP table c... " />
+            <marker date="1522689630142" expanded="true" signature="1435:1454" ph="DELETE from " />
+            <marker date="1522689630142" expanded="true" signature="1485:1515" ph="DELETE from " />
+            <marker date="1522689630142" expanded="true" signature="1546:1567" ph="delete from " />
+            <marker date="1522689630142" expanded="true" signature="1598:1653" ph="update sqlit... " />
+            <marker date="1522689630142" expanded="true" signature="1684:1743" ph="update sqlit... " />
+            <marker date="1522689630142" expanded="true" signature="1774:1830" ph="update sqlit... " />
+            <marker date="1522689630142" expanded="true" signature="1900:1927" ph="select count... copies" />
+            <marker date="1522689630142" expanded="true" signature="2262:2288" ph="select count... users" />
+            <marker date="1522689630142" expanded="true" signature="2634:2669" ph="select * fro... users" />
+            <marker date="1522689630142" expanded="true" signature="3180:3219" ph="select * fro... documents" />
+            <marker date="1522689630142" expanded="true" signature="3734:3772" ph="select * fro... documents" />
+            <marker date="1522689630142" expanded="true" signature="4292:4332" ph="select * fro... documents" />
+            <marker date="1522689630142" expanded="true" signature="4856:4889" ph="insert into booking... " />
+            <marker date="1522689630142" expanded="true" signature="4922:4970" ph="update docum... " />
+            <marker date="1522689630142" expanded="true" signature="5007:5059" ph="update docum... " />
+            <marker date="1522689630142" expanded="true" signature="6249:6324" ph="insert into booking... " />
+            <marker date="1522689630142" expanded="true" signature="6627:6740" ph="insert into booking... " />
+            <marker date="1522689630142" expanded="true" signature="6627:6760" ph="insert into booking... " />
+            <marker date="1522689630142" expanded="true" signature="7094:7137" ph="select bookI... booking" />
+            <marker date="1522689630142" expanded="true" signature="7803:7846" ph="select userI... booking" />
+            <marker date="1522689630142" expanded="true" signature="8457:8524" ph="select copyI... copies" />
+            <marker date="1522689630142" expanded="true" signature="9382:9417" ph="select * fro... users" />
+            <marker date="1522689630142" expanded="true" signature="9926:9965" ph="select * fro... documents" />
+            <marker date="1522689630142" expanded="true" signature="10484:10522" ph="select * fro... documents" />
+            <marker date="1522689630142" expanded="true" signature="11097:11184" ph="insert into users... " />
+            <marker date="1522689630142" expanded="true" signature="11605:11631" ph="select last_... " />
+            <marker date="1522689630142" expanded="true" signature="11995:12173" ph="insert into documents... " />
+            <marker date="1522689630142" expanded="true" signature="12764:12790" ph="select last_... " />
+            <marker date="1522689630142" expanded="true" signature="13134:13217" ph="insert into documents... " />
+            <marker date="1522689630142" expanded="true" signature="13579:13605" ph="select last_... " />
+            <marker date="1522689630142" expanded="true" signature="13904:13963" ph="insert into copies... " />
+            <marker date="1522689630142" expanded="true" signature="14305:14380" ph="update copie... " />
+            <marker date="1522689630142" expanded="true" signature="14780:14871" ph="update copie... " />
+            <marker date="1522689630142" expanded="true" signature="14898:14935" ph="select * fro... copies" />
+            <marker date="1522689630142" expanded="true" signature="15571:15615" ph="select commo... copies" />
+            <marker date="1522689630142" expanded="true" signature="16100:16251" ph="select copyI... " />
+            <marker date="1522689630142" expanded="true" signature="16799:16952" ph="select copyI... " />
+            <marker date="1522689630142" expanded="true" signature="17429:17523" ph="update users... " />
+            <marker date="1522689630142" expanded="true" signature="18217:18375" ph="update docum... " />
+            <marker date="1522689630142" expanded="true" signature="19072:19153" ph="update docum... " />
+            <marker date="1522689630142" expanded="true" signature="19427:19460" ph="delete from " />
+            <marker date="1522689630142" expanded="true" signature="19858:19893" ph="delete from " />
+            <marker date="1522689630142" expanded="true" signature="20294:20339" ph="update docum... " />
+            <marker date="1522689630142" expanded="true" signature="20371:20413" ph="select count... documents" />
+            <marker date="1522689630142" expanded="true" signature="21120:21178" ph="select copyI... " />
+            <marker date="1522689630142" expanded="true" signature="21581:21629" ph="select avail... copies" />
+            <marker date="1522689630142" expanded="true" signature="22217:22268" ph="delete from " />
+            <marker date="1522689630142" expanded="true" signature="22753:22789" ph="select * fro... booking" />
+            <marker date="1522689630142" expanded="true" signature="22753:22812" ph="select * fro... booking" />
+            <marker date="1522689630142" expanded="true" signature="22753:22821" ph="select * fro... booking" />
+            <marker date="1522689630142" expanded="true" signature="23020:23056" ph="select * fro... copies" />
+            <marker date="1522689630142" expanded="true" signature="23535:23566" ph="select * fro... users" />
+            <marker date="1522689630142" expanded="true" signature="23725:23748" ph="update users... " />
+            <marker date="1522689630142" expanded="true" signature="23725:23775" ph="update users... " />
+            <marker date="1522689630142" expanded="true" signature="23725:23776" ph="update users... " />
+            <marker date="1522689630142" expanded="true" signature="24120:24155" ph="delete from " />
+            <marker date="1522689630142" expanded="true" signature="24409:24450" ph="update booki... " />
+            <marker date="1522689630142" expanded="true" signature="24818:24853" ph="SELECT * fro... copies" />
+            <marker date="1522689630142" expanded="true" signature="24818:24854" ph="SELECT * fro... copies" />
+            <marker date="1522689630142" expanded="true" signature="24818:24879" ph="SELECT * fro... copies" />
+            <marker date="1522689630142" expanded="true" signature="24818:24881" ph="SELECT * fro... copies" />
+            <marker date="1522689630142" expanded="true" signature="24818:24882" ph="SELECT * fro... copies" />
+            <marker date="1522689630142" expanded="true" signature="25034:25087" ph="update copie... " />
+            <marker date="1522689630142" expanded="true" signature="25034:25114" ph="update copie... " />
+            <marker date="1522689630142" expanded="true" signature="25034:25115" ph="update copie... " />
           </folding>
         </state>
       </provider>
