@@ -356,13 +356,12 @@ public class LibrarianController {
         else {
             userId = usrs.getSelectionModel().getSelectedItem().getID();
             Parent tab = FXMLLoader.load(getClass().getResource("/table.fxml"));
-            tableScene = new Scene(tab);
+
+            tableScene = new Scene(tab, 1200, 600);
             Main.window.setScene(tableScene);
             Patron ptr = new Patron(userId);
             Date date = new Date();
 
-            System.out.println(date);
-            System.out.println(ptr.checkFine());
         }
     }
 }
