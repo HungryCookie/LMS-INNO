@@ -54,6 +54,26 @@ public class Patron extends Users{
         }
     }
 
+    private void init(){
+        ResultSet res = base.getUserByID(userID.get());
+        try {
+            // if usedID is not correct then return null
+            /*if (!res.next()) {
+                return;
+            }*/
+            // else get result by userID and set all the fields
+            name = new SimpleStringProperty(res.getString("name"));
+            status = res.getString("status");
+            address = res.getString("address");
+            password = res.getString("password");
+            phoneNumber = res.getString("phoneNumber");
+            status = res.getString("status");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public int bookADocument(Documents document){
         if (!document.chechName())
             return 0;
@@ -185,7 +205,13 @@ public class Patron extends Users{
                                                                     //returns 2 if user is already in a queue at the moment
                                                                     //returns 3 if user can checkOut book
                                                                     //returns 4 if user already booked this document and now he can take it
+                                                                    //return 5 if user has a fine
+        init();
+
         String date = "";
+
+        if (checkFine() > 0)
+            return new IntAndString(5, date);
 
         document = new Documents(document.getDocID());
 
@@ -196,7 +222,7 @@ public class Patron extends Users{
         while (res.next()){
             ResultSet res1 = base.copyInfo(res.getInt("copyID"));
 
-            if (res1.getInt("сommonID") == document.getDocID())
+            if (res1.getInt("commonID") == document.getDocID())
                 return new IntAndString(1, date);
         }
 
@@ -252,6 +278,8 @@ public class Patron extends Users{
 
     int calculateFine(int userID, int docID, String dateS){
 
+        init();
+
         int d = 7;
 
         Patron user = new Patron(userID);
@@ -304,6 +332,8 @@ public class Patron extends Users{
                                                                         //return 2 if successful
                                                                         //return 3 if this user already renewed this document
         
+        init();
+
         String ans = "";
        
         ResultSet res = checkedOut(userID.get());
@@ -347,6 +377,8 @@ public class Patron extends Users{
     }
     
     public ResultSet checkedOut(int userID){ //Method returns a list of checked out Documents with number of copy he took of user with userID
+        init();
+
         if (!base.checkUserID(userID))
             return null;
 
@@ -385,7 +417,10 @@ public class Patron extends Users{
         * Use method bookOrder(ID) to order a book by ID*/
     }
 
-    public int checkFine() {
+    public int checkFine() throws SQLException{
+
+        init();
+
         return currentFine;
     }
 
