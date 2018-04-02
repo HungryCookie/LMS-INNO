@@ -6,10 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class LibrarianController {
 
@@ -31,6 +33,12 @@ public class LibrarianController {
     private Button returnDoc;
     @FXML
     private Button Copy;
+    @FXML
+    private Button ok;
+    @FXML
+    private Button payfine;
+    @FXML
+    private TextField fine;
     @FXML
     public TextField searchUser;
     @FXML
@@ -95,6 +103,9 @@ public class LibrarianController {
         type.setText("");
         edit.setText("");
         date.setText("");
+        ok.setVisible(false);
+        ok.setDisable(true);
+        fine.setVisible(false);
         bestseller.setText("");
         ObservableList<Documents> docs = FXCollections.observableArrayList();
         ResultSet order = fb.getDocs();
@@ -137,6 +148,33 @@ public class LibrarianController {
                 e.printStackTrace();
             }
         }));
+    }
+
+    @FXML
+    private void payfine() {
+        if (usrs.getSelectionModel().getSelectedItem() == null) {
+            name.setText("Select user");
+        } else {
+            ok.setDisable(false);
+            ok.setVisible(true);
+            fine.setDisable(false);
+            fine.setVisible(true);
+        }
+    }
+
+    @FXML
+    private void ok() throws IOException {
+        userId = usrs.getSelectionModel().getSelectedItem().getID();
+        int paid = 0;
+        if (!fine.getText().equals("")) paid = Integer.parseInt(fine.getText());
+        ((Librarian)Login.current).payFine(userId, paid);
+        action = "paid";
+        object = "Fine";
+        dialog = new Stage();
+        dialog.setTitle("Fine paid");
+        Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
+        dialog.setScene(new Scene(root, 315, 155));
+        dialog.show();
     }
 
     @FXML
@@ -183,10 +221,17 @@ public class LibrarianController {
 
     @FXML
     private void selectedUser(Users usr) {
-        name.setText(usr.getName());
-        phone.setText(usr.getPhoneNumber());
-        address.setText(usr.getAddress());
-        status.setText(usr.getStatus());
+        if (usr == null) {
+            name.setText("");
+            phone.setText("");
+            address.setText("");
+            status.setText("");
+        } else {
+            name.setText(usr.getName());
+            phone.setText(usr.getPhoneNumber());
+            address.setText(usr.getAddress());
+            status.setText(usr.getStatus());
+        }
     }
 
     @FXML
@@ -302,13 +347,19 @@ public class LibrarianController {
 
     @FXML
     private void bookings() throws Exception {
-//        try {
-//            userId = usrs.getSelectionModel().getSelectedItem().getID();
-//            Parent tab = FXMLLoader.load(getClass().getResource("/table.fxml"));
-//            tableScene = new Scene(tab, 600, 550);
-//            Main.window.setScene(tableScene);
-//        }catch (Exception e) {
-//            userError.setText("Number is required");
-//        }
+        if (usrs.getSelectionModel().getSelectedItem() == null) {
+            name.setText("Select user");
+            address.setText("");
+            phone.setText("");
+            status.setText("");
+        }
+        else {
+            userId = usrs.getSelectionModel().getSelectedItem().getID();
+            Parent tab = FXMLLoader.load(getClass().getResource("/table.fxml"));
+            tableScene = new Scene(tab, 1200, 600);
+            Main.window.setScene(tableScene);
+            Patron ptr = new Patron(userId);
+            Date date = new Date();
+        }
     }
 }
