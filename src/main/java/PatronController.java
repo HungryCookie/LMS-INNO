@@ -44,7 +44,7 @@ public class PatronController {
     @FXML
     public Scene tableScene;
     private FcukBase fb = new FcukBase();
-    public IntAndString checkCode;
+    public static IntAndString checkCode = new IntAndString();
 
     @FXML
     private void initialize() throws SQLException {
@@ -121,7 +121,11 @@ public class PatronController {
     @FXML
     private void checkOut() throws SQLException, IOException {
         Patron pr = new Patron(Login.current.getID());
-        checkCode = pr.checkOut(tab.getSelectionModel().getSelectedItem());
+        IntAndString temp = pr.checkOut(tab.getSelectionModel().getSelectedItem());
+        System.out.println(temp.getInt());
+        checkCode = temp;
+        System.out.println(checkCode.getInt());
+        System.out.println();
         Stage dialog = new Stage();
         dialog.setTitle("Checking out document");
         Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
@@ -132,7 +136,7 @@ public class PatronController {
     @FXML
     private void info() throws Exception{
         Parent tab = FXMLLoader.load(getClass().getResource("/table.fxml"));
-        tableScene = new Scene(tab);
+        tableScene = new Scene(tab, 1200, 400);
         Main.window.setScene(tableScene);
     }
 }
