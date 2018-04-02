@@ -25,17 +25,20 @@
                 <Font name="Lucida Console" size="19.0" />
             </font>
         </Label>
-        <Label layoutX="66.0" layoutY="224.0" text="Bestseller: ">
+        <Label fx:id="bsLabel" layoutX="66.0" layoutY="224.0" text="Bestseller: ">
             <font>
                 <Font name="Lucida Console" size="19.0" />
             </font>
         </Label>
-        <Label layoutX="66.0" layoutY="264.0" text="Number of copies:">
+        <Label fx:id="copyLabl" layoutX="66.0" layoutY="264.0" text="Number of copies:">
             <font>
                 <Font name="Lucida Console" size="19.0" />
             </font>
         </Label>
         <TextField fx:id="name" layoutX="280.0" layoutY="105.0" onAction="#apply" prefHeight="25.0" prefWidth="247.0" />
+        <TextField fx:id="author" layoutX="278.0" layoutY="148.0" onAction="#apply" prefHeight="25.0" prefWidth="247.0" />
+      <TextField fx:id="publisher" layoutX="278.0" layoutY="188.0" onAction="#apply" prefHeight="25.0" prefWidth="247.0" />
+      <TextField fx:id="cost" layoutX="422.0" layoutY="224.0" onAction="#apply" prefHeight="25.0" prefWidth="103.0" />
         <TextField fx:id="copies" layoutX="280.0" layoutY="263.0" onAction="#apply" prefHeight="25.0" prefWidth="247.0" />
         <Label fx:id="nameError" layoutX="534.0" layoutY="109.0" textFill="RED">
             <font>
@@ -56,7 +59,7 @@
                 <Font name="Lucida Console" size="19.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="type" layoutX="280.0" layoutY="305.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="type" layoutX="141.0" layoutY="305.0" prefHeight="25.0" prefWidth="112.0" />
         <Button fx:id="cancel" layoutX="375.0" layoutY="338.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="71.0" text="Cancel">
             <font>
                 <Font name="Lucida Console" size="14.0" />
@@ -67,29 +70,32 @@
                 <Font name="Lucida Console" size="19.0" />
             </font>
         </Label>
-        <TextField fx:id="author" layoutX="278.0" layoutY="148.0" onAction="#apply" prefHeight="25.0" prefWidth="247.0" />
         <Label fx:id="authorError" layoutX="534.0" layoutY="152.0" textFill="RED">
             <font>
                 <Font name="Lucida Console" size="12.0" />
             </font>
         </Label>
       <CheckBox fx:id="bestseller" layoutX="278.0" layoutY="228.0" mnemonicParsing="false" />
-      <Label layoutX="352.0" layoutY="226.0" text="Cost:">
+      <Label fx:id="costLabel" layoutX="352.0" layoutY="226.0" text="Cost:">
          <font>
             <Font name="Lucida Console" size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="cost" layoutX="422.0" layoutY="224.0" onAction="#apply" prefHeight="25.0" prefWidth="103.0" />
       <Label fx:id="costError" layoutX="534.0" layoutY="228.0" textFill="RED">
          <font>
             <Font name="Lucida Console" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="63.0" layoutY="190.0" prefHeight="20.0" prefWidth="130.0" text="Publisher:">
+      <Label fx:id="pubLabel" layoutX="70.0" layoutY="190.0" prefHeight="20.0" prefWidth="130.0" text="Publisher:">
          <font>
             <Font name="Lucida Console" size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="publisher" layoutX="278.0" layoutY="188.0" onAction="#apply" prefHeight="25.0" prefWidth="247.0" />
+      <Label fx:id="yearLabel" layoutX="280.0" layoutY="307.0" text="Year:">
+         <font>
+            <Font name="Lucida Console" size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="year" layoutX="381.0" layoutY="303.0" onAction="#apply" />
     </children>
 </AnchorPane>
