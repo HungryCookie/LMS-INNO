@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -26,7 +27,7 @@ public class UserInfo {
     @FXML
     private Label passLabel;
     @FXML
-    private TextField passField;
+    private PasswordField passField;
     @FXML
     private Label passError;
     @FXML
@@ -40,12 +41,13 @@ public class UserInfo {
             Patron p = new Patron(LibrarianController.userId);
             name.setText(p.name.get());
             phone.setText(p.phoneNumber);
+            passField.setText(p.getPassword());
             address.setText(p.address);
-            status.getItems().addAll("Student", "FacultyMember", "Librarian");
+            status.getItems().addAll("Student", "FacultyMember", "VisitingProfessor", "Librarian");
             status.getSelectionModel().select(p.getStatus());
         }
         else {
-            status.getItems().addAll("Student", "FacultyMember", "Librarian");
+            status.getItems().addAll("Student", "FacultyMember", "VisitingProfessor", "Librarian");
             status.getSelectionModel().select(0);
             passField.setVisible(false);
             passLabel.setVisible(false);
@@ -87,6 +89,12 @@ public class UserInfo {
                 if (passField.getText().equals("")) passError.setText("Enter new password");
                 else ((Librarian)Login.current).modify(LibrarianController.userId, name.getText(), phone.getText(), address.getText(), status.getSelectionModel().selectedItemProperty().get(), passField.getText());
             }
+            Stage dialog = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
+            dialog.setTitle(LibrarianController.object + " " + LibrarianController.action);
+            dialog.setScene(new Scene(root));
+            Main.window.setScene(Login.librarianScene);
+            dialog.show();
         }
     }
 }
