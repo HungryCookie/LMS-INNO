@@ -200,6 +200,125 @@ public class Patron extends Users{
         return f.format(date);
     }
 
+    public String getDateToReturnTest(Documents document, String dateS){
+
+        int d = 7;
+
+        Documents doc = new Documents(document.getDocID());
+
+        if (getStatus() != "Visiting Professor") {
+            d += 7;
+
+            if (doc.getType() != "AV" && doc.getType() != "journal" && !doc.isBestseller()){
+
+                if (getStatus() == "Professor" || getStatus() == "Instructor")
+                    d += 14;
+                else
+                    d += 7;
+            }
+        }
+
+
+        Date date = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+
+        try {
+            date = formatter.parse(dateS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        d--;
+        while(d > 0){
+            d--;
+
+            Calendar c = Calendar.getInstance();        // Checking if booking is old
+            c.setTime(date);
+            c.add(Calendar.DATE, 1);
+            date = c.getTime();
+        }
+
+        return f.format(date);
+    }
+
+    public IntAndString checkOutTest(Documents document, String dateS) throws SQLException {  //returns 0 if user can't take this document, user was added to queue
+        //returns 1 if document is already checked out by user
+        //returns 2 if user is already in a queue at the moment
+        //returns 3 if user can checkOut book
+        //returns 4 if user already booked this document and now he can take it
+        //return 5 if user has a fine
+        init();
+
+        String date = "";
+
+        if (checkFine() > 0)
+            return new IntAndString(5, date);
+
+        document = new Documents(document.getDocID());
+
+        deleteOldBookings(document);
+
+        ResultSet res = base.checkedOutByUserID(userID.get());
+
+        while (res.next()){
+            ResultSet res1 = base.copyInfo(res.getInt("copyID"));
+
+            if (res1.getInt("commonID") == document.getDocID())
+                return new IntAndString(1, date);
+        }
+
+        res = base.getQueue(document.getDocID());
+
+        int current_counter = document.getCounter();
+
+        while (res.next()){
+            if (res.getInt("userID") == userID.get()) {
+
+                if (current_counter > 1){
+
+                    int [] copies = base.findCopyID(document.getDocID());
+
+                    base.checkOut(userID.get(), copies[0], getDateToReturnTest(document, dateS));
+                    base.deleteBooking(document.getDocID(), userID.get());
+                    base.counterDown(document.getDocID());
+
+                    return new IntAndString(4, getDateToReturnTest(document, dateS));
+                }
+
+                return new IntAndString(2, date);
+            }
+
+            current_counter--;
+        }
+
+        base.book(document.getDocID(), userID.get(), getPriority(), getDate());
+
+        res = base.getQueue(document.getDocID());
+
+        current_counter = document.getCounter();
+
+        while (res.next()){
+            if (res.getInt("userID") == userID.get())
+                break;
+
+            current_counter--;
+        }
+
+        if (current_counter < 2){
+            return new IntAndString(0, date);
+        }
+
+        int [] copies = base.findCopyID(document.getDocID());
+
+        base.checkOut(userID.get(), copies[0], getDateToReturnTest(document, dateS));
+        base.deleteBooking(document.getDocID(), userID.get());
+        base.counterDown(document.getDocID());
+
+        return new IntAndString(3, getDateToReturnTest(document, dateS));
+    }
+
     public IntAndString checkOut(Documents document) throws SQLException {  //returns 0 if user can't take this document, user was added to queue
                                                                      //returns 1 if document is already checked out by user
                                                                     //returns 2 if user is already in a queue at the moment
@@ -278,31 +397,11 @@ public class Patron extends Users{
 
     int calculateFine(int userID, int docID, String dateS){
 
-        init();
-
-        int d = 7;
-
-        Patron user = new Patron(userID);
-        Documents doc = new Documents(docID);
-
-        if (user.getStatus() != "Visiting Professor") {
-            d += 7;
-
-            if (doc.getType() != "AV" && doc.getType() != "journal" && !doc.isBestseller()){
-
-                if (user.getStatus() == "Professor" || user.getStatus() == "Instructor")
-                    d += 14;
-                else
-                    d += 7;
-            }
-        }
-
         int gone = 0;
-
-
+        Documents doc = new Documents(docID);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
         Date date = new Date();
+
 
         try {
             date = formatter.parse(dateS);
@@ -311,6 +410,9 @@ public class Patron extends Users{
         }
 
         Date todayDate = new Date();
+
+        if (!todayDate.after(date))
+            return 0;
 
         while(todayDate.after(date)){
             gone++;
@@ -321,10 +423,44 @@ public class Patron extends Users{
             date = c.getTime();
         }
 
-        if (d >= gone)
+        return min(doc.getCost(), 100 * (gone - 1));
+    }
+
+    int calculateFineTest(int userID, int docID, String dateS, String dateE){
+
+        int gone = 0;
+        Documents doc = new Documents(docID);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+
+
+        try {
+            date = formatter.parse(dateS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Date todayDate = new Date();
+
+        try {
+            todayDate = formatter.parse(dateE);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (!todayDate.after(date))
             return 0;
 
-        return min(doc.getCost(), 100 * (gone - d));
+        while(todayDate.after(date)){
+            gone++;
+
+            Calendar c = Calendar.getInstance();        // Checking if booking is old
+            c.setTime(date);
+            c.add(Calendar.DATE, 1);
+            date = c.getTime();
+        }
+
+        return min(doc.getCost(), 100 * (gone - 1));
     }
 
     public IntAndString renew(Documents document) throws SQLException {//return 0 if this user didn't check out this document
@@ -374,6 +510,56 @@ public class Patron extends Users{
         return new IntAndString(3, ans);
        
         
+    }
+
+    public IntAndString renewTest(Documents document, String dateS) throws SQLException {
+        //return 0 if this user didn't check out this document
+        //return 1 if user have to return document to library, he reached a fine and can't renew this document
+        //return 2 if successful
+        //return 3 if this user already renewed this document
+
+        init();
+
+        String ans = "";
+
+        ResultSet res = checkedOut(userID.get());
+
+        boolean t = false;
+        int copyID = 0;
+        String date = "";
+
+        while(res.next()){
+            ResultSet res1 = base.copyInfo(res.getInt("copyID"));
+
+            if (document.getDocID() == res1.getInt("commonID")) {
+                t = true;
+                date = res1.getString("date");
+                copyID = res.getInt("copyID");
+            }
+        }
+
+        if (!t)
+            return new IntAndString(0, ans);
+
+        if (calculateFineTest(userID.get(), document.getDocID(), date, dateS) > 0)
+            return new IntAndString(1, ans);
+
+
+        ans = getDateToReturnTest(document, dateS);
+
+        if (getStatus() == "Visiting Professor"){
+
+            base.renew(copyID, userID.get(), ans, "F");
+
+            return new IntAndString(2, ans);
+        }
+
+        if (base.renew(copyID, userID.get(), ans, "T"))
+            return new IntAndString(2, ans);
+
+        return new IntAndString(3, ans);
+
+
     }
     
     public ResultSet checkedOut(int userID){ //Method returns a list of checked out Documents with number of copy he took of user with userID
