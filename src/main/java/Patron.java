@@ -426,7 +426,9 @@ public class Patron extends Users{
         return min(doc.getCost(), 100 * (gone - 1));
     }
 
-    int calculateFineTest(int userID, int docID, String dateS, String dateE){
+
+    IntAndInt calculateFineTest(int userID, int docID, String dateS, String dateE){
+
 
         int gone = 0;
         Documents doc = new Documents(docID);
@@ -449,7 +451,8 @@ public class Patron extends Users{
         }
 
         if (!todayDate.after(date))
-            return 0;
+            return new IntAndInt(0, 0);
+
 
         while(todayDate.after(date)){
             gone++;
@@ -460,7 +463,8 @@ public class Patron extends Users{
             date = c.getTime();
         }
 
-        return min(doc.getCost(), 100 * (gone - 1));
+        return new IntAndInt(min(doc.getCost(), 100 * (gone - 1)), gone - 1);
+
     }
 
     public IntAndString renew(Documents document) throws SQLException {//return 0 if this user didn't check out this document
@@ -541,7 +545,8 @@ public class Patron extends Users{
         if (!t)
             return new IntAndString(0, ans);
 
-        if (calculateFineTest(userID.get(), document.getDocID(), date, dateS) > 0)
+
+        if (calculateFineTest(userID.get(), document.getDocID(), date, dateS).getSecond() > 0)
             return new IntAndString(1, ans);
 
 
@@ -608,6 +613,22 @@ public class Patron extends Users{
         init();
 
         return currentFine;
+    }
+
+    public IntAndInt checkFineTest(Documents document, String dateS) throws SQLException {
+        ResultSet res = checkedOut(userID.get());
+
+        String date = "";
+
+        while(res.next()) {
+
+            if (document.getDocID() == res.getInt("commonID"))
+                date = res.getString("date");
+        }
+
+        IntAndInt ans = calculateFineTest(userID.get(), document.getDocID(), date, dateS);
+
+        return ans;
     }
 
 }
