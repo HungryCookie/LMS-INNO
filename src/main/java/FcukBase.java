@@ -708,7 +708,7 @@ public class FcukBase implements FcukBaseInterface{
     public void addNotification(int userID, int docID, String bool) {
         try {
             Statement statement = connection.createStatement();
-            statement.execute("insert into notification (userID, docID, availible) values (" + userID + ", " + docID + ", '" + bool + "')");
+            statement.execute("insert into notification (userID, docID, available) values (" + userID + ", " + docID + ", '" + bool + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -737,6 +737,7 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
+        //b.addNotification(2,3,"F");
         b.deleteNotification(2, 3);
         //b.clear();
         //b.returnDoc(2);
