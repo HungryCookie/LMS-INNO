@@ -46,9 +46,10 @@ public class FcukBase implements FcukBaseInterface{
     public void clear() throws Exception {
         Statement statement = connection.createStatement();
         statement.execute("delete from copies;");
-        statement.execute("DELETE from booking");
+        statement.execute("delete from booking");
         statement.execute("DELETE from users where id > 1");
         statement.execute("delete from documents");
+        statement.execute("delete from notification");
         statement.execute("update sqlite_sequence set seq = 1 where name = 'users'");
         statement.execute("update sqlite_sequence set seq = 0 where name = 'documents'");
         statement.execute("update sqlite_sequence set seq = 0 where name = 'copies'");
@@ -704,8 +705,39 @@ public class FcukBase implements FcukBaseInterface{
         return false;
     }
 
+    public void addNotification(int userID, int docID) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("insert into notification (userID, docID) values (" + userID + ", " + docID + ")");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ResultSet getUserNotification(int userID) {
+        ResultSet rs = null;
+        try {
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery("select * from notification where userID = " + userID);
+            return rs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public void deleteNotification(int userID, int docID) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("delete from notification where userID = " + userID + " and docID = " + docID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
+        b.deleteNotification(2, 3);
         //b.clear();
         //b.returnDoc(2);
         //b.checkOut(1,2, "2018-03-18");

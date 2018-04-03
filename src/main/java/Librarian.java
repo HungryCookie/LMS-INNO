@@ -101,7 +101,7 @@ public class Librarian extends Users {
             return false;
 
         if (type == "AV")
-            base.documentModify(docID, name, author);
+            base.documentModify(docID, name, author, cost);
         else {
 
             base.documentModify(docID, name, publisher, year, edition, author, cost, reference, bestseller);

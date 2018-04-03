@@ -128,7 +128,7 @@ public class Patron extends Users{
 
     public Documents [] getNotifications() throws SQLException {
 
-        ResultSet res = base.getUserNotifications(userID.get());
+        ResultSet res = base.getUserNotification(userID.get());
         Documents [] anse = new Documents[1000000];
         int n = 0;
 
@@ -137,7 +137,7 @@ public class Patron extends Users{
             int docID = res.getInt("docID");
             deleteOldBookings(new Documents(docID));
 
-            ResultSet res1 = base.getUserNotifications(userID.get());
+            ResultSet res1 = base.getUserNotification(userID.get());
             boolean c = false;
 
             while (res.next()){
