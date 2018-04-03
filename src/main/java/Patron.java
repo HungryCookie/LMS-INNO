@@ -123,7 +123,7 @@ public class Patron extends Users{
 
     private void notifyUser(int userID, int docID){             //need to modify user
         base.setDateToCheckOut(docID, userID, getDate());
-        base.addNotification(docID, userID);
+        base.addNotification(docID, userID, "T");
     }
 
     public Documents [] getNotifications() throws SQLException {
@@ -141,13 +141,14 @@ public class Patron extends Users{
             boolean c = false;
 
             while (res.next()){
-                if (res.getInt("docID") == docID)
+                if (res.getInt("docID") == docID && res.getString("available") == "T")
                     c = true;
             }
 
             if (c){
                 anse[n] = new Documents(docID);
                 n++;
+                base.deleteNotification(userID.get(), docID);
             }
         }
 
@@ -157,7 +158,40 @@ public class Patron extends Users{
 
         return ans;
     }
-    
+
+    public Documents [] getBadNotifications() throws SQLException {
+
+        ResultSet res = base.getUserNotification(userID.get());
+        Documents [] anse = new Documents[1000000];
+        int n = 0;
+
+
+        while (res.next()){
+            int docID = res.getInt("docID");
+            deleteOldBookings(new Documents(docID));
+
+            ResultSet res1 = base.getUserNotification(userID.get());
+            boolean c = false;
+
+            while (res.next()){
+                if (res.getInt("docID") == docID && res.getString("available") == "F")
+                    c = true;
+            }
+
+            if (c){
+                anse[n] = new Documents(docID);
+                n++;
+                base.deleteNotification(userID.get(), docID);
+            }
+        }
+
+        Documents [] ans = new Documents[n];
+        for (int i = 0; i < n; i++)
+            ans[i] = anse[i];
+
+        return ans;
+    }
+
     private void deleteOldBookings(Documents document) throws SQLException {
 
         ResultSet res = base.getQueue(document.getDocID());
@@ -186,6 +220,7 @@ public class Patron extends Users{
                 if (todayDate.after(date)) {
                     base.deleteBooking(document.getDocID(), res.getInt("userID"));   //Deleting old booking
                     base.deleteNotification(res.getInt("userID"), document.getDocID());
+                    base.addNotification(res.getInt("userID"), res.getInt("docID"), "F");
 
                     ResultSet queue = base.getQueue(document.getDocID());
 
@@ -482,7 +517,7 @@ public class Patron extends Users{
 
         if (!todayDate.after(date))
             return new IntAndInt(0, 0);
-      
+
         while(todayDate.after(date)){
             gone++;
 
@@ -499,27 +534,27 @@ public class Patron extends Users{
                                                                         //return 1 if user have to return document to library, he reached a fine and can't renew this document
                                                                         //return 2 if successful
                                                                         //return 3 if this user already renewed this document
-        
+
         init();
 
         String ans = "";
-       
+
         ResultSet res = checkedOut(userID.get());
-        
+
         boolean t = false;
         int copyID = 0;
         String date = "";
-        
+
         while(res.next()){
             ResultSet res1 = base.copyInfo(res.getInt("copyID"));
-            
+
             if (document.getDocID() == res1.getInt("commonID")) {
                 t = true;
                 date = res1.getString("date");
                 copyID = res.getInt("copyID");
             }
         }
-        
+
         if (!t)
             return new IntAndString(0, ans);
 
@@ -540,8 +575,8 @@ public class Patron extends Users{
             return new IntAndString(2, ans);
 
         return new IntAndString(3, ans);
-       
-        
+
+
     }
 
     public IntAndString renewTest(Documents document, String dateS) throws SQLException {
@@ -572,7 +607,7 @@ public class Patron extends Users{
 
         if (!t)
             return new IntAndString(0, ans);
-      
+
         if (calculateFineTest(userID.get(), document.getDocID(), date, dateS).getSecond() > 0)
             return new IntAndString(1, ans);
 
@@ -593,7 +628,7 @@ public class Patron extends Users{
 
 
     }
-    
+
     public ResultSet checkedOut(int userID){ //Method returns a list of checked out Documents with number of copy he took of user with userID
         init();
 
@@ -602,7 +637,7 @@ public class Patron extends Users{
 
         return base.checkedOutByUserID(userID);
     }
-    
+
     public String getDate(){
         Date d = new Date();
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
