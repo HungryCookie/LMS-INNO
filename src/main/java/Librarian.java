@@ -179,7 +179,7 @@ public class Librarian extends Users {
 
     private void notifyUser(int userID, int docID){             //need to modify user
         base.setDateToCheckOut(docID, userID, getDate());
-        base.addNotification(docID, userID);
+        base.addNotification(docID, userID, "T");
     }
 
     public boolean payFine(int userID, int cash){
@@ -251,6 +251,7 @@ public class Librarian extends Users {
                 if (todayDate.after(date)) {
                     base.deleteBooking(document.getDocID(), res.getInt("userID"));   //Deleting old booking
                     base.deleteNotification(res.getInt("userID"), document.getDocID());
+                    base.addNotification(res.getInt("userID"), res.getInt("docID"), "F");
 
                     ResultSet queue = base.getQueue(document.getDocID());
 
