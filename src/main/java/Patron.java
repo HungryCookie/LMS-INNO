@@ -482,7 +482,7 @@ public class Patron extends Users{
 
         if (!todayDate.after(date))
             return new IntAndInt(0, 0);
-
+      
         while(todayDate.after(date)){
             gone++;
 
@@ -572,7 +572,7 @@ public class Patron extends Users{
 
         if (!t)
             return new IntAndString(0, ans);
-
+      
         if (calculateFineTest(userID.get(), document.getDocID(), date, dateS).getSecond() > 0)
             return new IntAndString(1, ans);
 
@@ -675,4 +675,5 @@ public class Patron extends Users{
 
         return ans;
     }
+
 }
