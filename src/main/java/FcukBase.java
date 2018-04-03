@@ -705,10 +705,10 @@ public class FcukBase implements FcukBaseInterface{
         return false;
     }
 
-    public void addNotification(int userID, int docID) {
+    public void addNotification(int userID, int docID, String bool) {
         try {
             Statement statement = connection.createStatement();
-            statement.execute("insert into notification (userID, docID) values (" + userID + ", " + docID + ")");
+            statement.execute("insert into notification (userID, docID, availible) values (" + userID + ", " + docID + ", '" + bool + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
