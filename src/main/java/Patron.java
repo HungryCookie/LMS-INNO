@@ -426,7 +426,9 @@ public class Patron extends Users{
         return min(doc.getCost(), 100 * (gone - 1));
     }
 
+
     IntAndInt calculateFineTest(int userID, int docID, String dateS, String dateE){
+
 
         int gone = 0;
         Documents doc = new Documents(docID);
@@ -451,6 +453,7 @@ public class Patron extends Users{
         if (!todayDate.after(date))
             return new IntAndInt(0, 0);
 
+
         while(todayDate.after(date)){
             gone++;
 
@@ -461,6 +464,7 @@ public class Patron extends Users{
         }
 
         return new IntAndInt(min(doc.getCost(), 100 * (gone - 1)), gone - 1);
+
     }
 
     public IntAndString renew(Documents document) throws SQLException {//return 0 if this user didn't check out this document
@@ -540,6 +544,7 @@ public class Patron extends Users{
 
         if (!t)
             return new IntAndString(0, ans);
+
 
         if (calculateFineTest(userID.get(), document.getDocID(), date, dateS).getSecond() > 0)
             return new IntAndString(1, ans);

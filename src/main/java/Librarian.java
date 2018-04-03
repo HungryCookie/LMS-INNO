@@ -68,7 +68,7 @@ public class Librarian extends Users {
     public void addDocument(String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
 
         if (type == "AV")
-            base.addNewDocument(name, author);
+            base.addNewDocument(name, author, counter, cost);
         else
             base.addNewDocument(name, publisher, year, edition, author, counter, cost, reference, bestseller);
     }
