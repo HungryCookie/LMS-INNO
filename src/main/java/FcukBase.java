@@ -403,6 +403,17 @@ public class FcukBase implements FcukBaseInterface{
         }
     }
 
+    public void changeDateToReturn(int userID, int docID, String date) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("update copies set date = ? where userID = " + userID + " and commonID = " + docID);
+            statement.setString(1, date);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void checkOut(int userID, int copyID, String date) {
         String query = "update copies set availability = 'F', userID = ?, date = ? where copyID = ?";
         try {
@@ -737,8 +748,8 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        //b.addNotification(2,3,"F");
-        b.deleteNotification(2, 3);
+        b.clear();
+        //b.deleteNotification(2, 3);
         //b.clear();
         //b.returnDoc(2);
         //b.checkOut(1,2, "2018-03-18");
