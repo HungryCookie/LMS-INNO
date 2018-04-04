@@ -34,6 +34,10 @@ public class TableController {
     @FXML
     private Label titleLabel;
     @FXML
+    private Label fine;
+    @FXML
+    private Label overdue;
+    @FXML
     private Label authorLabel;
     private Patron p;
     private int docID;
@@ -46,7 +50,9 @@ public class TableController {
         remove.setVisible(false);
         renew.setVisible(false);
         renew.setDisable(true);
-
+        overdue.setText("");
+        fine.setText("");
+            fine.setText("Current fine: " + (new Patron(LibrarianController.userId)).checkFine() + "");
         if (Login.current instanceof Patron) {
             order = ((Patron) Login.current).checkedOut(Login.current.getID());
             renew.setVisible(true);
@@ -66,7 +72,13 @@ public class TableController {
         author.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
         type.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
         table.setItems(docs);
-        table.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> showInfo(newValue)));
+        table.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
+            try {
+                showInfo(newValue);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }));
     }
 
     @FXML
@@ -80,7 +92,7 @@ public class TableController {
         dialog.show();
     }
 
-    private void showInfo(Documents doc) {
+    private void showInfo(Documents doc) throws SQLException {
         if (doc != null) {
         titleLabel.setText(doc.getName());
         authorLabel.setText(doc.getAuthor());
@@ -96,7 +108,6 @@ public class TableController {
         while (rs.next()) {
             if (rs.getString("name").equals(title)) copyID = rs.getInt("copyID");
         }
-        System.out.println(copyID);
         ((Librarian)Login.current).returnDoc(copyID);
         int index = table.getSelectionModel().getSelectedIndex();
         table.getItems().remove(index);
