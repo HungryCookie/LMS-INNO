@@ -43,11 +43,11 @@ public class UserInfo {
             phone.setText(p.phoneNumber);
             passField.setText(p.getPassword());
             address.setText(p.address);
-            status.getItems().addAll("Student", "FacultyMember", "VisitingProfessor", "Librarian");
+            status.getItems().addAll("Student", "Professor", "Visiting Professor", "Librarian", "Instructor");
             status.getSelectionModel().select(p.getStatus());
         }
         else {
-            status.getItems().addAll("Student", "FacultyMember", "VisitingProfessor", "Librarian");
+            status.getItems().addAll("Student", "Professor", "Visiting Professor", "Librarian", "Instructor");
             status.getSelectionModel().select(0);
             passField.setVisible(false);
             passLabel.setVisible(false);
