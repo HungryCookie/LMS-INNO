@@ -273,12 +273,12 @@ public class Patron extends Users{
 
         Documents doc = new Documents(document.getDocID());
 
-        if (getStatus() != "Visiting Professor") {
+        if (!getStatus().equals("Visiting Professor")) {
             d += 7;
 
-            if (doc.getType() != "AV" && doc.getType() != "journal" && !doc.isBestseller()){
+            if (!doc.getType().equals("AV") && !doc.getType().equals("journal") && !doc.isBestseller()){
 
-                if (getStatus() == "Professor" || getStatus() == "Instructor")
+                if (getStatus().equals("Professor") || getStatus().equals("Instructor"))
                     d += 14;
                 else
                     d += 7;
