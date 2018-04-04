@@ -67,7 +67,7 @@ public class Librarian extends Users {
 
     public void addDocument(String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
 
-        if (type == "AV")
+        if (type.equals("AV"))
             base.addNewDocument(name, author, counter, cost);
         else
             base.addNewDocument(name, publisher, year, edition, author, counter, cost, reference, bestseller);
@@ -88,7 +88,7 @@ public class Librarian extends Users {
         if (!base.checkUserID(userID))
             return false;
 
-        System.out.println(name + phoneNumber + address + status +password);
+        //System.out.println(name + phoneNumber + address + status +password);
 
         base.userModify(userID, name, phoneNumber, address, status, password);
 
@@ -100,7 +100,7 @@ public class Librarian extends Users {
         if (!base.checkDocumentByID(docID))
             return false;
 
-        if (type == "AV")
+        if (type.equals("AV"))
             base.documentModify(docID, name, author, cost);
         else {
 
@@ -131,21 +131,61 @@ public class Librarian extends Users {
         return true;
     }
 
-    public int checkOut(Documents doc){  //Returns 0 if there isn't any free books for librarian except reference, librarian was added to queue
-                                            //Returns 1 if book is availible
+    public void outstandingRequest(Documents doc) throws SQLException {  //Returns 0 if there isn't any free books for librarian except reference, librarian was added to queue
+        //Returns 1 if book is availible
         doc = new Documents(doc.getDocID());
 
-        if (doc.isReference()) {
-            base.clearQueue(doc.getDocID());
+        ResultSet res = base.getQueue(doc.getDocID());
+
+        while (res.next())
+            base.addNotification(res.getInt("userID"), doc.getDocID(), "G");
+
+        res = base.checkedOutByDocID(doc.getDocID());
+        
+        while (res.next()){
+            base.addNotification(res.getInt("userID"), doc.getDocID(), "X");
+            base.changeDateToReturn(res.getInt("userID"), doc.getDocID(), getDate());
+            base.changeRenew(res.getInt("copyID"), res.getInt("userID"), "T");
+        }
+
+        base.clearQueue(doc.getDocID());
+    }
+
+    public void outstandingRequestTest(Documents doc, String date) throws SQLException {
+
+        doc = new Documents(doc.getDocID());
+
+        ResultSet res = base.getQueue(doc.getDocID());
+
+        while (res.next())
+            base.addNotification(res.getInt("userID"), doc.getDocID(), "G");
+
+        res = base.checkedOutByDocID(doc.getDocID());
+
+        while (res.next()){
+            base.addNotification(res.getInt("userID"), doc.getDocID(), "X");
+            base.changeDateToReturn(res.getInt("userID"), doc.getDocID(), date);
+            base.changeRenew(res.getInt("copyID"), res.getInt("userID"), "T");
+        }
+
+
+        base.clearQueue(doc.getDocID());
+    }
+
+    public int checkOut(Documents doc) throws SQLException {
+        //return 0 if librarian was added to waiting list
+        // return 1 if ok
+        doc = new Documents(doc.getDocID());
+
+        if (doc.isReference()){
             base.book(doc.getDocID(), userID.get(), 1, getDate());
             return 0;
         }
 
         int [] copies = base.findCopyID(doc.getDocID());
 
-        base.checkOut(userID.get(), copies[0], getDate());
+        base.checkOut(userID.get(), copies[0], "");
         base.counterDown(doc.getDocID());
-        base.clearQueue(doc.getDocID());
 
         return 1;
     }
@@ -156,6 +196,9 @@ public class Librarian extends Users {
 
         return f.format(d);
     }
+
+
+
 
     public ResultSet checkedOut(int userID){ //Method returns a list of checked out Documents with number of copy he took of user with userID
         if (!base.checkUserID(userID))
@@ -177,9 +220,10 @@ public class Librarian extends Users {
     }
 
 
-    private void notifyUser(int userID, int docID){             //need to modify user
+    private void notifyUser(int userID, int docID){//need to modify user
+
         base.setDateToCheckOut(docID, userID, getDate());
-        base.addNotification(docID, userID, "T");
+        base.addNotification(userID, docID, "T");
     }
 
     public boolean payFine(int userID, int cash){
@@ -220,7 +264,7 @@ public class Librarian extends Users {
             date = c.getTime();
         }
 
-        return min(doc.getCost(), 100 * (gone - 1));
+        return min(doc.getCost(), 100 * gone);
     }
 
     private void deleteOldBookings(Documents document) throws SQLException {
@@ -273,7 +317,9 @@ public class Librarian extends Users {
 
 
         base.counterUp(res, 1);
-        base.increaseFine(r.getInt("userID"), calculateFine(r.getInt("userID"), r.getInt("commonID"), r.getString("date")));
+
+        if (!r.getString("date").equals("0"))
+            base.increaseFine(r.getInt("userID"), calculateFine(r.getInt("userID"), r.getInt("commonID"), r.getString("date")));
 
         r = base.copyInfo(copyID);
 
@@ -282,9 +328,11 @@ public class Librarian extends Users {
         deleteOldBookings(new Documents(docID));
         ResultSet queue = base.getQueue(docID);
 
-        if (queue.next())
-            notifyUser(queue.getInt(userID.get()), docID);
+        if (queue.next()) {
+            //System.out.println(queue.getInt("userID") + " " + docID);
 
+            notifyUser(queue.getInt("userID"), docID);
+        }
         return true;
     }
 
@@ -335,5 +383,23 @@ public class Librarian extends Users {
             System.out.println(s.getInt("copyID"));
             System.out.println(s.getString("name"));
         }
+    }
+
+    public int [] getWaitingList(int docID) throws SQLException {
+        ResultSet res = base.getQueue(docID);
+
+        int [] a = new int[1000000];
+        int n = 0;
+
+        while(res.next()){
+            a[n] = res.getInt("userID");
+            n++;
+        }
+
+        int [] ans = new int[n];
+        for (int i = 0; i < n; i++)
+            ans[i] = a[i];
+
+        return ans;
     }
 }
