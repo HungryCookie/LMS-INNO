@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static java.lang.Math.min;
+import static java.lang.Math.sqrt;
 
 public class Patron extends Users{
     private int currentFine;
@@ -126,22 +127,23 @@ public class Patron extends Users{
         base.addNotification(docID, userID, "T");
     }
 
-    public Documents [] getNotifications() throws SQLException {
+    public Documents [] getNotifications(boolean test) throws SQLException {  //Notifications about client's documents available for checking out
 
         ResultSet res = base.getUserNotification(userID.get());
         Documents [] anse = new Documents[1000000];
         int n = 0;
 
-
         while (res.next()){
             int docID = res.getInt("docID");
-            deleteOldBookings(new Documents(docID));
+
+            if (!test)
+                deleteOldBookings(new Documents(docID));
 
             ResultSet res1 = base.getUserNotification(userID.get());
             boolean c = false;
 
-            while (res.next()){
-                if (res.getInt("docID") == docID && res.getString("available") == "T")
+            while (res1.next()){
+                if (res1.getInt("docID") == docID && res1.getString("available").equals("T"))
                     c = true;
             }
 
@@ -159,7 +161,7 @@ public class Patron extends Users{
         return ans;
     }
 
-    public Documents [] getBadNotifications() throws SQLException {
+    public Documents [] getBadNotifications(boolean test) throws SQLException {  //Notifications, user was in waiting list, after that he get notifications about availability
 
         ResultSet res = base.getUserNotification(userID.get());
         Documents [] anse = new Documents[1000000];
@@ -168,13 +170,85 @@ public class Patron extends Users{
 
         while (res.next()){
             int docID = res.getInt("docID");
-            deleteOldBookings(new Documents(docID));
+
+            if (!test)
+                deleteOldBookings(new Documents(docID));
 
             ResultSet res1 = base.getUserNotification(userID.get());
             boolean c = false;
 
-            while (res.next()){
-                if (res.getInt("docID") == docID && res.getString("available") == "F")
+            while (res1.next()){
+                if (res1.getInt("docID") == docID && res1.getString("available").equals("F"))
+                    c = true;
+            }
+
+            if (c){
+                anse[n] = new Documents(docID);
+                n++;
+                base.deleteNotification(userID.get(), docID);
+            }
+        }
+
+        Documents [] ans = new Documents[n];
+        for (int i = 0; i < n; i++)
+            ans[i] = anse[i];
+
+        return ans;
+    }
+
+    public Documents [] getFailedBookingNotifications(boolean test) throws SQLException { //Notification that user was removed from waiting list by librarian's outstanding request
+
+        ResultSet res = base.getUserNotification(userID.get());
+        Documents [] anse = new Documents[1000000];
+        int n = 0;
+
+
+        while (res.next()){
+            int docID = res.getInt("docID");
+
+            if (!test)
+                deleteOldBookings(new Documents(docID));
+
+            ResultSet res1 = base.getUserNotification(userID.get());
+            boolean c = false;
+
+            while (res1.next()){
+                if (res1.getInt("docID") == docID && res1.getString("available").equals("G"))
+                    c = true;
+            }
+
+            if (c){
+                anse[n] = new Documents(docID);
+                n++;
+                base.deleteNotification(userID.get(), docID);
+            }
+        }
+
+        Documents [] ans = new Documents[n];
+        for (int i = 0; i < n; i++)
+            ans[i] = anse[i];
+
+        return ans;
+    }
+
+    public Documents [] getHaveToReturnNotifications(boolean test) throws SQLException {  //Notification that user have to return book into library since librarian send outstanding request
+
+        ResultSet res = base.getUserNotification(userID.get());
+        Documents [] anse = new Documents[1000000];
+        int n = 0;
+
+
+        while (res.next()){
+            int docID = res.getInt("docID");
+
+            if (!test)
+                deleteOldBookings(new Documents(docID));
+
+            ResultSet res1 = base.getUserNotification(userID.get());
+            boolean c = false;
+
+            while (res1.next()){
+                if (res1.getInt("docID") == docID && res1.getString("available").equals("X"))
                     c = true;
             }
 
@@ -237,22 +311,25 @@ public class Patron extends Users{
 
         Documents doc = new Documents(document.getDocID());
 
-        if (getStatus() != "Visiting Professor") {
+        if (!getStatus().equals("Visiting Professor")) {
             d += 7;
 
-            if (doc.getType() != "AV" && doc.getType() != "journal" && !doc.isBestseller()){
+            if (getStatus().equals("Professor"))
+                d += 14;
+            else {
+                if (!doc.getType().equals("AV") && !doc.getType().equals("journal") && !doc.isBestseller()) {
 
-                if (getStatus() == "Professor" || getStatus() == "Instructor")
-                    d += 14;
-                else
-                    d += 7;
+                    if (getStatus().equals("Instructor"))
+                        d += 14;
+                    else
+                        d += 7;
+                }
             }
         }
 
 
         Date date = new Date();
 
-        d--;
         while(d > 0){
             d--;
 
@@ -276,12 +353,16 @@ public class Patron extends Users{
         if (!getStatus().equals("Visiting Professor")) {
             d += 7;
 
-            if (!doc.getType().equals("AV") && !doc.getType().equals("journal") && !doc.isBestseller()){
+            if (getStatus().equals("Professor"))
+                d += 14;
+            else {
+                if (!doc.getType().equals("AV") && !doc.getType().equals("journal") && !doc.isBestseller()) {
 
-                if (getStatus().equals("Professor") || getStatus().equals("Instructor"))
-                    d += 14;
-                else
-                    d += 7;
+                    if (getStatus().equals("Instructor"))
+                        d += 14;
+                    else
+                        d += 7;
+                }
             }
         }
 
@@ -297,7 +378,6 @@ public class Patron extends Users{
             e.printStackTrace();
         }
 
-        d--;
         while(d > 0){
             d--;
 
@@ -372,7 +452,6 @@ public class Patron extends Users{
 
             current_counter--;
         }
-
         if (current_counter < 2){
             return new IntAndString(0, date);
         }
@@ -387,11 +466,11 @@ public class Patron extends Users{
     }
 
     public IntAndString checkOut(Documents document) throws SQLException {  //returns 0 if user can't take this document, user was added to queue
-                                                                     //returns 1 if document is already checked out by user
-                                                                    //returns 2 if user is already in a queue at the moment
-                                                                    //returns 3 if user can checkOut book
-                                                                    //returns 4 if user already booked this document and now he can take it
-                                                                    //return 5 if user has a fine
+        //returns 1 if document is already checked out by user
+        //returns 2 if user is already in a queue at the moment
+        //returns 3 if user can checkOut book
+        //returns 4 if user already booked this document and now he can take it
+        //return 5 if user has a fine
         init();
 
         String date = "";
@@ -490,7 +569,7 @@ public class Patron extends Users{
             date = c.getTime();
         }
 
-        return min(doc.getCost(), 100 * (gone - 1));
+        return min(doc.getCost(), 100 * gone);
     }
 
     IntAndInt calculateFineTest(int userID, int docID, String dateS, String dateE){
@@ -527,13 +606,13 @@ public class Patron extends Users{
             date = c.getTime();
         }
 
-        return new IntAndInt(min(doc.getCost(), 100 * (gone - 1)), gone - 1);
+        return new IntAndInt(min(doc.getCost(), 100 * gone), gone);
     }
 
     public IntAndString renew(Documents document) throws SQLException {//return 0 if this user didn't check out this document
-                                                                        //return 1 if user have to return document to library, he reached a fine and can't renew this document
-                                                                        //return 2 if successful
-                                                                        //return 3 if this user already renewed this document
+        //return 1 if user have to return document to library, he reached a fine and can't renew this document
+        //return 2 if successful
+        //return 3 if this user already renewed this document
 
         init();
 
@@ -564,7 +643,7 @@ public class Patron extends Users{
 
         ans = getDateToReturn(document);
 
-        if (getStatus() == "Visiting Professor"){
+        if (getStatus().equals("Visiting Professor")){
 
             base.renew(copyID, userID.get(), ans, "F");
 
@@ -614,12 +693,6 @@ public class Patron extends Users{
 
         ans = getDateToReturnTest(document, dateS);
 
-        if (getStatus() == "Visiting Professor"){
-
-            base.renew(copyID, userID.get(), ans, "F");
-
-            return new IntAndString(2, ans);
-        }
 
         if (base.renew(copyID, userID.get(), ans, "T"))
             return new IntAndString(2, ans);
