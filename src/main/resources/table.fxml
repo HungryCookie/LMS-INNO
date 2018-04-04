@@ -41,5 +41,15 @@
             <Font name="Lucida Console" size="13.0" />
          </font>
       </Button>
+      <Label fx:id="fine" layoutX="437.0" layoutY="285.0" text="Current fine: ">
+         <font>
+            <Font name="Lucida Console" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="overdue" layoutX="437.0" layoutY="309.0" text="Current overdue: ">
+         <font>
+            <Font name="Lucida Console" size="13.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
