@@ -716,6 +716,15 @@ public class FcukBase implements FcukBaseInterface{
         return false;
     }
 
+    public void changeRenew(int copyID, int userID, String re){
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("update copies set renew = '" + re + "' where copyID = " + copyID + " and userID = " + userID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addNotification(int userID, int docID, String bool) {
         try {
             Statement statement = connection.createStatement();
@@ -748,9 +757,7 @@ public class FcukBase implements FcukBaseInterface{
 
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
-        b.clear();
-        //b.deleteNotification(2, 3);
-        //b.clear();
+        b.changeRenew(1,1,"T");
         //b.returnDoc(2);
         //b.checkOut(1,2, "2018-03-18");
         //System.out.println(b.renew(2,1, "2018-12-01", "F"));
