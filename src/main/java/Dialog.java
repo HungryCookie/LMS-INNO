@@ -65,6 +65,18 @@ public class Dialog {
                     message.setText("You have already renewed it once");
                     break;
                 }
+                case 9: {
+                    message.setText("Now " + PatronController.checkCode.getString() + " are available to you");
+                    break;
+                }
+                case 10: {
+                    message.setText("You was deleted from the queue for " + PatronController.checkCode.getString() + " because of outstanding request");
+                    break;
+                }
+                case 11: {
+                    message.setText("Please, return " + PatronController.checkCode.getString() + " today because of outstanding request");
+                    break;
+                }
                 default: {
                     message.setText("No code");
                     break;
