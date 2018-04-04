@@ -141,7 +141,7 @@ public class Librarian extends Users {
             base.addNotification(res.getInt("userID"), doc.getDocID(), "G");
 
         res = base.checkedOutByDocID(doc.getDocID());
-        
+
         while (res.next()){
             base.addNotification(res.getInt("userID"), doc.getDocID(), "X");
             base.changeDateToReturn(res.getInt("userID"), doc.getDocID(), getDate());
@@ -184,7 +184,7 @@ public class Librarian extends Users {
 
         int [] copies = base.findCopyID(doc.getDocID());
 
-        base.checkOut(userID.get(), copies[0], "");
+        base.checkOut(userID.get(), copies[0], "1999-03-09");
         base.counterDown(doc.getDocID());
 
         return 1;
@@ -318,7 +318,7 @@ public class Librarian extends Users {
 
         base.counterUp(res, 1);
 
-        if (!r.getString("date").equals("0"))
+        if (!r.getString("date").equals("1999-03-09"))
             base.increaseFine(r.getInt("userID"), calculateFine(r.getInt("userID"), r.getInt("commonID"), r.getString("date")));
 
         r = base.copyInfo(copyID);
