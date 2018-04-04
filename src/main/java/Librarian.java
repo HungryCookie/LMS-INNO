@@ -141,7 +141,7 @@ public class Librarian extends Users {
             base.addNotification(res.getInt("userID"), doc.getDocID(), "G");
 
         res = base.checkedOutByDocID(doc.getDocID());
-        
+
         while (res.next()){
             base.addNotification(res.getInt("userID"), doc.getDocID(), "X");
             base.changeDateToReturn(res.getInt("userID"), doc.getDocID(), getDate());
@@ -184,7 +184,7 @@ public class Librarian extends Users {
 
         int [] copies = base.findCopyID(doc.getDocID());
 
-        base.checkOut(userID.get(), copies[0], "");
+        base.checkOut(userID.get(), copies[0], getDate());
         base.counterDown(doc.getDocID());
 
         return 1;
@@ -306,7 +306,7 @@ public class Librarian extends Users {
         }
     }
 
-    public boolean returnDoc(int copyID) throws SQLException {  //Method returns document to library by ID of copy. True if alright, false if it is wrong
+    public boolean returnDoc(int copyID, boolean librarian) throws SQLException {  //Method returns document to library by ID of copy. True if alright, false if it is wrong
 
         ResultSet r = base.copyInfo(copyID);
 
@@ -318,7 +318,7 @@ public class Librarian extends Users {
 
         base.counterUp(res, 1);
 
-        if (!r.getString("date").equals("0"))
+        if (!librarian)
             base.increaseFine(r.getInt("userID"), calculateFine(r.getInt("userID"), r.getInt("commonID"), r.getString("date")));
 
         r = base.copyInfo(copyID);
