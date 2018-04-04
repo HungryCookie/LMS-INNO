@@ -34,9 +34,15 @@ public class LibrarianController {
     @FXML
     private Button Copy;
     @FXML
+    private Button wait;
+    @FXML
+    private Button request;
+    @FXML
     private Button ok;
     @FXML
     private Button payfine;
+    @FXML
+    private Button checkOut;
     @FXML
     private TextField fine;
     @FXML
@@ -151,6 +157,37 @@ public class LibrarianController {
     }
 
     @FXML
+    private void checkOut() throws SQLException, IOException {
+        int temp = ((Librarian)Login.current).checkOut(tab.getSelectionModel().getSelectedItem());
+        action = " checked out";
+        object = "Document ";
+        Stage dialog = new Stage();
+        dialog.setTitle("Checking out document");
+        Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
+        dialog.setScene(new Scene(root));
+        dialog.show();
+    }
+
+    @FXML
+    private void waitList() throws IOException {
+        docId = tab.getSelectionModel().getSelectedItem().getDocID();
+        Parent root = FXMLLoader.load(getClass().getResource("/WaitingList.fxml"));
+        Main.window.setScene(new Scene(root));
+    }
+
+    @FXML
+    private void request() throws SQLException, IOException {
+        object = "Request";
+        action = " done";
+        ((Librarian)Login.current).outstandingRequest(tab.getSelectionModel().getSelectedItem());
+        Stage dialog = new Stage();
+        dialog.setTitle("Outstanding request");
+        Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
+        dialog.setScene(new Scene(root));
+        dialog.show();
+    }
+
+    @FXML
     private void payfine() {
         if (usrs.getSelectionModel().getSelectedItem() == null) {
             name.setText("Select user");
@@ -179,26 +216,34 @@ public class LibrarianController {
 
     @FXML
     private void selectedDoc(Documents doc) {
-        title.setText(doc.getName());
-        author.setText("Author: " + doc.getAuthor());
-        type.setText("Type: " + doc.getType());
-        if (!doc.getType().equals("AV")) {
-            if (!publisher.getText().equals(""))publisher.setText("Publisher: " + doc.getPublisher());
-            if (!date.getText().isEmpty()) date.setText("Date: " + doc.getYear());
-            if (doc.isBestseller()) bestseller.setText("Bestseller");
-            else bestseller.setText("");
-            if (doc.getType().equals("Book")) {
-                if (!edit.getText().isEmpty()) edit.setText("Edition: " + doc.getEdition());
-            }
-            else {
-                if (!edit.getText().isEmpty()) edit.setText("Editor: " + doc.getEdition());
-            }
-        }
-        else {
+        if (doc == null) {
+            title.setText("");
+            author.setText("");
+            type.setText("");
             publisher.setText("");
             date.setText("");
             bestseller.setText("");
             edit.setText("");
+        } else {
+            title.setText(doc.getName());
+            author.setText("Author: " + doc.getAuthor());
+            type.setText("Type: " + doc.getType());
+            if (!doc.getType().equals("AV")) {
+                if (!doc.getPublisher().equals("")) publisher.setText("Publisher: " + doc.getPublisher());
+                if (!doc.getYear().equals("")) date.setText("Date: " + doc.getYear());
+                if (doc.isBestseller()) bestseller.setText("Bestseller");
+                else bestseller.setText("");
+                if (doc.getType().equals("Book")) {
+                    if (!edit.getText().isEmpty()) edit.setText("Edition: " + doc.getEdition());
+                } else {
+                    if (!edit.getText().isEmpty()) edit.setText("Editor: " + doc.getEdition());
+                }
+            } else {
+                publisher.setText("");
+                date.setText("");
+                bestseller.setText("");
+                edit.setText("");
+            }
         }
     }
 
