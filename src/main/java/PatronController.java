@@ -36,6 +36,8 @@ public class PatronController {
     @FXML
     private Button info;
     @FXML
+    private Button notifications;
+    @FXML
     private TableColumn<Documents, String> authorCol;
     @FXML
     private TableColumn<Documents, String> titleCol;
@@ -47,7 +49,7 @@ public class PatronController {
     public static IntAndString checkCode = new IntAndString();
 
     @FXML
-    private void initialize() throws SQLException {
+    private void initialize() throws SQLException, IOException {
         title.setText("");
         author.setText("");
         publisher.setText("");
@@ -72,6 +74,33 @@ public class PatronController {
                 e.printStackTrace();
             }
         }));
+        Documents[] notes = ((Patron)Login.current).getNotifications(false);
+        Documents[] bNotes = ((Patron)Login.current).getFailedBookingNotifications(false);
+        Documents[] rNotes = ((Patron)Login.current).getHaveToReturnNotifications(false);
+        showNotification(notes, 9);
+        showNotification(bNotes, 10);
+        showNotification(rNotes, 11);
+    }
+
+    @FXML
+    private void showNotifications() throws SQLException, IOException {
+    }
+
+    private void showNotification(Documents[] notes, int code) throws IOException {
+        if (notes.length > 0) {
+            Stage note = new Stage();
+            note.setTitle("Notification");
+            String doc = "";
+            int i = 0;
+            while (i < notes.length) {
+                doc += notes[i].getName() + ", ";
+                i++;
+            }
+            checkCode = new IntAndString(code, doc);
+            Parent dialog = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
+            note.setScene(new Scene(dialog));
+            note.show();
+        }
     }
 
     @FXML
