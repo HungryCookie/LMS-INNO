@@ -1,7 +1,9 @@
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import jdk.nashorn.internal.ir.annotations.Immutable;
+import sun.jvm.hotspot.LinuxVtblAccess;
 
+import javax.print.Doc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -16,8 +18,10 @@ import java.text.SimpleDateFormat;
 
 import static java.lang.Math.min;
 
-public class Librarian extends Users {
-    private FcukBase base = new FcukBase();
+public abstract class Librarian extends Users {
+    protected FcukBase base = new FcukBase();
+
+    public Librarian(){}
 
     public Librarian(int userID){
 
@@ -50,30 +54,9 @@ public class Librarian extends Users {
         return p;
     }
 
-    public IntAndString addUser(String name, String phoneNumber, String address, String status) { //Method adds new User into data base. And it returns userID and password
 
-        String pass = "";
 
-        for (int i = 0; i < 5; i++){
-            Random r = new Random();
-
-            int randomNum = r.nextInt(123 - 48 + 1) + 48;
-            pass += Character.toString((char)randomNum);
-        }
-
-        IntAndString res = new IntAndString(base.addNewUser(name, phoneNumber, address, status, pass), pass);
-        return res;
-    }
-
-    public void addDocument(String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
-
-        if (type.equals("AV"))
-            base.addNewDocument(name, author, counter, cost);
-        else
-            base.addNewDocument(name, publisher, year, edition, author, counter, cost, reference, bestseller);
-    }
-
-    private void deleteBooking(int userID){
+    protected void deleteBooking(int userID){
 
         Patron p = new Patron(userID);
 
@@ -84,52 +67,7 @@ public class Librarian extends Users {
         }
     }
 
-    public boolean modify(int userID, String name, String phoneNumber, String address, String status, String password){ //Method modifies fields of user with userID
-        if (!base.checkUserID(userID))
-            return false;
 
-        //System.out.println(name + phoneNumber + address + status +password);
-
-        base.userModify(userID, name, phoneNumber, address, status, password);
-
-        return true;
-    }
-
-    public boolean modify(int docID, String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference) throws SQLException { //Method modifies fields of user with userID
-
-        if (!base.checkDocumentByID(docID))
-            return false;
-
-        if (type.equals("AV"))
-            base.documentModify(docID, name, author, cost);
-        else {
-
-            base.documentModify(docID, name, publisher, year, edition, author, cost, reference, bestseller);
-
-            Documents d = new Documents(docID);
-
-            if (counter < d.getCopies()) {
-
-                ResultSet res = base.copiesOfDocument(docID);
-
-                while (res.next()) {
-                    if (counter == d.getCopies())
-                        break;
-
-                    if (base.deleteCopy(res.getInt("copyID")))
-                        counter += 1;
-                }
-            } else {
-                while (counter > d.getCopies()) {
-                    base.addCopy(d.getDocID());
-                    counter -= 1;
-                }
-            }
-
-        }
-
-        return true;
-    }
 
     public void outstandingRequest(Documents doc) throws SQLException {  //Returns 0 if there isn't any free books for librarian except reference, librarian was added to queue
         //Returns 1 if book is availible
@@ -220,7 +158,7 @@ public class Librarian extends Users {
     }
 
 
-    private void notifyUser(int userID, int docID){//need to modify user
+    protected void notifyUser(int userID, int docID){//need to modify user
 
         base.setDateToCheckOut(docID, userID, getDate());
         base.addNotification(userID, docID, "T");
@@ -234,6 +172,52 @@ public class Librarian extends Users {
         base.increaseFine(userID, -cash);
 
         return true;
+    }
+
+    protected String getLocation(int copyID){
+
+        int room = (copyID - 1) % 64 + 1;
+
+        copyID -= 64 * (room - 1);
+
+        int bookcase = (copyID - 1) % 32 + 1;
+
+        copyID -= 32 * (bookcase - 1);
+
+        int bookshelf = (copyID - 1) % 8 + 1;
+
+        copyID -= 8 * (bookshelf - 1);
+
+        int place = copyID;
+
+        String ans = "in room №" + String.valueOf(room) + ", bookcase №" + String.valueOf(bookcase) + ", bookshelf №" + String.valueOf(bookshelf) + ", document №" + String.valueOf(place);
+
+        return ans;
+    }
+
+    public String[] whereIsCopies(Documents doc) throws SQLException {
+
+        ResultSet res = base.copiesOfDocument(doc.getDocID());
+
+        String [] st = new String[100000];
+        int n = 0;
+
+        while(res.next()){
+            if (res.getString("availability").equals("T")){
+                st[n] = getLocation(res.getInt("copyID"));
+            }
+            else{
+                st[n] = String.valueOf(res.getInt("userID"));
+            }
+            n++;
+        }
+
+        String s[] = new String[n];
+
+        for (int i = 0; i < n; i++)
+            s[i] = st[i];
+
+        return s;
     }
 
     int calculateFine(int userID, int docID, String dateS){
@@ -267,7 +251,7 @@ public class Librarian extends Users {
         return min(doc.getCost(), 100 * gone);
     }
 
-    private void deleteOldBookings(Documents document) throws SQLException {
+    protected void deleteOldBookings(Documents document) throws SQLException {
 
         ResultSet res = base.getQueue(document.getDocID());
 
@@ -342,47 +326,10 @@ public class Librarian extends Users {
     }*/
 
 
-    public boolean deleteUser(int userID){ //Method deletes user and if there isn't user with userID or this user has unreturned documents
 
-        if (!base.checkUserID(userID))
-            return false;
-
-        ResultSet res = base.checkedOutByUserID(userID);
-
-        try {
-            if (res.next())
-                return false;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        deleteBooking(userID);
-        base.deleteUser(userID);
-
-        return true;
-    }
 
     public void clearDB() throws Exception {
         base.clear();
-    }
-
-    public static void main(String[] args) throws SQLException {
-
-        Librarian l = new Librarian(2);
-
-        Patron p = new Patron(1);
-
-        Documents d = new Documents(2);
-
-        //l.checkOut(p.getID(), d);
-
-        ResultSet s = l.checkedOut(p.getID());
-
-
-        while (s.next()){
-            System.out.println(s.getInt("copyID"));
-            System.out.println(s.getString("name"));
-        }
     }
 
     public int [] getWaitingList(int docID) throws SQLException {
@@ -402,4 +349,23 @@ public class Librarian extends Users {
 
         return ans;
     }
+
+    /*public static void main(String[] args) throws SQLException {
+
+        Librarian l = new Librarian(2);
+
+        Patron p = new Patron(1);
+
+        Documents d = new Documents(2);
+
+        //l.checkOut(p.getID(), d);
+
+        ResultSet s = l.checkedOut(p.getID());
+
+
+        while (s.next()){
+            System.out.println(s.getInt("copyID"));
+            System.out.println(s.getString("name"));
+        }
+    }*/
 }
