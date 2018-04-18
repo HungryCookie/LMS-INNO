@@ -768,6 +768,17 @@ public class FcukBase implements FcukBaseInterface{
 
     }
 
+    public ResultSet getInfo() {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from info");
+            return rs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
         b.clear();

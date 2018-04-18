@@ -138,10 +138,11 @@ public class LibrarianController {
         ResultSet orderU = fb.getUsers();
         while (orderU.next()) {
             Users usr;
-            if (orderU.getString("status").equals("Librarian"))
-                usr = new Librarian(orderU.getInt("id"));
+            if (orderU.getString("status").equals("Librarian")){
+                //usr = new Librarian(orderU.getInt("id"));
+            }
             else usr = new Patron(orderU.getInt("id"));
-            users.add(usr);
+            //users.add(usr);
         }
         names.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         ids.setCellValueFactory(cellData -> cellData.getValue().getIDProperty().asString());
@@ -253,10 +254,11 @@ public class LibrarianController {
         ResultSet order = fb.getUsers();
         while (order.next()) {
             Users usr;
-            if (order.getString("status").equals("Librarian"))
-                usr = new Librarian(order.getInt("id"));
+            if (order.getString("status").equals("Librarian")) {
+                //usr = new Librarian(order.getInt("id"));
+            }
             else usr = new Patron(order.getInt("id"));
-            if ((usr.getName().contains(queue)) || ((""+usr.getID()).contains(queue))) users.add(usr);
+            //if ((usr.getName().contains(queue)) || ((""+usr.getID()).contains(queue))) users.add(usr);
         }
         names.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         ids.setCellValueFactory(cellData -> cellData.getValue().getIDProperty().asString());
@@ -346,7 +348,7 @@ public class LibrarianController {
             action = "deleted";
             docId = 0;
             userId = usrs.getSelectionModel().getSelectedItem().getID();
-            if (((Librarian)Login.current).deleteUser(userId)) {
+            /*if (((Librarian)Login.current).deleteUser(userId)) {
                 dialog = new Stage();
                 dialog.setTitle("User deleted");
                 Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
@@ -354,7 +356,7 @@ public class LibrarianController {
                 dialog.show();
                 int index = usrs.getSelectionModel().getSelectedIndex();
                 usrs.getItems().remove(index);
-            }
+            }*/
         }catch (Exception e) {
             name.setText("Choose a user...");
         }

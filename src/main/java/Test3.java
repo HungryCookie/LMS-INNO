@@ -1,3 +1,4 @@
+/*
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -19,16 +20,7 @@ public class Test3 {
     }
 
     public static void start() throws Exception {
-        lb = new Librarian(1);
-        lb.clearDB();
-        lb.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F");
-        lb.addDocument("Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm", "Addison-Wesley Professional ", "2003", 4, 1700, "First Edition", "Book", "T", "F");
-        lb.addDocument("Null References: The Billion Dollar Mistake", "Tony Hoare", "", "", 3, 700, "", "AV", "F", "F");
-        p1 = new Patron(lb.addUser("Sergey Afonso", "30001", "Via Margutta, 3", "Professor").getInt());
-        p2 = new Patron(lb.addUser("Nadia Teixeira", "30002", "Via Sacra, 13", "Professor").getInt());
-        p3 = new Patron(lb.addUser("Elvira Espindola", "30003", "Via del Corso, 22", "Professor").getInt());
-        s = new Patron(lb.addUser("Andrey Velo", "30004", "Avenida Mazatlan 250", "Student").getInt());
-        v = new Patron(lb.addUser("Veronika Rama", "30005", "Stret Atocha, 27", "Visiting Professor").getInt());
+
         d1 = new Documents("Introduction to Algorithms");
         d2 = new Documents("Design Patterns: Elements of Reusable Object-Oriented Software");
         d3 = new Documents("Null References: The Billion Dollar Mistake");
@@ -430,3 +422,4 @@ public class Test3 {
     }
 
 }
+*/

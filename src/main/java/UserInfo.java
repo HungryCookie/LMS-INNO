@@ -75,7 +75,7 @@ public class UserInfo {
             addressError.setText("Enter address");
         }
         if (success) {
-            if (LibrarianController.userId == 0) {
+            /*if (LibrarianController.userId == 0) {
                 IntAndString is = ((Librarian)Login.current).addUser(name.getText(), phone.getText(), address.getText(), status.getSelectionModel().selectedItemProperty().get());
                 id = is.getInt();
                 pass = is.getString();
@@ -88,7 +88,7 @@ public class UserInfo {
             else {
                 if (passField.getText().equals("")) passError.setText("Enter new password");
                 else ((Librarian)Login.current).modify(LibrarianController.userId, name.getText(), phone.getText(), address.getText(), status.getSelectionModel().selectedItemProperty().get(), passField.getText());
-            }
+            }*/
             Stage dialog = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
             dialog.setTitle(LibrarianController.object + " " + LibrarianController.action);

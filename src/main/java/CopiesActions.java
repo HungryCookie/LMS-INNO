@@ -79,7 +79,7 @@ public class CopiesActions {
             else bs = "F";
             if (doc.isReference()) ref = "T";
             else ref = "F";
-            ((Librarian)Login.current).modify(doc.getDocID(), doc.getName(), doc.getAuthor(), doc.getPublisher(), doc.getYear(), doc.getCopies() + Integer.parseInt(count.getText()), 100, doc.getEdition(), doc.getType(), bs, ref);
+            //((Librarian)Login.current).modify(doc.getDocID(), doc.getName(), doc.getAuthor(), doc.getPublisher(), doc.getYear(), doc.getCopies() + Integer.parseInt(count.getText()), 100, doc.getEdition(), doc.getType(), bs, ref);
             Stage dialog = new Stage();
             dialog.setTitle("Add copy");
             LibrarianController.object = "Copy";

@@ -51,7 +51,7 @@ public class Login {
         if (base.checkUserID(Integer.parseInt(id))) {
             String userStatus = base.getUserByID(Integer.parseInt(id)).getString("status");
             if (userStatus.equals("Librarian")) {
-                user = new Librarian(Integer.parseInt(id));
+                //user = new Librarian(Integer.parseInt(id));
             }
             else {
                 user = new Patron(Integer.parseInt(id));

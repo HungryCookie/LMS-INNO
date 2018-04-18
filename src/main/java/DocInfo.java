@@ -160,10 +160,10 @@ public class DocInfo {
             String bs;
             if (bestseller.isSelected()) bs = "T";
             else bs = "F";
-            if (LibrarianController.docId == 0) {
+            /*if (LibrarianController.docId == 0) {
                 ((Librarian)Login.current).addDocument(name.getText(), author.getText(), publisher.getText(), year.getText(), cop, cos, "", type.getSelectionModel().getSelectedItem(), bs, ref);
             }
-            else ((Librarian)Login.current).modify(LibrarianController.docId, name.getText(), author.getText(), publisher.getText(), year.getText(), cop, cos, "", type.getSelectionModel().getSelectedItem(), bs, ref);
+            else ((Librarian)Login.current).modify(LibrarianController.docId, name.getText(), author.getText(), publisher.getText(), year.getText(), cop, cos, "", type.getSelectionModel().getSelectedItem(), bs, ref);*/
             Stage dialog = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
             dialog.setTitle(LibrarianController.object + " " + LibrarianController.action);
