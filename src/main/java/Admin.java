@@ -113,4 +113,42 @@ public class Admin extends Users{
 
         return 2;
     }
+    
+    public String getDate(){
+        Date d = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+
+        return f.format(d);
+    }
+    
+    public addLog(String log, String time){
+    
+        if (time.equals(""))
+            base.addInfo(getDate(), log);
+        else
+            base.addInfo(time, log);
+    }
+    
+    public String[][] getLogs() throws Exception { //Returns hystory of operations, first is a log, second is a date
+        
+        int n = 0;
+        String [][] s = new String[1000000][2];
+        
+        ResultSet res = base.getInfo();
+        
+        while(res.next()){
+            s[n][0] = res.getString("string");
+            s[n][1] = res.getString("time");
+            n++;
+        }
+        
+        String [][] ans = new String[n][2];
+        
+        for (int i = 0; i < n; i++){
+            ans[i][0] = s[i][0];
+            ans[i][1] = s[i][1];
+        }
+        
+        return ans;
+    }
 }
