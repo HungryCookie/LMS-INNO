@@ -10,11 +10,13 @@ public class Copy {
     private IntegerProperty docID; //ID of proper document
     private StringProperty author;
     private StringProperty checkedOut;
+    private StringProperty location;
 
-    public Copy(String author, String name, int copyID) {
+    public Copy(String author, String name, int copyID, String location) {
         this.copyID = new SimpleStringProperty("" + copyID);
         this.author = new SimpleStringProperty(author);
         this.name = new SimpleStringProperty(name);
+        this.location = new SimpleStringProperty(location);
     }
 
     public Copy(int copyID, int userID) {
@@ -38,4 +40,6 @@ public class Copy {
     public StringProperty checkedOutProperty() {
         return checkedOut;
     }
+
+    public StringProperty locationProperty() { return location; }
 }

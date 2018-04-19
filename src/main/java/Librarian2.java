@@ -2,6 +2,10 @@ import java.util.Random;
 
 public class Librarian2 extends Librarian1 {
 
+    public Librarian2(int id) {
+        super(id);
+    }
+
     public IntAndString addUser(String name, String phoneNumber, String address, String status) { //Method adds new User into data base. And it returns userID and password
 
         String pass = "";

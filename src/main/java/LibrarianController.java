@@ -30,6 +30,8 @@ public class LibrarianController {
     @FXML
     private Button deleteDoc;
     @FXML
+    private Button deleteUser;
+    @FXML
     private Button returnDoc;
     @FXML
     private Button Copy;
@@ -113,6 +115,28 @@ public class LibrarianController {
         ok.setDisable(true);
         fine.setVisible(false);
         bestseller.setText("");
+        if (Login.current instanceof Librarian2) {
+            deleteDoc.setDisable(true);
+            deleteDoc.setVisible(false);
+            deleteUser.setDisable(true);
+            deleteUser.setVisible(false);
+            Copy.setDisable(true);
+            Copy.setVisible(false);
+        }
+        else if (Login.current instanceof Librarian1) {
+            deleteDoc.setDisable(true);
+            deleteDoc.setVisible(false);
+            deleteUser.setDisable(true);
+            deleteUser.setVisible(false);
+            Copy.setDisable(true);
+            Copy.setVisible(false);
+            addDoc.setDisable(true);
+            addDoc.setVisible(false);
+            addUser.setDisable(true);
+            addUser.setVisible(false);
+            request.setDisable(true);
+            request.setVisible(false);
+        }
         ObservableList<Documents> docs = FXCollections.observableArrayList();
         ResultSet order = fb.getDocs();
         while (order.next()) {
@@ -138,11 +162,11 @@ public class LibrarianController {
         ResultSet orderU = fb.getUsers();
         while (orderU.next()) {
             Users usr;
-            if (orderU.getString("status").equals("Librarian")){
-                //usr = new Librarian(orderU.getInt("id"));
+            if ((!orderU.getString("status").contains("Librarian")) &&
+                    (!orderU.getString("status").equals("Admin"))) {
+                    usr = new Patron(orderU.getInt("id"));
+                    users.add(usr);
             }
-            else usr = new Patron(orderU.getInt("id"));
-            //users.add(usr);
         }
         names.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         ids.setCellValueFactory(cellData -> cellData.getValue().getIDProperty().asString());
@@ -160,13 +184,16 @@ public class LibrarianController {
     @FXML
     private void checkOut() throws SQLException, IOException {
         int temp = ((Librarian)Login.current).checkOut(tab.getSelectionModel().getSelectedItem());
-        action = " checked out";
-        object = "Document ";
-        Stage dialog = new Stage();
-        dialog.setTitle("Checking out document");
-        Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
-        dialog.setScene(new Scene(root));
-        dialog.show();
+        if (temp == 1) {
+            (new Admin(1)).addLog(Login.current.getName() + " checked out " + tab.getSelectionModel().getSelectedItem().getName(), "");
+            action = " checked out";
+            object = "Document ";
+            Stage dialog = new Stage();
+            dialog.setTitle("Checking out document");
+            Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
+            dialog.setScene(new Scene(root));
+            dialog.show();
+        }
     }
 
     @FXML
@@ -181,6 +208,7 @@ public class LibrarianController {
         object = "Request";
         action = " done";
         ((Librarian)Login.current).outstandingRequest(tab.getSelectionModel().getSelectedItem());
+        (new Admin(1)).addLog(Login.current.getName() + " placed an outstanding request for " + tab.getSelectionModel().getSelectedItem().getName(), "");
         Stage dialog = new Stage();
         dialog.setTitle("Outstanding request");
         Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
@@ -206,6 +234,7 @@ public class LibrarianController {
         int paid = 0;
         if (!fine.getText().equals("")) paid = Integer.parseInt(fine.getText());
         ((Librarian)Login.current).payFine(userId, paid);
+        (new Admin(1)).addLog((new Patron(userId)).getName() + " paid " + fine.getText() + " rubles for fine", "");
         action = "paid";
         object = "Fine";
         dialog = new Stage();
@@ -253,12 +282,10 @@ public class LibrarianController {
         ObservableList<Users> users = FXCollections.observableArrayList();
         ResultSet order = fb.getUsers();
         while (order.next()) {
-            Users usr;
-            if (order.getString("status").equals("Librarian")) {
-                //usr = new Librarian(order.getInt("id"));
-            }
-            else usr = new Patron(order.getInt("id"));
-            //if ((usr.getName().contains(queue)) || ((""+usr.getID()).contains(queue))) users.add(usr);
+            Users usr = null;
+            if (order.getString("status").equals("Patron"))
+                usr = new Patron(order.getInt("id"));
+            if ((usr != null) && ((usr.getName().contains(queue)) || ((""+usr.getID()).contains(queue)))) users.add(usr);
         }
         names.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         ids.setCellValueFactory(cellData -> cellData.getValue().getIDProperty().asString());
@@ -348,15 +375,16 @@ public class LibrarianController {
             action = "deleted";
             docId = 0;
             userId = usrs.getSelectionModel().getSelectedItem().getID();
-            /*if (((Librarian)Login.current).deleteUser(userId)) {
+            if (((Librarian3)Login.current).deleteUser(userId)) {
                 dialog = new Stage();
                 dialog.setTitle("User deleted");
+                (new Admin(1)).addLog(Login.current.getName() + " deleted user " + usrs.getSelectionModel().getSelectedItem().getName(), "");
                 Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
                 dialog.setScene(new Scene(root, 315, 155));
                 dialog.show();
                 int index = usrs.getSelectionModel().getSelectedIndex();
                 usrs.getItems().remove(index);
-            }*/
+            }
         }catch (Exception e) {
             name.setText("Choose a user...");
         }

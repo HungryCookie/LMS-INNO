@@ -9,7 +9,7 @@ public class Main extends Application{
     public static Stage window;
     public static Scene login;
 
-    public static void main(String[] args) throws Exception { launch(args); }
+    public static void main(String[] args) throws Exception {launch(args); }
 
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;

@@ -16,6 +16,7 @@ public class Login {
     public static Users current;
     public static Scene patronScene;
     public static Scene librarianScene;
+    public static Scene adminScene;
 
     public void login() throws Exception{
         checkID(id.getText(), password.getText());
@@ -32,7 +33,12 @@ public class Login {
             } else {
                 wrongid.setText("");
                 wrongpass.setText("");
-                if (current instanceof Librarian) {
+                if (current instanceof Admin) {
+                    Parent root = FXMLLoader.load(getClass().getResource("/Admin.fxml"));
+                    adminScene = new Scene(root);
+                    Main.window.setScene(adminScene);
+                }
+                if (current instanceof Librarian){
                     Parent root = FXMLLoader.load(getClass().getResource("/Librarian.fxml"));
                     librarianScene = new Scene(root, 600, 400);
                     Main.window.setScene(librarianScene);
@@ -50,8 +56,17 @@ public class Login {
         FcukBase base = new FcukBase();
         if (base.checkUserID(Integer.parseInt(id))) {
             String userStatus = base.getUserByID(Integer.parseInt(id)).getString("status");
-            if (userStatus.equals("Librarian")) {
-                //user = new Librarian(Integer.parseInt(id));
+            if (userStatus.equals("Librarian1")) {
+                user = new Librarian1(Integer.parseInt(id));
+            }
+            else if (userStatus.equals("Librarian2")) {
+                user = new Librarian2(Integer.parseInt(id));
+            }
+            else if (userStatus.equals("Librarian3")) {
+                user = new Librarian3(Integer.parseInt(id));
+            }
+            else if (userStatus.equals("Admin")) {
+                user = new Admin(Integer.parseInt(id));
             }
             else {
                 user = new Patron(Integer.parseInt(id));
