@@ -10,19 +10,20 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CopiesActions">
    <children>
-      <TableView fx:id="table" layoutX="48.0" layoutY="61.0" prefHeight="264.0" prefWidth="331.0">
+      <TableView fx:id="table" layoutX="48.0" layoutY="61.0" prefHeight="264.0" prefWidth="411.0">
         <columns>
-          <TableColumn fx:id="title" prefWidth="152.0" text="Title" />
-          <TableColumn fx:id="copyID" prefWidth="90.0" text="Copy ID" />
-            <TableColumn fx:id="checkedOut" prefWidth="88.0" text="Checked Out" />
+          <TableColumn fx:id="title" prefWidth="133.0" text="Title" />
+          <TableColumn fx:id="copyID" prefWidth="51.0" text="Copy ID" />
+            <TableColumn fx:id="checkedOut" prefWidth="82.0" text="Checked Out" />
+            <TableColumn fx:id="locations" prefWidth="139.0" text="Location" />
         </columns>
       </TableView>
-      <Button fx:id="add" layoutX="418.0" layoutY="93.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="151.0" text="Add new copy">
+      <Button fx:id="add" layoutX="463.0" layoutY="96.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="123.0" text="Add new copy">
          <font>
             <Font name="Lucida Console" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="delete" layoutX="418.0" layoutY="156.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="151.0" text="Delete copy">
+      <Button fx:id="delete" layoutX="463.0" layoutY="157.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="123.0" text="Delete copy">
          <font>
             <Font name="Lucida Console" size="14.0" />
          </font>
@@ -31,18 +32,18 @@
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font></Button>
-      <Label fx:id="error" layoutX="418.0" layoutY="209.0" textFill="RED">
+      <Label fx:id="error" layoutX="465.0" layoutY="209.0" prefHeight="14.0" prefWidth="10.0" textFill="RED">
          <font>
             <Font name="Lucida Console" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="count" disable="true" layoutX="419.0" layoutY="234.0" onAction="#apply" promptText="Number of new copies" visible="false" />
+      <TextField fx:id="count" disable="true" layoutX="502.0" layoutY="234.0" onAction="#apply" prefHeight="25.0" prefWidth="84.0" promptText="Number of new copies" visible="false" />
       <Button fx:id="apply" disable="true" layoutX="529.0" layoutY="275.0" mnemonicParsing="false" onAction="#apply" text="OK" visible="false">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="418.0" layoutY="267.0" textFill="RED">
+      <Label layoutX="464.0" layoutY="267.0" prefHeight="13.0" prefWidth="10.0" textFill="RED">
          <font>
             <Font name="Lucida Console" size="11.0" />
          </font>
