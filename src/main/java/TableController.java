@@ -84,7 +84,9 @@ public class TableController {
     @FXML
     private void renew() throws SQLException, IOException {
         IntAndString res = ((Patron)Login.current).renew(table.getSelectionModel().getSelectedItem());
+        PatronController.docID = table.getSelectionModel().getSelectedItem().getDocID();
         PatronController.checkCode = new IntAndString(5 + res.getInt(), res.getString());
+        (new Admin(1)).addLog(Login.current.getName() + " renewed the document " + table.getSelectionModel().getSelectedItem().getName(), "");
         Stage dialog = new Stage();
         dialog.setTitle("Renew document");
         Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
@@ -109,6 +111,8 @@ public class TableController {
             if (rs.getString("name").equals(title)) copyID = rs.getInt("copyID");
         }
         ((Librarian)Login.current).returnDoc(copyID);
+        (new Admin(1)).addLog((new Patron(LibrarianController.userId).getName())
+                + " returned " + table.getSelectionModel().getSelectedItem().getName(), "");
         int index = table.getSelectionModel().getSelectedIndex();
         table.getItems().remove(index);
     }

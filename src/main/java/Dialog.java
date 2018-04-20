@@ -20,11 +20,11 @@ public class Dialog {
                 id.setText("");
                 pass.setText("");
             }
+            (new Admin(1)).addLog(Login.current.getName() + " " + LibrarianController.action + " " + LibrarianController.object, "");
         }
         else {
             id.setText("");
             pass.setText("");
-            System.out.println(PatronController.checkCode.getInt());
             switch (PatronController.checkCode.getInt()) {
                 case 0: {
                     message.setText("Unfortunately, document is unavailable. You were added to the queue. ");
@@ -41,11 +41,15 @@ public class Dialog {
                 case 3: {
                     message.setText("This document was successfully checked out for you due to");
                     id.setText(PatronController.checkCode.getString());
+                    (new Admin(1)).addLog(Login.current.getName() +
+                            " checked out" + (new Documents(PatronController.docID)).getName(), "");
                     break;
                 }
                 case 4: {
                     message.setText("Thank you for waiting. Document was checked out due to");
                     id.setText(PatronController.checkCode.getString());
+                    (new Admin(1)).addLog(Login.current.getName() +
+                            " checked out" + (new Documents(PatronController.docID)).getName(), "");
                     break;
                 }
                 case 5: {
@@ -59,6 +63,8 @@ public class Dialog {
                 case 7: {
                     message.setText("Successfully renewed, new date:");
                     id.setText(PatronController.checkCode.getString());
+                    (new Admin(1)).addLog(Login.current.getName() + " renewed "
+                            + new Documents(PatronController.docID).getName(), "");
                     break;
                 }
                 case 8: {

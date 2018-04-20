@@ -21,6 +21,8 @@ public class CopiesActions {
     @FXML
     private TableColumn<Copy, String> checkedOut;
     @FXML
+    private TableColumn<Copy, String> locations;
+    @FXML
     private Button back;
     @FXML
     private Button delete;
@@ -48,6 +50,7 @@ public class CopiesActions {
         title.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         copyID.setCellValueFactory(cellData -> cellData.getValue().copyIDProperty());
         checkedOut.setCellValueFactory(cellData -> cellData.getValue().checkedOutProperty());
+        locations.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
         table.setItems(docs);
         table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedDoc(newValue));
     }
@@ -79,8 +82,9 @@ public class CopiesActions {
             else bs = "F";
             if (doc.isReference()) ref = "T";
             else ref = "F";
-            //((Librarian)Login.current).modify(doc.getDocID(), doc.getName(), doc.getAuthor(), doc.getPublisher(), doc.getYear(), doc.getCopies() + Integer.parseInt(count.getText()), 100, doc.getEdition(), doc.getType(), bs, ref);
+            ((Librarian3)Login.current).modify(doc.getDocID(), doc.getName(), doc.getAuthor(), doc.getPublisher(), doc.getYear(), doc.getCopies() + Integer.parseInt(count.getText()), 100, doc.getEdition(), doc.getType(), bs, ref);
             Stage dialog = new Stage();
+            (new Admin(1)).addLog(Login.current.getName() + " added " + count.getText() + " copies of " + doc.getName(), "");
             dialog.setTitle("Add copy");
             LibrarianController.object = "Copy";
             LibrarianController.action = "added";
@@ -98,6 +102,7 @@ public class CopiesActions {
             if (checkedOut.getCellData(table.getSelectionModel().selectedItemProperty().get()).equals("Yes")) error.setText("This copy is not in library");
             else {
                 ((Librarian)Login.current).deleteCopy(copyId);
+                (new Admin(1)).addLog(Login.current.getName() + " deleted the copy of " + table.getSelectionModel().getSelectedItem().nameProperty().get(), "");
                 Stage dialog = new Stage();
                 dialog.setTitle("Delete copy");
                 LibrarianController.object = "Copy";

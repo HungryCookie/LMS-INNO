@@ -43,11 +43,17 @@ public class UserInfo {
             phone.setText(p.phoneNumber);
             passField.setText(p.getPassword());
             address.setText(p.address);
-            status.getItems().addAll("Student", "Professor", "Visiting Professor", "Librarian", "Instructor");
+            if (Login.current instanceof Admin)
+                status.getItems().addAll("Librarian1", "Librarian2", "Librarian3");
+            else
+                status.getItems().addAll("Student", "Visiting Professor", "Instructor", "Professor");
             status.getSelectionModel().select(p.getStatus());
         }
         else {
-            status.getItems().addAll("Student", "Professor", "Visiting Professor", "Librarian", "Instructor");
+            if (Login.current instanceof Admin)
+                status.getItems().addAll("Librarian1", "Librarian2", "Librarian3");
+            else
+                status.getItems().addAll("Student", "Visiting Professor", "Instructor", "Professor");
             status.getSelectionModel().select(0);
             passField.setVisible(false);
             passLabel.setVisible(false);
@@ -75,8 +81,12 @@ public class UserInfo {
             addressError.setText("Enter address");
         }
         if (success) {
-            /*if (LibrarianController.userId == 0) {
-                IntAndString is = ((Librarian)Login.current).addUser(name.getText(), phone.getText(), address.getText(), status.getSelectionModel().selectedItemProperty().get());
+            if (LibrarianController.userId == 0) {
+                IntAndString is;
+                if (!status.getSelectionModel().getSelectedItem().contains("Librarian"))
+                    is = ((Librarian2)Login.current).addUser(name.getText(), phone.getText(), address.getText(), status.getSelectionModel().selectedItemProperty().get());
+                else
+                    is = ((Admin)Login.current).addLibrarian(name.getText(), phone.getText(), address.getText(), status.getSelectionModel().getSelectedItem());
                 id = is.getInt();
                 pass = is.getString();
                 dialog = new Stage();
@@ -87,8 +97,19 @@ public class UserInfo {
             }
             else {
                 if (passField.getText().equals("")) passError.setText("Enter new password");
-                else ((Librarian)Login.current).modify(LibrarianController.userId, name.getText(), phone.getText(), address.getText(), status.getSelectionModel().selectedItemProperty().get(), passField.getText());
-            }*/
+                else
+                    if (status.getSelectionModel().getSelectedItem().contains("Librarian")) {
+                        (new Admin(1)).addLog(Login.current.getName() +
+                                " modified user " + (new Patron(LibrarianController.userId)).getName(), "");
+                        ((Librarian1) Login.current).modify(LibrarianController.userId, name.getText(), phone.getText(),
+                                address.getText(), status.getSelectionModel().selectedItemProperty().get(), passField.getText());
+                    }
+                    else {
+                        (new Admin(1)).addLog(Login.current.getName() + " modified librarian " + name.getText(), "");
+                        ((Admin) Login.current).modifyLibrarian(LibrarianController.userId, name.getText(),
+                                phone.getText(), address.getText(), status.getSelectionModel().getSelectedItem(), passField.getText());
+                    }
+            }
             Stage dialog = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
             dialog.setTitle(LibrarianController.object + " " + LibrarianController.action);

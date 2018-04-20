@@ -47,6 +47,7 @@ public class PatronController {
     public Scene tableScene;
     private FcukBase fb = new FcukBase();
     public static IntAndString checkCode = new IntAndString();
+    public static int docID;
 
     @FXML
     private void initialize() throws SQLException, IOException {
@@ -80,10 +81,6 @@ public class PatronController {
         showNotification(notes, 9);
         showNotification(bNotes, 10);
         showNotification(rNotes, 11);
-    }
-
-    @FXML
-    private void showNotifications() throws SQLException, IOException {
     }
 
     private void showNotification(Documents[] notes, int code) throws IOException {
@@ -151,10 +148,8 @@ public class PatronController {
     private void checkOut() throws SQLException, IOException {
         Patron pr = new Patron(Login.current.getID());
         IntAndString temp = pr.checkOut(tab.getSelectionModel().getSelectedItem());
-        System.out.println(temp.getInt());
         checkCode = temp;
-        System.out.println(checkCode.getInt());
-        System.out.println();
+        docID = tab.getSelectionModel().getSelectedItem().getDocID();
         Stage dialog = new Stage();
         dialog.setTitle("Checking out document");
         Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));

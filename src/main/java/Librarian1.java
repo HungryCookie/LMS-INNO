@@ -1,7 +1,11 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Librarian1 extends Librarian{
+public class Librarian1 extends Librarian {
+
+    public Librarian1(int id) {
+        super(id);
+    }
 
     public boolean modify(int userID, String name, String phoneNumber, String address, String status, String password){ //Method modifies fields of user with userID
         if (!base.checkUserID(userID))

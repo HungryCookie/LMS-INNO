@@ -1,6 +1,5 @@
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import jdk.nashorn.internal.ir.annotations.Immutable;
 
 import javax.print.Doc;
 import java.sql.ResultSet;
