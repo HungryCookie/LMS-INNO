@@ -3,7 +3,9 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 public class Admin extends Users{
@@ -121,7 +123,7 @@ public class Admin extends Users{
         return f.format(d);
     }
     
-    public addLog(String log, String time){
+    public void addLog(String log, String time){
     
         if (time.equals(""))
             base.addInfo(getDate(), log);
