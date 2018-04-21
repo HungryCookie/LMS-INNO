@@ -47,7 +47,7 @@ public class FcukBase implements FcukBaseInterface{
         Statement statement = connection.createStatement();
         statement.execute("delete from copies;");
         statement.execute("delete from booking");
-        statement.execute("DELETE from users where id > 1");
+        statement.execute("DELETE from users where id > 2");
         statement.execute("delete from documents");
         statement.execute("delete from notification");
         statement.execute("delete from info");
