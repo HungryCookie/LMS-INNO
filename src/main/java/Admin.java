@@ -125,8 +125,10 @@ public class Admin extends Users{
     
     public void addLog(String log, String time){
     
+        Date d = new Date();
+        
         if (time.equals(""))
-            base.addInfo(getDate(), log);
+            base.addInfo(d.toString(), log);
         else
             base.addInfo(time, log);
     }
