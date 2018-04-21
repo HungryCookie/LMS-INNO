@@ -35,14 +35,14 @@ public class Librarian1 extends Librarian {
 
                     if (base.deleteCopy(res.getInt("copyID"))){
                         counter += 1;
-                        base.counterUp(-1);
+                        base.counterUp(docID, -1);
                     }
                 }
         } 
         else {
             while (counter > d.getCopies()) {
                 base.addCopy(d.getDocID());
-                base.counterUp(1);
+                base.counterUp(docID, 1);
                 counter -= 1;
             }
         }
