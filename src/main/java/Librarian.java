@@ -156,9 +156,15 @@ public abstract class Librarian extends Users {
     }
 
 
-    protected void notifyUser(int userID, int docID){//need to modify user
+    protected void notifyUser(int userID, int docID){//need to nodify user
 
         base.setDateToCheckOut(docID, userID, getDate());
+        base.addNotification(userID, docID, "T");
+    }
+
+    protected void notifyUserTest(int userID, int docID, String dateS){//need to nodify user
+
+        base.setDateToCheckOut(docID, userID, dateS);
         base.addNotification(userID, docID, "T");
     }
 
@@ -249,6 +255,43 @@ public abstract class Librarian extends Users {
         return min(doc.getCost(), 100 * gone);
     }
 
+    IntAndInt calculateFineTest(int userID, int docID, String dateS, String dateE){
+
+        int gone = 0;
+        Documents doc = new Documents(docID);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+
+
+        try {
+            date = formatter.parse(dateS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Date todayDate = new Date();
+
+        try {
+            todayDate = formatter.parse(dateE);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (!todayDate.after(date))
+            return new IntAndInt(0, 0);
+
+        while(todayDate.after(date)){
+            gone++;
+
+            Calendar c = Calendar.getInstance();        // Checking if booking is old
+            c.setTime(date);
+            c.add(Calendar.DATE, 1);
+            date = c.getTime();
+        }
+
+        return new IntAndInt(min(doc.getCost(), 100 * gone), gone);
+    }
+
     protected void deleteOldBookings(Documents document) throws SQLException {
 
         ResultSet res = base.getQueue(document.getDocID());
@@ -288,6 +331,51 @@ public abstract class Librarian extends Users {
         }
     }
 
+    protected void deleteOldBookingsTest(Documents document, String dateS) throws SQLException {
+
+        ResultSet res = base.getQueue(document.getDocID());
+
+        while (res.next()){
+            if (res.getInt("priority") == 2) {
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+                Date date = new Date();
+
+                try {
+                    date = formatter.parse(res.getString("date"));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Calendar c = Calendar.getInstance();        // Checking if booking is old
+                c.setTime(date);
+                c.add(Calendar.DATE, 1);
+                date = c.getTime();
+
+
+                Date todayDate = new Date();
+                try {
+                    todayDate = formatter.parse(dateS);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+                if (todayDate.after(date)) {
+                    base.deleteBooking(document.getDocID(), res.getInt("userID"));   //Deleting old booking
+                    base.deleteNotification(res.getInt("userID"), document.getDocID());
+                    base.addNotification(res.getInt("userID"), res.getInt("docID"), "F");
+
+                    ResultSet queue = base.getQueue(document.getDocID());
+
+                    if (queue.next())
+                        notifyUserTest(queue.getInt(userID.get()), document.getDocID(), dateS);
+                }
+            }
+        }
+    }
+
     public boolean returnDoc(int copyID) throws SQLException {  //Method returns document to library by ID of copy. True if alright, false if it is wrong
 
         ResultSet r = base.copyInfo(copyID);
@@ -300,12 +388,21 @@ public abstract class Librarian extends Users {
 
         base.counterUp(res, 1);
 
+        int userID = r.getInt("userID");
+
         if (!r.getString("date").equals("1999-03-09"))
             base.increaseFine(r.getInt("userID"), calculateFine(r.getInt("userID"), r.getInt("commonID"), r.getString("date")));
 
         r = base.copyInfo(copyID);
 
         int docID = r.getInt("commonID");
+
+        Documents [] n = (new Patron(userID)).getHaveToReturnNotifications();
+        for (Documents nn : n){
+            if (nn.getDocID() == docID)
+                base.deleteNotification(userID, docID);
+        }
+
 
         deleteOldBookings(new Documents(docID));
         ResultSet queue = base.getQueue(docID);
@@ -318,6 +415,35 @@ public abstract class Librarian extends Users {
         return true;
     }
 
+    public boolean returnDocTest(int copyID, String dateS) throws SQLException {  //Method returns document to library by ID of copy. True if alright, false if it is wrong
+
+        ResultSet r = base.copyInfo(copyID);
+
+        int res = base.returnDoc(copyID);
+
+        if (res == 0)
+            return false;
+
+
+        base.counterUp(res, 1);
+
+        if (!r.getString("date").equals("1999-03-09"))
+            base.increaseFine(r.getInt("userID"), calculateFineTest(r.getInt("userID"), r.getInt("commonID"), r.getString("date"), dateS).getFirst());
+
+        r = base.copyInfo(copyID);
+
+        int docID = r.getInt("commonID");
+
+        deleteOldBookingsTest(new Documents(docID), dateS);
+        ResultSet queue = base.getQueue(docID);
+
+        if (queue.next()) {
+            //System.out.println(queue.getInt("userID") + " " + docID);
+
+            notifyUserTest(queue.getInt("userID"), docID, dateS);
+        }
+        return true;
+    }
     /*
     public boolean deleteDocument(int copyID){ //Method deletes one copy of document from data base. Ant returns false if copyID is wrong or this copy is not in library at the moment
         return base.deleteDocument
