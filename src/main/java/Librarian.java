@@ -111,12 +111,17 @@ public abstract class Librarian extends Users {
     public int checkOut(Documents doc) throws SQLException {
         //return 0 if librarian was added to waiting list
         // return 1 if ok
+        //return 2;
+        
         doc = new Documents(doc.getDocID());
 
         if (doc.isReference()){
             base.book(doc.getDocID(), userID.get(), 1, getDate());
             return 0;
         }
+        
+        if (doc.getType().equals("Magazine")
+            return 2;
 
         int [] copies = base.findCopyID(doc.getDocID());
 
