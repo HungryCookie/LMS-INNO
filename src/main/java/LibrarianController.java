@@ -117,8 +117,8 @@ public class LibrarianController {
         bestseller.setText("");
         deleteUser.setDisable(false);
         deleteUser.setVisible(true);
-        deleteDoc.setDisable(false);
-        deleteDoc.setVisible(true);
+        deleteDoc.setDisable(true);
+        deleteDoc.setVisible(false);
         if (Login.current.getStatus().equals("Librarian2")) {
             deleteDoc.setDisable(true);
             deleteDoc.setVisible(false);
@@ -153,7 +153,7 @@ public class LibrarianController {
         tab.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedDoc(newValue));
         searchtext.textProperty().addListener(((observable, oldValue, newValue) -> {
             try {
-                search(newValue);
+                searchDoc(newValue);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -183,6 +183,20 @@ public class LibrarianController {
                 e.printStackTrace();
             }
         }));
+    }
+
+    @FXML
+    private void searchDoc(String que) throws SQLException {
+        ObservableList<Documents> docs = FXCollections.observableArrayList();
+        ResultSet order = fb.getDocs();
+        while (order.next()) {
+            Documents copy = new Documents(order.getString("name"));
+            if ((copy.getName().contains(que)) || (copy.getAuthor().contains(que)) || (copy.getKeywords().contains(que))) docs.add(copy);
+        }
+        titleCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        authorCol.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
+        tab.setItems(docs);
+        tab.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedDoc(newValue));
     }
 
     @FXML
@@ -397,14 +411,14 @@ public class LibrarianController {
         }
     }
 
-    @FXML
-    private void deleteDoc() {
+//    @FXML
+//    private void deleteDoc() {
 //        try {
 //            object = "Document";
 //            action = "deleted";
 //            docId = Integer.parseInt(docID.getText());
 //            userId = 0;
-//            if (((Librarian)Login.current).deleteDocument(docId)) {
+//            if (((Librarian3)Login.current).deleteDocument(docId)) {
 //                dialog = new Stage();
 //                dialog.setTitle("Document deleted");
 //                Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
@@ -414,7 +428,7 @@ public class LibrarianController {
 //        }catch (Exception e) {
 //            docError.setText("Number is required");
 //        }
-    }
+//    }
 
     @FXML
     private void Copy() {
