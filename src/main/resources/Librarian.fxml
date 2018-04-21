@@ -169,7 +169,12 @@
                            <Font name="Lucida Console" size="13.0" />
                         </font>
                      </Button>
-                     <Button fx:id="checkOut" layoutX="390.0" layoutY="20.0" mnemonicParsing="false" onAction="#checkOut" prefHeight="24.0" prefWidth="89.0" text="Check Out">
+                     <Button fx:id="checkOut" layoutX="390.0" layoutY="20.0" mnemonicParsing="false" onAction="#checkOut" prefHeight="26.0" prefWidth="89.0" text="Check Out">
+                        <font>
+                           <Font name="Lucida Console" size="13.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="returnDoc" layoutX="479.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnDoc" prefHeight="26.0" prefWidth="65.0" text="Return">
                         <font>
                            <Font name="Lucida Console" size="13.0" />
                         </font>
