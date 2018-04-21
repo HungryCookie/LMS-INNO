@@ -40,11 +40,11 @@ public class Login {
                 }
                 if (current instanceof Librarian){
                     Parent root = FXMLLoader.load(getClass().getResource("/Librarian.fxml"));
-                    librarianScene = new Scene(root, 600, 400);
+                    librarianScene = new Scene(root);
                     Main.window.setScene(librarianScene);
                 } else if (current instanceof Patron) {
                     Parent root = FXMLLoader.load(getClass().getResource("/Patron.fxml"));
-                    patronScene = new Scene(root, 600, 400);
+                    patronScene = new Scene(root);
                     Main.window.setScene(patronScene);
                 }
             }

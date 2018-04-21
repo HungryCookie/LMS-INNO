@@ -25,6 +25,8 @@ public class AdminController {
     @FXML
     private Button add;
     @FXML
+    private Button bookings;
+    @FXML
     private Label name;
     @FXML
     private Label address;
@@ -47,6 +49,12 @@ public class AdminController {
 
     @FXML
     private void initialize() throws SQLException {
+        name.setText("");
+        phone.setText("");
+        address.setText("");
+        priv.setText("");
+        bookings.setVisible(false);
+        bookings.setDisable(true);
         ObservableList<Users> users = FXCollections.observableArrayList();
         ResultSet orderU = fb.getUsers();
         while (orderU.next()) {
@@ -78,17 +86,23 @@ public class AdminController {
     }
 
     @FXML
+    private void search() throws SQLException {
+        search(search.getText());
+    }
+
+    @FXML
     private void search(String queue) throws SQLException {
         ObservableList<Users> users = FXCollections.observableArrayList();
         ResultSet order = fb.getUsers();
         while (order.next()) {
-            Users usr;
+            Users usr = null;
             if (order.getString("status").equals("Librarian1"))
                 usr = new Librarian1(order.getInt("id"));
             else if (order.getString("status").equals("Librarians2"))
                 usr = new Librarian2(order.getInt("id"));
-            else usr = new Librarian3(order.getInt("id"));
-            if ((usr.getName().contains(queue)) || ((""+usr.getID()).contains(queue))) users.add(usr);
+            else if (order.getString("status").equals("Librarian3"))
+                usr = new Librarian3(order.getInt("id"));
+            if ((usr != null) && ((usr.getName().contains(queue)) || ((""+usr.getID()).contains(queue)))) users.add(usr);
         }
         names.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         ids.setCellValueFactory(cellData -> cellData.getValue().getIDProperty().asString());

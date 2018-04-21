@@ -11,7 +11,7 @@ public class Dialog {
 
     @FXML
     private void initialize() {
-        if (Login.current instanceof Librarian) {
+        if ((Login.current instanceof Librarian) || (Login.current instanceof Admin)) {
             message.setText(LibrarianController.object + " was successfully " + LibrarianController.action);
             if (LibrarianController.action.equals("added") && LibrarianController.object.equals("User")) {
                 id.setText("ID: " + UserInfo.id);
@@ -20,7 +20,7 @@ public class Dialog {
                 id.setText("");
                 pass.setText("");
             }
-            (new Admin(1)).addLog(Login.current.getName() + " " + LibrarianController.action + " " + LibrarianController.object, "");
+            //(new Admin(1)).addLog(Login.current.getName() + " " + LibrarianController.action + " " + LibrarianController.object, "");
         }
         else {
             id.setText("");
@@ -72,14 +72,18 @@ public class Dialog {
                     break;
                 }
                 case 9: {
-                    message.setText("Now " + PatronController.checkCode.getString() + " are available to you");
+                    message.setText("You have to return book");
                     break;
                 }
                 case 10: {
-                    message.setText("You was deleted from the queue for " + PatronController.checkCode.getString() + " because of outstanding request");
+                    message.setText("Now " + PatronController.checkCode.getString() + " are available to you");
                     break;
                 }
                 case 11: {
+                    message.setText("You was deleted from the queue for " + PatronController.checkCode.getString() + " because of outstanding request");
+                    break;
+                }
+                case 12: {
                     message.setText("Please, return " + PatronController.checkCode.getString() + " today because of outstanding request");
                     break;
                 }

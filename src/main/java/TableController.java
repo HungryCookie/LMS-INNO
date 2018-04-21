@@ -52,14 +52,17 @@ public class TableController {
         renew.setDisable(true);
         overdue.setText("");
         fine.setText("");
-            fine.setText("Current fine: " + (new Patron(LibrarianController.userId)).checkFine() + "");
+
+
         if (Login.current instanceof Patron) {
+            fine.setText("Current fine: " + ((Patron)Login.current).checkFine());
             order = ((Patron) Login.current).checkedOut(Login.current.getID());
             renew.setVisible(true);
             renew.setDisable(false);
         }
         else {
             p = new Patron(LibrarianController.userId);
+            fine.setText("Current fine: " + p.checkFine() + "");
             order = p.checkedOut(p.getID());
             remove.setDisable(false);
             remove.setVisible(true);
@@ -104,17 +107,19 @@ public class TableController {
 
     @FXML
     private void remove() throws SQLException {
-        ResultSet rs = ((Librarian)Login.current).checkedOut(LibrarianController.userId);
-        String title = table.getSelectionModel().getSelectedItem().getName();
-        int copyID = 0;
-        while (rs.next()) {
-            if (rs.getString("name").equals(title)) copyID = rs.getInt("copyID");
+        if (Login.current instanceof Librarian) {
+            ResultSet rs = ((Librarian) Login.current).checkedOut(LibrarianController.userId);
+            String title = table.getSelectionModel().getSelectedItem().getName();
+            int copyID = 0;
+            while (rs.next()) {
+                if (rs.getString("name").equals(title)) copyID = rs.getInt("copyID");
+            }
+            ((Librarian) Login.current).returnDoc(copyID);
+            (new Admin(1)).addLog((new Patron(LibrarianController.userId).getName())
+                    + " returned " + table.getSelectionModel().getSelectedItem().getName(), "");
+            int index = table.getSelectionModel().getSelectedIndex();
+            table.getItems().remove(index);
         }
-        ((Librarian)Login.current).returnDoc(copyID);
-        (new Admin(1)).addLog((new Patron(LibrarianController.userId).getName())
-                + " returned " + table.getSelectionModel().getSelectedItem().getName(), "");
-        int index = table.getSelectionModel().getSelectedIndex();
-        table.getItems().remove(index);
     }
 
     @FXML

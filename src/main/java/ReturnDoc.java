@@ -32,7 +32,7 @@ public class ReturnDoc {
         ObservableList<Copy> docs = FXCollections.observableArrayList();
         ResultSet order = ((Librarian) Login.current).checkedOut(LibrarianController.userId);
         while (order.next()) {
-            Copy copy = new Copy(order.getString("author"), order.getString("name"), order.getInt("copyID"));
+            Copy copy = new Copy(order.getString("author"), order.getString("name"), order.getInt("copyID"), (((Librarian)Login.current).getLocation(order.getInt("copyID"))));
             docs.add(copy);
         }
         title.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
