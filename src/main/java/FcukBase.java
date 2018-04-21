@@ -347,9 +347,9 @@ public class FcukBase implements FcukBaseInterface{
     }
 
     public int addNewDocument(String name, String publisher, String year, String edition,
-                              String author, int counter, int cost, String reference, String bestseller) {
+                              String author, int counter, int cost, String reference, String bestseller, String type, String keywords) {
         String query = "insert into documents (name, author, publisher, \"year\", " +
-                "edition, counter, cost, reference, bestseller, type) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 'document')";
+                "edition, counter, cost, reference, bestseller, type, keywords) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
@@ -361,6 +361,8 @@ public class FcukBase implements FcukBaseInterface{
             statement.setInt(7, cost);
             statement.setString(8, reference);
             statement.setString(9, bestseller);
+            statement.setString(10, type);
+            statement.setString(11, keywords);
             statement.execute();
             int newID = connection.createStatement().executeQuery("select last_insert_rowid()").getInt(1);
             for (int i = 0; i < counter; i++) {
@@ -517,9 +519,9 @@ public class FcukBase implements FcukBaseInterface{
     }
 
     public void documentModify(int id, String name, String publisher, String year, String edition,
-                               String author, int cost, String reference, String bestseller) {
+                               String author, int cost, String reference, String bestseller, String keywords) {
         String query = "update documents set name = ?, author = ?, publisher = ?, \"year\" = ?, " +
-                "edition = ?, cost = ?, reference = ?, bestseller = ? where id = ?";
+                "edition = ?, cost = ?, reference = ?, bestseller = ?, keywords = ? where id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
@@ -530,7 +532,8 @@ public class FcukBase implements FcukBaseInterface{
             statement.setInt(6, cost);
             statement.setString(7, reference);
             statement.setString(8, bestseller);
-            statement.setInt(9, id);
+            statement.setString(9, keywords);
+            statement.setInt(10, id);
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
