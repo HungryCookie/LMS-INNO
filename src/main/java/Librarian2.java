@@ -22,11 +22,12 @@ public class Librarian2 extends Librarian1 {
     }
 
 
-    public void addDocument(String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference){ //Method adds document into data base
+    public void addDocument(String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference, String keywords){ //Method adds document into data base
 
         if (type.equals("AV"))
             base.addNewDocument(name, author, counter, cost);
-        else
-            base.addNewDocument(name, publisher, year, edition, author, counter, cost, reference, bestseller);
+        else{
+            base.addNewDocument(name, publisher, year, edition, author, counter, cost, reference, bestseller, type, keywords);
+        }
     }
 }
