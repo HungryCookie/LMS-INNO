@@ -587,6 +587,9 @@ public class Patron extends Users{
 
         document = new Documents(document.getDocID());
 
+        if (document.isReference())
+            return new IntAndString(0, date);
+        
         deleteOldBookingsTest(document, dateS);
 
         ResultSet res = base.checkedOutByUserID(userID.get());
@@ -662,6 +665,9 @@ public class Patron extends Users{
 
         document = new Documents(document.getDocID());
 
+        if (document.isReference())
+            return 0;
+        
         deleteOldBookings(document);
 
         ResultSet res = base.checkedOutByUserID(userID.get());
