@@ -18,7 +18,7 @@ public class Librarian1 extends Librarian {
         return true;
     }
 
-    public boolean modify(int docID, String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference) throws SQLException { //Method modifies fields of user with userID
+    public boolean modify(int docID, String name, String author, String publisher, String year, int counter, int cost, String edition, String type, String bestseller, String reference, String keywords) throws SQLException { //Method modifies fields of user with userID
 
         if (!base.checkDocumentByID(docID))
             return false;
@@ -27,7 +27,7 @@ public class Librarian1 extends Librarian {
             base.documentModify(docID, name, author, cost);
         else {
 
-            base.documentModify(docID, name, publisher, year, edition, author, cost, reference, bestseller);
+            base.documentModify(docID, name, publisher, year, edition, author, cost, reference, bestseller, keywords);
 
             Documents d = new Documents(docID);
 
