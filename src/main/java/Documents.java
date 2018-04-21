@@ -129,7 +129,7 @@ public class Documents {
     }
 
     public boolean isReference() {
-        return (counter.get() <= 1 || type.get().equals("Magazine"));
+        return (counter.get() <= 1);
     }
 
 
