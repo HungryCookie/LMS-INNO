@@ -12,13 +12,19 @@ public class Dialog {
     @FXML
     private void initialize() {
         if ((Login.current instanceof Librarian) || (Login.current instanceof Admin)) {
-            message.setText(LibrarianController.object + " was successfully " + LibrarianController.action);
-            if (LibrarianController.action.equals("added") && LibrarianController.object.equals("User")) {
-                id.setText("ID: " + UserInfo.id);
-                pass.setText("Password: " + UserInfo.pass);
-            } else {
-                id.setText("");
-                pass.setText("");
+            if ((PatronController.checkCode != null) && (PatronController.checkCode.getInt() == 0))
+                message.setText("Unfortunately, document is unavailable. You were added to the queue. ");
+            else if ((PatronController.checkCode != null) && (PatronController.checkCode.getInt() == 2)) 
+                message.setText("Magazine is not available for checking out");
+            else {
+                message.setText(LibrarianController.object + " was successfully " + LibrarianController.action);
+                if (LibrarianController.action.equals("added") && LibrarianController.object.equals("User")) {
+                    id.setText("ID: " + UserInfo.id);
+                    pass.setText("Password: " + UserInfo.pass);
+                } else {
+                    id.setText("");
+                    pass.setText("");
+                }
             }
             //(new Admin(1)).addLog(Login.current.getName() + " " + LibrarianController.action + " " + LibrarianController.object, "");
         }
@@ -85,6 +91,10 @@ public class Dialog {
                 }
                 case 12: {
                     message.setText("Please, return " + PatronController.checkCode.getString() + " today because of outstanding request");
+                    break;
+                }
+                case 13: {
+                    message.setText("Magazines are not available for checking out");
                     break;
                 }
                 default: {
