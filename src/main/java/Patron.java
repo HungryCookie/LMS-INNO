@@ -657,6 +657,8 @@ public class Patron extends Users{
         //returns 3 if user can checkOut book
         //returns 4 if user already booked this document and now he can take it
         //return 5 if user has a fine
+        //returns 13 if it is Magazin
+        
         init();
 
         String date = "";
@@ -666,8 +668,8 @@ public class Patron extends Users{
 
         document = new Documents(document.getDocID());
 
-        if (document.isReference())
-            return new IntAndString(0, date);
+        if (document.getType().equals("Magazin"))
+            return new IntAndString(13, date);
         
         deleteOldBookings(document);
 
