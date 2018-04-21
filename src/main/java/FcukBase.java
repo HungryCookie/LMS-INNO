@@ -35,7 +35,7 @@ public class FcukBase implements FcukBaseInterface{
         ResultSet rs = null;
         try {
             Statement statement = connection.createStatement();
-            rs = statement.executeQuery("select * from documents where reference != 'T'");
+            rs = statement.executeQuery("select * from documents");
             return rs;
         } catch (SQLException e) {
             e.printStackTrace();
