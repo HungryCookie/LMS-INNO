@@ -120,7 +120,7 @@ public abstract class Librarian extends Users {
             return 0;
         }
         
-        if (doc.getType().equals("Magazine")
+        if (doc.getType().equals("Magazine"))
             return 2;
 
         int [] copies = base.findCopyID(doc.getDocID());

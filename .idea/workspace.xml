@@ -6,8 +6,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Documents.class" afterPath="$PROJECT_DIR$/target/classes/Documents.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Patron.class" afterPath="$PROJECT_DIR$/target/classes/Patron.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/LibrarianController.java" afterPath="$PROJECT_DIR$/src/main/java/LibrarianController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Patron.java" afterPath="$PROJECT_DIR$/src/main/java/Patron.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Librarian.java" afterPath="$PROJECT_DIR$/src/main/java/Librarian.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,7 +52,7 @@
       <file leaf-file-name="FcukBase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1166">
+            <state relative-caret-position="1317">
               <caret line="786" column="18" lean-forward="true" selection-start-line="786" selection-start-column="18" selection-end-line="786" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -83,6 +82,7 @@
                 <element signature="method#returnDoc#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#docByCopyID#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#checkedOutByUserID#0;class#FcukBase#0" expanded="false" />
+                <element signature="method#counterUp#0;class#FcukBase#0" expanded="false" />
                 <element signature="method#getQueue#0;class#FcukBase#0" expanded="false" />
                 <marker date="1524333454936" expanded="true" signature="748:767" ph="select * fro... users" />
                 <marker date="1524333454936" expanded="true" signature="1078:1101" ph="select * fro... documents" />
@@ -140,7 +140,6 @@
                 <marker date="1524333454936" expanded="true" signature="20133:20166" ph="delete from " />
                 <marker date="1524333454936" expanded="false" signature="20462:20918" ph="{...}" />
                 <marker date="1524333454936" expanded="true" signature="20564:20599" ph="delete from " />
-                <marker date="1524333454936" expanded="false" signature="20974:21668" ph="{...}" />
                 <marker date="1524333454936" expanded="true" signature="21000:21045" ph="update docum... " />
                 <marker date="1524333454936" expanded="true" signature="21077:21119" ph="select count... documents" />
                 <marker date="1524333454936" expanded="false" signature="21709:21720" ph=" { " />
@@ -207,17 +206,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Patron.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
+      <file leaf-file-name="PatronController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/PatronController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="653" column="8" lean-forward="false" selection-start-line="653" selection-start-column="8" selection-end-line="653" selection-end-column="8" />
+            <state relative-caret-position="215">
+              <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="documents" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Patron.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="123">
+              <caret line="658" column="37" lean-forward="true" selection-start-line="658" selection-start-column="37" selection-end-line="658" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="documents" pinned="false" current-in-tab="true">
         <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.documents">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -235,17 +244,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="info" pinned="false" current-in-tab="false">
-        <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.info">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users" pinned="false" current-in-tab="false">
-        <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.users">
+      <file leaf-file-name="copies" pinned="false" current-in-tab="false">
+        <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.copies">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
@@ -300,7 +300,6 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7ea55067-838e-4ddf-b451-b58202dea00e/console.sql" />
         <option value="src:table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.notification" />
         <option value="$PROJECT_DIR$/src/main/java/Test3.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Librarian.java" />
         <option value="$PROJECT_DIR$/src/main/java/Login.java" />
         <option value="$PROJECT_DIR$/src/main/java/CopiesActions.java" />
         <option value="$PROJECT_DIR$/src/main/java/DocInfo.java" />
@@ -312,6 +311,7 @@
         <option value="$PROJECT_DIR$/src/main/java/LibrarianController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Admin.java" />
         <option value="$PROJECT_DIR$/src/main/java/Patron.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Librarian.java" />
       </list>
     </option>
   </component>
@@ -423,7 +423,10 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Admin.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Dialog.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Librarian1.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/LibrarianController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/Librarian.fxml</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -763,14 +766,7 @@
       <workItem from="1523948583143" duration="992000" />
       <workItem from="1524059586905" duration="340000" />
       <workItem from="1524240042843" duration="721000" />
-      <workItem from="1524328801689" duration="6556000" />
-    </task>
-    <task id="LOCAL-00035" summary="Minor updates">
-      <created>1519923030793</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1519923030793</updated>
+      <workItem from="1524328801689" duration="9267000" />
     </task>
     <task id="LOCAL-00036" summary="Minor updates">
       <created>1519924674779</created>
@@ -1108,15 +1104,21 @@
       <option name="project" value="LOCAL" />
       <updated>1524332819536</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Some minor changes">
+      <created>1524337290873</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1524337290873</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="191218000" />
+    <option name="totallyTimeSpent" value="193929000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1102" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1133,8 +1135,8 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21945946" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22324324" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21945946" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22324324" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24972972" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1426,14 +1428,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Librarian.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://src:table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.documents">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -1458,21 +1452,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/PatronController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Documents.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="131" column="65" lean-forward="false" selection-start-line="131" selection-start-column="57" selection-end-line="131" selection-end-column="65" />
           <folding>
-            <element signature="e#4552#4553#0" expanded="true" />
-            <element signature="e#4587#4588#0" expanded="true" />
+            <element signature="e#4552#4553#0" expanded="false" />
+            <element signature="e#4587#4588#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1481,21 +1467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.copies">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1531,6 +1502,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Librarian.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="122" column="45" lean-forward="false" selection-start-line="122" selection-start-column="45" selection-end-line="122" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.info">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1538,9 +1527,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/PatronController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.booking">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="658" column="37" lean-forward="true" selection-start-line="658" selection-start-column="37" selection-end-line="658" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FcukBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1166">
+        <state relative-caret-position="1317">
           <caret line="786" column="18" lean-forward="true" selection-start-line="786" selection-start-column="18" selection-end-line="786" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1570,6 +1582,7 @@
             <element signature="method#returnDoc#0;class#FcukBase#0" expanded="false" />
             <element signature="method#docByCopyID#0;class#FcukBase#0" expanded="false" />
             <element signature="method#checkedOutByUserID#0;class#FcukBase#0" expanded="false" />
+            <element signature="method#counterUp#0;class#FcukBase#0" expanded="false" />
             <element signature="method#getQueue#0;class#FcukBase#0" expanded="false" />
             <marker date="1524333454936" expanded="true" signature="748:767" ph="select * fro... users" />
             <marker date="1524333454936" expanded="true" signature="1078:1101" ph="select * fro... documents" />
@@ -1627,7 +1640,6 @@
             <marker date="1524333454936" expanded="true" signature="20133:20166" ph="delete from " />
             <marker date="1524333454936" expanded="false" signature="20462:20918" ph="{...}" />
             <marker date="1524333454936" expanded="true" signature="20564:20599" ph="delete from " />
-            <marker date="1524333454936" expanded="false" signature="20974:21668" ph="{...}" />
             <marker date="1524333454936" expanded="true" signature="21000:21045" ph="update docum... " />
             <marker date="1524333454936" expanded="true" signature="21077:21119" ph="select count... documents" />
             <marker date="1524333454936" expanded="false" signature="21709:21720" ph=" { " />
@@ -1683,25 +1695,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.copies">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.documents">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/18870715/3c4dc7ce-44a5-423e-a425-c83f8c84c730/main.booking">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Patron.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="653" column="8" lean-forward="false" selection-start-line="653" selection-start-column="8" selection-end-line="653" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
