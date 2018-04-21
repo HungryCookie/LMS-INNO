@@ -499,7 +499,7 @@ public class Patron extends Users{
             if (getStatus().equals("Professor"))
                 d += 14;
             else {
-                if (!doc.getType().equals("AV") && !doc.getType().equals("journal") && !doc.isBestseller()) {
+                if (!doc.getType().equals("AV") && !doc.getType().equals("Journal") && !doc.isBestseller()) {
 
                     if (getStatus().equals("Instructor"))
                         d += 14;
@@ -538,7 +538,7 @@ public class Patron extends Users{
             if (getStatus().equals("Professor"))
                 d += 14;
             else {
-                if (!doc.getType().equals("AV") && !doc.getType().equals("journal") && !doc.isBestseller()) {
+                if (!doc.getType().equals("AV") && !doc.getType().equals("Journal") && !doc.isBestseller()) {
 
                     if (getStatus().equals("Instructor"))
                         d += 14;
