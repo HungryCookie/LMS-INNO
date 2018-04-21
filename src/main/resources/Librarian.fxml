@@ -174,7 +174,7 @@
                            <Font name="Lucida Console" size="13.0" />
                         </font>
                      </Button>
-                     <Button fx:id="returnDoc" layoutX="479.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnDoc" prefHeight="26.0" prefWidth="65.0" text="Return">
+                     <Button fx:id="returnDoc" layoutX="479.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnDocument" prefHeight="26.0" prefWidth="65.0" text="Return">
                         <font>
                            <Font name="Lucida Console" size="13.0" />
                         </font>
