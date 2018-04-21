@@ -21,6 +21,8 @@ public class DocInfo {
     @FXML
     private TextField copies;
     @FXML
+    private TextField keywords;
+    @FXML
     private Label nameError;
     @FXML
     private Label pubLabel;
@@ -52,7 +54,7 @@ public class DocInfo {
 
     @FXML
     private void initialize() {
-        type.getItems().addAll("Book", "JournalArticle", "AudioVideoMaterial");
+        type.getItems().addAll("Book", "Journal", "AV", "Magazine");
         if (LibrarianController.docId == 0) {
             type.getSelectionModel().select(0);
             type.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> selectType(newValue)));
@@ -72,7 +74,7 @@ public class DocInfo {
     }
 
     private void selectType(String type) {
-        if (type.equals("AudioVideoMaterial")) {
+        if (type.equals("AV")) {
             publisher.setDisable(true);
             copies.setDisable(true);
             bestseller.setDisable(true);
@@ -85,17 +87,17 @@ public class DocInfo {
             yearLabel.setText("");
             year.setVisible(false);
             year.setDisable(true);
-        } else if (type.equals("Journal")) {
+        } else if ((type.equals("Journal")) || (type.equals("Magazine"))) {
             publisher.setDisable(false);
             copies.setDisable(false);
             bestseller.setDisable(false);
             publisher.setVisible(true);
             copies.setVisible(true);
             bestseller.setVisible(true);
-            pubLabel.setText("Publisher:");
+            pubLabel.setText("Journal:");
             copyLabel.setText("Number of copies:");
             bsLabel.setText("Bestseller:");
-            yearLabel.setText("Year:");
+            yearLabel.setText("Date:");
             year.setVisible(true);
             year.setDisable(false);
         }
@@ -162,11 +164,11 @@ public class DocInfo {
             else bs = "F";
             if (LibrarianController.docId == 0) {
                 (new Admin(1)).addLog(Login.current.getName() + " added new document " + name.getText(), "");
-                ((Librarian2)Login.current).addDocument(name.getText(), author.getText(), publisher.getText(), year.getText(), cop, cos, "", type.getSelectionModel().getSelectedItem(), bs, ref);
+                ((Librarian2)Login.current).addDocument(name.getText(), author.getText(), publisher.getText(), year.getText(), cop, cos, "", type.getSelectionModel().getSelectedItem(), bs, ref, keywords.getText());
             }
             else {
                 (new Admin(1)).addLog(Login.current.getName() + " modified document " + name.getText(), "");
-                ((Librarian1)Login.current).modify(LibrarianController.docId, name.getText(), author.getText(), publisher.getText(), year.getText(), cop, cos, "", type.getSelectionModel().getSelectedItem(), bs, ref);
+                ((Librarian1)Login.current).modify(LibrarianController.docId, name.getText(), author.getText(), publisher.getText(), year.getText(), cop, cos, "", type.getSelectionModel().getSelectedItem(), bs, ref, keywords.getText());
             }
             Stage dialog = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));

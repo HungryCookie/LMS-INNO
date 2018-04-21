@@ -82,7 +82,7 @@ public class CopiesActions {
             else bs = "F";
             if (doc.isReference()) ref = "T";
             else ref = "F";
-            ((Librarian3)Login.current).modify(doc.getDocID(), doc.getName(), doc.getAuthor(), doc.getPublisher(), doc.getYear(), doc.getCopies() + Integer.parseInt(count.getText()), 100, doc.getEdition(), doc.getType(), bs, ref);
+            ((Librarian3)Login.current).modify(doc.getDocID(), doc.getName(), doc.getAuthor(), doc.getPublisher(), doc.getYear(), doc.getCopies() + Integer.parseInt(count.getText()), 100, doc.getEdition(), doc.getType(), bs, ref, doc.getKeywords());
             Stage dialog = new Stage();
             (new Admin(1)).addLog(Login.current.getName() + " added " + count.getText() + " copies of " + doc.getName(), "");
             dialog.setTitle("Add copy");

@@ -75,12 +75,12 @@ public class PatronController {
                 e.printStackTrace();
             }
         }));
-        Documents[] notes = ((Patron)Login.current).getNotifications(false);
-        Documents[] bNotes = ((Patron)Login.current).getFailedBookingNotifications(false);
-        Documents[] rNotes = ((Patron)Login.current).getHaveToReturnNotifications(false);
-        showNotification(notes, 9);
-        showNotification(bNotes, 10);
-        showNotification(rNotes, 11);
+        Documents[] notes = ((Patron)Login.current).getNotifications();
+        Documents[] bNotes = ((Patron)Login.current).getFailedBookingNotifications();
+        Documents[] rNotes = ((Patron)Login.current).getHaveToReturnNotifications();
+        showNotification(notes, 10);
+        showNotification(bNotes, 11);
+        showNotification(rNotes, 12);
     }
 
     private void showNotification(Documents[] notes, int code) throws IOException {
@@ -131,7 +131,7 @@ public class PatronController {
         ResultSet order = fb.getDocs();
         while (order.next()) {
             Documents copy = new Documents(order.getString("name"));
-            if ((copy.getName().contains(que)) || (copy.getAuthor().contains(que))) docs.add(copy);
+            if ((copy.getName().contains(que)) || (copy.getAuthor().contains(que)) || (copy.getKeywords().contains(que))) docs.add(copy);
         }
         titleCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         authorCol.setCellValueFactory(cellData -> cellData.getValue().authorProperty());

@@ -107,7 +107,7 @@ public class Admin extends Users{
 
         String st = res.getString("status");
 
-        if (!st.equals("Priv1") && !st.equals("Priv2") && !st.equals("Priv3"))
+        if (!st.equals("Librarian1") && !st.equals("Librarian2") && !st.equals("Librarian3"))
             return 1;
         //System.out.println(name + phoneNumber + address + status +password);
 

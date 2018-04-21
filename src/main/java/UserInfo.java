@@ -62,7 +62,8 @@ public class UserInfo {
 
     @FXML
     private void cancel() {
-        Main.window.setScene(Login.librarianScene);
+        if (Login.current instanceof Librarian) Main.window.setScene(Login.librarianScene);
+        else Main.window.setScene(Login.adminScene);
     }
 
     @FXML
@@ -83,22 +84,21 @@ public class UserInfo {
         if (success) {
             if (LibrarianController.userId == 0) {
                 IntAndString is;
-                if (!status.getSelectionModel().getSelectedItem().contains("Librarian"))
-                    is = ((Librarian2)Login.current).addUser(name.getText(), phone.getText(), address.getText(), status.getSelectionModel().selectedItemProperty().get());
-                else
-                    is = ((Admin)Login.current).addLibrarian(name.getText(), phone.getText(), address.getText(), status.getSelectionModel().getSelectedItem());
+                if (!status.getSelectionModel().getSelectedItem().contains("Librarian")) {
+                    is = ((Librarian2) Login.current).addUser(name.getText(), phone.getText(), address.getText(), status.getSelectionModel().selectedItemProperty().get());
+                    (new Admin(1)).addLog(Login.current.getName() + " added user " + name.getText(), "");
+                }
+                else {
+                    is = ((Admin) Login.current).addLibrarian(name.getText(), phone.getText(), address.getText(), status.getSelectionModel().getSelectedItem());
+                    (new Admin(1)).addLog(Login.current.getName() + " added user " + name.getText(), "");
+                }
                 id = is.getInt();
                 pass = is.getString();
-                dialog = new Stage();
-                dialog.setTitle("User added");
-                Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
-                dialog.setScene(new Scene(root, 315, 155));
-                dialog.show();
             }
             else {
                 if (passField.getText().equals("")) passError.setText("Enter new password");
                 else
-                    if (status.getSelectionModel().getSelectedItem().contains("Librarian")) {
+                    if (!status.getSelectionModel().getSelectedItem().contains("Librarian")) {
                         (new Admin(1)).addLog(Login.current.getName() +
                                 " modified user " + (new Patron(LibrarianController.userId)).getName(), "");
                         ((Librarian1) Login.current).modify(LibrarianController.userId, name.getText(), phone.getText(),
@@ -114,7 +114,8 @@ public class UserInfo {
             Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
             dialog.setTitle(LibrarianController.object + " " + LibrarianController.action);
             dialog.setScene(new Scene(root));
-            Main.window.setScene(Login.librarianScene);
+            if (Login.current instanceof Librarian) Main.window.setScene(Login.librarianScene);
+            else Main.window.setScene(Login.adminScene);
             dialog.show();
         }
     }

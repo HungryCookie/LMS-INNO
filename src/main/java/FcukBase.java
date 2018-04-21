@@ -469,8 +469,8 @@ public class FcukBase implements FcukBaseInterface{
 
     public ResultSet checkedOutByUserID(int userID) { // ResultSet
         String query = "select * from copies " +
-                        "JOIN documents on copies.commonID = documents.id " +
-                        "where copies.userID = ?";
+                "JOIN documents on copies.commonID = documents.id " +
+                "where copies.userID = ?";
         ResultSet rs = null;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -488,8 +488,8 @@ public class FcukBase implements FcukBaseInterface{
 
     public ResultSet checkedOutByDocID(int bookID) {
         String query = "select * from copies " +
-                        "JOIN documents on copies.commonID = documents.id " +
-                        "where copies.commonID = ?";
+                "JOIN documents on copies.commonID = documents.id " +
+                "where copies.commonID = ?";
         ResultSet rs = null;
         try {
             PreparedStatement statement = connection.prepareStatement(query);

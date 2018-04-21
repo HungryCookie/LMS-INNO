@@ -21,7 +21,7 @@ public class Documents {
     private StringProperty year;
     private IntegerProperty counter;
     private StringProperty keywords;
-    
+
     private FcukBase base = new FcukBase();
 
     public Documents(int docID){
@@ -48,7 +48,7 @@ public class Documents {
             this.edition = new SimpleStringProperty(res.getString("edition"));
             this.year = new SimpleStringProperty(res.getString("year"));
             this.counter = new SimpleIntegerProperty(res.getInt("counter"));
-            this.keywords = new SimpleIntegerProperty(res.getInt("keywords"));
+            this.keywords = new SimpleStringProperty(res.getString("keywords"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -78,7 +78,7 @@ public class Documents {
             this.publisher = new SimpleStringProperty(res.getString("publisher"));
             this.edition = new SimpleStringProperty(res.getString("edition"));
             this.year = new SimpleStringProperty(res.getString("year"));
-            this.keywords = new SimpleIntegerProperty(res.getInt("keywords"));
+            this.keywords = new SimpleStringProperty(res.getString("keywords"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -177,11 +177,11 @@ public class Documents {
     public IntegerProperty counterProperty() {
         return counter;
     }
-    
+
     public StringProperty keywordsProperty() {
         return keywords;
     }
-    
+
     public String getKeywords() {
         return keywords.get();
     }
