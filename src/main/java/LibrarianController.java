@@ -212,6 +212,10 @@ public class LibrarianController {
             dialog.setScene(new Scene(root));
             dialog.show();
         }
+        else {
+            PatronController.checkCode = new IntAndString(temp, "");
+
+        }
     }
 
     @FXML
@@ -332,6 +336,13 @@ public class LibrarianController {
     }
 
     @FXML
+    private void returnDocument() throws IOException {
+        userId = Login.current.getID();
+        Parent root = FXMLLoader.load(getClass().getResource("/table.fxml"));
+        Main.window.setScene(new Scene(root));
+    }
+
+    @FXML
     private void returnDoc() throws IOException {
         try {
             userId = usrs.getSelectionModel().getSelectedItem().getID();
@@ -349,7 +360,6 @@ public class LibrarianController {
         object = "User";
         Parent root = FXMLLoader.load(getClass().getResource("/Userinfo.fxml"));
         Main.window.setScene(new Scene(root, 600, 400));
-        initialize();
     }
 
     @FXML
@@ -359,7 +369,6 @@ public class LibrarianController {
         object = "Document";
         Parent root = FXMLLoader.load(getClass().getResource("/Docinfo.fxml"));
         Main.window.setScene(new Scene(root, 600, 400));
-        initialize();
     }
 
     @FXML
