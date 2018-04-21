@@ -84,7 +84,7 @@ public class Dialog {
                     break;
                 }
                 case 10: {
-                    message.setText("Now " + PatronController.checkCode.getString() + " are available to you");
+                    message.setText("Now " + PatronController.checkCode.getString() + " available to you");
                     break;
                 }
                 case 11: {
