@@ -115,7 +115,11 @@ public class LibrarianController {
         ok.setDisable(true);
         fine.setVisible(false);
         bestseller.setText("");
-        if (Login.current instanceof Librarian2) {
+        deleteUser.setDisable(false);
+        deleteUser.setVisible(true);
+        deleteDoc.setDisable(false);
+        deleteDoc.setVisible(true);
+        if (Login.current.getStatus().equals("Librarian2")) {
             deleteDoc.setDisable(true);
             deleteDoc.setVisible(false);
             deleteUser.setDisable(true);
@@ -123,7 +127,7 @@ public class LibrarianController {
             Copy.setDisable(true);
             Copy.setVisible(false);
         }
-        else if (Login.current instanceof Librarian1) {
+        else if (Login.current.getStatus().equals("Librarian1")) {
             deleteDoc.setDisable(true);
             deleteDoc.setVisible(false);
             deleteUser.setDisable(true);
@@ -325,21 +329,24 @@ public class LibrarianController {
     }
 
     @FXML
-    private void addUser() throws IOException {
+    private void addUser() throws IOException, SQLException {
         userId = 0;
         action = "added";
         object = "User";
         Parent root = FXMLLoader.load(getClass().getResource("/Userinfo.fxml"));
         Main.window.setScene(new Scene(root, 600, 400));
+        initialize();
     }
 
     @FXML
-    private void addDoc() throws IOException {
+    private void addDoc() throws IOException, SQLException {
         docId = 0;
         action = "added";
         object = "Document";
         Parent root = FXMLLoader.load(getClass().getResource("/Docinfo.fxml"));
-        Main.window.setScene(new Scene(root, 600, 400));}
+        Main.window.setScene(new Scene(root, 600, 400));
+        initialize();
+    }
 
     @FXML
     private void modifyUser() throws IOException {
