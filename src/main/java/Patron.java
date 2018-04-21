@@ -587,7 +587,7 @@ public class Patron extends Users{
 
         document = new Documents(document.getDocID());
 
-        if (document.getType().equals("Magazin"))
+        if (document.getType().equals("Magazine"))
             return new IntAndString(13, date);
         
         deleteOldBookingsTest(document, dateS);
@@ -668,7 +668,7 @@ public class Patron extends Users{
 
         document = new Documents(document.getDocID());
 
-        if (document.getType().equals("Magazin"))
+        if (document.getType().equals("Magazine"))
             return new IntAndString(13, date);
         
         deleteOldBookings(document);
