@@ -20,6 +20,8 @@ public class PatronController {
     @FXML
     private Label title;
     @FXML
+    private Label fine;
+    @FXML
     private Label author;
     @FXML
     private Label type;
@@ -58,6 +60,7 @@ public class PatronController {
         edit.setText("");
         date.setText("");
         bestseller.setText("");
+        fine.setText("Current fine: " + ((Patron)Login.current).checkFine());
         ObservableList<Documents> docs = FXCollections.observableArrayList();
         ResultSet order = fb.getDocs();
         while (order.next()) {
@@ -106,7 +109,7 @@ public class PatronController {
         author.setText("Author: " + doc.getAuthor());
         type.setText("Type: " + doc.getType());
         if (!doc.getType().equals("AV")) {
-            if (!publisher.getText().equals(""))publisher.setText("Publisher: " + doc.getPublisher());
+            if (!publisher.getText().equals("")) publisher.setText("Publisher: " + doc.getPublisher());
             if (!date.getText().isEmpty()) date.setText("Date: " + doc.getYear());
             if (doc.isBestseller()) bestseller.setText("Bestseller");
             else bestseller.setText("");
