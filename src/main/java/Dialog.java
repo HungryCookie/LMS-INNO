@@ -11,10 +11,12 @@ public class Dialog {
 
     @FXML
     private void initialize() {
+        id.setText("");
+        pass.setText("");
         if ((Login.current instanceof Librarian) || (Login.current instanceof Admin)) {
-            if ((PatronController.checkCode != null) && (PatronController.checkCode.getInt() == 0))
+            if ((LibrarianController.checkCode != null) && (LibrarianController.checkCode.getInt() == 0))
                 message.setText("Unfortunately, document is unavailable. You were added to the queue. ");
-            else if ((PatronController.checkCode != null) && (PatronController.checkCode.getInt() == 2)) 
+            else if ((LibrarianController.checkCode != null) && (LibrarianController.checkCode.getInt() == 2))
                 message.setText("Magazine is not available for checking out");
             else {
                 message.setText(LibrarianController.object + " was successfully " + LibrarianController.action);
