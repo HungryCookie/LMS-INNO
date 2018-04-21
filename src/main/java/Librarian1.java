@@ -23,15 +23,9 @@ public class Librarian1 extends Librarian {
         if (!base.checkDocumentByID(docID))
             return false;
 
-        if (type.equals("AV"))
-            base.documentModify(docID, name, author, cost);
-        else {
-
-            base.documentModify(docID, name, publisher, year, edition, author, cost, reference, bestseller, keywords);
-
-            Documents d = new Documents(docID);
-
-            if (counter < d.getCopies()) {
+        Documents d = new Documents(docID);
+        
+        if (counter < d.getCopies()) {
 
                 ResultSet res = base.copiesOfDocument(docID);
 
@@ -39,17 +33,24 @@ public class Librarian1 extends Librarian {
                     if (counter == d.getCopies())
                         break;
 
-                    if (base.deleteCopy(res.getInt("copyID")))
+                    if (base.deleteCopy(res.getInt("copyID"))){
                         counter += 1;
+                        base.counterUp(-1);
+                    }
                 }
-            } else {
-                while (counter > d.getCopies()) {
-                    base.addCopy(d.getDocID());
-                    counter -= 1;
-                }
+        } 
+        else {
+            while (counter > d.getCopies()) {
+                base.addCopy(d.getDocID());
+                base.counterUp(1);
+                counter -= 1;
             }
-
         }
+    
+        if (type.equals("AV"))
+            base.documentModify(docID, name, author, cost);
+        else
+            base.documentModify(docID, name, publisher, year, edition, author, cost, reference, bestseller, keywords);
 
         return true;
     }
