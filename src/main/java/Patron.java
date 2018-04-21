@@ -650,7 +650,8 @@ public class Patron extends Users{
         return new IntAndString(3, getDateToReturnTest(document, dateS));
     }
 
-    public IntAndString checkOut(Documents document) throws SQLException {  //returns 0 if user can't take this document, user was added to queue
+    public IntAndString checkOut(Documents document) throws SQLException {
+        //returns 0 if user can't take this document, user was added to queue
         //returns 1 if document is already checked out by user
         //returns 2 if user is already in a queue at the moment
         //returns 3 if user can checkOut book
@@ -666,7 +667,7 @@ public class Patron extends Users{
         document = new Documents(document.getDocID());
 
         if (document.isReference())
-            return 0;
+            return new IntAndString(0, date);
         
         deleteOldBookings(document);
 

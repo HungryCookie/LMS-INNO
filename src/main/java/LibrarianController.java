@@ -411,8 +411,8 @@ public class LibrarianController {
         }
     }
 
-//    @FXML
-//    private void deleteDoc() {
+    @FXML
+    private void deleteDoc() {
 //        try {
 //            object = "Document";
 //            action = "deleted";
@@ -428,7 +428,7 @@ public class LibrarianController {
 //        }catch (Exception e) {
 //            docError.setText("Number is required");
 //        }
-//    }
+    }
 
     @FXML
     private void Copy() {
