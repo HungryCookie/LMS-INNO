@@ -8,17 +8,17 @@
    <children>
       <Label fx:id="message" layoutX="36.0" layoutY="27.0" text="User was successfully added">
          <font>
-            <Font name="Lucida Console" size="15.0" />
+            <Font name="" size="15.0" />
          </font>
       </Label>
       <Label fx:id="id" layoutX="36.0" layoutY="69.0" text="ID: ">
          <font>
-            <Font name="Lucida Console" size="15.0" />
+            <Font name="" size="15.0" />
          </font>
       </Label>
       <Label fx:id="pass" layoutX="36.0" layoutY="102.0" text="Password:">
          <font>
-            <Font name="Lucida Console" size="15.0" />
+            <Font name="" size="15.0" />
          </font>
       </Label>
    </children>

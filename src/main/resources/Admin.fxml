@@ -25,7 +25,7 @@
                            <children>
                               <Label prefHeight="16.0" prefWidth="120.0" text="Librarians:">
                                  <font>
-                                    <Font name="Lucida Console" size="15.0" />
+                                    <Font name="" size="15.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets left="5.0" top="10.0" />
@@ -53,7 +53,7 @@
                      <children>
                         <Label fx:id="name" text="Name">
                            <font>
-                              <Font name="Lucida Console" size="20.0" />
+                              <Font name="" size="20.0" />
                            </font>
                            <VBox.margin>
                               <Insets bottom="20.0" left="30.0" right="10.0" top="40.0" />
@@ -64,7 +64,7 @@
                               <Insets bottom="20.0" left="30.0" right="10.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Lucida Console" size="16.0" />
+                              <Font name="" size="16.0" />
                            </font>
                         </Label>
                         <Label fx:id="address" text="Address">
@@ -72,12 +72,12 @@
                               <Insets bottom="20.0" left="30.0" right="10.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Lucida Console" size="16.0" />
+                              <Font name="" size="16.0" />
                            </font>
                         </Label>
                         <Label fx:id="priv" text="Privilegue">
                            <font>
-                              <Font name="Lucida Console" size="16.0" />
+                              <Font name="" size="16.0" />
                            </font>
                            <VBox.margin>
                               <Insets bottom="40.0" left="30.0" right="10.0" />
@@ -87,22 +87,22 @@
                           <buttons>
                             <Button fx:id="add" mnemonicParsing="false" onAction="#add" text="Add">
                                  <font>
-                                    <Font name="Lucida Console" size="11.0" />
+                                    <Font name="" size="11.0" />
                                  </font>
                               </Button>
                               <Button fx:id="modify" minWidth="56.0" mnemonicParsing="false" onAction="#modify" prefHeight="21.0" text="Modify">
                                  <font>
-                                    <Font name="Lucida Console" size="11.0" />
+                                    <Font name="" size="11.0" />
                                  </font>
                               </Button>
                               <Button fx:id="delete" minWidth="60.0" mnemonicParsing="false" onAction="#delete" prefHeight="21.0" text="Delete">
                                  <font>
-                                    <Font name="Lucida Console" size="11.0" />
+                                    <Font name="" size="11.0" />
                                  </font>
                               </Button>
                               <Button fx:id="bookings" minWidth="70.0" mnemonicParsing="false" onAction="#bookings" prefHeight="21.0" text="Bookings">
                                  <font>
-                                    <Font name="Lucida Console" size="11.0" />
+                                    <Font name="" size="11.0" />
                                  </font>
                               </Button>
                           </buttons>
@@ -126,7 +126,7 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Lucida Console" size="16.0" />
+                        <Font name="" size="16.0" />
                      </font>
                   </Button>
                   <Label text="LibrINNO">
@@ -134,7 +134,7 @@
                         <Insets left="100.0" top="30.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Lucida Console" size="35.0" />
+                        <Font name="" size="35.0" />
                      </font>
                   </Label>
                   <Button fx:id="log" mnemonicParsing="false" onAction="#log" text="Log">
@@ -142,7 +142,7 @@
                         <Insets bottom="30.0" left="120.0" right="30.0" top="35.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Lucida Console" size="14.0" />
+                        <Font name="" size="14.0" />
                      </font>
                   </Button>
                </children>

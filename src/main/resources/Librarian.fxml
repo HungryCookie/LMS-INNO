@@ -26,14 +26,14 @@
                         <children>
                             <Label layoutX="14.0" layoutY="14.0" text="User: ">
                                 <font>
-                                    <Font name="Lucida Console" size="12.0" />
+                                    <Font name="" size="12.0" />
                                 </font>
                             </Label>
                             <TextField fx:id="searchUser" layoutX="71.0" layoutY="9.0" />
                             <Button fx:id="addUser" layoutX="238.0" layoutY="9.0" mnemonicParsing="false" onAction="#addUser" text="Add new user" />
                             <Label fx:id="userError" layoutX="94.0" layoutY="47.0" textFill="RED">
                                 <font>
-                                    <Font name="Lucida Console" size="12.0" />
+                                    <Font name="" size="12.0" />
                                 </font>
                             </Label>
                             <Button fx:id="deleteUser" layoutX="532.0" layoutY="206.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete" />
@@ -47,33 +47,33 @@
                             </TableView>
                             <Label fx:id="name" layoutX="382.0" layoutY="13.0" text="Label">
                                 <font>
-                                    <Font name="Lucida Console" size="20.0" />
+                                    <Font name="" size="20.0" />
                                 </font>
                             </Label>
                      <Label fx:id="phone" layoutX="282.0" layoutY="76.0" text="Label">
                         <font>
-                           <Font name="Lucida Console" size="16.0" />
+                           <Font name="" size="16.0" />
                         </font>
                      </Label>
                      <Label fx:id="address" layoutX="283.0" layoutY="110.0" text="Label">
                         <font>
-                           <Font name="Lucida Console" size="15.0" />
+                           <Font name="" size="15.0" />
                         </font>
                      </Label>
                      <Label fx:id="status" layoutX="284.0" layoutY="147.0" text="Label">
                         <font>
-                           <Font name="Lucida Console" size="15.0" />
+                           <Font name="" size="15.0" />
                         </font>
                      </Label>
                      <Button fx:id="payfine" layoutX="316.0" layoutY="206.0" mnemonicParsing="false" onAction="#payfine" prefHeight="26.0" prefWidth="74.0" text="Pay Fine">
                         <font>
-                           <Font name="Lucida Console" size="12.0" />
+                           <Font name="" size="12.0" />
                         </font>
                      </Button>
                      <TextField fx:id="fine" layoutX="316.0" layoutY="171.0" onAction="#ok" prefHeight="25.0" prefWidth="75.0" />
                      <Button fx:id="ok" layoutX="403.0" layoutY="171.0" mnemonicParsing="false" onAction="#ok" text="OK">
                         <font>
-                           <Font name="Lucida Console" size="12.0" />
+                           <Font name="" size="12.0" />
                         </font>
                      </Button>
                         </children>
@@ -86,7 +86,7 @@
                         <children>
                             <TextField fx:id="searchtext" layoutX="23.0" layoutY="20.0" prefHeight="25.0" prefWidth="198.0" promptText="Enter title or author">
                                 <font>
-                                    <Font name="Lucida Console" size="14.0" />
+                                    <Font name="" size="14.0" />
                                 </font>
                             </TextField>
                             <Label fx:id="note" layoutX="89.0" layoutY="281.0" textFill="RED" />
@@ -98,37 +98,37 @@
                             </TableView>
                             <Label fx:id="title" layoutX="315.0" layoutY="74.0" text="Title:">
                                 <font>
-                                    <Font name="Lucida Console" size="18.0" />
+                                    <Font name="" size="18.0" />
                                 </font>
                             </Label>
                             <Label fx:id="author" layoutX="316.0" layoutY="103.0" text="Author:">
                                 <font>
-                                    <Font name="Lucida Console" size="15.0" />
+                                    <Font name="" size="15.0" />
                                 </font>
                             </Label>
                             <Label fx:id="type" layoutX="316.0" layoutY="119.0" text="Type:">
                                 <font>
-                                    <Font name="Lucida Console" size="15.0" />
+                                    <Font name="" size="15.0" />
                                 </font>
                             </Label>
                             <Label fx:id="publisher" layoutX="317.0" layoutY="135.0" text="Publisher:">
                                 <font>
-                                    <Font name="Lucida Console" size="15.0" />
+                                    <Font name="" size="15.0" />
                                 </font>
                             </Label>
                             <Label fx:id="date" layoutX="316.0" layoutY="151.0" text="Date:">
                                 <font>
-                                    <Font name="Lucida Console" size="15.0" />
+                                    <Font name="" size="15.0" />
                                 </font>
                             </Label>
                             <Label fx:id="edit" layoutX="317.0" layoutY="167.0" prefHeight="18.0" prefWidth="82.0" text="Edition: ">
                                 <font>
-                                    <Font name="Lucida Console" size="15.0" />
+                                    <Font name="" size="15.0" />
                                 </font>
                             </Label>
                             <Label fx:id="bestseller" layoutX="317.0" layoutY="185.0" text="Bestseller">
                                 <font>
-                                    <Font name="Lucida Console" size="21.0" />
+                                    <Font name="" size="21.0" />
                                 </font>
                                 <textFill>
                                     <RadialGradient centerX="0.5555555555555556" centerY="0.44285714285714284" focusAngle="120.26" focusDistance="0.16279069767441867" radius="1.0">
@@ -141,42 +141,42 @@
                             </Label>
                      <Button fx:id="addDoc" layoutX="221.0" layoutY="20.0" mnemonicParsing="false" onAction="#addDoc" prefHeight="26.0" prefWidth="42.0" text="Add">
                         <font>
-                           <Font name="Lucida Console" size="12.0" />
+                           <Font name="" size="12.0" />
                         </font>
                      </Button>
                      <Button fx:id="Copy" layoutX="298.0" layoutY="209.0" mnemonicParsing="false" onAction="#Copy" text="Copies">
                         <font>
-                           <Font name="Lucida Console" size="14.0" />
+                           <Font name="" size="14.0" />
                         </font>
                      </Button>
                      <Button fx:id="modifyDoc" layoutX="263.0" layoutY="20.0" mnemonicParsing="false" onAction="#modifyDoc" prefHeight="26.0" prefWidth="65.0" text="Modify">
                         <font>
-                           <Font name="Lucida Console" size="13.0" />
+                           <Font name="" size="13.0" />
                         </font>
                      </Button>
                      <Button fx:id="deleteDoc" layoutX="325.0" layoutY="20.0" mnemonicParsing="false" onAction="#deleteDoc" prefHeight="26.0" prefWidth="65.0" text="Delete">
                         <font>
-                           <Font name="Lucida Console" size="13.0" />
+                           <Font name="" size="13.0" />
                         </font>
                      </Button>
                      <Button fx:id="request" layoutX="485.0" layoutY="208.0" mnemonicParsing="false" onAction="#request" prefHeight="26.0" prefWidth="157.0" text="Outstanding request" textAlignment="CENTER">
                         <font>
-                           <Font name="Lucida Console" size="12.0" />
+                           <Font name="" size="12.0" />
                         </font>
                      </Button>
                      <Button fx:id="wait" layoutX="370.0" layoutY="209.0" mnemonicParsing="false" onAction="#waitList" prefHeight="25.0" prefWidth="115.0" text="Waiting list">
                         <font>
-                           <Font name="Lucida Console" size="13.0" />
+                           <Font name="" size="13.0" />
                         </font>
                      </Button>
                      <Button fx:id="checkOut" layoutX="390.0" layoutY="20.0" mnemonicParsing="false" onAction="#checkOut" prefHeight="26.0" prefWidth="89.0" text="Check Out">
                         <font>
-                           <Font name="Lucida Console" size="13.0" />
+                           <Font name="" size="13.0" />
                         </font>
                      </Button>
                      <Button fx:id="returnDoc" layoutX="479.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnDocument" prefHeight="26.0" prefWidth="65.0" text="Return">
                         <font>
-                           <Font name="Lucida Console" size="13.0" />
+                           <Font name="" size="13.0" />
                         </font>
                      </Button>
                         </children></AnchorPane>
@@ -186,7 +186,7 @@
     </TabPane>
     <Button fx:id="back" layoutX="73.0" layoutY="56.0" mnemonicParsing="false" onAction="#back" text="Back">
         <font>
-            <Font name="Lucida Console" size="15.0" />
+            <Font name="" size="15.0" />
         </font>
     </Button>
 </AnchorPane>

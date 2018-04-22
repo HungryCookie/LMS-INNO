@@ -15,37 +15,37 @@
           <TableColumn fx:id="title" prefWidth="133.0" text="Title" />
           <TableColumn fx:id="copyID" prefWidth="51.0" text="Copy ID" />
             <TableColumn fx:id="checkedOut" prefWidth="82.0" text="Checked Out" />
-            <TableColumn fx:id="locations" prefWidth="139.0" text="Location" />
+            <TableColumn fx:id="locations" prefWidth="144.0" text="Location" />
         </columns>
       </TableView>
       <Button fx:id="add" layoutX="463.0" layoutY="96.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="123.0" text="Add new copy">
          <font>
-            <Font name="Lucida Console" size="14.0" />
+            <Font name="" size="14.0" />
          </font>
       </Button>
       <Button fx:id="delete" layoutX="463.0" layoutY="157.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="123.0" text="Delete copy">
          <font>
-            <Font name="Lucida Console" size="14.0" />
+            <Font name="" size="14.0" />
          </font>
       </Button>
       <Button fx:id="back" layoutX="48.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="84.0" text="Back">
          <font>
-            <Font name="Lucida Console" size="15.0" />
+            <Font name="" size="15.0" />
          </font></Button>
-      <Label fx:id="error" layoutX="465.0" layoutY="209.0" prefHeight="14.0" prefWidth="10.0" textFill="RED">
+      <Label fx:id="error" layoutX="465.0" layoutY="209.0" prefHeight="14.0" prefWidth="123.0" textFill="RED">
          <font>
-            <Font name="Lucida Console" size="13.0" />
+            <Font name="" size="13.0" />
          </font>
       </Label>
       <TextField fx:id="count" disable="true" layoutX="502.0" layoutY="234.0" onAction="#apply" prefHeight="25.0" prefWidth="84.0" promptText="Number of new copies" visible="false" />
-      <Button fx:id="apply" disable="true" layoutX="529.0" layoutY="275.0" mnemonicParsing="false" onAction="#apply" text="OK" visible="false">
+      <Button fx:id="apply" disable="true" layoutX="544.0" layoutY="296.0" mnemonicParsing="false" onAction="#apply" prefHeight="26.0" prefWidth="39.0" text="OK" visible="false">
          <font>
-            <Font name="Lucida Console" size="15.0" />
+            <Font name="" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="464.0" layoutY="267.0" prefHeight="13.0" prefWidth="10.0" textFill="RED">
+      <Label layoutX="464.0" layoutY="267.0" prefHeight="13.0" prefWidth="123.0" textFill="RED">
          <font>
-            <Font name="Lucida Console" size="11.0" />
+            <Font name="" size="11.0" />
          </font>
       </Label>
    </children>
