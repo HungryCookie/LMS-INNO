@@ -18,6 +18,12 @@ public class Dialog {
                 message.setText("Unfortunately, document is unavailable. You were added to the queue. ");
             else if ((LibrarianController.checkCode != null) && (LibrarianController.checkCode.getInt() == 2))
                 message.setText("Magazine is not available for checking out");
+            else if ((LibrarianController.checkCode != null) && (LibrarianController.checkCode.getInt() == 3)) {
+                message.setText("Thank you. Your current fine is " + LibrarianController.code);
+            }
+            else if ((LibrarianController.checkCode != null) && (LibrarianController.checkCode.getInt() == 4)) {
+                message.setText("Thank you. The change is " + LibrarianController.code);
+            }
             else {
                 message.setText(LibrarianController.object + " was successfully " + LibrarianController.action);
                 if (LibrarianController.action.equals("added") && LibrarianController.object.equals("User")) {

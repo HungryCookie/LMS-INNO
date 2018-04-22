@@ -48,7 +48,7 @@ public class AdminController {
     private Stage dialog;
 
     @FXML
-    private void initialize() throws SQLException {
+    public void initialize() throws SQLException {
         name.setText("");
         phone.setText("");
         address.setText("");
@@ -119,9 +119,9 @@ public class AdminController {
             priv.setText("");
         } else {
             name.setText(usr.getName());
-            phone.setText(usr.getPhoneNumber());
-            address.setText(usr.getAddress());
-            priv.setText(usr.getStatus());
+            phone.setText("Phone: " + usr.getPhoneNumber());
+            address.setText("Address: " +usr.getAddress());
+            priv.setText("Status: " + usr.getStatus());
         }
     }
 
@@ -136,8 +136,8 @@ public class AdminController {
         else {
             LibrarianController.userId = usrs.getSelectionModel().getSelectedItem().getID();
             Parent tab = FXMLLoader.load(getClass().getResource("/table.fxml"));
-
             tableScene = new Scene(tab, 1200, 600);
+            tableScene.getStylesheets().add("/material-fx-v0_3.css");
             Main.window.setScene(tableScene);
 //            Patron ptr = new Patron(userId);
 //            Date date = new Date();
@@ -151,7 +151,9 @@ public class AdminController {
         LibrarianController.action = "added";
         LibrarianController.object = "User";
         Parent root = FXMLLoader.load(getClass().getResource("/Userinfo.fxml"));
-        Main.window.setScene(new Scene(root, 600, 400));
+        Scene userInfo = new Scene(root, 600, 400);
+        userInfo.getStylesheets().add("/material-fx-v0_3.css");
+        Main.window.setScene(userInfo);
     }
 
     @FXML
@@ -166,6 +168,7 @@ public class AdminController {
                 dialog.setTitle("User deleted");
                 Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
                 dialog.setScene(new Scene(root, 315, 155));
+                dialog.getScene().getStylesheets().add("/material-fx-v0_3.css");
                 dialog.show();
                 int index = usrs.getSelectionModel().getSelectedIndex();
                 ((Admin)Login.current).addLog(Login.current.getName() + " deleted user " + usrs.getSelectionModel().getSelectedItem().getName(), "");
@@ -183,7 +186,9 @@ public class AdminController {
             LibrarianController.object = "User";
             LibrarianController.userId = usrs.getSelectionModel().getSelectedItem().getID();
             Parent root = FXMLLoader.load(getClass().getResource("/Userinfo.fxml"));
-            Main.window.setScene(new Scene(root, 600, 400));
+            Scene userInfo = new Scene(root, 600, 400);
+            userInfo.getStylesheets().add("/material-fx-v0_3.css");
+            Main.window.setScene(userInfo);
         }catch (Exception e) {
             name.setText("Choose a user...");
         }
@@ -197,7 +202,9 @@ public class AdminController {
     @FXML
     private void log() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Log.fxml"));
-        Main.window.setScene(new Scene(root));
+        Scene logScene = new Scene(root);
+        logScene.getStylesheets().add("/material-fx-v0_3.css");
+        Main.window.setScene(logScene);
     }
 
 }

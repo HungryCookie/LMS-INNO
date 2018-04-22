@@ -174,6 +174,9 @@ public class DocInfo {
             Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
             dialog.setTitle(LibrarianController.object + " " + LibrarianController.action);
             dialog.setScene(new Scene(root));
+            root = FXMLLoader.load(getClass().getResource("/Librarian.fxml"));
+            Login.librarianScene = new Scene(root);
+            Login.librarianScene.getStylesheets().add("/material-fx-v0_3.css");
             Main.window.setScene(Login.librarianScene);
             dialog.show();
         }

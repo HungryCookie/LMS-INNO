@@ -87,6 +87,7 @@ public class UserInfo {
                 if (!status.getSelectionModel().getSelectedItem().contains("Librarian")) {
                     is = ((Librarian2) Login.current).addUser(name.getText(), phone.getText(), address.getText(), status.getSelectionModel().selectedItemProperty().get());
                     (new Admin(1)).addLog(Login.current.getName() + " added user " + name.getText(), "");
+
                 }
                 else {
                     is = ((Admin) Login.current).addLibrarian(name.getText(), phone.getText(), address.getText(), status.getSelectionModel().getSelectedItem());
@@ -114,8 +115,18 @@ public class UserInfo {
             Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
             dialog.setTitle(LibrarianController.object + " " + LibrarianController.action);
             dialog.setScene(new Scene(root));
-            if (Login.current instanceof Librarian) Main.window.setScene(Login.librarianScene);
-            else Main.window.setScene(Login.adminScene);
+            if (Login.current instanceof Librarian) {
+                root = FXMLLoader.load(getClass().getResource("/Librarian.fxml"));
+                Login.librarianScene = new Scene(root);
+                Login.librarianScene.getStylesheets().add("/material-fx-v0_3.css");
+                Main.window.setScene(Login.librarianScene);
+            }
+            else {
+                root = FXMLLoader.load(getClass().getResource("/Admin.fxml"));
+                Login.adminScene = new Scene(root);
+                Login.adminScene.getStylesheets().add("/material-fx-v0_3.css");
+                Main.window.setScene(Login.adminScene);
+            }
             dialog.show();
         }
     }

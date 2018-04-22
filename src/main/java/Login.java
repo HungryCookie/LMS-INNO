@@ -23,7 +23,11 @@ public class Login {
     }
 
     public void checkID(String id, String password) throws Exception {
-        current = findUser(id);
+        try {
+            current = findUser(id);
+        }catch (Exception e) {
+            wrongid.setText("Enter ID");
+        }
         if (current == null) {
             wrongid.setText("Check ID, we can't find this user");
         } else {
@@ -36,15 +40,18 @@ public class Login {
                 if (current instanceof Admin) {
                     Parent root = FXMLLoader.load(getClass().getResource("/Admin.fxml"));
                     adminScene = new Scene(root);
+                    adminScene.getStylesheets().add("/material-fx-v0_3.css");
                     Main.window.setScene(adminScene);
                 }
                 if (current instanceof Librarian){
                     Parent root = FXMLLoader.load(getClass().getResource("/Librarian.fxml"));
                     librarianScene = new Scene(root);
+                    librarianScene.getStylesheets().add("/material-fx-v0_3.css");
                     Main.window.setScene(librarianScene);
                 } else if (current instanceof Patron) {
                     Parent root = FXMLLoader.load(getClass().getResource("/Patron.fxml"));
                     patronScene = new Scene(root);
+                    patronScene.getStylesheets().add("/material-fx-v0_3.css");
                     Main.window.setScene(patronScene);
                 }
             }
