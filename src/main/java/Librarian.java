@@ -173,14 +173,18 @@ public abstract class Librarian extends Users {
         base.addNotification(userID, docID, "T");
     }
 
-    public boolean payFine(int userID, int cash){
+    public int payFine(int userID, int cash){
 
         if (!base.checkUserID(userID))
-            return false;
+            return -1000000;
 
-        base.increaseFine(userID, -cash);
+        Patron p = new Patron(userID);
+        
+        int t = min(cash, p.checkFine());
+        
+        base.increaseFine(userID, -t);
 
-        return true;
+        return cash - t;
     }
 
     protected String getLocation(int copyID){
