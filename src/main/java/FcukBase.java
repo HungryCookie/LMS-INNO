@@ -51,7 +51,7 @@ public class FcukBase implements FcukBaseInterface{
         statement.execute("delete from documents");
         statement.execute("delete from notification");
         statement.execute("delete from info");
-        statement.execute("update sqlite_sequence set seq = 1 where name = 'users'");
+        statement.execute("update sqlite_sequence set seq = 2 where name = 'users'");
         statement.execute("update sqlite_sequence set seq = 0 where name = 'documents'");
         statement.execute("update sqlite_sequence set seq = 0 where name = 'copies'");
     }
