@@ -78,6 +78,8 @@ public class LibrarianController {
     @FXML
     private Label publisher;
     @FXML
+    private Label currentFine;
+    @FXML
     private Label date;
     @FXML
     private Label bestseller;
@@ -111,6 +113,7 @@ public class LibrarianController {
 
     @FXML
     private void initialize() throws SQLException {
+        currentFine.setText("");
         title.setText("");
         author.setText("");
         publisher.setText("");
@@ -181,7 +184,13 @@ public class LibrarianController {
         names.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         ids.setCellValueFactory(cellData -> cellData.getValue().getIDProperty().asString());
         usrs.setItems(users);
-        usrs.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedUser(newValue));
+        usrs.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                selectedUser(newValue);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
         searchUser.textProperty().addListener(((observable, oldValue, newValue) -> {
             try {
                 search(newValue);
@@ -277,6 +286,7 @@ public class LibrarianController {
         dialog.setScene(new Scene(root, 315, 155));
         dialog.getScene().getStylesheets().add("/material-fx-v0_3.css");
         dialog.show();
+        currentFine.setText("Current fine: " + ((Patron)usrs.getSelectionModel().getSelectedItem()).checkFine());
     }
 
     @FXML
@@ -326,21 +336,29 @@ public class LibrarianController {
         names.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         ids.setCellValueFactory(cellData -> cellData.getValue().getIDProperty().asString());
         usrs.setItems(users);
-        usrs.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectedUser(newValue));
+        usrs.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                selectedUser(newValue);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @FXML
-    private void selectedUser(Users usr) {
+    private void selectedUser(Users usr) throws SQLException {
         if (usr == null) {
             name.setText("");
             phone.setText("");
             address.setText("");
             status.setText("");
+            currentFine.setText("");
         } else {
             name.setText(usr.getName());
             phone.setText(usr.getPhoneNumber());
             address.setText(usr.getAddress());
             status.setText(usr.getStatus());
+            currentFine.setText("Current fine: " + ((Patron)usr).checkFine());
         }
         Main.window.setWidth(USE_COMPUTED_SIZE);
     }
