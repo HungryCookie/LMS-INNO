@@ -35,7 +35,7 @@ public abstract class Librarian extends Users {
             address = res.getString("address");
             password = res.getString("password");
             phoneNumber = res.getString("phoneNumber");
-            status = "Librarian";
+            status = res.getString("status");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -184,7 +184,7 @@ public abstract class Librarian extends Users {
         
         base.increaseFine(userID, -t);
 
-        return cash - t;
+        return p.checkFine() - cash;
     }
 
     protected String getLocation(int copyID){

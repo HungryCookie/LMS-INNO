@@ -22,7 +22,7 @@ public class Dialog {
                 message.setText("Thank you. Your current fine is " + LibrarianController.code);
             }
             else if ((LibrarianController.checkCode != null) && (LibrarianController.checkCode.getInt() == 4)) {
-                message.setText("Thank you. The change is " + LibrarianController.code);
+                message.setText("Thank you. The change is " + -LibrarianController.code);
             }
             else {
                 message.setText(LibrarianController.object + " was successfully " + LibrarianController.action);
