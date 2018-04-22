@@ -15,6 +15,7 @@ public class Main extends Application{
         window = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
         login = new Scene(root, 600, 550);
+        login.getStylesheets().add("/material-fx-v0_3.css");
         window.setTitle("LibrINNO: Management System");
         window.setScene(login);
         window.show();

@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 public class LibrarianController {
 
     @FXML
@@ -92,6 +94,8 @@ public class LibrarianController {
     public static String object;
 
     public static IntAndString checkCode;
+
+    public static int code;
 
     @FXML
     public TextField docID;
@@ -212,6 +216,7 @@ public class LibrarianController {
             dialog.setTitle("Checking out document");
             Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
             dialog.setScene(new Scene(root));
+            dialog.getScene().getStylesheets().add("/material-fx-v0_3.css");
             dialog.show();
         }
         else {
@@ -224,7 +229,9 @@ public class LibrarianController {
     private void waitList() throws IOException {
         docId = tab.getSelectionModel().getSelectedItem().getDocID();
         Parent root = FXMLLoader.load(getClass().getResource("/WaitingList.fxml"));
-        Main.window.setScene(new Scene(root));
+        Scene waitingList = new Scene(root);
+        waitingList.getStylesheets().add("/material-fx-v0_3.css");
+        Main.window.setScene(waitingList);
     }
 
     @FXML
@@ -237,6 +244,7 @@ public class LibrarianController {
         dialog.setTitle("Outstanding request");
         Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
         dialog.setScene(new Scene(root));
+        dialog.getScene().getStylesheets().add("/material-fx-v0_3.css");
         dialog.show();
     }
 
@@ -253,11 +261,13 @@ public class LibrarianController {
     }
 
     @FXML
-    private void ok() throws Exception{
+    private void ok() throws IOException {
         userId = usrs.getSelectionModel().getSelectedItem().getID();
         int paid = 0;
         if (!fine.getText().equals("")) paid = Integer.parseInt(fine.getText());
-        ((Librarian)Login.current).payFine(userId, paid);
+        code = ((Librarian)Login.current).payFine(userId, paid);
+        if (code > 0) checkCode = new IntAndString(3, "");
+        if (code < 0) checkCode = new IntAndString(4, "");
         (new Admin(1)).addLog((new Patron(userId)).getName() + " paid " + fine.getText() + " rubles for fine", "");
         action = "paid";
         object = "Fine";
@@ -265,6 +275,7 @@ public class LibrarianController {
         dialog.setTitle("Fine paid");
         Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
         dialog.setScene(new Scene(root, 315, 155));
+        dialog.getScene().getStylesheets().add("/material-fx-v0_3.css");
         dialog.show();
     }
 
@@ -299,6 +310,7 @@ public class LibrarianController {
                 edit.setText("");
             }
         }
+        Main.window.setWidth(USE_COMPUTED_SIZE);
     }
 
     @FXML
@@ -330,6 +342,7 @@ public class LibrarianController {
             address.setText(usr.getAddress());
             status.setText(usr.getStatus());
         }
+        Main.window.setWidth(USE_COMPUTED_SIZE);
     }
 
     @FXML
@@ -341,7 +354,9 @@ public class LibrarianController {
     private void returnDocument() throws IOException {
         userId = Login.current.getID();
         Parent root = FXMLLoader.load(getClass().getResource("/table.fxml"));
-        Main.window.setScene(new Scene(root));
+        tableScene = new Scene(root, 1200, 600);
+        tableScene.getStylesheets().add("/material-fx-v0_3.css");
+        Main.window.setScene(tableScene);
     }
 
     @FXML
@@ -361,7 +376,9 @@ public class LibrarianController {
         action = "added";
         object = "User";
         Parent root = FXMLLoader.load(getClass().getResource("/Userinfo.fxml"));
-        Main.window.setScene(new Scene(root, 600, 400));
+        Scene userInfo = new Scene(root, 600, 400);
+        userInfo.getStylesheets().add("/material-fx-v0_3.css");
+        Main.window.setScene(userInfo);
     }
 
     @FXML
@@ -370,7 +387,9 @@ public class LibrarianController {
         action = "added";
         object = "Document";
         Parent root = FXMLLoader.load(getClass().getResource("/Docinfo.fxml"));
-        Main.window.setScene(new Scene(root, 600, 400));
+        Scene docInfo = new Scene(root, 600, 400);
+        docInfo.getStylesheets().add("/material-fx-v0_3.css");
+        Main.window.setScene(docInfo);
     }
 
     @FXML
@@ -380,7 +399,9 @@ public class LibrarianController {
             object = "User";
             userId = usrs.getSelectionModel().getSelectedItem().getID();
             Parent root = FXMLLoader.load(getClass().getResource("/Userinfo.fxml"));
-            Main.window.setScene(new Scene(root, 600, 400));
+            Scene userInfo = new Scene(root, 600, 400);
+            userInfo.getStylesheets().add("/material-fx-v0_3.css");
+            Main.window.setScene(userInfo);
         }catch (Exception e) {
             name.setText("Choose a user...");
         }
@@ -393,7 +414,9 @@ public class LibrarianController {
             object = "Document";
             docId = tab.getSelectionModel().getSelectedItem().getDocID();
             Parent root = FXMLLoader.load(getClass().getResource("/Docinfo.fxml"));
-            Main.window.setScene(new Scene(root, 600, 400));
+            Scene docInfo = new Scene(root, 600, 400);
+            docInfo.getStylesheets().add("/material-fx-v0_3.css");
+            Main.window.setScene(docInfo);
         }catch (Exception e) {
             title.setText("Choose a document...");
         }
@@ -413,6 +436,7 @@ public class LibrarianController {
                 (new Admin(1)).addLog(Login.current.getName() + " deleted user " + usrs.getSelectionModel().getSelectedItem().getName(), "");
                 Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
                 dialog.setScene(new Scene(root, 315, 155));
+                dialog.getScene().getStylesheets().add("/material-fx-v0_3.css");
                 dialog.show();
                 int index = usrs.getSelectionModel().getSelectedIndex();
                 usrs.getItems().remove(index);
@@ -446,7 +470,9 @@ public class LibrarianController {
         try {
             docId = tab.getSelectionModel().getSelectedItem().getDocID();
             Parent root = FXMLLoader.load(getClass().getResource("/CopiesActions.fxml"));
-            Main.window.setScene(new Scene(root, 600, 400));
+            Scene copiesActions = new Scene(root, 600, 400);
+            copiesActions.getStylesheets().add("/material-fx-v0_3.css");
+            Main.window.setScene(copiesActions);
         }catch (Exception e) {
             title.setText("Choose a document...");
         }
@@ -463,12 +489,9 @@ public class LibrarianController {
         else {
             userId = usrs.getSelectionModel().getSelectedItem().getID();
             Parent tab = FXMLLoader.load(getClass().getResource("/table.fxml"));
-
             tableScene = new Scene(tab, 1200, 600);
+            tableScene.getStylesheets().add("/material-fx-v0_3.css");
             Main.window.setScene(tableScene);
-            Patron ptr = new Patron(userId);
-            Date date = new Date();
-
         }
     }
 }
