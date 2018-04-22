@@ -10,13 +10,13 @@
    <children>
       <Label layoutX="65.0" layoutY="26.0" text="Enter document ID">
          <font>
-            <Font name="Lucida Console" size="18.0" />
+            <Font name="" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="docID" layoutX="83.0" layoutY="65.0" onAction="#checkOut" />
       <Button fx:id="checkOut" layoutX="168.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkOut" text="Check it out">
          <font>
-            <Font name="Lucida Console" size="15.0" />
+            <Font name="" size="15.0" />
          </font>
       </Button>
       <Label fx:id="error" layoutX="26.0" layoutY="109.0" textFill="RED" />

@@ -11,42 +11,42 @@
    <children>
       <Label layoutX="216.0" layoutY="90.0" text="LibrINNO">
          <font>
-            <Font name="Lucida Console" size="35.0" />
+            <Font name="" size="35.0" />
          </font>
       </Label>
       <Label layoutX="151.0" layoutY="183.0" text="ID">
          <font>
-            <Font name="Lucida Console" size="20.0" />
+            <Font name="" size="20.0" />
          </font>
       </Label>
       <Label layoutX="149.0" layoutY="238.0" text="Password">
          <font>
-            <Font name="Lucida Console" size="20.0" />
+            <Font name="" size="20.0" />
          </font>
       </Label>
       <TextField fx:id="id" layoutX="310.0" layoutY="181.0" prefHeight="25.0" prefWidth="185.0" promptText="Enter your user's ID">
          <font>
-            <Font name="Lucida Console" size="12.0" />
+            <Font name="" size="12.0" />
          </font>
       </TextField>
       <PasswordField fx:id="password" layoutX="310.0" layoutY="236.0" onAction="#login" prefHeight="25.0" prefWidth="185.0" promptText="Enter your password">
          <font>
-            <Font name="Lucida Console" size="12.0" />
+            <Font name="" size="12.0" />
          </font>
       </PasswordField>
       <Button fx:id="login" layoutX="411.0" layoutY="304.0" mnemonicParsing="false" onAction="#login" text="Login">
          <font>
-            <Font name="Lucida Console" size="20.0" />
+            <Font name="" size="20.0" />
          </font>
       </Button>
       <Label fx:id="wrongid" layoutX="309.0" layoutY="212.0" textFill="RED">
          <font>
-            <Font name="Lucida Console" size="12.0" />
+            <Font name="" size="12.0" />
          </font>
       </Label>
       <Label fx:id="wrongpass" layoutX="310.0" layoutY="273.0" textFill="RED">
          <font>
-            <Font name="Lucida Console" size="12.0" />
+            <Font name="" size="12.0" />
          </font>
       </Label>
    </children>

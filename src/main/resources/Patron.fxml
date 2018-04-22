@@ -10,26 +10,26 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PatronController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PatronController">
     <Label layoutX="216.0" layoutY="27.0" text="LibrINNO">
         <font>
-            <Font name="Lucida Console" size="35.0" />
+            <Font name="" size="35.0" />
         </font>
     </Label>
    <TextField fx:id="searchtext" layoutX="23.0" layoutY="77.0" prefHeight="17.0" prefWidth="275.0" promptText="Enter title or author">
       <font>
-         <Font name="Lucida Console" size="14.0" />
+         <Font name="" size="14.0" />
       </font>
    </TextField>
    <Label fx:id="note" layoutX="89.0" layoutY="281.0" textFill="RED" />
    <Button fx:id="back" layoutX="23.0" layoutY="33.0" mnemonicParsing="false" onAction="#back" text="Back">
       <font>
-         <Font name="Lucida Console" size="15.0" />
+         <Font name="" size="15.0" />
       </font>
    </Button>
    <Button fx:id="info" layoutX="516.0" layoutY="33.0" mnemonicParsing="false" onAction="#info" text="My books">
       <font>
-         <Font name="Lucida Console" size="15.0" />
+         <Font name="" size="15.0" />
       </font>
    </Button>
    <TableView fx:id="tab" layoutX="23.0" layoutY="120.0" prefHeight="254.0" prefWidth="275.0">
@@ -38,44 +38,44 @@
        <TableColumn fx:id="authorCol" prefWidth="140.0" text="Author" />
      </columns>
    </TableView>
-   <Label fx:id="title" layoutX="436.0" layoutY="78.0" text="Title:">
+   <Label fx:id="title" layoutX="311.0" layoutY="76.0" text="Title:">
       <font>
-         <Font name="Lucida Console" size="22.0" />
+         <Font name="" size="22.0" />
       </font>
    </Label>
    <Label fx:id="author" layoutX="316.0" layoutY="120.0" text="Author:">
       <font>
-         <Font name="Lucida Console" size="15.0" />
+         <Font name="" size="15.0" />
       </font>
    </Label>
    <Label fx:id="type" layoutX="316.0" layoutY="152.0" text="Type:">
       <font>
-         <Font name="Lucida Console" size="15.0" />
+         <Font name="" size="15.0" />
       </font>
    </Label>
    <Label fx:id="publisher" layoutX="316.0" layoutY="184.0" text="Publisher:">
       <font>
-         <Font name="Lucida Console" size="15.0" />
+         <Font name="" size="15.0" />
       </font>
    </Label>
    <Label fx:id="date" layoutX="316.0" layoutY="217.0" text="Date:">
       <font>
-         <Font name="Lucida Console" size="15.0" />
+         <Font name="" size="15.0" />
       </font>
    </Label>
    <Label fx:id="edit" layoutX="316.0" layoutY="247.0" text="Edition: ">
       <font>
-         <Font name="Lucida Console" size="15.0" />
+         <Font name="" size="15.0" />
       </font>
    </Label>
    <Button fx:id="checkOut" layoutX="516.0" layoutY="311.0" mnemonicParsing="false" onAction="#checkOut" text="Check Out">
       <font>
-         <Font name="Lucida Console" size="15.0" />
+         <Font name="" size="15.0" />
       </font>
    </Button>
    <Label fx:id="bestseller" layoutX="316.0" layoutY="281.0" text="Bestseller">
       <font>
-         <Font name="Lucida Console" size="21.0" />
+         <Font name="" size="21.0" />
       </font>
       <textFill>
          <RadialGradient centerX="0.5555555555555556" centerY="0.44285714285714284" focusAngle="120.26" focusDistance="0.16279069767441867" radius="1.0">
@@ -88,7 +88,11 @@
    </Label>
    <Label fx:id="fine" layoutX="316.0" layoutY="337.0" text="Current fine: ">
       <font>
-         <Font name="Lucida Console" size="12.0" />
+         <Font name="" size="12.0" />
       </font>
    </Label>
+   <Button fx:id="bookings" layoutX="409.0" layoutY="34.0" mnemonicParsing="false" onAction="#bookings" prefHeight="31.0" prefWidth="107.0" text="My bookings">
+      <font>
+         <Font size="15.0" />
+      </font></Button>
 </Pane>

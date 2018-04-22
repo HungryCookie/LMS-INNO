@@ -21,7 +21,7 @@
                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                          </HBox.margin>
                          <font>
-                             <Font name="Lucida Console" size="16.0" />
+                             <Font name="" size="16.0" />
                          </font>
                      </Button>
                      <Label text="LibrINNO">
@@ -29,7 +29,7 @@
                              <Insets left="100.0" top="30.0" />
                          </HBox.margin>
                          <font>
-                             <Font name="Lucida Console" size="35.0" />
+                             <Font name="" size="35.0" />
                          </font>
                      </Label>
                  </children>
