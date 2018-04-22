@@ -253,7 +253,7 @@ public class LibrarianController {
     }
 
     @FXML
-    private void ok() throws IOException {
+    private void ok() throws Exception{
         userId = usrs.getSelectionModel().getSelectedItem().getID();
         int paid = 0;
         if (!fine.getText().equals("")) paid = Integer.parseInt(fine.getText());

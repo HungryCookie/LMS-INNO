@@ -173,7 +173,7 @@ public abstract class Librarian extends Users {
         base.addNotification(userID, docID, "T");
     }
 
-    public int payFine(int userID, int cash){
+    public int payFine(int userID, int cash) throws SQLException {
 
         if (!base.checkUserID(userID))
             return -1000000;

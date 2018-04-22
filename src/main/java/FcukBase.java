@@ -685,6 +685,7 @@ public class FcukBase implements FcukBaseInterface{
         increaseFine(userID, -fine);
     }
 
+
     public void clearQueue(int docID) {
         try {
             Statement statement = connection.createStatement();
