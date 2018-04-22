@@ -1,4 +1,3 @@
-/*
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -8,7 +7,7 @@ public class Test3 {
     private static Documents d1;
     private static Documents d2;
     private static Documents d3;
-    private static Librarian lb;
+    private static Librarian3 lb;
     private static Patron p1;
     private static Patron p2;
     private static Patron p3;
@@ -20,59 +19,71 @@ public class Test3 {
     }
 
     public static void start() throws Exception {
-
+        lb = new Librarian3(3);
         d1 = new Documents("Introduction to Algorithms");
         d2 = new Documents("Design Patterns: Elements of Reusable Object-Oriented Software");
         d3 = new Documents("Null References: The Billion Dollar Mistake");
-        for (int i = 1; i < 11; i++) {
-        switch (i) {
-            case 1: {
-                TC1();
-                break;
-            }
-            case 2: {
-                TC2();
-                break;
-            }
-            case 3: {
-                TC3();
-                break;
-            }
-            case 4: {
-                TC4();
-                break;
-            }
-            case 5: {
-                TC5();
-                break;
-            }
-            case 6: {
-                TC6();
-                break;
-            }
-            case 7: {
-                TC7();
-                break;
-            }
-            case 8: {
-                TC8();
-                break;
-            }
-            case 9: {
-                TC9();
-                break;
-            }
-            case 10: {
-                TC10();
-                break;
-            }
-            default:
-                System.exit(0);
+        lb.clearDB();
+        lb.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F", "");
+        lb.addDocument("Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm", "Addison-Wesley Professional ", "2003", 4, 1700, "First Edition", "Book", "T", "F", "");
+        lb.addDocument("Null References: The Billion Dollar Mistake", "Tony Hoare", "", "", 3, 700, "", "AV", "F", "F", "");
+        p1 = new Patron(lb.addUser("Sergey Afonso", "30001", "Via Margutta, 3", "Professor").getInt());
+        p2 = new Patron(lb.addUser("Nadia Teixeira", "30002", "Via Sacra, 13", "Professor").getInt());
+        p3 = new Patron(lb.addUser("Elvira Espindola", "30003", "Via del Corso, 22", "Professor").getInt());
+        s = new Patron(lb.addUser("Andrey Velo", "30004", "Avenida Mazatlan 250", "Student").getInt());
+        v = new Patron(lb.addUser("Veronika Rama", "30005", "Stret Atocha, 27", "Visiting Professor").getInt());
+        d1 = new Documents("Introduction to Algorithms");
+        d2 = new Documents("Design Patterns: Elements of Reusable Object-Oriented Software");
+        d3 = new Documents("Null References: The Billion Dollar Mistake");
+        for (int i = 8; i < 11; i++) {
+            switch (i) {
+                case 1: {
+                    TC1();
+                    break;
+                }
+                case 2: {
+                    TC2();
+                    break;
+                }
+                case 3: {
+                    TC3();
+                    break;
+                }
+                case 4: {
+                    TC4();
+                    break;
+                }
+                case 5: {
+                    TC5();
+                    break;
+                }
+                case 6: {
+                    TC6();
+                    break;
+                }
+                case 7: {
+                    TC7();
+                    break;
+                }
+                case 8: {
+                    TC8();
+                    break;
+                }
+                case 9: {
+                    TC9();
+                    break;
+                }
+                case 10: {
+                    TC10();
+                    break;
+                }
+                default:
+                    System.exit(0);
             }
             lb.clearDB();
-            lb.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F");
-            lb.addDocument("Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm", "Addison-Wesley Professional ", "2003", 4, 1700, "First Edition", "Book", "T", "F");
-            lb.addDocument("Null References: The Billion Dollar Mistake", "Tony Hoare", "", "", 3, 700, "", "AV", "F", "F");
+            lb.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F", "");
+            lb.addDocument("Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm", "Addison-Wesley Professional ", "2003", 4, 1700, "First Edition", "Book", "T", "F", "");
+            lb.addDocument("Null References: The Billion Dollar Mistake", "Tony Hoare", "", "", 3, 700, "", "AV", "F", "F", "");
             p1 = new Patron(lb.addUser("Sergey Afonso", "30001", "Via Margutta, 3", "Professor").getInt());
             p2 = new Patron(lb.addUser("Nadia Teixeira", "30002", "Via Sacra, 13", "Professor").getInt());
             p3 = new Patron(lb.addUser("Elvira Espindola", "30003", "Via del Corso, 22", "Professor").getInt());
@@ -283,7 +294,7 @@ public class Test3 {
         }
         System.out.println("=================================");
         assert (wait.length == 0);
-        Documents [] notes = p1.getHaveToReturnNotifications(true);
+        Documents [] notes = p1.getHaveToReturnNotificationsTest("2018-04-02");
         i = 0;
         while (i < notes.length) {
             System.out.println(p1.getName() + " was notified that " + notes[i].getName() + " should be returned");
@@ -291,7 +302,7 @@ public class Test3 {
         }
         System.out.println("=================================");
         assert (notes[0].getDocID() == d3.getDocID());
-        notes = p2.getHaveToReturnNotifications(true);
+        notes = p2.getHaveToReturnNotificationsTest("2018-04-02");
         i = 0;
         while (i < notes.length) {
             System.out.println(p2.getName() + " was notified that " + notes[i].getName() + " should be returned");
@@ -299,7 +310,7 @@ public class Test3 {
         }
         System.out.println("=================================");
         assert (notes[0].getDocID() == d3.getDocID());
-        notes = s.getFailedBookingNotifications(true);
+        notes = s.getFailedBookingNotificationsTest("2018-04-02");
         i = 0;
         while (i < notes.length) {
             System.out.println(s.getName() + " was notified that " + notes[i].getName() + " was deleted");
@@ -307,7 +318,7 @@ public class Test3 {
         }
         System.out.println("=================================");
         assert (notes[0].getDocID() == d3.getDocID());
-        notes = v.getFailedBookingNotifications(true);
+        notes = v.getFailedBookingNotificationsTest("2018-04-02");
         i = 0;
         while (i < notes.length) {
             System.out.println(v.getName() + " was notified that " + notes[i].getName() + " was deleted");
@@ -315,7 +326,7 @@ public class Test3 {
         }
         System.out.println("=================================");
         assert (notes[0].getDocID() == d3.getDocID());
-        notes = p3.getFailedBookingNotifications(true);
+        notes = p3.getFailedBookingNotificationsTest("2018-04-02");
         i = 0;
         while (i < notes.length) {
             System.out.println(p3.getName() + " was notified that " + notes[i].getName() + " was deleted");
@@ -339,20 +350,46 @@ public class Test3 {
         while (chout.next()) {
             if (chout.getInt("commonID") == d3.getDocID()) copyID = chout.getInt("copyID");
         }
-        lb.returnDoc(copyID);
-        Documents[] docs = s.getNotifications(true);
         int i = 0;
+        int[] wait = p2.getWaitingList(d3.getDocID());
+        System.out.println("Waiting list: ");
+        while (i < wait.length) {
+            Patron ptr = new Patron(wait[i]);
+            System.out.println(ptr.getName() + " waits for " + d3.getName());
+            i++;
+        }
+        lb.returnDocTest(copyID, "2018-04-02");
+        i = 0;
+        wait = p2.getWaitingList(d3.getDocID());
+        System.out.println("Waiting list: ");
+        while (i < wait.length) {
+            Patron ptr = new Patron(wait[i]);
+            System.out.println(ptr.getName() + " waits for " + d3.getName());
+            i++;
+        }
+        Documents[] docs = s.getNotificationsTest("2018-04-02");
+        i = 0;
+
+        wait = p2.getWaitingList(d3.getDocID());
+        System.out.println("Waiting list: ");
+        while (i < wait.length) {
+            Patron ptr = new Patron(wait[i]);
+            System.out.println(ptr.getName() + " waits for " + d3.getName());
+            i++;
+        }
+        i = 0;
         while (i < docs.length) {
             System.out.println(s.getName() + " was notified that " + docs[i].getName() + " is available");
             i++;
         }
+        i = 0;
         System.out.println("=================================");
         assert (docs[0].getDocID() == d3.getDocID());
         chout = lb.checkedOut(p2.getID());
         while (chout.next()) {
             System.out.println(p2.getName() + " checked out " + chout.getString("name") + " due to " + chout.getString("date"));
         }
-        int[] wait = p2.getWaitingList(d3.getDocID());
+        wait = p2.getWaitingList(d3.getDocID());
         System.out.println("Waiting list: ");
         while (i < wait.length) {
             Patron ptr = new Patron(wait[i]);
@@ -422,4 +459,3 @@ public class Test3 {
     }
 
 }
-*/

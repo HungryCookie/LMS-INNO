@@ -48,7 +48,7 @@ public class Patron extends Users{
                 password = res.getString("password");
                 phoneNumber = res.getString("phoneNumber");
                 status = res.getString("status");
-                currentFine = res.getInt("fine");
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -69,7 +69,7 @@ public class Patron extends Users{
             password = res.getString("password");
             phoneNumber = res.getString("phoneNumber");
             status = res.getString("status");
-            currentFine = res.getInt("fine");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

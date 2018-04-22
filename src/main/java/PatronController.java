@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 public class PatronController {
 
     @FXML
@@ -99,6 +101,7 @@ public class PatronController {
             checkCode = new IntAndString(code, doc);
             Parent dialog = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
             note.setScene(new Scene(dialog));
+            note.getScene().getStylesheets().add("/material-fx-v0_3.css");
             note.show();
         }
     }
@@ -126,6 +129,15 @@ public class PatronController {
             bestseller.setText("");
             edit.setText("");
         }
+        Main.window.setWidth(USE_COMPUTED_SIZE);
+    }
+
+    @FXML
+    private void bookings() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Bookings.fxml"));
+        Scene bookings = new Scene(root);
+        bookings.getStylesheets().add("/material-fx-v0_3.css");
+        Main.window.setScene(bookings);
     }
 
     @FXML
@@ -157,6 +169,7 @@ public class PatronController {
         dialog.setTitle("Checking out document");
         Parent root = FXMLLoader.load(getClass().getResource("/Dialog.fxml"));
         dialog.setScene(new Scene(root));
+        dialog.getScene().getStylesheets().add("/material-fx-v0_3.css");
         dialog.show();
     }
 
@@ -164,6 +177,7 @@ public class PatronController {
     private void info() throws Exception{
         Parent tab = FXMLLoader.load(getClass().getResource("/table.fxml"));
         tableScene = new Scene(tab, 1200, 400);
+        tableScene.getStylesheets().add("/material-fx-v0_3.css");
         Main.window.setScene(tableScene);
     }
 }

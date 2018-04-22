@@ -35,7 +35,7 @@ public abstract class Librarian extends Users {
             address = res.getString("address");
             password = res.getString("password");
             phoneNumber = res.getString("phoneNumber");
-            status = "Librarian";
+            status = res.getString("status");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -173,18 +173,14 @@ public abstract class Librarian extends Users {
         base.addNotification(userID, docID, "T");
     }
 
-    public int payFine(int userID, int cash) throws SQLException {
+    public boolean payFine(int userID, int cash){
 
         if (!base.checkUserID(userID))
-            return -1000000;
+            return false;
 
-        Patron p = new Patron(userID);
-        
-        int t = min(cash, p.checkFine());
-        
-        base.increaseFine(userID, -t);
+        base.increaseFine(userID, -cash);
 
-        return cash - t;
+        return true;
     }
 
     protected String getLocation(int copyID){
