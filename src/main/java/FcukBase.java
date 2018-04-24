@@ -47,11 +47,11 @@ public class FcukBase implements FcukBaseInterface{
         Statement statement = connection.createStatement();
         statement.execute("delete from copies;");
         statement.execute("delete from booking");
-        statement.execute("DELETE from users where id > 2");
+        statement.execute("DELETE from users where id > 1");
         statement.execute("delete from documents");
         statement.execute("delete from notification");
         statement.execute("delete from info");
-        statement.execute("update sqlite_sequence set seq = 2 where name = 'users'");
+        statement.execute("update sqlite_sequence set seq = 1 where name = 'users'");
         statement.execute("update sqlite_sequence set seq = 0 where name = 'documents'");
         statement.execute("update sqlite_sequence set seq = 0 where name = 'copies'");
     }
@@ -786,6 +786,7 @@ public class FcukBase implements FcukBaseInterface{
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
         b.clear();
+        //b.addNewUser("Sergey Afonso", "30001", "Via Margutta, 3", "FacultyMember", "qwerty");
         //b.returnDoc(2);
         //b.checkOut(1,2, "2018-03-18");
         //System.out.println(b.renew(2,1, "2018-12-01", "F"));
