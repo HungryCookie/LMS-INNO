@@ -152,12 +152,34 @@ public class FcukBase implements FcukBaseInterface{
         return res;
     }
 
-    public ResultSet getDocumentByKeyWords(String keyWords) {
+    public ResultSet searchDocumentByKeyWords(String keyWords) {
         try {
             String query = "select * from documents where keywords like '%" + keyWords + "%'";
             Statement statement = connection.createStatement();
             return statement.executeQuery(query);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet searchDocumentByTitle(String name) {
+        try {
+            String query = "select * from documents where name like '%" + name + "%'";
+            Statement statement = connection.createStatement();
+            return statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet searchDocumentByAuthor(String author) {
+        try {
+            String query = "select * from documents where author like '%" + author + "%'";
+            Statement statement = connection.createStatement();
+            return statement.executeQuery(query);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -797,6 +819,7 @@ public class FcukBase implements FcukBaseInterface{
     public static void main(String[] args) throws Exception {
         FcukBase b = new FcukBase();
         b.clear();
+        //b.addNewDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", "asd", 3, 3, "Book", "F", "F", "Algorithms, Data Structures, Complexity, Computational Theory");
         //b.addNewUser("Sergey Afonso", "30001", "Via Margutta, 3", "FacultyMember", "qwerty");
         //b.returnDoc(2);
         //b.checkOut(1,2, "2018-03-18");
