@@ -152,6 +152,17 @@ public class FcukBase implements FcukBaseInterface{
         return res;
     }
 
+    public ResultSet getDocumentByKeyWords(String keyWords) {
+        try {
+            String query = "select * from documents where keywords like '%" + keyWords + "%'";
+            Statement statement = connection.createStatement();
+            return statement.executeQuery(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /*public boolean bookADocument(int docID, int userID) {
         String query = "insert into booking values (?, ?)";
         String updateQuery = "update documents set counter = ? where rowid = ?";
@@ -789,7 +800,7 @@ public class FcukBase implements FcukBaseInterface{
         //b.addNewUser("Sergey Afonso", "30001", "Via Margutta, 3", "FacultyMember", "qwerty");
         //b.returnDoc(2);
         //b.checkOut(1,2, "2018-03-18");
-        //System.out.println(b.renew(2,1, "2018-12-01", "F"));
+        //System.out.println(b.renew(2,1, "2018-12-01", "F"));2009
         //b.checkOut(1,2,"2018-03-18");
         //b.addNewDocument("Introduction to Algorithms", "MIT Press",  "2009", "Third Edition", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", 4, 100, "F", "F");
         //b.addNewUser("Sergey Afonso", "30001", "Via Margutta, 3", "FacultyMember", "qwerty");
