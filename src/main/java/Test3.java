@@ -19,11 +19,12 @@ public class Test3 {
     }
 
     public static void start() throws Exception {
-        lb = new Librarian3(3);
+        lb = new Librarian3((new Admin(1)).addLibrarian("Steve Wozniak", "123465798", "Address", "Librarian3").getInt());
         d1 = new Documents("Introduction to Algorithms");
         d2 = new Documents("Design Patterns: Elements of Reusable Object-Oriented Software");
         d3 = new Documents("Null References: The Billion Dollar Mistake");
         lb.clearDB();
+        lb = new Librarian3((new Admin(1)).addLibrarian("Steve Wozniak", "123465798", "Address", "Librarian3").getInt());
         lb.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F", "");
         lb.addDocument("Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm", "Addison-Wesley Professional ", "2003", 4, 1700, "First Edition", "Book", "T", "F", "");
         lb.addDocument("Null References: The Billion Dollar Mistake", "Tony Hoare", "", "", 3, 700, "", "AV", "F", "F", "");
@@ -35,7 +36,7 @@ public class Test3 {
         d1 = new Documents("Introduction to Algorithms");
         d2 = new Documents("Design Patterns: Elements of Reusable Object-Oriented Software");
         d3 = new Documents("Null References: The Billion Dollar Mistake");
-        for (int i = 8; i < 11; i++) {
+        for (int i = 1; i < 11; i++) {
             switch (i) {
                 case 1: {
                     TC1();
@@ -81,6 +82,7 @@ public class Test3 {
                     System.exit(0);
             }
             lb.clearDB();
+            lb = new Librarian3((new Admin(1)).addLibrarian("Steve Wozniak", "123465798", "Address", "Librarian3").getInt());
             lb.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F", "");
             lb.addDocument("Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm", "Addison-Wesley Professional ", "2003", 4, 1700, "First Edition", "Book", "T", "F", "");
             lb.addDocument("Null References: The Billion Dollar Mistake", "Tony Hoare", "", "", 3, 700, "", "AV", "F", "F", "");
