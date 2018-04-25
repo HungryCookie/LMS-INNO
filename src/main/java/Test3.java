@@ -353,16 +353,8 @@ public class Test3 {
             if (chout.getInt("commonID") == d3.getDocID()) copyID = chout.getInt("copyID");
         }
         int i = 0;
-        int[] wait = p2.getWaitingList(d3.getDocID());
-        System.out.println("Waiting list: ");
-        while (i < wait.length) {
-            Patron ptr = new Patron(wait[i]);
-            System.out.println(ptr.getName() + " waits for " + d3.getName());
-            i++;
-        }
         lb.returnDocTest(copyID, "2018-04-02");
-        i = 0;
-        wait = p2.getWaitingList(d3.getDocID());
+        int [] wait = p2.getWaitingList(d3.getDocID());
         System.out.println("Waiting list: ");
         while (i < wait.length) {
             Patron ptr = new Patron(wait[i]);
@@ -370,15 +362,6 @@ public class Test3 {
             i++;
         }
         Documents[] docs = s.getNotificationsTest("2018-04-02");
-        i = 0;
-
-        wait = p2.getWaitingList(d3.getDocID());
-        System.out.println("Waiting list: ");
-        while (i < wait.length) {
-            Patron ptr = new Patron(wait[i]);
-            System.out.println(ptr.getName() + " waits for " + d3.getName());
-            i++;
-        }
         i = 0;
         while (i < docs.length) {
             System.out.println(s.getName() + " was notified that " + docs[i].getName() + " is available");
@@ -390,13 +373,6 @@ public class Test3 {
         chout = lb.checkedOut(p2.getID());
         while (chout.next()) {
             System.out.println(p2.getName() + " checked out " + chout.getString("name") + " due to " + chout.getString("date"));
-        }
-        wait = p2.getWaitingList(d3.getDocID());
-        System.out.println("Waiting list: ");
-        while (i < wait.length) {
-            Patron ptr = new Patron(wait[i]);
-            System.out.println(ptr.getName() + " waits for " + d3.getName());
-            i++;
         }
         System.out.println("=================================");
         assert (wait[0] == s.getID());

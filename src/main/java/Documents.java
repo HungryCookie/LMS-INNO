@@ -72,7 +72,7 @@ public class Documents {
             reference = (res.getString("reference").charAt(0) == 'T');
             bestseller = (res.getString("bestseller").charAt(0) == 'T');
             this.author = new SimpleStringProperty(res.getString("author"));
-            this.copies = new SimpleIntegerProperty(res.getInt("counter"));
+            this.counter = new SimpleIntegerProperty(res.getInt("counter"));
             this.cost = new SimpleIntegerProperty(res.getInt("cost"));
             this.type = new SimpleStringProperty(res.getString("type"));
             this.publisher = new SimpleStringProperty(res.getString("publisher"));

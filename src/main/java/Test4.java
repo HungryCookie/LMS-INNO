@@ -24,23 +24,11 @@ public class Test4 {
 
     public static void start() throws Exception {
         adm = new Admin(1);
-        lb3 = new Librarian3(3);
-        d1 = new Documents("Introduction to Algorithms");
-        d2 = new Documents("Design Patterns: Elements of Reusable Object-Oriented Software");
-        d3 = new Documents("Null References: The Billion Dollar Mistake");
+        int lbID = adm.addLibrarian("", "", "", "Librarian3").getInt();
+        lb3 = new Librarian3(lbID);
         lb3.clearDB();
-        lb3.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F", "");
-        lb3.addDocument("Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm", "Addison-Wesley Professional ", "2003", 4, 1700, "First Edition", "Book", "T", "F", "");
-        lb3.addDocument("Null References: The Billion Dollar Mistake", "Tony Hoare", "", "", 3, 700, "", "AV", "F", "F", "");
-        p1 = new Patron(lb3.addUser("Sergey Afonso", "30001", "Via Margutta, 3", "Professor").getInt());
-        p2 = new Patron(lb3.addUser("Nadia Teixeira", "30002", "Via Sacra, 13", "Professor").getInt());
-        p3 = new Patron(lb3.addUser("Elvira Espindola", "30003", "Via del Corso, 22", "Professor").getInt());
-        s = new Patron(lb3.addUser("Andrey Velo", "30004", "Avenida Mazatlan 250", "Student").getInt());
-        v = new Patron(lb3.addUser("Veronika Rama", "30005", "Stret Atocha, 27", "Visiting Professor").getInt());
-        d1 = new Documents("Introduction to Algorithms");
-        d2 = new Documents("Design Patterns: Elements of Reusable Object-Oriented Software");
-        d3 = new Documents("Null References: The Billion Dollar Mistake");
-        for (int i = 1; i < 11; i++) {
+        adm.deleteLibrarian(lbID);
+        for (int i = 2; i < 13; i++) {
             switch (i) {
                 case 1: {
                     TC1();
@@ -82,21 +70,21 @@ public class Test4 {
                     TC10();
                     break;
                 }
+                case 11: {
+                    TC11();
+                    break;
+                }
+                case 12: {
+                    TC12();
+                    break;
+                }
                 default:
                     System.exit(0);
             }
+            lbID = adm.addLibrarian("", "", "", "Librarian3").getInt();
+            lb3 = new Librarian3(lbID);
             lb3.clearDB();
-            lb3.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F", "");
-            lb3.addDocument("Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm", "Addison-Wesley Professional ", "2003", 4, 1700, "First Edition", "Book", "T", "F", "");
-            lb3.addDocument("Null References: The Billion Dollar Mistake", "Tony Hoare", "", "", 3, 700, "", "AV", "F", "F", "");
-            p1 = new Patron(lb3.addUser("Sergey Afonso", "30001", "Via Margutta, 3", "Professor").getInt());
-            p2 = new Patron(lb3.addUser("Nadia Teixeira", "30002", "Via Sacra, 13", "Professor").getInt());
-            p3 = new Patron(lb3.addUser("Elvira Espindola", "30003", "Via del Corso, 22", "Professor").getInt());
-            s = new Patron(lb3.addUser("Andrey Velo", "30004", "Avenida Mazatlan 250", "Student").getInt());
-            v = new Patron(lb3.addUser("Veronika Rama", "30005", "Stret Atocha, 27", "Visiting Professor").getInt());
-            d1 = new Documents("Introduction to Algorithms");
-            d2 = new Documents("Design Patterns: Elements of Reusable Object-Oriented Software");
-            d3 = new Documents("Null References: The Billion Dollar Mistake");
+            adm.deleteLibrarian(lbID);
         }
     }
 
@@ -227,8 +215,9 @@ public class Test4 {
         d1 = new Documents("Introduction to Algorithms");
         d2 = new Documents("Algorithms + Data Structures = Programs");
         d3 = new Documents("The Art of Computer Programming");
-        lb2.modify(d1.getDocID(), d1.getName(), d1.getAuthor(), d1.getPublisher(), d1.getYear(), d1.getCounter() - 1, d1.getCost(), d1.getEdition(), d1.getType(), "F", "F", d1.getKeywords());
-        System.out.println("Number of copies after action (except from reference): " + (d1.getCounter() - 1));
+        lb2.modify(d1.getDocID(), d1.getName(), d1.getAuthor(), d1.getPublisher(), d1.getYear(), (d1.getCounter() - 1), d1.getCost(), d1.getEdition(), d1.getType(), "F", "F", d1.getKeywords());
+        d1 = new Documents(d1.getDocID());
+        System.out.println("Number of copies after action (except from reference): " + d1.getCounter());
         adm.addLog(lb2.getName() + " deleted copy of " + d1.getName(), "");
         assert d1.getCounter() == 3;
     }
@@ -319,17 +308,17 @@ public class Test4 {
         System.out.println("=========================");
         Documents[] notifications = p1.getHaveToReturnNotifications();
         for (int i = 0; i < notifications.length; i++) {
-            System.out.println(p1.getName() + " was notified to returned book " + notifications[i].getName());
+            System.out.println(p1.getName() + " was notified to return book " + notifications[i].getName());
         }
         assert notifications.length == 1;
         notifications = p2.getHaveToReturnNotifications();
         for (int i = 0; i < notifications.length; i++) {
-            System.out.println(p2.getName() + " was notified to returned book " + notifications[i].getName());
+            System.out.println(p2.getName() + " was notified to return book " + notifications[i].getName());
         }
         assert notifications.length == 1;
         notifications = s.getHaveToReturnNotifications();
         for (int i = 0; i < notifications.length; i++) {
-            System.out.println(s.getName() + " was notified to returned book " + notifications[i].getName());
+            System.out.println(s.getName() + " was notified to return book " + notifications[i].getName());
         }
         assert notifications.length == 1;
         notifications = v.getFailedBookingNotifications();
@@ -377,10 +366,10 @@ public class Test4 {
         adm.addLog(v.getName() + " checked out document  " + d3.getName(), "");
         adm.addLog(p3.getName() + " checked out document  " + d3.getName(), "");
         if (!lb1.getStatus().equals("Librarian3"))
-            System.out.println("Impossible to place outstanding request for " + lb1.getName());
+            adm.addLog(lb1.getName() + " failed to place outstanding request for " + d3.getName(), "");
         else {
             lb1.outstandingRequest(d3);
-            adm.addLog(lb1.getName() + " failed to place outstanding request for " + d3.getName(), "");
+            adm.addLog(lb1.getName() + " placed outstanding request for " + d3.getName(), "");
         }
         assert p1.getBadNotifications().length == 0;
         String [][] logs = adm.getLogs();
@@ -428,7 +417,6 @@ public class Test4 {
         adm.addLog(v.getName() + " checked out document " + d3.getName(), "");
         adm.addLog(p3.getName() + " checked out document  " + d3.getName(), "");
         lb3.outstandingRequest(d3);
-        adm.addLog(lb3.getName() + " placed outstanding request for " + d3.getName(), "");
         adm.addLog(lb3.getName() + " placed the outstanding request for " + d3.getName(), "");
         System.out.println("Waiting list for " + d3.getName() + ":");
         System.out.println();
@@ -441,20 +429,20 @@ public class Test4 {
         System.out.println("=========================");
         Documents[] notifications = p1.getHaveToReturnNotifications();
         for (int i = 0; i < notifications.length; i++) {
-            System.out.println(p1.getName() + " was notified to returned book " + notifications[i].getName());
-            adm.addLog(p1.getName() + " was notified to returned book " + notifications[i].getName(), "");
+            System.out.println(p1.getName() + " was notified to return book " + notifications[i].getName());
+            adm.addLog(p1.getName() + " was notified to return book " + notifications[i].getName(), "");
         }
         assert notifications.length == 1;
         notifications = p2.getHaveToReturnNotifications();
         for (int i = 0; i < notifications.length; i++) {
-            System.out.println(p2.getName() + " was notified to returned book " + notifications[i].getName());
-            adm.addLog(p2.getName() + " was notified to returned book " + notifications[i].getName(), "");
+            System.out.println(p2.getName() + " was notified to return book " + notifications[i].getName());
+            adm.addLog(p2.getName() + " was notified to return book " + notifications[i].getName(), "");
         }
         assert notifications.length == 1;
         notifications = s.getHaveToReturnNotifications();
         for (int i = 0; i < notifications.length; i++) {
-            System.out.println(s.getName() + " was notified to returned book " + notifications[i].getName());
-            adm.addLog(s.getName() + " was notified to returned book " + notifications[i].getName(), "");
+            System.out.println(s.getName() + " was notified to return book " + notifications[i].getName());
+            adm.addLog(s.getName() + " was notified to return book " + notifications[i].getName(), "");
         }
         assert notifications.length == 1;
         notifications = v.getFailedBookingNotifications();
@@ -483,6 +471,104 @@ public class Test4 {
         System.out.println("******************************************");
         System.out.println("Test case 10: ");
         System.out.println();
+        System.out.println();
+        //Test Case 2
+        lb1 = new Librarian1(adm.addLibrarian("Eugenia Rama", "123456789", "Street", "Librarian1").getInt());
+        lb2 = new Librarian2(adm.addLibrarian("Luie Ramos", "987654321", "Next Street", "Librarian2").getInt());
+        lb3 = new Librarian3(adm.addLibrarian("Ramon Valdez", "456789123", "Another Street", "Librarian3").getInt());
+        adm.addLog(adm.getName() + " created Librarian1 " + lb1.getName(), "");
+        adm.addLog(adm.getName() + " created Librarian2 " + lb2.getName(), "");
+        adm.addLog(adm.getName() + " created Librarian3 " + lb3.getName(), "");
+        //Continue
+        lb2.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F", "Algorithms, Data Structures, Complexity, Computational Theory");
+        lb2.addDocument("Algorithms + Data Structures = Programs", "Niklaus Wirth", "Prentice Hall PTR", "1978", 4, 5000, "First Edition", "Book", "F", "F", "Algorithms, Data Structures, Search Algorithms, Pascal");
+        lb2.addDocument("The Art of Computer Programming", "Donald E. Knuth", " Addison Wesley Longman Publishing Co., Inc.", "1997", 4, 5000, "Third Edition",  "Book","F", "F", "Algorithms, Combinatorial Algorithms, Recursion");
+        s = new Patron(lb2.addUser("Andrey Velo", "30004", "Avenida Mazatlan 250", "Student").getInt());
+        p1 = new Patron(lb2.addUser("Sergey Afonso", "30001", "Via Margutta, 3", "Professor").getInt());
+        p2 = new Patron(lb2.addUser("Nadia Teixeira", "30002", "Via Sacra, 13", "Professor").getInt());
+        p3 = new Patron(lb2.addUser("Elvira Espindola", "30003", "Via del Corso, 22", "Professor").getInt());
+        v = new Patron(lb2.addUser("Veronika Rama", "30005", "Stret Atocha, 27", "Visiting Professor").getInt());
+        adm.addLog(lb2.getName() + " added document Introduction to Algorithms", "");
+        adm.addLog(lb2.getName() + " added document Algorithms + Data Structures = Programs", "");
+        adm.addLog(lb2.getName() + " added document The Art of Computer Programming", "");
+        ResultSet search = fb.searchDocumentByTitle("Introduction to Algorithms");
+        System.out.println("Results of search 'Introduction to Algorithms'");
+        int searchResults = 0;
+        while (search.next()) {
+            System.out.println(search.getString("name") + " by " + search.getString("author"));
+            System.out.println();
+            searchResults++;
+        }
+        assert searchResults == 1;
+    }
+
+    private static void TC11() throws SQLException {
+        System.out.println("******************************************");
+        System.out.println("Test case 11: ");
+        System.out.println();
+        System.out.println();
+        //Test Case 2
+        lb1 = new Librarian1(adm.addLibrarian("Eugenia Rama", "123456789", "Street", "Librarian1").getInt());
+        lb2 = new Librarian2(adm.addLibrarian("Luie Ramos", "987654321", "Next Street", "Librarian2").getInt());
+        lb3 = new Librarian3(adm.addLibrarian("Ramon Valdez", "456789123", "Another Street", "Librarian3").getInt());
+        adm.addLog(adm.getName() + " created Librarian1 " + lb1.getName(), "");
+        adm.addLog(adm.getName() + " created Librarian2 " + lb2.getName(), "");
+        adm.addLog(adm.getName() + " created Librarian3 " + lb3.getName(), "");
+        //Continue
+        lb2.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F", "Algorithms, Data Structures, Complexity, Computational Theory");
+        lb2.addDocument("Algorithms + Data Structures = Programs", "Niklaus Wirth", "Prentice Hall PTR", "1978", 4, 5000, "First Edition", "Book", "F", "F", "Algorithms, Data Structures, Search Algorithms, Pascal");
+        lb2.addDocument("The Art of Computer Programming", "Donald E. Knuth", " Addison Wesley Longman Publishing Co., Inc.", "1997", 4, 5000, "Third Edition",  "Book","F", "F", "Algorithms, Combinatorial Algorithms, Recursion");
+        s = new Patron(lb2.addUser("Andrey Velo", "30004", "Avenida Mazatlan 250", "Student").getInt());
+        p1 = new Patron(lb2.addUser("Sergey Afonso", "30001", "Via Margutta, 3", "Professor").getInt());
+        p2 = new Patron(lb2.addUser("Nadia Teixeira", "30002", "Via Sacra, 13", "Professor").getInt());
+        p3 = new Patron(lb2.addUser("Elvira Espindola", "30003", "Via del Corso, 22", "Professor").getInt());
+        v = new Patron(lb2.addUser("Veronika Rama", "30005", "Stret Atocha, 27", "Visiting Professor").getInt());
+        adm.addLog(lb2.getName() + " added document Introduction to Algorithms", "");
+        adm.addLog(lb2.getName() + " added document Algorithms + Data Structures = Programs", "");
+        adm.addLog(lb2.getName() + " added document The Art of Computer Programming", "");
+        ResultSet search = fb.searchDocumentByTitle("Algorithms");
+        System.out.println("Results of search 'Algorithms'");
+        int searchResults = 0;
+        while (search.next()) {
+            System.out.println(search.getString("name") + " by " + search.getString("author"));
+            System.out.println();
+            searchResults++;
+        }
+        assert searchResults == 2;
+    }
+    private static void TC12() throws SQLException {
+        System.out.println("******************************************");
+        System.out.println("Test case 12: ");
+        System.out.println();
+        System.out.println();
+        //Test Case 2
+        lb1 = new Librarian1(adm.addLibrarian("Eugenia Rama", "123456789", "Street", "Librarian1").getInt());
+        lb2 = new Librarian2(adm.addLibrarian("Luie Ramos", "987654321", "Next Street", "Librarian2").getInt());
+        lb3 = new Librarian3(adm.addLibrarian("Ramon Valdez", "456789123", "Another Street", "Librarian3").getInt());
+        adm.addLog(adm.getName() + " created Librarian1 " + lb1.getName(), "");
+        adm.addLog(adm.getName() + " created Librarian2 " + lb2.getName(), "");
+        adm.addLog(adm.getName() + " created Librarian3 " + lb3.getName(), "");
+        //Continue
+        lb2.addDocument("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivestand Clifford Stein", "MIT Press", "2009", 4, 5000, "Third Edition", "Book", "F", "F", "Algorithms, Data Structures, Complexity, Computational Theory");
+        lb2.addDocument("Algorithms + Data Structures = Programs", "Niklaus Wirth", "Prentice Hall PTR", "1978", 4, 5000, "First Edition", "Book", "F", "F", "Algorithms, Data Structures, Search Algorithms, Pascal");
+        lb2.addDocument("The Art of Computer Programming", "Donald E. Knuth", " Addison Wesley Longman Publishing Co., Inc.", "1997", 4, 5000, "Third Edition",  "Book","F", "F", "Algorithms, Combinatorial Algorithms, Recursion");
+        s = new Patron(lb2.addUser("Andrey Velo", "30004", "Avenida Mazatlan 250", "Student").getInt());
+        p1 = new Patron(lb2.addUser("Sergey Afonso", "30001", "Via Margutta, 3", "Professor").getInt());
+        p2 = new Patron(lb2.addUser("Nadia Teixeira", "30002", "Via Sacra, 13", "Professor").getInt());
+        p3 = new Patron(lb2.addUser("Elvira Espindola", "30003", "Via del Corso, 22", "Professor").getInt());
+        v = new Patron(lb2.addUser("Veronika Rama", "30005", "Stret Atocha, 27", "Visiting Professor").getInt());
+        adm.addLog(lb2.getName() + " added document Introduction to Algorithms", "");
+        adm.addLog(lb2.getName() + " added document Algorithms + Data Structures = Programs", "");
+        adm.addLog(lb2.getName() + " added document The Art of Computer Programming", "");
+        ResultSet search = fb.searchDocumentByKeyWords("Algorithms");
+        System.out.println("Results of search 'Algorithms'");
+        int searchResults = 0;
+        while (search.next()) {
+            System.out.println(search.getString("name") + " by " + search.getString("author"));
+            System.out.println();
+            searchResults++;
+        }
+        assert searchResults == 3;
     }
 
 }
